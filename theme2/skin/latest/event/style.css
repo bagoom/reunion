@@ -1,0 +1,57 @@
+@charset "utf-8";
+
+
+.sec01 .event {
+    flex: 1;
+}
+
+.sec01 .event .lat_title {
+    margin-bottom: 20px;
+    font-size: 23px;
+}
+
+.sec01 .event {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sec01 .event .date {
+    width: 100px;
+    text-align: center;
+}
+
+.sec01 .event .date .month {
+    font-size: 36px;
+    font-weight: 600;
+}
+
+.sec01 .event .cate {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fa7200;
+}
+
+.sec01 .event .con {
+    flex: 1;
+}
+
+.sec01 .event .con .tit {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.sec01 .event .con .desc {
+    font-size: 14.5px;
+    color: #777;
+    line-height: 1.4;
+}
+
+.sec01 .event .event-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+}
