@@ -6,7 +6,7 @@
 
 // 이 상수가 정의되지 않으면 각각의 개별 페이지는 별도로 실행될 수 없음
 define('_GNUBOARD_', true);
-
+ 
 include_once($g5_path['path'].'/version.php');   // 설정 파일
 
 // 기본 시간대 설정
@@ -14,8 +14,8 @@ date_default_timezone_set("Asia/Seoul");
 
 /********************
     경로 상수
-********************/
- /*
+********************/ 
+ /*  
 보안서버 도메인
 회원가입, 글쓰기에 사용되는 https 로 시작되는 주소를 말합니다.
 포트가 있다면 도메인 뒤에 :443 과 같이 입력하세요.
@@ -23,8 +23,8 @@ date_default_timezone_set("Asia/Seoul");
 입력예) https://www.domain.com:443/gnuboard5
 */
 define('G5_DOMAIN', '');
-define('G5_HTTPS_DOMAIN', '');
-
+define('G5_HTTPS_DOMAIN', 'http://210.106.105.235:8080/theme2');
+  
 // 디버깅 상수, 실제 서버운영시 false 로 설정해 주세요.
 define('G5_DEBUG', false);
 
@@ -35,7 +35,7 @@ define('G5_DB_ENGINE', '');
 // utf8, utf8mb4 등 지정 가능 기본값은 utf8, 설치전에 utf8mb4 으로 수정시 모든 테이블에 이모지 입력이 가능합니다. utf8mb4 는 mysql 또는 mariadb 5.5 버전 이상을 요구합니다.
 define('G5_DB_CHARSET', 'utf8');
 
-/*
+/* 
 www.sir.kr 과 sir.kr 도메인은 서로 다른 도메인으로 인식합니다. 쿠키를 공유하려면 .sir.kr 과 같이 입력하세요.
 이곳에 입력이 없다면 www 붙은 도메인과 그렇지 않은 도메인은 쿠키를 공유하지 않으므로 로그인이 풀릴 수 있습니다.
 */

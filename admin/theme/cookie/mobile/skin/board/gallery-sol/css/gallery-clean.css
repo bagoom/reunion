@@ -1,0 +1,66 @@
+body {
+    line-height: 1.42857143;
+    color: #111;
+	margin:0;padding:0;font-size:0.9em;height:100%;font-family:'Noto Sans KR', AppleSDGothicNeo-Regular,'Malgun Gothic','맑은 고딕',dotum,'돋움',sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+}
+.h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.gallery-container h1 {
+    text-align: center;
+    margin-top: 70px;
+    font-family: 'Droid Sans', sans-serif;
+    font-weight: bold;
+    color: #58595a;
+}
+
+.gallery-container p.page-description {
+    text-align: center;
+    margin: 30px auto;
+    font-size: 18px;
+    color: #85878c;
+}
+
+/* Styles for the gallery */
+
+.tz-gallery {
+    padding: 40px;
+}
+
+.tz-gallery .thumbnail {
+    margin-bottom: 15px;
+    border: none;
+	border:1px solid #ccc;
+	padding:30px;
+}
+
+.tz-gallery img {
+    border-radius: 2px;
+}
+
+.tz-gallery .caption{
+    padding: 0 0 20px 0;
+    text-align: left;
+}
+/**/
+.tz-gallery .caption h3 {
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+.tz-gallery .caption p {
+    font-size: 14px;
+    color: #7b7d7d;
+    margin: 0;
+	font-weight:normal;
+}
+
+.baguetteBox-button {
+    background-color: transparent !important;
+}
+
