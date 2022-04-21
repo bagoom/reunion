@@ -3,7 +3,7 @@ $sub_menu = "300100";
 include_once('./_common.php');
 include_once(G5_EDITOR_LIB);
 
-auth_check($auth[$sub_menu], 'w');
+auth_check_menu($auth, $sub_menu, 'w');
 
 $sql = " select count(*) as cnt from {$g5['group_table']} ";
 $row = sql_fetch($sql);
@@ -84,11 +84,63 @@ if (!isset($board['bo_select_editor'])) {
     sql_query(" ALTER TABLE `{$g5['board_table']}` ADD `bo_select_editor` VARCHAR(50) NOT NULL DEFAULT '' AFTER `bo_use_dhtml_editor` ", false);
 }
 
+$board_default = array(
+'bo_mobile_subject'=>'',
+'bo_device'=>'',
+'bo_use_category'=>0,
+'bo_category_list'=>'',
+'bo_admin'=>'',
+'bo_list_level'=>0,
+'bo_read_level'=>0,
+'bo_write_level'=>0,
+'bo_reply_level'=>0,
+'bo_comment_level'=>0,
+'bo_link_level'=>0,
+'bo_upload_level'=>0,
+'bo_download_level'=>0,
+'bo_html_level'=>0,
+'bo_use_sideview'=>0,
+'bo_select_editor'=>'',
+'bo_use_rss_view'=>0,
+'bo_use_good'=>0,
+'bo_use_nogood'=>0,
+'bo_use_name'=>0,
+'bo_use_signature'=>0,
+'bo_use_ip_view'=>0,
+'bo_use_list_content'=>0,
+'bo_use_list_file'=>0,
+'bo_use_list_view'=>0,
+'bo_use_email'=>0,
+'bo_use_file_content'=>0,
+'bo_use_cert'=>'',
+'bo_write_min'=>0,
+'bo_write_max'=>0,
+'bo_comment_min'=>0,
+'bo_comment_max'=>0,
+'bo_use_sns'=>0,
+'bo_order'=>0,
+'bo_use_captcha'=>0,
+'bo_content_head'=>'',
+'bo_content_tail'=>'',
+'bo_mobile_content_head'=>'',
+'bo_mobile_content_tail'=>'',
+'bo_insert_content'=>'',
+'bo_sort_field'=>'',
+);
+
+for($i=0;$i<=10;$i++){
+    $board_default['bo_'.$i.'_subj'] = '';
+    $board_default['bo_'.$i] = '';
+}
+
+$board = array_merge($board_default, $board);
+
 run_event('adm_board_form_before', $board, $w);
 
 $required = "";
 $readonly = "";
 $sound_only = "";
+$required_valid = "";
 if ($w == '') {
 
     $html_title .= ' 생성';
@@ -188,7 +240,7 @@ $pg_anchor = '<ul class="anchor">
         <tr>
             <th scope="row"><label for="bo_table">TABLE<?php echo $sound_only ?></label></th>
             <td colspan="2">
-                <input type="text" name="bo_table" value="<?php echo $board['bo_table'] ?>" id="bo_table" <?php echo $required ?> <?php echo $readonly ?> class="frm_input <?php echo $reaonly ?> <?php echo $required ?> <?php echo $required_valid ?>" maxlength="20">
+                <input type="text" name="bo_table" value="<?php echo $board['bo_table'] ?>" id="bo_table" <?php echo $required ?> <?php echo $readonly ?> class="frm_input <?php echo $readonly ?> <?php echo $required ?> <?php echo $required_valid ?>" maxlength="20">
                 <?php if ($w == '') { ?>
                     영문자, 숫자, _ 만 가능 (공백없이 20자 이내)
                 <?php } else { ?>
@@ -1009,7 +1061,7 @@ $pg_anchor = '<ul class="anchor">
             <th scope="row"><label for="bo_gallery_cols">갤러리 이미지 수<strong class="sound_only">필수</strong></label></th>
             <td>
                 <?php echo help('갤러리 형식의 게시판 목록에서 이미지를 한줄에 몇장씩 보여 줄 것인지를 설정하는 값') ?>
-                <?php echo get_member_level_select('bo_gallery_cols', 1, 10, $board['bo_gallery_cols']); ?>
+                <input type="text" name="bo_gallery_cols" value="<?php echo $board['bo_gallery_cols'] ?>" id="bo_gallery_cols" required class="required numeric frm_input" size="4">
             </td>
             <td class="td_grpset">
                 <input type="checkbox" name="chk_grp_gallery_cols" value="1" id="chk_grp_gallery_cols">
@@ -1440,4 +1492,3 @@ function fboardform_submit(f)
 
 <?php
 include_once ('./admin.tail.php');
-?>

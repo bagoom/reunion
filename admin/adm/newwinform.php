@@ -3,17 +3,29 @@ $sub_menu = '100310';
 include_once('./_common.php');
 include_once(G5_EDITOR_LIB);
 
-auth_check($auth[$sub_menu], "w");
+auth_check_menu($auth, $sub_menu, "w");
 
-$nw_id = preg_replace('/[^0-9]/', '', $nw_id);
+$nw_id = isset($_REQUEST['nw_id']) ? preg_replace('/[^0-9]/', '', $_REQUEST['nw_id']) : 0;
+$nw = array(
+'nw_begin_time'=>'',
+'nw_end_time'=>'',
+'nw_subject'=>'',
+'nw_content'=>'',
+'nw_division'=>'',
+);
 
 $html_title = "팝업레이어";
+
+// 팝업레이어 테이블에 쇼핑몰, 커뮤니티 인지 구분하는 여부 필드 추가
+$sql = " ALTER TABLE `{$g5['new_win_table']}` ADD `nw_division` VARCHAR(10) NOT NULL DEFAULT 'both' ";
+sql_query($sql, false);
+
 if ($w == "u")
 {
     $html_title .= " 수정";
     $sql = " select * from {$g5['new_win_table']} where nw_id = '$nw_id' ";
     $nw = sql_fetch($sql);
-    if (!$nw['nw_id']) alert("등록된 자료가 없습니다.");
+    if (! (isset($nw['nw_id']) && $nw['nw_id'])) alert("등록된 자료가 없습니다.");
 }
 else
 {
@@ -48,6 +60,19 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
         <col>
     </colgroup>
     <tbody>
+    <tr>
+        <th scope="row"><label for="nw_division">구분</label></th>
+        <td>
+            <?php echo help("커뮤니티에 표시될 것인지 쇼핑몰에 표시될 것인지를 설정합니다."); ?>
+            <select name="nw_division" id="nw_division">
+                <option value="comm"<?php echo get_selected($nw['nw_division'], 'comm'); ?>>커뮤니티</option>
+                <?php if (defined('G5_USE_SHOP') && G5_USE_SHOP) { ?>
+                <option value="both"<?php echo get_selected($nw['nw_division'], 'both', true); ?>>커뮤니티와 쇼핑몰</option>
+                <option value="shop"<?php echo get_selected($nw['nw_division'], 'shop'); ?>>쇼핑몰</option>
+                <?php } ?>
+            </select>
+        </td>
+    </tr>
     <tr>
         <th scope="row"><label for="nw_device">접속기기</label></th>
         <td>
@@ -147,4 +172,3 @@ function frmnewwin_check(f)
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
-?>

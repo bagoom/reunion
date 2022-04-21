@@ -83,7 +83,7 @@ function get_skin_dir($skin, $skin_path=G5_SKIN_PATH)
 
     $dirname = $skin_path.'/'.$skin.'/';
     if(!is_dir($dirname))
-        return;
+        return array();
 
     $handle = opendir($dirname);
     while ($file = readdir($handle)) {
@@ -184,7 +184,7 @@ function get_theme_config_value($dir, $key='*')
         } else {
             $keys = array_map('trim', explode(',', $key));
             foreach($keys as $v) {
-                $tconfig[$v] = trim($theme_config[$v]);
+                $tconfig[$v] = isset($theme_config[$v]) ? trim($theme_config[$v]) : '';
             }
         }
     }
@@ -230,12 +230,23 @@ function get_member_id_select($name, $level, $selected="", $event="")
     return $str;
 }
 
+// php8 버전 호환 권한 검사 함수
+function auth_check_menu($auth, $sub_menu, $attr, $return=false) {
+
+    $check_auth = isset($auth[$sub_menu]) ? $auth[$sub_menu] : '';
+    return auth_check($check_auth, $attr, $return);
+
+}
+
 // 권한 검사
 function auth_check($auth, $attr, $return=false)
 {
     global $is_admin;
 
     if ($is_admin == 'super') return;
+    if ($is_admin == 'superadmin') return;
+    if ($is_admin == 'supervisor') return;
+    if ($is_admin == 'manager') return;
 
     if (!trim($auth)) {
         $msg = '이 메뉴에는 접근 권한이 없습니다.\\n\\n접근 권한은 최고관리자만 부여할 수 있습니다.';
@@ -379,7 +390,7 @@ function get_sanitize_input($s, $is_html=false){
     return $s;
 }
 
-function check_log_folder($log_path){
+function check_log_folder($log_path, $is_delete=true){
 
     if( is_writable($log_path) ){
 
@@ -403,21 +414,26 @@ function check_log_folder($log_path){
         }
     }
     
-    // txt 파일과 log 파일을 조회하여 30일이 지난 파일은 삭제합니다.
-    $txt_files = glob($log_path.'/*.txt');
-    $log_files = glob($log_path.'/*.log');
-    
-    $del_files = array_merge($txt_files, $log_files);
+	if( $is_delete ) {
+		try {
+			// txt 파일과 log 파일을 조회하여 30일이 지난 파일은 삭제합니다.
+			$txt_files = glob($log_path.'/*.txt');
+			$log_files = glob($log_path.'/*.log');
+			
+			$del_files = array_merge($txt_files, $log_files);
 
-    if( $del_files && is_array($del_files) ){
-        foreach ($del_files as $del_file) {
-            $filetime = filemtime($del_file);
-            // 30일이 지난 파일을 삭제
-            if($filetime && $filetime < (G5_SERVER_TIME - 2592000)) {
-                @unlink($del_file);
-            }
-        }
-    }
+			if( $del_files && is_array($del_files) ){
+				foreach ($del_files as $del_file) {
+					$filetime = filemtime($del_file);
+					// 30일이 지난 파일을 삭제
+					if($filetime && $filetime < (G5_SERVER_TIME - 2592000)) {
+						@unlink($del_file);
+					}
+				}
+			}
+		} catch(Exception $e) {
+		}
+	}
 }
 
 // POST로 넘어온 토큰과 세션에 저장된 토큰 비교
@@ -435,7 +451,7 @@ function check_admin_token()
 // 관리자 페이지 referer 체크
 function admin_referer_check($return=false)
 {
-    $referer = trim($_SERVER['HTTP_REFERER']);
+    $referer = isset($_SERVER['HTTP_REFERER']) ? trim($_SERVER['HTTP_REFERER']) : '';
     if(!$referer) {
         $msg = '정보가 올바르지 않습니다.';
 
@@ -511,21 +527,21 @@ function admin_menu_find_by($call, $search_key){
     }
 
     if( isset($cache_menu[$call]) && isset($cache_menu[$call][$search_key]) ){
-        return$cache_menu[$call][$search_key];
+        return $cache_menu[$call][$search_key];
     }
 
     return '';
 }
 
 // 접근 권한 검사
-if (!$member['mb_id'])
+if (!$manager['mg_id'])
 {
-    alert('로그인 하십시오.', G5_BBS_URL.'/login.php?url=' . urlencode(correct_goto_url(G5_ADMIN_URL)));
+    goto_url(G5_BBS_URL.'/admin_login.php?url=' . urlencode(correct_goto_url(G5_ADMIN_URL)));
 }
 else if ($is_admin != 'super')
 {
     $auth = array();
-    $sql = " select au_menu, au_auth from {$g5['auth_table']} where mb_id = '{$member['mb_id']}' ";
+    $sql = " select * from `manager` where mg_id = '{$manager['mg_id']}' ";
     $result = sql_query($sql);
     for($i=0; $row=sql_fetch_array($result); $i++)
     {
@@ -539,19 +555,24 @@ else if ($is_admin != 'super')
 }
 
 // 관리자의 아이피, 브라우저와 다르다면 세션을 끊고 관리자에게 메일을 보낸다.
-$admin_key = md5($member['mb_datetime'] . get_real_client_ip() . $_SERVER['HTTP_USER_AGENT']);
+$admin_key = md5($manager['mg_name'] . get_real_client_ip() . $_SERVER['HTTP_USER_AGENT']);
+
 if (get_session('ss_mb_key') !== $admin_key) {
 
     session_destroy();
 
     include_once(G5_LIB_PATH.'/mailer.lib.php');
     // 메일 알림
-    mailer($member['mb_nick'], $member['mb_email'], $member['mb_email'], 'XSS 공격 알림', $_SERVER['REMOTE_ADDR'].' 아이피로 XSS 공격이 있었습니다.\n\n관리자 권한을 탈취하려는 접근이므로 주의하시기 바랍니다.\n\n해당 아이피는 차단하시고 의심되는 게시물이 있는지 확인하시기 바랍니다.\n\n'.G5_URL, 0);
+    mailer($member['mb_nick'], $member['mb_email'], $member['mb_email'], 'XSS 공격 알림', $_SERVER['REMOTE_ADDR'].' 아이피로 XSS 공격이 있었습니다.<br><br>관리자 권한을 탈취하려는 접근이므로 주의하시기 바랍니다.<br><br>해당 아이피는 차단하시고 의심되는 게시물이 있는지 확인하시기 바랍니다.'.G5_URL, 0);
 
     alert_close('정상적으로 로그인하여 접근하시기 바랍니다.');
 }
 
-@ksort($auth);
+if(isset($auth) && is_array($auth)) {
+    @ksort($auth);
+} else {
+    $auth = array();
+}
 
 // 가변 메뉴
 unset($auth_menu);
@@ -593,4 +614,3 @@ if ( isset($_REQUEST) && $_REQUEST ){
 
 // 관리자에서는 추가 스크립트는 사용하지 않는다.
 //$config['cf_add_script'] = '';
-?>

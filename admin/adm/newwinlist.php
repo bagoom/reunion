@@ -2,7 +2,7 @@
 $sub_menu = '100310';
 include_once('./_common.php');
 
-auth_check($auth[$sub_menu], "r");
+auth_check_menu($auth, $sub_menu, "r");
 
 if( !isset($g5['new_win_table']) ){
     die('<meta charset="utf-8">/data/dbconfig.php 파일에 <strong>$g5[\'new_win_table\'] = G5_TABLE_PREFIX.\'new_win\';</strong> 를 추가해 주세요.');
@@ -14,6 +14,7 @@ if(!sql_query(" DESCRIBE {$g5['new_win_table']} ", false)) {
     } else {
        $query_cp = sql_query(" CREATE TABLE IF NOT EXISTS `{$g5['new_win_table']}` (
                       `nw_id` int(11) NOT NULL AUTO_INCREMENT,
+                      `nw_division` varchar(10) NOT NULL DEFAULT 'both',
                       `nw_device` varchar(10) NOT NULL DEFAULT 'both',
                       `nw_begin_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
                       `nw_end_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -115,4 +116,3 @@ $result = sql_query($sql);
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
-?>

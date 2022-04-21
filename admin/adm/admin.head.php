@@ -32,24 +32,30 @@ function print_menu2($key, $no='')
 {
     global $menu, $auth_menu, $is_admin, $auth, $g5, $sub_menu;
 
-    $str .= "<ul>";
+    $str = "<ul>";
     for($i=1; $i<count($menu[$key]); $i++)
     {
-        if ($is_admin != 'super' && (!array_key_exists($menu[$key][$i][0],$auth) || !strstr($auth[$menu[$key][$i][0]], 'r')))
+        if( ! isset($menu[$key][$i]) ){
             continue;
+        }
 
-        if (($menu[$key][$i][4] == 1 && $gnb_grp_style == false) || ($menu[$key][$i][4] != 1 && $gnb_grp_style == true)) $gnb_grp_div = 'gnb_grp_div';
-        else $gnb_grp_div = '';
+        // if ($is_admin != 'super' && (!array_key_exists($menu[$key][$i][0],$auth) || !strstr($auth[$menu[$key][$i][0]], 'r')))
+        //     continue;
 
-        if ($menu[$key][$i][4] == 1) $gnb_grp_style = 'gnb_grp_style';
-        else $gnb_grp_style = '';
+        
+        $gnb_grp_div = $gnb_grp_style = '';
+
+        if (isset($menu[$key][$i][4])){
+            if (($menu[$key][$i][4] == 1 && $gnb_grp_style == false) || ($menu[$key][$i][4] != 1 && $gnb_grp_style == true)) $gnb_grp_div = 'gnb_grp_div';
+
+            if ($menu[$key][$i][4] == 1) $gnb_grp_style = 'gnb_grp_style';
+        }
 
         $current_class = '';
 
         if ($menu[$key][$i][0] == $sub_menu){
             $current_class = ' on';
         }
-
         $str .= '<li data-menu="'.$menu[$key][$i][0].'"><a href="'.$menu[$key][$i][2].'" class="gnb_2da '.$gnb_grp_style.' '.$gnb_grp_div.$current_class.'">'.$menu[$key][$i][1].'</a></li>';
 
         $auth_menu[$menu[$key][$i][0]] = $menu[$key][$i][1];
@@ -96,12 +102,46 @@ function imageview(id, w, h)
 </script>
 
 <div id="to_content"><a href="#container">본문 바로가기</a></div>
-
 <header id="hd">
     <h1><?php echo $config['cf_title'] ?></h1>
     <div id="hd_top">
-        <button type="button" id="btn_gnb" class="btn_gnb_close <?php echo $adm_menu_cookie['btn_gnb'];?>">메뉴</button>
-       <div id="logo"><a href="<?php echo correct_goto_url(G5_ADMIN_URL); ?>"><img src="<?php echo G5_ADMIN_URL ?>/img/logo.png" alt="<?php echo get_text($config['cf_title']); ?> 관리자"></a></div>
+        <div class="left">
+            <div id="logo"><a href="<?php echo correct_goto_url(G5_ADMIN_URL); ?>">동문 회원 관리시스템</a></div>
+            <nav id="gnb" class="gnb_large <?php echo $adm_menu_cookie['gnb']; ?>">
+                <ul class="gnb_ul">
+                    <?php
+                $jj = 1;
+                foreach($amenu as $key=>$value) {
+                    $href1 = $href2 = '';
+    
+                    if (isset($menu['menu'.$key][0][2]) && $menu['menu'.$key][0][2]) {
+                        $href1 = '<a href="'.$menu['menu'.$key][0][2].'" class="gnb_1da">';
+                        $href2 = '</a>';
+                    } else {
+                        continue;
+                    }
+    
+                    $current_class = "";
+                    if (isset($sub_menu) && (substr($sub_menu, 0, 3) == substr($menu['menu'.$key][0][0], 0, 3)))
+                        $current_class = " on";
+    
+                    $button_title = $menu['menu'.$key][0][1];
+                    $button_href = $menu['menu'.$key][0][2];
+                ?>
+                    <li class="gnb_li<?php echo $current_class;?>">
+                        <!-- <button type="button" class="btn_op menu-<?php echo $key; ?> menu-order-<?php echo $jj; ?>" title="<?php echo $button_title; ?>"><?=$button_title; ?></button> -->
+                        <a href="<?=$button_href?>"><?=$button_title; ?></a>
+                            <div class="gnb_oparea">
+                                <?php echo print_menu1('menu'.$key, 1); ?>
+                            </div>
+                    </li>
+                    <?php
+                $jj++;
+                }     //end foreach
+                ?>
+                </ul>
+            </nav>
+        </div>
 
         <div id="tnb">
             <ul>
@@ -116,43 +156,7 @@ function imageview(id, w, h)
             </ul>
         </div>
     </div>
-    <nav id="gnb" class="gnb_large <?php echo $adm_menu_cookie['gnb']; ?>">
-        <h2>관리자 주메뉴</h2>
-        <ul class="gnb_ul">
-            <?php
-            $jj = 1;
-            foreach($amenu as $key=>$value) {
-                $href1 = $href2 = '';
-
-                if ($menu['menu'.$key][0][2]) {
-                    $href1 = '<a href="'.$menu['menu'.$key][0][2].'" class="gnb_1da">';
-                    $href2 = '</a>';
-                } else {
-                    continue;
-                }
-
-                $current_class = "";
-                if (isset($sub_menu) && (substr($sub_menu, 0, 3) == substr($menu['menu'.$key][0][0], 0, 3)))
-                    $current_class = " on";
-
-                $button_title = $menu['menu'.$key][0][1];
-            ?>
-            <li class="gnb_li<?php echo $current_class;?>">
-                <button type="button" class="btn_op menu-<?php echo $key; ?> menu-order-<?php echo $jj; ?>" title="<?php echo $button_title; ?>"><?php echo $button_title;?></button>
-                <div class="gnb_oparea_wr">
-                    <div class="gnb_oparea">
-                        <h3><?php echo $menu['menu'.$key][0][1];?></h3>
-                        <?php echo print_menu1('menu'.$key, 1); ?>
-                    </div>
-                </div>
-            </li>
-            <?php
-            $jj++;
-            }     //end foreach
-            ?>
-        </ul>
-    </nav>
-
+   
 </header>
 <script>
 jQuery(function($){
@@ -183,6 +187,14 @@ jQuery(function($){
 
     });
 
+    $(".gnb_li ").hover(function(){
+        var menuCount = $(this).find(".gnb_oparea li").length;
+        if(menuCount > 0)
+        $(this).find(".gnb_oparea").show();
+    }, function(){
+        $(this).find(".gnb_oparea").hide();
+    })
+
     $(".gnb_ul li .btn_op" ).click(function() {
         $(this).parent().addClass("on").siblings().removeClass("on");
     });
@@ -195,5 +207,19 @@ jQuery(function($){
 
     <div id="container" class="<?php echo $adm_menu_cookie['container']; ?>">
 
-        <h1 id="container_title"><?php echo $g5['title'] ?></h1>
+        <h1 id="container_title">
+            <?php
+                $today = date("Y-m-d H:i:s");
+
+                $now = time();
+                $year = date("Y",$now);
+                $month = date("m",$now);
+                $day = date("d",$now);
+                $week = array("일" , "월"  , "화" , "수" , "목" , "금" ,"토") ;
+                $weekday = $week[ date('w'  , strtotime($today)  ) ] ;
+            ?>
+
+
+            <span><?=$year?>년 <?=$month?>월 <?=$day?>일(<?=$weekday?>) </span>
+            · <?php echo $g5['title'] ?></h1>
         <div class="container_wr">
