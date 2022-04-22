@@ -792,6 +792,32 @@ function get_member($mb_id, $fields='*', $is_cache=false)
     return $cache[$mb_id][$key];
 }
 
+
+// 매니저 정보를 얻는다.
+function get_manager($mg_id, $fields='*', $is_cache=false)
+{
+    global $g5, $reunionID;
+    if (preg_match("/[^0-9a-z_]+/i", $mg_id))
+    return array();
+    
+    static $cache = array();
+    
+    $key = md5($fields);
+    
+    if( $is_cache && isset($cache[$mg_id]) && isset($cache[$mg_id][$key]) ){
+        return $cache[$mg_id][$key];
+    }
+    if($mg_id == 'superadmin'){
+        $sql = " select $fields from `manager` where mg_id = TRIM('$mg_id')  ";
+    }else{
+        $sql = " select $fields from `manager` where mg_id = TRIM('$mg_id') and reunion_id = '$reunionID' ";
+    }
+    
+    $cache[$mg_id][$key] = run_replace('get_member', sql_fetch($sql), $mg_id, $fields, $is_cache);
+
+    return $cache[$mg_id][$key];
+}
+
 // 그룹 설정 테이블에서 하나의 행을 읽음
 function get_reunion($ru_id, $is_cache=false)
 {
@@ -896,7 +922,7 @@ function get_admin($admin='super', $fields='*')
 // 관리자인가?
 function is_admin($mb_id)
 {
-    global $config, $group, $board;
+    global $config, $group, $board, $reunion;
 
     if (!$mb_id) return '';
 
@@ -908,6 +934,8 @@ function is_admin($mb_id)
         $is_authority = 'manager';
     } else if (isset($board['bo_admin']) && ($board['bo_admin'] == $mb_id)){
         $is_authority = 'board';
+    } else if($reunion['mg_id'] == $mb_id && $reunion['reunion_id'] == $reunionID ){
+        $is_authority = 'super';
     }
 
     return run_replace('is_admin', $is_authority, $mb_id);
@@ -3321,6 +3349,34 @@ function login_password_check($mb, $pass, $hash)
     return check_password($pass, $hash);
 }
 
+// 관리자 로그인 패스워드 체크
+function admin_login_password_check($mb, $pass, $hash)
+{
+    global $g5;
+
+    $mb_id = isset($mb['mg_id']) ? $mb['mg_id'] : '';
+
+    if(!$mb_id)
+        return false;
+
+    if(G5_STRING_ENCRYPT_FUNCTION === 'create_hash' && (strlen($hash) === G5_MYSQL_PASSWORD_LENGTH || strlen($hash) === 16)) {
+        if( sql_password($pass) === $hash ){
+
+            if( ! isset($mb['mb_password2']) ){
+                $sql = "ALTER TABLE `manager` ADD `mb_password2` varchar(255) NOT NULL default '' AFTER `mg_pass`";
+                sql_query($sql);
+            }
+            
+            $new_password = create_hash($pass);
+            $sql = " update `manager` set mg_pass = '$new_password', mb_password2 = '$hash' where mg_id = '$mb_id' ";
+            sql_query($sql);
+            return true;
+        }
+    }
+
+    return check_password($pass, $hash);
+}
+
 // 동일한 host url 인지
 function check_url_host($url, $msg='', $return_url=G5_URL, $is_redirect=false)
 {
@@ -3951,6 +4007,28 @@ function get_reunion_select($name, $selected='', $event='', $field, $table)
     $result = sql_query($sql);
     $str = "<select id=\"$name\" name=\"$name\" $event>\n";
     for ($i=0; $row=sql_fetch_array($result); $i++) {
+        if($name == 'executive' && $i == 0){
+            $str .= '<option value="">없음</option>';
+        }
+        $str .= option_selected($row[$field], $selected, $row[$field]);
+    }
+    $str .= "</select>";
+    return $str;
+}
+
+// 동창회를 SELECT 형식으로 얻음
+function get_reunion_select2($name, $selected='', $event='', $field, $table)
+{
+    global $g5, $is_admin, $member, $reunionID;
+
+    $sql = "SELECT $field FROM `$table` ";
+
+    $result = sql_query($sql);
+    $str = "<select id=\"$name\" name=\"$name\" $event>\n";
+    for ($i=0; $row=sql_fetch_array($result); $i++) {
+        if($name == 'executive' && $i == 0){
+            $str .= '<option value="">없음</option>';
+        }
         $str .= option_selected($row[$field], $selected, $row[$field]);
     }
     $str .= "</select>";

@@ -39,8 +39,9 @@ function print_menu2($key, $no='')
             continue;
         }
 
-        if ($is_admin != 'super' && (!array_key_exists($menu[$key][$i][0],$auth) || !strstr($auth[$menu[$key][$i][0]], 'r')))
-            continue;
+        // if ($is_admin != 'super' && (!array_key_exists($menu[$key][$i][0],$auth) || !strstr($auth[$menu[$key][$i][0]], 'r')))
+        //     continue;
+
         
         $gnb_grp_div = $gnb_grp_style = '';
 
@@ -55,7 +56,6 @@ function print_menu2($key, $no='')
         if ($menu[$key][$i][0] == $sub_menu){
             $current_class = ' on';
         }
-
         $str .= '<li data-menu="'.$menu[$key][$i][0].'"><a href="'.$menu[$key][$i][2].'" class="gnb_2da '.$gnb_grp_style.' '.$gnb_grp_div.$current_class.'">'.$menu[$key][$i][1].'</a></li>';
 
         $auth_menu[$menu[$key][$i][0]] = $menu[$key][$i][1];
@@ -102,7 +102,6 @@ function imageview(id, w, h)
 </script>
 
 <div id="to_content"><a href="#container">본문 바로가기</a></div>
-
 <header id="hd">
     <h1><?php echo $config['cf_title'] ?></h1>
     <div id="hd_top">

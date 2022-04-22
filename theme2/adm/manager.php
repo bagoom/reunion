@@ -6,7 +6,7 @@ auth_check_menu($auth, $sub_menu, 'r');
 $g5['title'] = '관리자 설정';
 include_once('./admin.head.php');
 
-$sql = "SELECT * FROM `manager` WHERE reunion_id = '{$reunionID}' AND rights != 'supervisor'" ;
+$sql = "SELECT * FROM `manager` WHERE reunion_id = '{$reunionID}' AND rights != 'supervisor' AND rights != 'superadmin'" ;
 $result = sql_query($sql);
 
 $colspan = 7;
@@ -69,7 +69,7 @@ $colspan = 7;
         </div>
     </div>
 </form>
-<?=var_dump(get_reunion($reunionID))?>
+<!-- <?=var_dump(get_reunion($reunionID))?> -->
 
 
 <form name="fmemberlist" id="fmemberlist" action="./manager_update.php" onsubmit="return fmemberlist_submit(this);" method="post">

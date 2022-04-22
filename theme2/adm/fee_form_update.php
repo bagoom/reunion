@@ -21,7 +21,7 @@ $sql_common = "  fee_type = '{$fee_type}',
 
 if ($w == '')
 {
-    sql_query(" insert into {$g5['fee']} set mb_id = '{$mb_id}' , {$sql_common} ");
+    sql_query(" insert into {$g5['fee']} set mb_id = '{$mb_id}' , {$sql_common}, reunion_id = '{$reunionID}' ");
 }
 else if ($w == 'u')
 {

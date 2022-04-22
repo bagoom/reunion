@@ -33,8 +33,11 @@ if($fr_date)
 if($fee_type)
     $where .= " AND b.fee_type = '$fee_type'";
 
-    
-$sql = "SELECT * FROM {$g5['member_table']} a, {$g5['fee']} b WHERE a.mb_id = b.mb_id $where ORDER BY id DESC" ;
+if($is_admin !== 'superadmin'){    
+    $sql = "SELECT * FROM {$g5['member_table']} a, {$g5['fee']} b WHERE a.mb_id = b.mb_id $where AND b.reunion_id = '{$reunionID}' ORDER BY id DESC" ;
+}else{
+    $sql = "SELECT * FROM {$g5['member_table']} a, {$g5['fee']} b WHERE a.mb_id = b.mb_id $where ORDER BY id DESC" ;
+}
 $result = sql_query($sql);
 
 $total_count_sql = sql_fetch("SELECT count(*) AS count FROM {$g5['member_table']} a, {$g5['fee']} b WHERE a.mb_id = b.mb_id  $where");
@@ -56,10 +59,10 @@ $colspan = 9;
     </div>
     
     <div class="right">
-        <?php if ($is_admin == 'super') { ?>
+        <?php if($is_admin !== 'superadmin') { ?>
             <a href="./fee_form.php" id="member_add" class="btn btn_01">회비등록</a>
-            <a href="#" id="member_add" class="btn btn_02">엑셀저장</a>
         <?php } ?>
+            <a href="./excel.fee_export.php" id="member_add" class="btn btn_02">엑셀저장</a>
     </div>
 </div>
 <!-- <div class="local_desc01 local_desc">

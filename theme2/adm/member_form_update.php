@@ -97,6 +97,7 @@ $sql_common = "  mb_name = '{$posts['mb_name']}',
                  mb_homepage = '{$posts['mb_homepage']}',
                  mb_tel = '{$posts['mb_tel']}',
                  mb_hp = '{$mb_hp}',
+                 mb_sex = '{$mb_sex}',
                  mb_certify = '{$mb_certify}',
                  mb_adult = '{$mb_adult}',
                  mb_birth = '{$mb_birth}',
@@ -115,7 +116,7 @@ $sql_common = "  mb_name = '{$posts['mb_name']}',
                  mb_open = '{$posts['mb_open']}',
                  mb_profile = '{$posts['mb_profile']}',
                  mb_level = '{$posts['mb_level']}',
-                 type = '{$posts['type']}',
+                 type = '{$reunion['affiliation']}',
                  affiliation = '{$posts['affiliation']}',
                  department = '{$posts['department']}',
                  name2 = '{$posts['name2']}',
@@ -149,7 +150,7 @@ if ($w == '')
     if (isset($row['mb_id']) && $row['mb_id'])
         alert('이미 존재하는 이메일입니다.\\nＩＤ : '.$row['mb_id'].'\\n이름 : '.$row['mb_name'].'\\n닉네임 : '.$row['mb_nick'].'\\n메일 : '.$row['mb_email']);
 
-    sql_query(" insert into {$g5['member_table']} set mb_id = '{$mb_id}', mb_password = '".get_encrypt_string($mb_password)."', mb_datetime = '".G5_TIME_YMDHIS."', mb_ip = '{$_SERVER['REMOTE_ADDR']}', mb_email_certify = '".G5_TIME_YMDHIS."', {$sql_common} ");
+    sql_query(" insert into {$g5['member_table']} set mb_id = '{$mb_id}', mb_password = '".get_encrypt_string($mb_password)."', mb_datetime = '".G5_TIME_YMDHIS."', mb_ip = '{$_SERVER['REMOTE_ADDR']}', mb_email_certify = '".G5_TIME_YMDHIS."', {$sql_common}, reunion_id = '{$reunionID}' ");
 }
 else if ($w == 'u')
 {
@@ -157,7 +158,7 @@ else if ($w == 'u')
     if (! (isset($mb['mb_id']) && $mb['mb_id']))
         alert('존재하지 않는 회원자료입니다.');
 
-    if ($is_admin != 'super' && $mb['mb_level'] >= $member['mb_level'])
+    if ( ($is_admin != 'super' && $is_admin != 'manager' && $is_admin != 'supervisor'  && $is_admin != 'superadmin') && $mb['mb_level'] >= $member['mb_level'])
         alert('자신보다 권한이 높거나 같은 회원은 수정할 수 없습니다.');
 
     if ($is_admin !== 'super' && is_admin($mb['mb_id']) === 'super' ) {

@@ -1,4 +1,5 @@
 <?php
+if( $is_admin == 'supervisor' && $is_admin !== 'superadmin') {
 $menu['menu500'] = array (
     array('500000', '사이트 설정', ''.G5_ADMIN_URL.'/affiliation.php', 'board'),
     array('500100', '계열', ''.G5_ADMIN_URL.'/affiliation.php', 'board'),
@@ -7,3 +8,4 @@ $menu['menu500'] = array (
     array('500400', '임원명', ''.G5_ADMIN_URL.'/executive.php', 'board'),
     array('500500', '관리자설정', ''.G5_ADMIN_URL.'/manager.php', 'board'),
 );
+}

@@ -27,7 +27,6 @@ if (!file_exists($reunion_config_file)) {
 }
 ?>
 
-
 <!-- 상단 시작 { -->
 <div id="hd">
     <h1 id="hd_h1"><?php echo $g5['title'] ?></h1>
@@ -50,6 +49,7 @@ if (!file_exists($reunion_config_file)) {
                     <?php } else {  ?>
                     <li><a href="<?php echo G5_BBS_URL ?>/register.php">회원가입</a></li>
                     <li><a href="<?php echo G5_BBS_URL ?>/login.php">로그인</a></li>
+                    <li><a href="<?php echo G5_ADMIN_URL ?>">관리자</a></li>
                 <?php }  ?>
 	        </ul>
 		</div>

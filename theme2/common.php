@@ -593,6 +593,22 @@ if (isset($member['mb_id']) && $member['mb_id']) {
     $member['mb_level'] = 1; // 비회원의 경우 회원레벨을 가장 낮게 설정
 }
 
+// 관리자 구분 
+$manager = get_manager($_SESSION['ss_mb_id']);
+$is_manager = false;
+
+if (isset($manager['mg_id']) && $manager['mg_id']) {
+    $is_member = true;
+    $is_manager = true;
+    $is_admin = $manager['rights'];
+    // $manager['mg_dir'] = substr($manager['mg_id'],0,2);
+} else {
+    $is_guest = true;
+    $manager['mb_id'] = '';
+    $member['mb_level'] = 1; // 비회원의 경우 회원레벨을 가장 낮게 설정
+}
+
+
 
 if ($is_admin != 'super') {
     // 접근가능 IP

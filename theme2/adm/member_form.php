@@ -60,8 +60,7 @@ else if ($w == 'u')
     $mb = get_member($mb_id);
     if (!$mb['mb_id'])
         alert('존재하지 않는 회원자료입니다.');
-
-    if ($is_admin != 'super' && $mb['mb_level'] >= $member['mb_level'])
+    if ( ($is_admin != 'super' && $is_admin != 'manager' && $is_admin != 'supervisor'  && $is_admin != 'superadmin') && $mb['mb_level'] >= $member['mb_level'])
         alert('자신보다 권한이 높거나 같은 회원은 수정할 수 없습니다.');
 
     $required_mb_id = 'readonly';
@@ -178,6 +177,7 @@ include_once('./admin.head.php');
 add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 ?>
 
+
 <form name="fmember" id="fmember" action="./member_form_update.php" onsubmit="return fmember_submit(this);" method="post" enctype="multipart/form-data">
 <input type="hidden" name="w" value="<?php echo $w ?>">
 <input type="hidden" name="sfl" value="<?php echo $sfl ?>">
@@ -212,12 +212,12 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                 <th scope="row"><label for="mb_name">성명1<strong class="sound_only">필수</strong></label></th>
                 <td><input type="text" name="mb_name" value="<?php echo $mb['mb_name'] ?>" id="mb_name" required class="required frm_input" size="15" maxlength="20"></td>
                 <th scope="row"><label for="mb_nick">성명2<strong class="sound_only">필수</strong></label></th>
-                <td><input type="text" name="mb_nick" value="<?php echo $mb['mb_nick'] ?>" id="mb_nick" required class="required frm_input" size="15" maxlength="20"></td>
+                <td><input type="text" name="mb_nick" value="<?php echo $mb['mb_nick'] ?>" id="mb_nick"  class=" frm_input" size="15" maxlength="20"></td>
             </tr>
             <tr>
                 <th scope="row">성별</th>
                 <td>
-                    <input type="radio" name="mb_sex" value="male" id="male" <?=($mb['mb_sex'] == 'male') ?  'checked' : null ?>>
+                    <input type="radio" name="mb_sex" value="male" id="male" <?=($mb['mb_sex'] == 'male') ?  'checked' : null ?> checked>
                     <label for="male">남</label>
                     <input type="radio" name="mb_sex" value="female" id="female" <?=($mb['mb_sex'] == 'female') ?  'checked' : null ?>>
                     <label for="female">여</label>
@@ -250,7 +250,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
             <tr>
                 <th scope="row">임원명</th>
                 <td colspan="3">
-                    <?= get_reunion_select('executive', $mb['executive'], 'required', 'ec_name', 'executive'); ?>
+                    <?= get_reunion_select('executive', $mb['executive'], '', 'ec_name', 'executive'); ?>
                 </td>
             </tr>
 

@@ -32,7 +32,9 @@ if($graduation_year)
 if($entrance_year)
     $where .= " AND entrance_year = '$entrance_year'";
 
-    
+ if($is_admin !== 'superadmin'){
+    $where .= " AND reunion_id = '$reunionID'";
+ }
 
 
 $sql_search = " where (1) ";
@@ -56,8 +58,8 @@ if ($stx) {
     $sql_search .= " ) ";
 }
 
-if ($is_admin != 'super')
-    $sql_search .= " and mb_level <= '{$member['mb_level']}' ";
+// if ($is_admin != 'super')
+//     $sql_search .= " and mb_level <= '{$member['mb_level']}' ";
 
 if (!$sst) {
     $sst = "mb_datetime";
@@ -100,12 +102,12 @@ $colspan = 20;
     </div>
 
     <div class="rigth">
-        <?php if ($is_admin == 'super') { ?>
-        <a href="./member_form.php" id="member_add" class="btn btn_01">회원추가</a>
-        <a href="#" id="member_add" class="btn btn_02">엑셀등록</a>
-        <a href="#" id="member_add" class="btn btn_02">엑셀저장</a>
-        <?php } ?>
-    </div>
+        <?php if($is_admin !== 'superadmin') { ?>
+            <a href="./member_form.php" id="member_add" class="btn btn_01">회원추가</a>
+            <a href="./memberexcel.php" id="member_add" class="btn btn_02" onclick="return excelform(this.href);" target="_blank">엑셀등록</a>
+        <?php }?>
+            <a href="./excel.member_export.php" id="member_add" class="btn btn_02">엑셀저장</a>
+        </div> 
 </div>
 
 <!-- <div class="local_desc01 local_desc">
@@ -286,6 +288,11 @@ $colspan = 20;
 <?php echo get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, '?'.$qstr.'&amp;page='); ?>
 
 <script>
+function excelform(url) {
+    var opt = "width=600,height=450,left=10,top=10";
+    window.open(url, "win_excel", opt);
+    return false;
+}
 function fmemberlist_submit(f)
 {
     if (!is_checked("chk[]")) {

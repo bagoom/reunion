@@ -1,5 +1,5 @@
 <?php
-$sub_menu = "500000";
+$sub_menu = "300000";
 include_once('./_common.php');
 
 auth_check_menu($auth, $sub_menu, 'r');
@@ -22,13 +22,16 @@ if($branch_name)
 if($fee_type)
     $where .= " AND b.fee_type = '$fee_type'";
 
-    
-$sql = "SELECT * FROM {$g5['branch']}  WHERE  $where ORDER BY branch_id DESC" ;
+if($is_admin !== 'superadmin'){    
+    $sql = "SELECT * FROM {$g5['branch']}  WHERE  $where  AND reunion_id = '{$reunionID}' ORDER BY branch_id DESC" ;
+}else{
+    $sql = "SELECT * FROM {$g5['branch']}  WHERE  $where  ORDER BY branch_id DESC" ;
+}
 $result = sql_query($sql);
 
 $total_count_sql = sql_fetch("SELECT count(*) AS count FROM {$g5['branch']} WHERE  $where");
 $total_count = $total_count_sql['count'];
-$colspan = 9;
+$colspan = 8;
 ?>
 
 
@@ -45,10 +48,10 @@ $colspan = 9;
     </div>
     
     <div class="right">
-        <?php if ($is_admin == 'super') { ?>
+        <?php if($is_admin !== 'superadmin') { ?>
             <a href="./branch_form.php" id="member_add" class="btn btn_01">지회등록</a>
-            <a href="#" id="member_add" class="btn btn_02">엑셀저장</a>
-        <?php } ?>
+        <?php }?>
+            <a href="./excel.branch_export.php" id="member_add" class="btn btn_02">엑셀저장</a>
     </div>
 </div>
 <!-- <div class="local_desc01 local_desc">
@@ -72,7 +75,6 @@ $colspan = 9;
         <th scope="col">회장</th>
         <th scope="col">전화번호</th>
         <th scope="col">총무</th>
-        <th scope="col">전화번호</th>
         <th scope="col">지회인원</th>
     </tr>
     </thead>
@@ -102,7 +104,6 @@ $colspan = 9;
         <td><?=$chairman['mb_name']?></td>
         <td><?=$chairman['mb_hp']?></td>
         <td><?=$manager['mb_name']?></td>
-        <td><?=$manager['mb_hp']?></td>
         <td><?=$branch_mem_count?></td>
     </tr>
     <?php

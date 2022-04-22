@@ -244,6 +244,9 @@ function auth_check($auth, $attr, $return=false)
     global $is_admin;
 
     if ($is_admin == 'super') return;
+    if ($is_admin == 'superadmin') return;
+    if ($is_admin == 'supervisor') return;
+    if ($is_admin == 'manager') return;
 
     if (!trim($auth)) {
         $msg = '이 메뉴에는 접근 권한이 없습니다.\\n\\n접근 권한은 최고관리자만 부여할 수 있습니다.';
@@ -531,14 +534,14 @@ function admin_menu_find_by($call, $search_key){
 }
 
 // 접근 권한 검사
-if (!$member['mb_id'])
+if (!$manager['mg_id'])
 {
-    alert('로그인 하십시오.', G5_BBS_URL.'/login.php?url=' . urlencode(correct_goto_url(G5_ADMIN_URL)));
+    goto_url(G5_BBS_URL.'/admin_login.php?url=' . urlencode(correct_goto_url(G5_ADMIN_URL)));
 }
 else if ($is_admin != 'super')
 {
     $auth = array();
-    $sql = " select au_menu, au_auth from {$g5['auth_table']} where mb_id = '{$member['mb_id']}' ";
+    $sql = " select * from `manager` where mg_id = '{$manager['mg_id']}' ";
     $result = sql_query($sql);
     for($i=0; $row=sql_fetch_array($result); $i++)
     {
@@ -552,7 +555,8 @@ else if ($is_admin != 'super')
 }
 
 // 관리자의 아이피, 브라우저와 다르다면 세션을 끊고 관리자에게 메일을 보낸다.
-$admin_key = md5($member['mb_datetime'] . get_real_client_ip() . $_SERVER['HTTP_USER_AGENT']);
+$admin_key = md5($manager['mg_name'] . get_real_client_ip() . $_SERVER['HTTP_USER_AGENT']);
+
 if (get_session('ss_mb_key') !== $admin_key) {
 
     session_destroy();

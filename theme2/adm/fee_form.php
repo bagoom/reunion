@@ -34,6 +34,7 @@ else
 $g5['title'] .= '회비 '.$html_title;
 include_once('./admin.head.php');
 
+$today = date('Y-m-d', time());  
 ?>
 
 <form name="fmember" id="fmember" action="./fee_form_update.php" onsubmit="return fmember_submit(this);" method="post" >
@@ -106,11 +107,11 @@ include_once('./admin.head.php');
                 </td>
                 <th scope="row">입금날짜</th>
                 <td>
-                    <input type="text" name="deposit_date" value="<?php echo $fee['deposit_date'] ?>" id="deposit_date"  class=" frm_input" size="15" maxlength="20" placeholder="ex) 0000-00-00">
+                    <input type="text" name="deposit_date" value="<?= ($fee['deposit_date']) ? $fee['deposit_date'] : $today ?>" id="deposit_date"  class=" frm_input" size="15" maxlength="20" placeholder="ex) 0000-00-00">
                 </td>
                 <th scope="row">금액</th>
                 <td>
-                   <input type="text" name="fee" value="<?php echo $fee['fee'] ?>" id="fee"  class=" frm_input" size="15" maxlength="20" placeholder="콤마없이 숫자만">
+                   <input type="text" name="fee" value="<?= $fee['fee'] ?>" id="fee"  class=" frm_input" size="15" maxlength="20" placeholder="콤마없이 숫자만">
                 </td>
             </tr>
             <tr>

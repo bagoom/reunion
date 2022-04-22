@@ -4,7 +4,7 @@ include_once('./_common.php');
 
 auth_check_menu($auth, $sub_menu, 'r');
 
-if ($is_admin != 'super')
+if ($is_admin != 'superadmin')
     alert('최고관리자만 접근 가능합니다.');
 
 if (!isset($config['cf_add_script'])) {
@@ -260,23 +260,23 @@ if (!isset($config['cf_bbs_rewrite'])) {
 }
 
 // 읽지 않은 메모 수 칼럼 추가
-if(!isset($member['mb_memo_cnt'])) {
-    sql_query(" ALTER TABLE `{$g5['member_table']}`
-                ADD `mb_memo_cnt` int(11) NOT NULL DEFAULT '0' AFTER `mb_memo_call`", true);
-}
+// if(!isset($member['mb_memo_cnt'])) {
+//     sql_query(" ALTER TABLE `{$g5['member_table']}`
+//                 ADD `mb_memo_cnt` int(11) NOT NULL DEFAULT '0' AFTER `mb_memo_call`", true);
+// }
 
 // 스크랩 읽은 수 추가
-if(!isset($member['mb_scrap_cnt'])) {
-    sql_query(" ALTER TABLE `{$g5['member_table']}`
-                ADD `mb_scrap_cnt` int(11) NOT NULL DEFAULT '0' AFTER `mb_memo_cnt`", true);
-}
+// if(!isset($member['mb_scrap_cnt'])) {
+//     sql_query(" ALTER TABLE `{$g5['member_table']}`
+//                 ADD `mb_scrap_cnt` int(11) NOT NULL DEFAULT '0' AFTER `mb_memo_cnt`", true);
+// }
 
-// 아이코드 토큰키 추가
-if( ! isset($config['cf_icode_token_key']) ){
-    $sql = "ALTER TABLE `{$g5['config_table']}` 
-            ADD COLUMN `cf_icode_token_key` VARCHAR(100) NOT NULL DEFAULT '' AFTER `cf_icode_server_port`; ";
-    sql_query($sql, false);
-}
+// // 아이코드 토큰키 추가
+// if( ! isset($config['cf_icode_token_key']) ){
+//     $sql = "ALTER TABLE `{$g5['config_table']}` 
+//             ADD COLUMN `cf_icode_token_key` VARCHAR(100) NOT NULL DEFAULT '' AFTER `cf_icode_server_port`; ";
+//     sql_query($sql, false);
+// }
 
 if(!$config['cf_faq_skin']) $config['cf_faq_skin'] = "basic";
 if(!$config['cf_mobile_faq_skin']) $config['cf_mobile_faq_skin'] = "basic";

@@ -18,7 +18,7 @@ $sql_common = "  type = '{$type}',
 
 if ($w == '')
 {
-    sql_query(" insert into {$g5['branch']} set create_date = '".G5_TIME_YMDHIS."' ,  {$sql_common} ");
+    sql_query(" insert into {$g5['branch']} set create_date = '".G5_TIME_YMDHIS."' ,  {$sql_common} , reunion_id = '{$reunionID}' ");
 }
 else if ($w == 'u')
 {
