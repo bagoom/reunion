@@ -3,10 +3,9 @@
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 $g5_debug['php']['begin_time'] = $begin_time = get_microtime();
-
 if (!isset($g5['title'])) {
-    $g5['title'] = $config['cf_title'];
-    $g5_head_title = $g5['title'];
+    $g5['title'] = $reunion['reunion_title'];
+    $g5_head_title = $reunion['reunion_title'];
 }
 else {
     $g5_head_title = $g5['title']; // 상태바에 표시될 제목

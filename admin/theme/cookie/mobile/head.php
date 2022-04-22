@@ -89,89 +89,32 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
 
         <div id="gnb" class="pc_view">
             <ul id="gnb_1dul">
-            <?php
-            $menu_datas = get_menu_db(1, true);
-			$i = 0;
-			foreach( $menu_datas as $row ){
-				if( empty($row) ) continue;
-            ?>
                 <li class="gnb_1dli">
-                    <a href="<?php echo $row['me_link']; ?>" target="_<?php echo $row['me_target']; ?>" class="gnb_1da"><?php echo $row['me_name'] ?></a>
-                    <?php
-                    $k = 0;
-                    foreach( (array) $row['sub'] as $row2 ){
-						if( empty($row2) ) continue;
-                        if($k == 0)
-                            echo '<ul class="gnb_2dul">'.PHP_EOL;
-                    ?>
-                        <li class="gnb_2dli"><a href="<?php echo $row2['me_link']; ?>" target="_<?php echo $row2['me_target']; ?>" class="gnb_2da"><span></span><?php echo $row2['me_name'] ?></a></li>
-                    <?php
-					$k++;
-                    }	//end foreach $row2
-
-                    if($k > 0)
-                        echo '</ul>'.PHP_EOL;
-                    ?>
+                    <a href="<?=G5_URL?>/sub/sub01_01.php" class="gnb_1da">우리반넷 소개</a>
                 </li>
-            <?php
-			$i++;
-            }	//end foreach $row
-
-            if ($i == 0) {  ?>
-                <li id="gnb_empty">메뉴 준비 중입니다.<?php if ($is_admin) { ?> <br><a href="<?php echo G5_ADMIN_URL; ?>/menu_list.php">관리자모드 &gt; 환경설정 &gt; 메뉴설정</a>에서 설정하세요.<?php } ?></li>
-            <?php } ?>
-            </ul>
-
-        </div>
-
-        <div id="gnb2">
-            <button type="button" class="btn_close"><i class="fa fa-times"></i></button>
-            <ul class="gnb_tnb">
-                <?php if ($is_member) {  ?>
-
-                <li><a href="<?php echo G5_BBS_URL ?>/member_confirm.php?url=<?php echo G5_BBS_URL ?>/register_form.php">정보수정</a></li>
-                <li><a href="<?php echo G5_BBS_URL ?>/logout.php">로그아웃</a></li>
-                <?php } else {  ?>
-                <li><a href="<?php echo G5_BBS_URL ?>/register.php">회원가입</a></li>
-                <li><a href="<?php echo G5_BBS_URL ?>/login.php">로그인</a></li>
-                <?php }  ?>
-
-            </ul>
-            <ul id="gnb2_1dul">
-            <?php
-            $menu_datas = get_menu_db(1, true);
-			$i = 0;
-			foreach( $menu_datas as $row ){
-				if( empty($row) ) continue;
-            ?>
-                <li class="gnb2_1dli">
-                    <a href="<?php echo $row['me_link']; ?>" target="_<?php echo $row['me_target']; ?>" class="gnb2_1da"><?php echo $row['me_name'] ?></a>
-                    <?php
-                    $k = 0;
-                    foreach( (array) $row['sub'] as $row2 ){
-						if( empty($row2) ) continue;
-
-                        if($k == 0)
-                            echo '<button type="button" class="btn_gnb_op">하위분류</button><ul class="gnb2_2dul">'.PHP_EOL;
-                    ?>
-                        <li class="gnb2_2dli"><a href="<?php echo $row2['me_link']; ?>" target="_<?php echo $row2['me_target']; ?>" class="gnb2_2da"><span></span><?php echo $row2['me_name'] ?></a></li>
-                    <?php
-					$k++;
-                    }	//end foreach $row2
-
-                    if($k > 0)
-                        echo '</ul>'.PHP_EOL;
-                    ?>
+                <li class="gnb_1dli">
+                    <a href="<?=G5_URL?>/sub/sub01_02.php" class="gnb_1da">회원 명부 사업</a>
+                    <ul class="gnb_2dul">
+                        <li class="gnb_2dli"><a href="<?=G5_URL?>/sub/sub01_02.php"  class="gnb_2da"><span></span>주요 포트폴리오</a></li>
+                        <li class="gnb_2dli"><a href="<?=G5_URL?>/sub/sub01_02.php"  class="gnb_2da"><span></span>기타 사업 </a></li>
+                    </ul>
                 </li>
-            <?php
-			$i++;
-            }	//end foreach $row
-
-            if ($i == 0) {  ?>
-                <li id="gnb_empty">메뉴 준비 중입니다.<?php if ($is_admin) { ?> <br><a href="<?php echo G5_ADMIN_URL; ?>/menu_list.php">관리자모드 &gt; 환경설정 &gt; 메뉴설정</a>에서 설정하세요.<?php } ?></li>
-            <?php } ?>
+                <li class="gnb_1dli">
+                    <a href="<?=G5_URL?>/sub/sub01_02.php" class="gnb_1da">솔루션 소개</a>
+                    <ul class="gnb_2dul">
+                        <li class="gnb_2dli"><a href="<?=G5_URL?>/sub/sub01_02.php"  class="gnb_2da"><span></span>동문회원 관리 시스템</a></li>
+                        <li class="gnb_2dli"><a href="<?=G5_URL?>/sub/sub01_02.php"  class="gnb_2da"><span></span>홈페이지 </a></li>
+                        <li class="gnb_2dli"><a href="<?=G5_URL?>/sub/sub01_02.php"  class="gnb_2da"><span></span>모바일 앱 </a></li>
+                    </ul>
+                </li>
+                <li class="gnb_1dli">
+                    <a href="<?=G5_URL?>/sub/sub01_02.php" class="gnb_1da">고객센터</a>
+                    <ul class="gnb_2dul">
+                        <li class="gnb_2dli"><a href="<?=G5_URL?>/sub/sub01_02.php"  class="gnb_2da"><span></span>문의 게시판</a></li>
+                        <li class="gnb_2dli"><a href="<?=G5_URL?>/sub/sub01_02.php"  class="gnb_2da"><span></span>FAQ </a></li>
+                    </ul>
+                </li>
             </ul>
-
         </div>     
         <script>
         $(function () {

@@ -57,6 +57,10 @@ include_once($g5_path['path'].'/config.php');   // 설정 파일
 
 unset($g5_path);
 
+// IIS 에서 SERVER_ADDR 서버변수가 없다면
+if(! isset($_SERVER['SERVER_ADDR'])) {
+    $_SERVER['SERVER_ADDR'] = isset($_SERVER['LOCAL_ADDR']) ? $_SERVER['LOCAL_ADDR'] : '';
+}
 
 // multi-dimensional array에 사용자지정 함수적용
 function array_map_deep($fn, $array)
@@ -98,11 +102,13 @@ function sql_escape_string($str)
 // SQL Injection 등으로 부터 보호를 위해 sql_escape_string() 적용
 //------------------------------------------------------------------------------
 // magic_quotes_gpc 에 의한 backslashes 제거
-if (get_magic_quotes_gpc()) {
-    $_POST    = array_map_deep('stripslashes',  $_POST);
-    $_GET     = array_map_deep('stripslashes',  $_GET);
-    $_COOKIE  = array_map_deep('stripslashes',  $_COOKIE);
-    $_REQUEST = array_map_deep('stripslashes',  $_REQUEST);
+if (7.0 > (float)phpversion()) {
+    if (function_exists('get_magic_quotes_gpc') && get_magic_quotes_gpc()) {
+        $_POST    = array_map_deep('stripslashes',  $_POST);
+        $_GET     = array_map_deep('stripslashes',  $_GET);
+        $_COOKIE  = array_map_deep('stripslashes',  $_COOKIE);
+        $_REQUEST = array_map_deep('stripslashes',  $_REQUEST);
+    }
 }
 
 // sql_escape_string 적용
@@ -123,10 +129,11 @@ $_REQUEST = array_map_deep(G5_ESCAPE_FUNCTION,  $_REQUEST);
 // 완두콩님이 알려주신 보안관련 오류 수정
 // $member 에 값을 직접 넘길 수 있음
 $config = array();
-$member = array();
-$board  = array();
-$group  = array();
+$member = array('mb_id'=>'', 'mb_level'=> 1, 'mb_name'=> '', 'mb_point'=> 0, 'mb_certify'=>'', 'mb_email'=>'', 'mb_open'=>'', 'mb_homepage'=>'', 'mb_tel'=>'', 'mb_hp'=>'', 'mb_zip1'=>'', 'mb_zip2'=>'', 'mb_addr1'=>'', 'mb_addr2'=>'', 'mb_addr3'=>'', 'mb_addr_jibeon'=>'', 'mb_signature'=>'', 'mb_profile'=>'');
+$board  = array('bo_table'=>'', 'bo_skin'=>'', 'bo_mobile_skin'=>'', 'bo_upload_count' => 0, 'bo_use_dhtml_editor'=>'', 'bo_subject'=>'', 'bo_image_width'=>0);
+$group  = array('gr_device'=>'', 'gr_subject'=>'');
 $g5     = array();
+if( version_compare( phpversion(), '8.0.0', '>=' ) ) { $g5 = array('title'=>''); }
 $qaconfig = array();
 $g5_debug = array('php'=>array(),'sql'=>array());
 
@@ -216,6 +223,103 @@ ini_set("session.gc_divisor", 100); // session.gc_divisor는 session.gc_probabil
 session_set_cookie_params(0, '/');
 ini_set("session.cookie_domain", G5_COOKIE_DOMAIN);
 
+function chrome_domain_session_name(){
+    // 크롬90버전대부터 아래 도메인을 포함된 주소로 접속시 특정조건에서 세션이 생성 안되는 문제가 있을수 있다.
+    $domain_array=array(
+    '.cafe24.com',  // 카페24호스팅
+    '.dothome.co.kr',     // 닷홈호스팅
+    '.phps.kr',     // 스쿨호스팅
+    '.maru.net',    // 마루호스팅
+    );
+
+    if(isset($_SERVER['HTTP_HOST']) && preg_match('/('.implode('|', $domain_array).')/i', $_SERVER['HTTP_HOST'])){  // 위의 도메인주소를 포함한 url접속시 기본세션이름을 변경한다.
+        if(! defined('G5_SESSION_NAME')) define('G5_SESSION_NAME', 'G5PHPSESSID');
+        @session_name(G5_SESSION_NAME);
+    }
+}
+
+chrome_domain_session_name();
+
+if( ! class_exists('XenoPostToForm') ){
+    class XenoPostToForm
+    {
+        public static function check() {
+            $cookie_session_name = (defined('G5_SESSION_NAME') && G5_SESSION_NAME) ? G5_SESSION_NAME : 'PHPSESSID'; 
+
+            return !isset($_COOKIE[$cookie_session_name]) && count($_POST) && ((isset($_SERVER['HTTP_REFERER']) && !preg_match('~^https://'.preg_quote($_SERVER['HTTP_HOST'], '~').'/~', $_SERVER['HTTP_REFERER']) || ! isset($_SERVER['HTTP_REFERER']) ));
+        }
+
+        public static function submit($posts) {
+            echo '<html><head><meta charset="UTF-8"></head><body>';
+            echo '<form id="f" name="f" method="post">';
+            echo self::makeInputArray($posts);
+            echo '</form>';
+            echo '<script>';
+            echo 'document.f.submit();';
+            echo '</script></body></html>';
+            exit;
+        }
+
+        public static function makeInputArray($posts) {
+            $res = array();
+            foreach($posts as $k => $v) {
+                $res[] = self::makeInputArray_($k, $v);
+            }
+            return implode('', $res);
+        }
+
+        private static function makeInputArray_($k, $v) {
+            if(is_array($v)) {
+                $res = array();
+                foreach($v as $i => $j) {
+                    $res[] = self::makeInputArray_($k.'['.htmlspecialchars($i).']', $j);
+                }
+                return implode('', $res);
+            }
+            return '<input type="hidden" name="'.$k.'" value="'.htmlspecialchars($v).'" />';
+        }
+    }
+}
+
+if( !function_exists('shop_check_is_pay_page') ){
+    function shop_check_is_pay_page(){
+        $shop_dir = 'shop';
+        $mobile_dir = G5_MOBILE_DIR;
+
+        // PG 결제사의 리턴페이지 목록들
+        $pg_checks_pages = array(
+            $shop_dir.'/inicis/INIStdPayReturn.php',	// 영카트 5.2.9.5 이하에서 사용됨, 그 이상버전에서는 파일 삭제됨
+            $shop_dir.'/inicis/inistdpay_return.php',	// 영카트 5.2.9.6 이상에서 사용됨
+            $mobile_dir.'/'.$shop_dir.'/inicis/pay_return.php',
+            $mobile_dir.'/'.$shop_dir.'/inicis/pay_approval.php',
+            $shop_dir.'/lg/returnurl.php',
+            $mobile_dir.'/'.$shop_dir.'/lg/returnurl.php',
+            $mobile_dir.'/'.$shop_dir.'/lg/xpay_approval.php',
+            $mobile_dir.'/'.$shop_dir.'/kcp/order_approval_form.php',
+            $shop_dir.'/kakaopay/inicis_kk_return.php',     // 이니시스 카카오페이 (SIRK 로 시작하는 아이디 전용)
+        );
+
+        $server_script_name = str_replace('\\', '/', $_SERVER['SCRIPT_NAME']);
+
+        // PG 결제사의 리턴페이지이면
+        foreach( $pg_checks_pages as $pg_page ){
+            if( preg_match('~'.preg_quote($pg_page).'$~i', $server_script_name) ){
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
+
+// PG 결제시에 세션이 없으면 내 호출페이지를 다시 호출하여 쿠키 PHPSESSID를 살려내어 세션값을 정상적으로 불러오게 합니다.
+// 위와 같이 코드를 전부 한페이지에 넣은 이유는 이전 버전 사용자들이 패치시 어려울수 있으므로 한페이지에 코드를 다 넣었습니다.
+if(XenoPostToForm::check()) {
+    if ( shop_check_is_pay_page() ){	// PG 결제 리턴페이지에서만 사용
+        XenoPostToForm::submit($_POST); // session_start(); 하기 전에
+    }
+}
+
 //==============================================================================
 // 공용 변수
 //------------------------------------------------------------------------------
@@ -235,8 +339,10 @@ if( $config['cf_cert_use'] || (defined('G5_YOUNGCART_VER') && G5_YOUNGCART_VER) 
             $res = @session_start($options);
 
             // IE 브라우저 또는 엣지브라우저 또는 IOS 모바일과 http환경에서는 secure; SameSite=None을 설정하지 않습니다.
-            if( preg_match('/Edge/i', $_SERVER['HTTP_USER_AGENT']) || preg_match('/(iPhone|iPod|iPad).*AppleWebKit.*Safari/i', $_SERVER['HTTP_USER_AGENT']) || preg_match('~MSIE|Internet Explorer~i', $_SERVER['HTTP_USER_AGENT']) || preg_match('~Trident/7.0(; Touch)?; rv:11.0~',$_SERVER['HTTP_USER_AGENT']) || ! (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']=='on') ){
-                return $res;
+            if (isset($_SERVER['HTTP_USER_AGENT'])) {
+                if( preg_match('/Edge/i', $_SERVER['HTTP_USER_AGENT']) || preg_match('/(iPhone|iPod|iPad).*AppleWebKit.*Safari/i', $_SERVER['HTTP_USER_AGENT']) || preg_match('~MSIE|Internet Explorer~i', $_SERVER['HTTP_USER_AGENT']) || preg_match('~Trident/7.0(; Touch)?; rv:11.0~',$_SERVER['HTTP_USER_AGENT']) || ! (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']=='on') ){
+                    return $res;
+                }
             }
 
             $headers = headers_list();
@@ -353,7 +459,7 @@ if (isset($_REQUEST['wr_id'])) {
     $wr_id = 0;
 }
 
-if (isset($_REQUEST['bo_table'])) {
+if (isset($_REQUEST['bo_table']) && ! is_array($_REQUEST['bo_table'])) {
     $bo_table = preg_replace('/[^a-z0-9_]/i', '', trim($_REQUEST['bo_table']));
     $bo_table = substr($bo_table, 0, 20);
 } else {
@@ -384,7 +490,7 @@ if (isset($_REQUEST['gr_id'])) {
 
 
 // 자동로그인 부분에서 첫로그인에 포인트 부여하던것을 로그인중일때로 변경하면서 코드도 대폭 수정하였습니다.
-if ($_SESSION['ss_mb_id']) { // 로그인중이라면
+if (isset($_SESSION['ss_mb_id']) && $_SESSION['ss_mb_id']) { // 로그인중이라면
     $member = get_member($_SESSION['ss_mb_id']);
 
     // 차단된 회원이면 ss_mb_id 초기화
@@ -410,7 +516,7 @@ if ($_SESSION['ss_mb_id']) { // 로그인중이라면
 
         $tmp_mb_id = substr(preg_replace("/[^a-zA-Z0-9_]*/", "", $tmp_mb_id), 0, 20);
         // 최고관리자는 자동로그인 금지
-        if (strtolower($tmp_mb_id) != strtolower($config['cf_admin'])) {
+        if (strtolower($tmp_mb_id) !== strtolower($config['cf_admin'])) {
             $sql = " select mb_password, mb_intercept_date, mb_leave_date, mb_email_certify from {$g5['member_table']} where mb_id = '{$tmp_mb_id}' ";
             $row = sql_fetch($sql);
             if($row['mb_password']){
@@ -440,10 +546,10 @@ if ($_SESSION['ss_mb_id']) { // 로그인중이라면
 
 
 $write = array();
-$write_table = "";
+$write_table = '';
 if ($bo_table) {
     $board = get_board_db($bo_table, true);
-    if ($board['bo_table']) {
+    if (isset($board['bo_table']) && $board['bo_table']) {
         set_cookie("ck_bo_table", $board['bo_table'], 86400 * 1);
         $gr_id = $board['gr_id'];
         $write_table = $g5['write_prefix'] . $bo_table; // 게시판 테이블 전체이름
@@ -477,7 +583,7 @@ if ($config['cf_editor']) {
 // 회원, 비회원 구분
 $is_member = $is_guest = false;
 $is_admin = '';
-if ($member['mb_id']) {
+if (isset($member['mb_id']) && $member['mb_id']) {
     $is_member = true;
     $is_admin = is_admin($member['mb_id']);
     $member['mb_dir'] = substr($member['mb_id'],0,2);
@@ -486,6 +592,22 @@ if ($member['mb_id']) {
     $member['mb_id'] = '';
     $member['mb_level'] = 1; // 비회원의 경우 회원레벨을 가장 낮게 설정
 }
+
+// 관리자 구분 
+$manager = get_manager($_SESSION['ss_mb_id']);
+$is_manager = false;
+
+if (isset($manager['mg_id']) && $manager['mg_id']) {
+    $is_member = true;
+    $is_manager = true;
+    $is_admin = $manager['rights'];
+    // $manager['mg_dir'] = substr($manager['mg_id'],0,2);
+} else {
+    $is_guest = true;
+    $manager['mb_id'] = '';
+    $member['mb_level'] = 1; // 비회원의 경우 회원레벨을 가장 낮게 설정
+}
+
 
 
 if ($is_admin != 'super') {
@@ -530,7 +652,7 @@ if ($is_admin != 'super') {
 
 // 테마경로
 if(defined('_THEME_PREVIEW_') && _THEME_PREVIEW_ === true)
-    $config['cf_theme'] = trim($_GET['theme']);
+    $config['cf_theme'] = isset($_GET['theme']) ? trim($_GET['theme']) : '';
 
 if(isset($config['cf_theme']) && trim($config['cf_theme'])) {
     $theme_path = G5_PATH.'/'.G5_THEME_DIR.'/'.$config['cf_theme'];
@@ -550,6 +672,11 @@ if(isset($config['cf_theme']) && trim($config['cf_theme'])) {
 // 테마 설정 로드
 if(defined('G5_THEME_PATH') && is_file(G5_THEME_PATH.'/theme.config.php'))
     include_once(G5_THEME_PATH.'/theme.config.php');
+
+
+// 쇼핑몰 설정
+if (defined('G5_USE_SHOP') && G5_USE_SHOP)
+    include_once(G5_PATH.'/shop.config.php');
 
 //=====================================================================================
 // 사용기기 설정
@@ -600,9 +727,9 @@ if(defined('G5_SET_DEVICE') && $set_device) {
 // G5_MOBILE_AGENT : config.php 에서 선언
 //------------------------------------------------------------------------------
 if (G5_USE_MOBILE && $set_device) {
-    if ($_REQUEST['device']=='pc')
+    if (isset($_REQUEST['device']) && $_REQUEST['device']=='pc')
         $is_mobile = false;
-    else if ($_REQUEST['device']=='mobile')
+    else if (isset($_REQUEST['device']) && $_REQUEST['device']=='mobile')
         $is_mobile = true;
     else if (isset($_SESSION['ss_is_mobile']))
         $is_mobile = $_SESSION['ss_is_mobile'];
@@ -616,9 +743,16 @@ $_SESSION['ss_is_mobile'] = $is_mobile;
 define('G5_IS_MOBILE', $is_mobile);
 define('G5_DEVICE_BUTTON_DISPLAY', $set_device);
 if (G5_IS_MOBILE) {
-    $g5['mobile_path'] = G5_PATH.'/'.$g5['mobile_dir'];
+    $g5['mobile_path'] = G5_PATH.'/'.G5_MOBILE_DIR;
 }
 //==============================================================================
+
+// 동창회 관련 
+ $reunion = get_reunion($reunionID);
+
+
+
+
 
 
 //==============================================================================
@@ -695,4 +829,3 @@ header('Pragma: no-cache'); // HTTP/1.0
 run_event('common_header');
 
 $html_process = new html_process();
-?>
