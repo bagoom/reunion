@@ -1,7 +1,5 @@
 <?php
 include_once('./_common.php');
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
 $g5['title'] = "로그인 검사";
 
 $mg_id       = isset($_POST['mg_id']) ? trim($_POST['mg_id']) : '';
@@ -126,5 +124,4 @@ if( is_admin($mb['mg_id']) && is_dir(G5_DATA_PATH.'/tmp/') ){
         alert("data 폴더에 쓰기권한이 없거나 또는 웹하드 용량이 없는 경우\\n로그인을 못할수도 있으니, 용량 체크 및 쓰기 권한을 확인해 주세요.", $link);
     }
 }
-
-// goto_url(G5_ADMIN_URL);
+goto_url(G5_ADMIN_URL);
