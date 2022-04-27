@@ -37,7 +37,7 @@ if (!file_exists($reunion_config_file)) {
         include G5_BBS_PATH.'/newwin.inc.php'; // 팝업레이어
     }
     ?>
-    <div id="tnb">
+    <div id="tnb" class="pc-show">
         <div class="inner">
 			<ul id="hd_qnb">
                 <?php if ($is_member) {  ?>
@@ -58,7 +58,85 @@ if (!file_exists($reunion_config_file)) {
         <div id="logo">
             <a href="<?php echo G5_URL ?>"><img src="<?php echo G5_IMG_URL ?>/logo.gif" alt="<?php echo $config['cf_title']; ?>"></a>
         </div>
-        <nav id="gnb">
+
+        <div class="nav-open-btn m-show">
+            <i class="xi-bars"></i>
+        </div>
+        <nav id="gnb" class="pc-show">
+            <h2>메인메뉴</h2>
+            <div class="gnb_wrap">
+                <ul id="gnb_1dul">
+                    <?php
+                    $menu_datas = get_menu_db(0, true);
+                    $gnb_zindex = 999; // gnb_1dli z-index 값 설정용
+                    $i = 0;
+                    foreach( $menu_datas as $row ){
+                        if( empty($row) ) continue;
+                        $add_class = (isset($row['sub']) && $row['sub']) ? 'gnb_al_li_plus' : '';
+                    ?>
+                    <li class="gnb_1dli <?php echo $add_class; ?>" style="z-index:<?php echo $gnb_zindex--; ?>">
+                        <a href="<?=G5_URL?><?php echo $row['me_link']; ?>" target="_<?php echo $row['me_target']; ?>" class="gnb_1da"><?php echo $row['me_name'] ?></a>
+                    </li>
+                    <?php
+                    $i++;
+                    }   //end foreach $row
+    
+                    if ($i == 0) {  ?>
+                        <li class="gnb_empty">메뉴 준비 중입니다.<?php if ($is_admin) { ?> <a href="<?php echo G5_ADMIN_URL; ?>/menu_list.php">관리자모드 &gt; 환경설정 &gt; 메뉴설정</a>에서 설정하실 수 있습니다.<?php } ?></li>
+                    <?php } ?>
+                </ul>
+                <div id="gnb_all">
+                    <div class="inner-wrapper">
+                    <ul class="gnb_al_ul">
+                        <?php
+                        
+                        $i = 0;
+                        foreach( $menu_datas as $row ){
+                        ?>
+                        <li class="gnb_al_li">
+                            <!-- <a href="<?php echo $row['me_link']; ?>" target="_<?php echo $row['me_target']; ?>" class="gnb_al_a"><?php echo $row['me_name'] ?></a> -->
+                            <?php
+                            $k = 0;
+                            foreach( (array) $row['sub'] as $row2 ){
+                                if($k == 0)
+                                    echo '<ul>'.PHP_EOL;
+                            ?>
+                                <li><a href="<?=G5_URL?><?php echo $row2['me_link']; ?>" target="_<?php echo $row2['me_target']; ?>"><?php echo $row2['me_name'] ?></a></li>
+                            <?php
+                            $k++;
+                            }   //end foreach $row2
+    
+                            if($k > 0)
+                                echo '</ul>'.PHP_EOL;
+                            ?>
+                        </li>
+                        <?php
+                        $i++;
+                        }   //end foreach $row
+    
+                        if ($i == 0) {  ?>
+                            <li class="gnb_empty">메뉴 준비 중입니다.<?php if ($is_admin) { ?> <br><a href="<?php echo G5_ADMIN_URL; ?>/menu_list.php">관리자모드 &gt; 환경설정 &gt; 메뉴설정</a>에서 설정하실 수 있습니다.<?php } ?></li>
+                        <?php } ?>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <nav id="gnb" class="m-show">
+            <div id="tnb" >
+                <div class="inner">
+                    <ul id="hd_qnb">
+                        <?php if ($is_member) {  ?>
+                            <li><a href="<?php echo G5_BBS_URL ?>/member_confirm.php?url=<?php echo G5_BBS_URL ?>/register_form.php">정보수정</a></li>
+                            <li><a href="<?php echo G5_BBS_URL ?>/logout.php">로그아웃</a></li>
+                            <?php } else {  ?>
+                            <li><a href="<?php echo G5_BBS_URL ?>/register.php">회원가입</a></li>
+                            <li><a href="<?php echo G5_BBS_URL ?>/login.php">로그인</a></li>
+                        <?php }  ?>
+                    </ul>
+                </div>
+            </div>
+            <div class="nav-close-btn"><i class="xi-close"></i></div>
             <h2>메인메뉴</h2>
             <div class="gnb_wrap">
                 <ul id="gnb_1dul">
@@ -153,6 +231,14 @@ if (!file_exists($reunion_config_file)) {
                 easing: "easeOutBack"
             });
         });
+
+        $(".nav-open-btn").click(function(){
+            $("#gnb.m-show").addClass("on");
+        });
+        $(".nav-close-btn").click(function(){
+            $("#gnb.m-show").removeClass("on");
+        });
+
     });
 
     </script>
