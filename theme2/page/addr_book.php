@@ -45,7 +45,6 @@ function setMasking($obj) {
                     <li class="pa_time">이메일</li>
                     <li class="pa_name">소속지회명</li>
                     <li class="pa_link">메일 보내기</li>
-                    <div class="cb"></div>
                 </ul>
                 <?php for($i=0; $row=sql_fetch_array($result); $i++) { ?>
                 <ul class="tables_td">
@@ -66,7 +65,6 @@ function setMasking($obj) {
                         </a>
                         <?php }?>
                     </li>
-                    <div class="cb"></div>
                 </ul>
 
                 <?php } ?>
