@@ -5,7 +5,7 @@ include_once('./_common.php');
 if ($is_member) {
     goto_url(G5_URL);
 }
-
+define('_REGISTER_', true);
 // 세션을 지웁니다.
 set_session("ss_mb_reg", "");
 

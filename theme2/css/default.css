@@ -729,7 +729,7 @@ a.gnb_2da:hover {
 }
 
 #wrapper.sub #container_wr {
-  padding-top: 80px;
+  padding-top: 40px;
 }
 
 #wrapper #sub-title {
@@ -756,6 +756,20 @@ a.gnb_2da:hover {
   width: 960px;
   padding-left: 50px;
   float: left;
+}
+
+
+#location {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 40px;
+  font-size: 14px;
+  color: #666;
+}
+
+#location a {
+  padding: 0 5px;
+  color: #666;
 }
 
 #mysubmenu {

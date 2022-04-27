@@ -53,5 +53,13 @@
     </ul>
     <?php } ?>
 
-
+    <?php if (defined("_REGISTER_")) { ?>
+            <ul id="mysub<?php echo $i+1 ?>" style="display:none;">
+                <a href="<?php echo G5_BBS_URL ?>/register.php" target="_self"><li class="leftmenu_b"><?=$reunion['reunion_title']?></li></a>
+                <ul>
+                    <a href="<?php echo G5_BBS_URL ?>/register.php" target="_self"><li class="leftmenu_s on">회원가입</li></a>
+                </ul>
+                <?php echo ("<script language='javascript'> display_submenu(" .($i+1). " ); </script> ");?>
+            </ul>
+        <?php } ?>
 </div>

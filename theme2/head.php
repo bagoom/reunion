@@ -256,5 +256,8 @@ if (!file_exists($reunion_config_file)) {
         </div>
     <?php } ?>
     <div id="container_wr">
-        <?php if (!defined("_INDEX_")) {  include_once(G5_PATH.'/include/mysubmenu.php'); } ?>
+        <?php if (!defined("_INDEX_")) {  
+            include_once(G5_PATH.'/include/location.php'); 
+            include_once(G5_PATH.'/include/mysubmenu.php'); 
+        } ?>
         <div id="container">

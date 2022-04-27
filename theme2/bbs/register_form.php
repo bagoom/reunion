@@ -4,7 +4,7 @@ include_once(G5_CAPTCHA_PATH.'/captcha.lib.php');
 include_once(G5_LIB_PATH.'/register.lib.php');
 
 run_event('register_form_before');
-
+define('_REGISTER_', true);
 // 불법접근을 막도록 토큰생성
 $token = md5(uniqid(rand(), true));
 set_session("ss_token", $token);
