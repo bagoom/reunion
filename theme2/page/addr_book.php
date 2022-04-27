@@ -3,9 +3,9 @@ include_once('./_common.php');
 $g5['title'] = '동문 주소록';
 include_once(G5_PATH.'/head.php');
 
-$sql = "SELECT * FROM {$g5['member_table']} WHERE mb_id != 'admin' ";
+$sql = "SELECT * FROM {$g5['member_table']} WHERE mb_id != 'admin' AND reunion_id = $reunionID";
 $result = sql_query($sql);
-$count = sql_fetch( "SELECT count(*) AS num FROM {$g5['member_table']} WHERE mb_id != 'admin' " );
+$count = sql_fetch( "SELECT count(*) AS num FROM {$g5['member_table']} WHERE mb_id != 'admin' AND reunion_id = $reunionID " );
 $count2 = $count['num'];
 
 function EmailMasking($str){ // 수정 보완 필요
