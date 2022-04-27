@@ -2262,8 +2262,13 @@ select {
     float: left;
 }
 
+.pa_year {
+    width: 5%;
+    text-align: center;
+}
+
 .pa_name {
-    width: 16%;
+    width: 10%;
     text-align: center;
 }
 

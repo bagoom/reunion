@@ -38,21 +38,23 @@ function setMasking($obj) {
         <div class="rel_table">
             <div class="tables">
                 <ul class="tables_th font-b">
-                    <li class="pa_name">지회명</li>
+                    <li class="pa_year">기수</li>
                     <li class="pa_name">이름</li>
                     <li class="pa_tel">대표전화</li>
                     <li class="pa_address">주소</li>
                     <li class="pa_time">이메일</li>
+                    <li class="pa_name">소속지회명</li>
                     <li class="pa_link">메일 보내기</li>
                     <div class="cb"></div>
                 </ul>
                 <?php for($i=0; $row=sql_fetch_array($result); $i++) { ?>
                 <ul class="tables_td">
-                    <li class="pa_name"><?php if($list[$i]['wr_1']) { echo $list[$i]['wr_1']; } else { echo "-"; } ?></li>
+                    <li class="pa_year"><?= ($row['graduation_year']) ?  $row['graduation_year']  : "-" ?></li>
                     <li class="pa_name"><?=($row['mb_name']) ? $row['mb_name'] : "-" ?></li>
                     <li class="pa_tel"><?=($row['mb_hp']) ? setMasking($row['mb_hp']) : "-" ?></li>
                     <li class="pa_address"><?php if($list[$i]['wr_3']) { echo $list[$i]['wr_3']." ".$list[$i]['wr_4']; } else { echo "-"; } ?></li>
                     <li class="pa_time"><?=($row['mb_email']) ? EmailMasking($row['mb_email']) : "-" ?></li>
+                    <li class="pa_time"><?=($row['ddd']) ? EmailMasking($row['ddd']) : "-" ?></li>
                     <li class="pa_link">
                         <?php if($list[$i]['wr_6']) { ?>
                         <a href="<?php echo $list[$i]['wr_6'] ?>" target="_blank" class="link_ico">
