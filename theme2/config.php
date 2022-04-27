@@ -11,7 +11,7 @@ include_once($g5_path['path'].'/version.php');   // 설정 파일
 
 // 기본 시간대 설정
 date_default_timezone_set("Asia/Seoul");
-
+ 
 /********************
     경로 상수
 ********************/ 
@@ -23,7 +23,7 @@ date_default_timezone_set("Asia/Seoul");
 입력예) https://www.domain.com:443/gnuboard5
 */
 define('G5_DOMAIN', '');
-define('G5_HTTPS_DOMAIN', 'http://210.106.105.235:8080/uribannet/bukil/www');
+define('G5_HTTPS_DOMAIN', 'http://210.106.105.235:9981/uribannet/bukil/www');
   
 // 디버깅 상수, 실제 서버운영시 false 로 설정해 주세요.
 define('G5_DEBUG', false);

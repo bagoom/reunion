@@ -1,4 +1,5 @@
 <?php
+if(  $is_admin != 'superadmin') {
 $menu["menu990"] = array (
     array('990000', '통계현황', G5_ADMIN_URL.'/status/m3stats.php', 'ETC'),
 	//array('990050', '사이드 메뉴', G5_ADMIN_URL.'/menu/menu_list.php', 'menu_side'),
@@ -16,4 +17,5 @@ $menu["menu990"] = array (
 	//array('990600', '게시글관리', G5_ADMIN_URL.'/bbs/', 'adm_board'),
 	//array('990650', '쪽지관리', G5_ADMIN_URL.'/memo/memo_list.php', 'memo_list'),
 );
+}
 ?>
