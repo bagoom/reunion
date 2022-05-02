@@ -27,7 +27,7 @@ if (PHP_VERSION >= '5.1.0') {
 입력예) https://www.domain.com:443/gnuboard5
 */
 define('G5_DOMAIN', '');
-define('G5_HTTPS_DOMAIN', 'http://210.106.105.235:8080/uribannet/super/www');
+define('G5_HTTPS_DOMAIN', 'http://210.106.105.235:9981/uribannet/super/www');
 
 // 디버깅 상수, 실제 서버운영시 false 로 설정해 주제요.
 define('G5_DEBUG', false);
