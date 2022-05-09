@@ -18,7 +18,7 @@
     for ($i=0; $row=sql_fetch_array($result); $i++) {
     ?>
     <ul id="mysub<?php echo $i ?>" style="display:none;">
-        <a href="<?php echo $row['me_link']; ?>" target="_<?php echo $row['me_target']; ?>" ><li class="leftmenu_b"><?php echo $row['me_name'] ?></li></a>
+        <a href="<?=G5_URL?><?php echo $row['me_link']; ?>" target="_<?php echo $row['me_target']; ?>" ><li class="leftmenu_b"><?php echo $row['me_name'] ?></li></a>
             <?php
             $sql2 = " select *
                         from {$g5['menu_table']}
@@ -37,7 +37,7 @@
                 if($k == 0)
                     echo '<ul>'.PHP_EOL;
             ?>
-                <a href="<?php echo $row2['me_link']; ?>" target="_<?php echo $row2['me_target']; ?>" ><li class="leftmenu_s <?=($g5['title'] == $row2['me_name']) ? "on" : null?>  <?=($board['bo_subject'] == $row2['me_name']) ? "on" : null?>"><?php echo $row2['me_name'] ?></li></a>
+                <a href="<?=G5_URL?><?php echo $row2['me_link']; ?>" target="_<?php echo $row2['me_target']; ?>" ><li class="leftmenu_s <?=($g5['title'] == $row2['me_name']) ? "on" : null?>  <?=($board['bo_subject'] == $row2['me_name']) ? "on" : null?>"><?php echo $row2['me_name'] ?></li></a>
             <?php  
 
                 //좌측 서브메뉴 전체 리스트에서 현재 페이지에 해당하는 대메뉴 리스트만 보여줌

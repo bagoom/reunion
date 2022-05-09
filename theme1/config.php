@@ -24,7 +24,7 @@ date_default_timezone_set("Asia/Seoul");
 입력예) https://www.domain.com:443/gnuboard5
 */
 define('G5_DOMAIN', '');
-define('G5_HTTPS_DOMAIN', 'http://210.106.105.235:9981/uribannet/skku/www');
+define('G5_HTTPS_DOMAIN', '');
 
 // 디버깅 상수, 실제 서버운영시 false 로 설정해 주세요.
 define('G5_DEBUG', false);

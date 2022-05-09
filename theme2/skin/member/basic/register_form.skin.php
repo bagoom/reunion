@@ -30,6 +30,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	    <div class="register_form_inner">
 	        <h2>기본 정보</h2>
 	        <ul>
+				<?php if($w == '') { ?>
 				<li class="half_input ">
 	            <?php if ($config['cf_use_hp'] || $config['cf_cert_hp']) {  ?>
 	                <label for="reg_mb_hp">휴대폰번호<?php if ($config['cf_req_hp']) { ?><strong class="sound_only">필수</strong><?php } ?></label>
@@ -37,7 +38,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	                <?php if ($config['cf_cert_use'] && $config['cf_cert_hp']) { ?>
 	                <input type="hidden" name="old_mb_hp" value="<?php echo get_text($member['mb_hp']) ?>">
 	                <?php } ?>
-	            <?php }  ?>
+	            <?php }  }?>
 	            </li>
 	            <li class="half_input left_input margin_input">
 	                <label for="reg_mb_password">비밀번호<strong class="sound_only">필수</strong></label>
@@ -177,7 +178,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	            <?php }  ?>
 	
 	            <?php if ($config['cf_use_member_icon'] && $member['mb_level'] >= $config['cf_icon_level']) {  ?>
-	            <li>
+	            <!-- <li>
 	                <label for="reg_mb_icon" class="frm_label">
 	                	회원아이콘
 	                	<button type="button" class="tooltip_icon"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sound_only">설명보기</span></button>
@@ -192,11 +193,11 @@ gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_
 	                <label for="del_mb_icon" class="inline">삭제</label>
 	                <?php }  ?>
 	            
-	            </li>
+	            </li> -->
 	            <?php }  ?>
 	
 	            <?php if ($member['mb_level'] >= $config['cf_icon_level'] && $config['cf_member_img_size'] && $config['cf_member_img_width'] && $config['cf_member_img_height']) {  ?>
-	            <li class="reg_mb_img_file">
+	            <!-- <li class="reg_mb_img_file">
 	                <label for="reg_mb_img" class="frm_label">
 	                	회원이미지
 	                	<button type="button" class="tooltip_icon"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sound_only">설명보기</span></button>
@@ -211,7 +212,7 @@ gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_
 	                <label for="del_mb_img" class="inline">삭제</label>
 	                <?php }  ?>
 	            
-	            </li>
+	            </li> -->
 	            <?php } ?>
 
 	            <li class="chk_box">

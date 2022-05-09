@@ -1796,6 +1796,11 @@ a.btn_b01,
   background: transparent
 }
 
+a.btn_b01 i,
+.btn_b01 i {
+  line-height: 35px;
+}
+
 .btn_b01:hover,
 .btn_b01:hover {
   color: #000

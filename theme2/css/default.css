@@ -970,7 +970,7 @@ a.gnb_2da:hover {
 
 .main_con.sec02 {
   display: flex;
-  margin-bottom: 70px;
+  margin-bottom: 50px;
 }
 
 .quick_wrap {
@@ -1100,7 +1100,8 @@ a.gnb_2da:hover {
 
 #main_container .sec01 {
   display: flex;
-  padding: 70px 0;
+  margin-left: -20px;
+  padding: 50px 0;
   justify-content: space-between;
 }
 
@@ -1167,8 +1168,17 @@ a.gnb_2da:hover {
   width: 100%;
 }
 
+.banner02 {
+  margin: 20px 0 40px;
+  min-height: 200px;
+  background: #eee;
+  border-radius: 10px;
+  line-height: 200px;
+  text-align: center;
+}
+
 .main_gallery {
-  margin-top: 30px;
+  flex: 1;
 }
 
 .lt_wr {
@@ -1948,6 +1958,11 @@ a.btn_b01,
   vertical-align: middle;
   border: 0;
   background: transparent
+}
+
+a.btn_b01 i,
+.btn_b01 i {
+  line-height: 35px;
 }
 
 .btn_b01:hover,

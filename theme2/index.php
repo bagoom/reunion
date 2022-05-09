@@ -51,14 +51,22 @@ include_once(G5_PATH.'/head.php');
 
     <div class="main_con sec01">
 
-        <div class="event">
+        <?=latest('pic_list', 'notice', 4, 33);?>
+
+        <div class="main_gallery">
+            <div class="inner-wrapper">
+                <div class="latest_wr">
+                    <?=latest('pic_block', 'gallery', 3, 23)?>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="event">
             <div class="tit">
                 동문의 경조사를<br> 빠르게 확인해보세요.
                 <div class="desc"><a href="#">더보기</a></div>
         </div>
 
-            <?=latest('event', 'event', 4, 40);?>
-        </div>
+        </div> -->
     </div>
 
     <div class="main_con sec02">
@@ -114,15 +122,11 @@ include_once(G5_PATH.'/head.php');
             echo latest('pic_list', 'promotion', 4, 40);		
         ?>
     </div>
+
+    <div class="banner-wrap banner02">배너영역</div>
 </div>
 
-<div class="main_gallery">
-    <div class="inner-wrapper">
-        <div class="latest_wr">
-            <?=latest('pic_block', 'gallery', 4, 23)?>
-        </div>
-    </div>
-</div>
+
 
 <script>
     var slide_bn = new Swiper('#visual .swiper-container', {

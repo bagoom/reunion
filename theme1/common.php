@@ -583,7 +583,10 @@ if ($config['cf_editor']) {
 // 회원, 비회원 구분
 $is_member = $is_guest = false;
 $is_admin = '';
-if (isset($member['mb_id']) && $member['mb_id']) {
+$manager = get_manager($_SESSION['ss_mb_id']);
+$is_manager = false;
+
+if (isset($member['mb_id']) && $member['mb_id']  && !isset($manager['mg_id']) && !$manager['mg_id']) {
     $is_member = true;
     $is_admin = is_admin($member['mb_id']);
     $member['mb_dir'] = substr($member['mb_id'],0,2);
@@ -594,19 +597,13 @@ if (isset($member['mb_id']) && $member['mb_id']) {
 }
 
 // 관리자 구분 
-$manager = get_manager($_SESSION['ss_mb_id']);
-$is_manager = false;
-
 if (isset($manager['mg_id']) && $manager['mg_id']) {
     $is_member = true;
     $is_manager = true;
     $is_admin = $manager['rights'];
+    $member['mb_level'] = 10;
     // $manager['mg_dir'] = substr($manager['mg_id'],0,2);
-} else {
-    $is_guest = true;
-    $manager['mb_id'] = '';
-    $member['mb_level'] = 1; // 비회원의 경우 회원레벨을 가장 낮게 설정
-}
+} 
 
 
 
@@ -774,7 +771,7 @@ if (G5_IS_MOBILE) {
 } else {
     $board_skin_path    = get_skin_path('board', $board['bo_skin']);
     $board_skin_url     = get_skin_url('board', $board['bo_skin']);
-    $member_skin_path   = get_skin_path('member', $config['cf_member_skin']);
+    $member_skin_path   = get_skin_path('member', 'basic');
     $member_skin_url    = get_skin_url('member', 'basic');
     $new_skin_path      = get_skin_path('new', $config['cf_new_skin']);
     $new_skin_url       = get_skin_url('new', $config['cf_new_skin']);
