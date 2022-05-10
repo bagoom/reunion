@@ -798,6 +798,18 @@ a.gnb_2da:hover {
   font-weight: 700;
 }
 
+#mysubmenu .mysub-300 li.on a {
+  color: #c49871;
+}
+
+#mysubmenu .mysub-300 a {
+  display: block;
+  padding: 10px;
+  background: #f9f9f9;
+  font-size: 13px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
 #container_wr:after {
   display: block;
   visibility: hidden;
@@ -1323,6 +1335,12 @@ a.gnb_2da:hover {
   content: '';
   display: block;
   padding-top: 100%;
+}
+
+.branch-list .empty {
+  font-size: 14px;
+  text-align: center;
+  line-height: 100px;
 }
 
 .location .txt01 {

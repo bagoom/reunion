@@ -45,8 +45,14 @@
                     echo ("<script language='javascript'> display_submenu(" .$i. " ); </script> ");
                 }
 
+                if($row2['me_code'] == 1040) {?>
+                    <ul class="mysub-300">
+                        <li class="<?=($type=='기수별' ) ? "on" : null?>"><a href="<?=G5_URL?>/page/branch/?type=기수별">기수</a></li>
+                        <li class="<?=($type=='산하단체' ) ? "on" : null?>"><a href="<?=G5_URL?>/page/branch/?type=산하단체">산하단체</a></li>
+                        <li class="<?=($type=='지역별' ) ? "on" : null?>"><a href="<?=G5_URL?>/page/branch/?type=지역별">지역단체</a></li>
+                    </ul>
+                <?php }
             }
-
             if($k > 0)
                 echo '</ul>'.PHP_EOL;
             ?>
