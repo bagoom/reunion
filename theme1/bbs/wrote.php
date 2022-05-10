@@ -4,7 +4,7 @@ include_once('./_common.php');
 $g5['title'] = '내가 작성한 글';
 include_once('./_head.php');
 
-$sql_common = " from {$g5['board_new_table']} a, {$g5['board_table']} b, {$g5['group_table']} c where a.bo_table = b.bo_table and b.gr_id = c.gr_id and b.bo_use_search = 1 ";
+$sql_common = " from {$g5['board_new_table']} a, {$g5['board_table']} b, {$g5['group_table']} c where a.bo_table = b.bo_table and b.gr_id = c.gr_id  ";
 
 $gr_id = isset($_GET['gr_id']) ? $_GET['gr_id'] : "";
 if ($gr_id) {

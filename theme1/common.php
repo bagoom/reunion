@@ -586,9 +586,8 @@ $is_admin = '';
 $manager = get_manager($_SESSION['ss_mb_id']);
 $is_manager = false;
 
-if (isset($member['mb_id']) && $member['mb_id']  && !isset($manager['mg_id']) && !$manager['mg_id']) {
+if (isset($member['mb_id']) && $member['mb_id'] && !isset($manager['mg_id']) && !$manager['mg_id']) {
     $is_member = true;
-    $is_admin = is_admin($member['mb_id']);
     $member['mb_dir'] = substr($member['mb_id'],0,2);
 } else {
     $is_guest = true;
@@ -600,9 +599,9 @@ if (isset($member['mb_id']) && $member['mb_id']  && !isset($manager['mg_id']) &&
 if (isset($manager['mg_id']) && $manager['mg_id']) {
     $is_member = true;
     $is_manager = true;
+    $is_guest = false;
     $is_admin = $manager['rights'];
     $member['mb_level'] = 10;
-    // $manager['mg_dir'] = substr($manager['mg_id'],0,2);
 } 
 
 
