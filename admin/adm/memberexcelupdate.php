@@ -83,24 +83,50 @@ if($_FILES['excelfile']['tmp_name']) {
 		$mb_id				= addslashes($data->sheets[0]['cells'][$i][$j++]);
 		$mb_password		= addslashes($data->sheets[0]['cells'][$i][$j++]);
 		$mb_name			= addslashes($data->sheets[0]['cells'][$i][$j++]);
+        // 구분
 		$type		= addslashes($data->sheets[0]['cells'][$i][$j++]);
+        // 계열
 		$affiliation			= addslashes($data->sheets[0]['cells'][$i][$j++]);
+        // 학과
 		$department		= addslashes($data->sheets[0]['cells'][$i][$j++]);
+        // 기수
+		$generation			= addslashes($data->sheets[0]['cells'][$i][$j++]);
+        // 학번
+		$admission_year			= addslashes($data->sheets[0]['cells'][$i][$j++]);
+        // 입학년도
 		$entrance_year			= addslashes($data->sheets[0]['cells'][$i][$j++]);
+        // 졸업년도
 		$graduation_year				= addslashes($data->sheets[0]['cells'][$i][$j++]);
+        // 휴대폰번호
 		$mb_hp				= addslashes($data->sheets[0]['cells'][$i][$j++]);
+        // 이메일
 		$mb_email			= addslashes($data->sheets[0]['cells'][$i][$j++]);
+        // 성별
 		$mb_sex			= addslashes($data->sheets[0]['cells'][$i][$j++]);
+        // 직장
 		$job			= addslashes($data->sheets[0]['cells'][$i][$j++]);
+        // 부서
 		$job_department			= addslashes($data->sheets[0]['cells'][$i][$j++]);
+        // 직위
 		$job_position			= addslashes($data->sheets[0]['cells'][$i][$j++]);
+        // 직장전화
+		$workplace_tel			= addslashes($data->sheets[0]['cells'][$i][$j++]);
+        // 직장주소
 		$workplace_addr			= addslashes($data->sheets[0]['cells'][$i][$j++]);
+        // 기본주소
 		$mb_addr1			= addslashes($data->sheets[0]['cells'][$i][$j++]);
+        // 상세주소
 		$mb_addr2			= addslashes($data->sheets[0]['cells'][$i][$j++]);
+        // 참고주소
 		$mb_addr3			= addslashes($data->sheets[0]['cells'][$i][$j++]);
-		$executive		= addslashes($data->sheets[0]['cells'][$i][$j++]);
+        // 자택전화
 		$mb_tel		= addslashes($data->sheets[0]['cells'][$i][$j++]);
+        // 임원명
+		$executive		= addslashes($data->sheets[0]['cells'][$i][$j++]);
+        // 생년월일
 		$mb_birth			= addslashes($data->sheets[0]['cells'][$i][$j++]);
+        // 비고
+		$etc			= addslashes($data->sheets[0]['cells'][$i][$j++]);
 
         if(!$mb_id || !$mb_name) {
             $fail_count++;
@@ -138,6 +164,8 @@ if($_FILES['excelfile']['tmp_name']) {
                          type= '$type',
                          affiliation= '$affiliation',
                          department= '$department',
+                         generation= '$generation',
+                         admission_year= '$admission_year',
                          entrance_year= '$entrance_year',
                          graduation_year= '$graduation_year',
                          mb_hp= '$mb_hp',
@@ -146,6 +174,7 @@ if($_FILES['excelfile']['tmp_name']) {
                          job= '$job',
                          job_department= '$job_department',
                          job_position= '$job_position',
+                         workplace_tel= '$workplace_tel',
                          workplace_addr= '$workplace_addr',
                          mb_addr1= '$mb_addr1',
                          mb_addr2= '$mb_addr2',
@@ -153,10 +182,11 @@ if($_FILES['excelfile']['tmp_name']) {
                          executive= '$executive',
                          mb_tel= '$mb_tel',
                          mb_birth= '$mb_birth',
+                         etc= '$etc',
                          reunion_id = '{$reunionID}' ";
         sql_query($sql);
 
-        echo $sql;
+        // echo $sql;
 
         $succ_count++;
     }

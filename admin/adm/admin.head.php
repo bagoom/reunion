@@ -106,7 +106,7 @@ function imageview(id, w, h)
     <h1><?php echo $config['cf_title'] ?></h1>
     <div id="hd_top">
         <div class="left">
-            <div id="logo"><a href="<?php echo correct_goto_url(G5_ADMIN_URL); ?>">동문 회원 관리시스템</a></div>
+            <div id="logo"><a href="<?php echo correct_goto_url(G5_ADMIN_URL); ?>"><?=$reunion['reunion_title']?> 통합 관리시스템</a></div>
             <nav id="gnb" class="gnb_large <?php echo $adm_menu_cookie['gnb']; ?>">
                 <ul class="gnb_ul">
                     <?php

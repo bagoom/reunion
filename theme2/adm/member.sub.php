@@ -5,6 +5,7 @@ include_once('./admin.head.php');
 ?>
 
 <form id="fsearch" name="fsearch"class="local_sch03 local_sch" method="get">
+    <div class="reunion_tit"><?=$reunion['reunion_title']?></div>
     <div class="flex-box">
         <div class="left">
             <div class="input-row">
@@ -64,6 +65,11 @@ include_once('./admin.head.php');
                     </div>
                     <div class="input-col"><input type="text" name="stx" value="<?php echo $stx ?>" id="stx"  class=" frm_input" placeholder="검색어 입력"></div>
                 </div>
+            </div>
+
+            <div class="input-row executive-list">
+                <input type="checkbox" id="executive-check" name="executive_list" <?=($executive_list == "on") ? "checked": null?>>
+                <label for="executive-check">임원명단</label>
             </div>
         </div>
 

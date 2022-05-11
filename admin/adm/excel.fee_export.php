@@ -13,7 +13,7 @@ $header_bgcolor = 'FFABCDEF';
 $last_char = column_char(count($headers) - 1);
 
 
-$sql = "SELECT * FROM {$g5['member_table']} a, {$g5['fee']} b WHERE a.mb_id = b.mb_id and a.reunion_id = '{$reunionID}' ORDER BY id DESC" ;
+$sql = "SELECT * FROM {$g5['member_table']} a, {$g5['fee']} b WHERE a.mb_id = b.mb_id ORDER BY id DESC" ;
 $result = sql_query($sql);
 for($i=1; $row=sql_fetch_array($result); $i++) {
 

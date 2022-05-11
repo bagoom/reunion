@@ -77,7 +77,10 @@ $check_keys = array(
 'executive',
 'anniversary',
 'organizations',
-'candidate'
+'candidate',
+'generation',
+'admission_year',
+'etc'
 
 );
 
@@ -132,7 +135,11 @@ $sql_common = "  mb_name = '{$posts['mb_name']}',
                  executive = '{$posts['executive']}',
                  anniversary = '{$posts['anniversary']}',
                  organizations = '{$posts['organizations']}',
-                 candidate = '{$posts['candidate']}' ";
+                 candidate = '{$posts['candidate']}' ,
+                 generation = '{$posts['generation']}', 
+                 admission_year = '{$posts['admission_year']}',
+                 etc = '{$posts['etc']}'
+                 ";
 
 if ($w == '')
 {

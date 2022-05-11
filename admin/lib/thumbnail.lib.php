@@ -11,8 +11,9 @@ function get_list_thumbnail($bo_table, $wr_id, $thumb_width, $thumb_height, $is_
     $edt = false;
 
     $row = get_thumbnail_find_cache($bo_table, $wr_id, 'file');
+    $empty_array = array('src'=>'', 'ori'=>'', 'alt'=>'');
 
-    if($row['bf_file']) {
+    if(isset($row['bf_file']) && $row['bf_file']) {
         $filename = $row['bf_file'];
         $filepath = G5_DATA_PATH.'/file/'.$bo_table;
         $alt = get_text($row['bf_content']);
@@ -41,7 +42,7 @@ function get_list_thumbnail($bo_table, $wr_id, $thumb_width, $thumb_height, $is_
                     $filepath = dirname($srcfile);
 
                     preg_match("/alt=[\"\']?([^\"\']*)[\"\']?/", $matches[0][$i], $malt);
-                    $alt = get_text($malt[1]);
+                    $alt = isset($malt[1]) ? get_text($malt[1]) : '';
 
                     break;
                 }
@@ -52,7 +53,7 @@ function get_list_thumbnail($bo_table, $wr_id, $thumb_width, $thumb_height, $is_
     }
 
     if(!$filename)
-        return false;
+        return $empty_array;
     
     if( $thumbnail_info = run_replace('get_list_thumbnail_info', array(), array('bo_table'=>$bo_table, 'wr_id'=>$wr_id, 'data_path'=>$data_path, 'edt'=>$edt, 'filename'=>$filename, 'filepath'=>$filepath, 'thumb_width'=>$thumb_width, 'thumb_height'=>$thumb_height, 'is_create'=>$is_create, 'is_crop'=>$is_crop, 'crop_mode'=>$crop_mode, 'is_sharpen'=>$is_sharpen, 'um_value'=>$um_value)) ){
         return $thumbnail_info;
@@ -71,7 +72,7 @@ function get_list_thumbnail($bo_table, $wr_id, $thumb_width, $thumb_height, $is_
             $src = G5_DATA_URL.'/file/'.$bo_table.'/'.$tname;
         }
     } else {
-        return false;
+        return $empty_array;
     }
 
     $thumb = array("src"=>$src, "ori"=>$ori, "alt"=>$alt);
@@ -84,7 +85,7 @@ function get_file_thumbnail($file){
     
     if( ! is_array($file) ) return '';
 
-    if( preg_match('/(\.jpg|\.jpeg|\.gif|\.png|\.bmp)$/i', $file['file']) && $contents = run_replace('get_file_thumbnail_tags', '', $file) ){
+    if( preg_match('/(\.jpg|\.jpeg|\.gif|\.png|\.bmp|\.webp)$/i', $file['file']) && $contents = run_replace('get_file_thumbnail_tags', '', $file) ){
         return $contents;
     } else if ($file['view']) {
         return get_view_thumbnail($file['view']);
@@ -107,21 +108,23 @@ function get_view_thumbnail($contents, $thumb_width=0)
     if(empty($matches))
         return $contents;
 
+    $extensions = array(1=>'gif', 2=>'jpg', 3=>'png', 18=>'webp');
+
     for($i=0; $i<count($matches[1]); $i++) {
 
         $img = $matches[1][$i];
         $img_tag = isset($matches[0][$i]) ? $matches[0][$i] : '';
 
         preg_match("/src=[\'\"]?([^>\'\"]+[^>\'\"]+)/i", $img, $m);
-        $src = $m[1];
+        $src = isset($m[1]) ? $m[1] : '';
         preg_match("/style=[\"\']?([^\"\'>]+)/i", $img, $m);
-        $style = $m[1];
+        $style = isset($m[1]) ? $m[1] : '';
         preg_match("/width:\s*(\d+)px/", $style, $m);
-        $width = $m[1];
+        $width = isset($m[1]) ? $m[1] : '';
         preg_match("/height:\s*(\d+)px/", $style, $m);
-        $height = $m[1];
+        $height = isset($m[1]) ? $m[1] : '';
         preg_match("/alt=[\"\']?([^\"\']*)[\"\']?/", $img, $m);
-        $alt = get_text($m[1]);
+        $alt = isset($m[1]) ? get_text($m[1]) : '';
 
         // 이미지 path 구함
         $p = parse_url($src);
@@ -137,8 +140,11 @@ function get_view_thumbnail($contents, $thumb_width=0)
             if(empty($size))
                 continue;
 
+            $file_ext = $extensions[$size[2]];
+            if (!$file_ext) continue;
+
             // jpg 이면 exif 체크
-            if($size[2] == 2 && function_exists('exif_read_data')) {
+            if( $file_ext === 'jpg' && function_exists('exif_read_data')) {
                 $degree = 0;
                 $exif = @exif_read_data($srcfile);
                 if(!empty($exif['Orientation'])) {
@@ -165,7 +171,7 @@ function get_view_thumbnail($contents, $thumb_width=0)
 
             // Animated GIF 체크
             $is_animated = false;
-            if($size[2] == 1) {
+            if($file_ext === 'gif') {
                 $is_animated = is_animated_gif($srcfile);
 
                 if($replace_content = run_replace('thumbnail_is_animated_gif_content', '', $contents, $srcfile, $is_animated, $img_tag, $data_path, $size)){
@@ -225,9 +231,20 @@ function thumbnail($filename, $source_path, $target_path, $thumb_width, $thumb_h
     if(!is_file($source_file)) // 원본 파일이 없다면
         return;
 
+
     $size = @getimagesize($source_file);
-    if($size[2] < 1 || $size[2] > 3) // gif, jpg, png 에 대해서만 적용
-        return;
+
+    $extensions = array(1 => 'gif', 2 => 'jpg', 3 => 'png', 18 => 'webp');
+    $file_ext = $extensions[$size[2]]; // 파일 확장자
+    if (!$file_ext) return;
+
+    // gif, jpg, png, webp 에 대해서만 적용
+    // if ( !(isset($size[2]) && ($size[2] == 1 || $size[2] == 2 || $size[2] == 3 || $size[2] == 18)) ) 
+    //     return;
+
+    // $extensions 배열에 없는 확장자 라면 썸네일 만들지 않음
+    // if (!in_array($file_ext, $extensions))
+    //     return;
 
     if (!is_dir($target_path)) {
         @mkdir($target_path, G5_DIR_PERMISSION);
@@ -239,16 +256,19 @@ function thumbnail($filename, $source_path, $target_path, $thumb_width, $thumb_h
         return '';
 
     // Animated GIF는 썸네일 생성하지 않음
-    if($size[2] == 1) {
+    if($file_ext === 'gif') {
         if(is_animated_gif($source_file))
+            return basename($source_file);
+    } else if ($file_ext === 'webp') {
+        if(is_animated_webp($source_file))
             return basename($source_file);
     }
 
-    $ext = array(1 => 'gif', 2 => 'jpg', 3 => 'png');
 
     $thumb_filename = preg_replace("/\.[^\.]+$/i", "", $filename); // 확장자제거
-    $thumb_file = "$target_path/thumb-{$thumb_filename}_{$thumb_width}x{$thumb_height}.".$ext[$size[2]];
-
+    // $thumb_file = "$target_path/thumb-{$thumb_filename}_{$thumb_width}x{$thumb_height}.".$ext[$size[2]];
+    $thumb_file = "$target_path/thumb-{$thumb_filename}_{$thumb_width}x{$thumb_height}.".$file_ext;
+    
     $thumb_time = @filemtime($thumb_file);
     $source_time = @filemtime($source_file);
 
@@ -262,10 +282,10 @@ function thumbnail($filename, $source_path, $target_path, $thumb_width, $thumb_h
     $src = null;
     $degree = 0;
 
-    if ($size[2] == 1) {
+    if ($file_ext === 'gif') {
         $src = @imagecreatefromgif($source_file);
         $src_transparency = @imagecolortransparent($src);
-    } else if ($size[2] == 2) {
+    } else if ($file_ext === 'jpg') {
         $src = @imagecreatefromjpeg($source_file);
 
         if(function_exists('exif_read_data')) {
@@ -297,8 +317,11 @@ function thumbnail($filename, $source_path, $target_path, $thumb_width, $thumb_h
                 }
             }
         }
-    } else if ($size[2] == 3) {
+    } else if ($file_ext === 'png') {
         $src = @imagecreatefrompng($source_file);
+        @imagealphablending($src, true);
+    } else if ($file_ext === 'webp') {
+        $src = @imagecreatefromwebp($source_file);
         @imagealphablending($src, true);
     } else {
         return;
@@ -362,10 +385,10 @@ function thumbnail($filename, $source_path, $target_path, $thumb_width, $thumb_h
 
             $dst = imagecreatetruecolor($dst_w, $dst_h);
 
-            if($size[2] == 3) {
+            if($file_ext === 'png') {
                 imagealphablending($dst, false);
                 imagesavealpha($dst, true);
-            } else if($size[2] == 1) {
+            } else if($file_ext === 'gif') {
                 $palletsize = imagecolorstotal($src);
                 if($src_transparency >= 0 && $src_transparency < $palletsize) {
                     $transparent_color   = imagecolorsforindex($src, $src_transparency);
@@ -390,12 +413,12 @@ function thumbnail($filename, $source_path, $target_path, $thumb_width, $thumb_h
                 }
             }
 
-            if($size[2] == 3) {
+            if($file_ext === 'png') {
                 $bgcolor = imagecolorallocatealpha($dst, 0, 0, 0, 127);
                 imagefill($dst, 0, 0, $bgcolor);
                 imagealphablending($dst, false);
                 imagesavealpha($dst, true);
-            } else if($size[2] == 1) {
+            } else if($file_ext === 'gif') {
                 $palletsize = imagecolorstotal($src);
                 if($src_transparency >= 0 && $src_transparency < $palletsize) {
                     $transparent_color   = imagecolorsforindex($src, $src_transparency);
@@ -473,12 +496,12 @@ function thumbnail($filename, $source_path, $target_path, $thumb_width, $thumb_h
             }
         }
 
-        if($size[2] == 3) {
+        if($file_ext === 'png') {
             $bgcolor = imagecolorallocatealpha($dst, 0, 0, 0, 127);
             imagefill($dst, 0, 0, $bgcolor);
             imagealphablending($dst, false);
             imagesavealpha($dst, true);
-        } else if($size[2] == 1) {
+        } else if($file_ext === 'gif') {
             $palletsize = imagecolorstotal($src);
             if($src_transparency >= 0 && $src_transparency < $palletsize) {
                 $transparent_color   = imagecolorsforindex($src, $src_transparency);
@@ -501,22 +524,24 @@ function thumbnail($filename, $source_path, $target_path, $thumb_width, $thumb_h
         UnsharpMask($dst, $val[0], $val[1], $val[2]);
     }
 
-    if($size[2] == 1) {
+    if($file_ext === 'gif') {
         imagegif($dst, $thumb_file);
-    } else if($size[2] == 3) {
+    } else if($file_ext === 'png') {
         if(!defined('G5_THUMB_PNG_COMPRESS'))
             $png_compress = 5;
         else
             $png_compress = G5_THUMB_PNG_COMPRESS;
 
         imagepng($dst, $thumb_file, $png_compress);
-    } else {
+    } else if ($file_ext === 'jpg') {
         if(!defined('G5_THUMB_JPG_QUALITY'))
             $jpg_quality = 90;
         else
             $jpg_quality = G5_THUMB_JPG_QUALITY;
 
         imagejpeg($dst, $thumb_file, $jpg_quality);
+    } else if ($file_ext === 'webp') {
+        imagewebp($dst, $thumb_file);
     }
 
     chmod($thumb_file, G5_FILE_PERMISSION); // 추후 삭제를 위하여 파일모드 변경
@@ -694,6 +719,22 @@ and the roundoff errors in the Gaussian blur process, are welcome.
 
 }
 
+// 움직이는 webp 파일인지 검사한다.
+// 출처) https://stackoverflow.com/questions/45190469/how-to-identify-whether-webp-image-is-static-or-animated?answertab=votes#tab-top
+function is_animated_webp($filename) {
+    $contents = file_get_contents($filename);
+    $where = strpos($contents, "ANMF");
+    if ($where !== false){
+        // animated
+        $is_animated = true;
+    }
+    else{
+        // non animated
+        $is_animated = false;
+    }
+    return $is_animated;
+}
+
 function is_animated_gif($filename) {
 
     static $cache = array();
@@ -731,4 +772,3 @@ function is_animated_gif($filename) {
 
     return $cache[$key];
 }
-?>

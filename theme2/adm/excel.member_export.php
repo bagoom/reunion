@@ -7,8 +7,8 @@ if (!$is_admin =="super")
 
 function column_char($i) { return chr( 65 + $i ); }
 
-$headers = array('번호', 'ID', '구분', '계열', '학과', '이름',  '입학', '졸업', '휴대폰', 'Email', '직장', '부서', '직위', '직장주소', '자택주소', '임원명', '성별', '자택전화', '생년월일');
-$widths  = array(5, 15, 15, 15, 15, 15, 15, 15, 20, 20, 20, 20, 20, 50, 50, 15, 5, 15, 15);
+$headers = array('번호', 'ID', '구분', '계열', '학과', '성명1', '성명2', '기수', '학번', '입학', '졸업', '휴대폰', '이메일', '직장', '부서', '직위', '직장전화', '직장주소', '자택주소', '자택전화', '임원명', '성별', '생년월일', '비고');
+$widths  = array(5, 15, 15, 15, 15, 15, 15, 10, 10, 10, 10, 20, 20, 50, 20, 15, 20, 50, 50,20,20,15,20,50);
 $header_bgcolor = 'FFABCDEF';
 $last_char = column_char(count($headers) - 1);
 
@@ -17,9 +17,10 @@ $sql    = " select * from g5_member where mb_leave_date = '' and reunion_id = '{
 $result = sql_query($sql);
 for($i=1; $row=sql_fetch_array($result); $i++) {
 
-   if ($row['mb_sex'] =="M") { $mb_sex ="남자"; } else if ($row['mb_sex'] =="F"){ $mb_sex ="여자"; } 
+   if ($row['mb_sex'] =="male") { $mb_sex ="남"; } else if ($row['mb_sex'] =="female"){ $mb_sex ="여"; } 
    if ($row['mb_mailling'] =="1") { $mb_mailling ="받음"; } else if ($row['mb_mailling'] =="0"){ $mb_mailling ="안받음"; } 
    if ($row['mb_open'] =="1") { $mb_open  ="공개"; } else if ($row['mb_open'] =="0"){ $mb_open ="비공개"; } 
+   $addr = $row['mb_addr1']." ".$row['mb_addr2'];
     $rows[] = 
              array(
                $i,
@@ -28,6 +29,9 @@ for($i=1; $row=sql_fetch_array($result); $i++) {
                $row[affiliation],
                $row[department],
                $row[mb_name],
+               $row[mb_nick],
+               $row[generation],
+               $row[admission_year],
                $row[entrance_year],
                $row[graduation_year],
                $row[mb_hp],
@@ -35,12 +39,14 @@ for($i=1; $row=sql_fetch_array($result); $i++) {
                $row[job],
                $row[job_department],
                $row[job_position],
+               $row[workplace_tel],
                $row[workplace_addr],
-               $row[addr],
+               $addr,
+               $row[mb_tel],
                $row[executive],
                $mb_sex,
-               $row[workplace_tel],
-               $row[mb_birth]
+               $row[mb_birth],
+               $row[etc]
               //  print_address($row['mb_addr1'], $row['mb_addr2'], $row['mb_addr3'], $row['mb_zip1'])
              );
 }

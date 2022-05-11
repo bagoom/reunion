@@ -32,6 +32,9 @@ if($graduation_year)
 if($entrance_year)
     $where .= " AND entrance_year = '$entrance_year'";
 
+if($executive_list)
+    $where .= " AND executive != ''";
+
  if($is_admin !== 'superadmin'){
     $where .= " AND reunion_id = '$reunionID'";
  }
@@ -62,7 +65,7 @@ if ($stx) {
 //     $sql_search .= " and mb_level <= '{$member['mb_level']}' ";
 
 if (!$sst) {
-    $sst = "mb_datetime";
+    $sst = "mb_no";
     $sod = "desc";
 }
 
@@ -72,7 +75,8 @@ $sql = " select count(*) as cnt {$sql_common} {$sql_search} {$where} {$sql_order
 $row = sql_fetch($sql);
 $total_count = $row['cnt'];
 
-$rows = $config['cf_page_rows'];
+// $rows = $config['cf_page_rows'];
+$rows = 30;
 $total_page  = ceil($total_count / $rows);  // 전체 페이지 계산
 if ($page < 1) $page = 1; // 페이지가 없으면 첫 페이지 (1 페이지)
 $from_record = ($page - 1) * $rows; // 시작 열을 구함
@@ -102,12 +106,19 @@ $colspan = 20;
     </div>
 
     <div class="rigth">
+        <div>
+            <?php if($is_admin !== 'superadmin') { ?>
+                <a href="./member_form.php" id="member_add" class="btn btn_01">회원추가</a>
+                <a href="./memberexcel.php" id="member_add" class="btn btn_02" onclick="return excelform(this.href);" target="_blank">엑셀등록</a>
+            <?php }?>
+                <a href="./excel.member_export.php" id="member_add" class="btn btn_02">엑셀저장</a>
+        </div>
         <?php if($is_admin !== 'superadmin') { ?>
-            <a href="./member_form.php" id="member_add" class="btn btn_01">회원추가</a>
-            <a href="./memberexcel.php" id="member_add" class="btn btn_02" onclick="return excelform(this.href);" target="_blank">엑셀등록</a>
+        <div>
+            <a href="<?php echo G5_URL; ?>/<?php echo G5_LIB_DIR; ?>/Excel/memberexcel3.xls" class="excel_down">회원일괄등록용 엑셀파일 다운로드</a>
+        </div>
         <?php }?>
-            <a href="./excel.member_export.php" id="member_add" class="btn btn_02">엑셀저장</a>
-        </div> 
+    </div> 
 </div>
 
 <!-- <div class="local_desc01 local_desc">
@@ -130,20 +141,23 @@ $colspan = 20;
         <th scope="col">학과</th>
         <th scope="col">성명1</th>
         <th scope="col">성명2</th>
+        <th scope="col">기수</th>
+        <th scope="col">학번</th>
         <th scope="col">입학</th>
-        <th scope="col">졸업(기수)</th>
+        <th scope="col">졸업</th>
         <th scope="col">휴대폰번호</th>
         <th scope="col">이메일</th>
         <th scope="col">직장</th>
         <th scope="col">부서</th>
         <th scope="col">직위</th>
+        <th scope="col">직장전화</th>
         <th scope="col">직장주소</th>
         <th scope="col">자택주소</th>
+        <th scope="col">자택전화</th>
         <th scope="col">임원명</th>
         <th scope="col">성별</th>
-        <th scope="col">자택전화</th>
         <th scope="col">생년월일</th>
-        <th scope="col">기념일</th>
+        <th scope="col">비고</th>
     </tr>
     </thead>
     <tbody>
@@ -208,68 +222,80 @@ $colspan = 20;
         }
     ?>
 
-    <tr class="<?php echo $bg; ?>" onClick="location.href='<?=$s_mod?>'">
+    <tr class="<?php echo $bg; ?>" >
         <td headers="mb_list_chk" class="td_chk">
             <input type="hidden" name="mb_id[<?php echo $i ?>]" value="<?php echo $row['mb_id'] ?>" id="mb_id_<?php echo $i ?>">
             <label for="chk_<?php echo $i; ?>" class="sound_only"><?php echo get_text($row['mb_name']); ?> <?php echo get_text($row['mb_nick']); ?>님</label>
             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
         </td>
-        <td >
+        <td onClick="location.href='<?=$s_mod?>'">
             <?= $row['type'] ?>
         </td>
-        <td >
+        <td onClick="location.href='<?=$s_mod?>'">
             <?= $row['affiliation'] ?>
         </td>
-        <td >
+        <td onClick="location.href='<?=$s_mod?>'">
             <?= $row['department'] ?>
         </td>
-        <td >
+        <td onClick="location.href='<?=$s_mod?>'">
             <?= $row['mb_name'] ?>
         </td>
-        <td >
+        <td onClick="location.href='<?=$s_mod?>'">
             <?= ($row['name2'])? $row['name2'] : "-" ?>
         </td>
-        <td >
+        <!-- 기수 -->
+        <td onClick="location.href='<?=$s_mod?>'">
+            <?= ($row['generation'])? $row['generation'] : "-" ?>
+        </td>
+        <!-- 학번 -->
+        <td onClick="location.href='<?=$s_mod?>'">
+            <?= ($row['admission_year'])? $row['admission_year'] : "-" ?>
+        </td>
+        <td onClick="location.href='<?=$s_mod?>'">
             <?= ($row['entrance_year'])? $row['entrance_year'] : "-" ?>
         </td>
-        <td >
+        <td onClick="location.href='<?=$s_mod?>'">
             <?= ($row['graduation_year'])? $row['graduation_year'] : "-" ?>
         </td>
-        <td >
+        <td onClick="location.href='<?=$s_mod?>'">
             <?= ($row['mb_hp'])? $row['mb_hp'] : "-" ?>
         </td>
-        <td >
+        <td onClick="location.href='<?=$s_mod?>'">
             <?= ($row['mb_email'])? $row['mb_email'] : "-" ?>
         </td>
-        <td >
+        <td onClick="location.href='<?=$s_mod?>'">
             <?= ($row['job'])? $row['job'] : "-" ?>
         </td>
-        <td >
+        <td onClick="location.href='<?=$s_mod?>'">
             <?= ($row['job_department'])? $row['job_department'] : "-" ?>
         </td>
-        <td >
+        <td onClick="location.href='<?=$s_mod?>'">
             <?= ($row['job_position'])? $row['job_position'] : "-" ?>
         </td>
-        <td >
-            <?= ($row['workplace_addr'])? $row['workplace_addr'] : "-" ?>
+        <!-- 직장전화 -->
+        <td onClick="location.href='<?=$s_mod?>'">
+            <?= ($row['workplace_tel'])? "Y" : "N" ?>
         </td>
-        <td >
-            <?= ($row['addr1'])? $row['addr1'] : "-" ?>
+        <td onClick="location.href='<?=$s_mod?>'">
+            <?= ($row['workplace_addr'])? "Y" : "N" ?>
         </td>
-        <td >
+        <td onClick="location.href='<?=$s_mod?>'">
+            <?= ($row['mb_addr1'])? "Y" : "N" ?>
+        </td>
+        <td onClick="location.href='<?=$s_mod?>'">
+            <?= ($row['mb_tel'])? "Y" : "N" ?>
+        </td>
+        <td onClick="location.href='<?=$s_mod?>'">
             <?= ($row['executive'])? $row['executive'] : "-" ?>
         </td>
-        <td >
+        <td onClick="location.href='<?=$s_mod?>'">
             <?= ($row['mb_sex'] == 'male')? "남": "여" ?>
         </td>
-        <td >
-            <?= ($row['mb_tel'])? $row['mb_tel'] : "-" ?>
-        </td>
-        <td >
+        <td onClick="location.href='<?=$s_mod?>'">
             <?= ($row['mb_birth'])? $row['mb_birth'] : "-" ?>
         </td>
-        <td >
-            <?= ($row['anniversary'])? $row['anniversary'] : "-" ?>
+        <td onClick="location.href='<?=$s_mod?>'">
+            <?= ($row['etc'])? "Y" : "N" ?>
         </td>
     </tr>
     <?php
@@ -281,7 +307,9 @@ $colspan = 20;
     </table>
 </div>
 
-
+    <div class="del-btn-wrap">
+        <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn btn_02">
+    </div> 
 
 </form>
 

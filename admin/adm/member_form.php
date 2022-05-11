@@ -281,6 +281,10 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                 <td>
                     <?= get_reunion_select('department', $mb['department'], 'required', 'dp_name', 'department'); ?>
                 </td>
+                <th scope="row">기수</th>
+                <td>
+                   <input type="text" name="generation" value="<?php echo $mb['generation'] ?>" id="generation"  class=" frm_input" size="15" maxlength="20">
+                </td>
             </tr>
             <tr>
                 <th scope="row">입학년도</th>
@@ -295,7 +299,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 
                 <th scope="row">학번</th>
                 <td >
-                   <input type="text" name="entrance_num" value="<?php echo $mb['entrance_num'] ?>" id="entrance_num"  class=" frm_input" size="15" maxlength="20">
+                   <input type="text" name="admission_year" value="<?php echo $mb['admission_year'] ?>" id="admission_year"  class=" frm_input" size="15" maxlength="20">
                 </td>
             </tr>
         </tbody>
@@ -363,6 +367,10 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                 <th scope="row">생년월일</th>
                 <td > 
                    <input type="text" name="mb_birth" value="<?php echo $mb['mb_birth'] ?>" id="mb_birth"  class=" frm_input" size="15" maxlength="20">
+                </td>
+                <th scope="row">비고</th>
+                <td > 
+                   <input type="text" name="etc" value="<?php echo $mb['etc'] ?>" id="etc"  class=" frm_input" size="60" maxlength="20">
                 </td>
                 <!-- <th scope="row">기념일</th>
                 <td colspan="3">

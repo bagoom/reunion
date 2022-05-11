@@ -11,8 +11,8 @@ function empty_mb_id($reg_mb_id)
 
 function valid_mb_id($reg_mb_id)
 {
-    if (preg_match("/[^0-9a-z_]+/i", $reg_mb_id))
-        return "회원아이디는 영문자, 숫자, _ 만 입력하세요.";
+    if (preg_match("/[^0-9]+/i", $reg_mb_id))
+        return "휴대폰 번호는 '-'를 제외한 숫자만 입력하세요.";
     else
         return "";
 }
@@ -20,7 +20,7 @@ function valid_mb_id($reg_mb_id)
 function count_mb_id($reg_mb_id)
 {
     if (strlen($reg_mb_id) < 3)
-        return "회원아이디는 최소 3글자 이상 입력하세요.";
+        return "휴대폰 번호를 올바르게 입력해주세요.";
     else
         return "";
 }
@@ -35,7 +35,7 @@ function exist_mb_id($reg_mb_id)
     $sql = " select count(*) as cnt from `{$g5['member_table']}` where mb_id = '$reg_mb_id' ";
     $row = sql_fetch($sql);
     if ($row['cnt'])
-        return "이미 사용중인 회원아이디 입니다.";
+        return "이미 동문 인증된 회원입니다.";
     else
         return "";
 }
@@ -76,10 +76,10 @@ function count_mb_nick($reg_mb_nick)
 function exist_mb_nick($reg_mb_nick, $reg_mb_id)
 {
     global $g5;
-    $row = sql_fetch(" select count(*) as cnt from {$g5['member_table']} where mb_nick = '$reg_mb_nick' and mb_id <> '$reg_mb_id' ");
-    if ($row['cnt'])
-        return "이미 존재하는 닉네임입니다.";
-    else
+    // $row = sql_fetch(" select count(*) as cnt from {$g5['member_table']} where mb_nick = '$reg_mb_nick' and mb_id <> '$reg_mb_id' ");
+    // if ($row['cnt'])
+    //     return "이미 존재하는 닉네임입니다.";
+    // else
         return "";
 }
 
@@ -180,4 +180,3 @@ function exist_mb_hp($reg_mb_hp, $reg_mb_id)
     else
         return "";
 }
-?>

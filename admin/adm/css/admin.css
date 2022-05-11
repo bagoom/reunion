@@ -1587,6 +1587,43 @@ legend {
     background: #ff1464
 }
 
+.reunion_tit {
+    margin-top: 10px !important;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.input-row.executive-list label {
+    display: inline-block;
+    width: 90px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background: #a1a8d8;
+    color: #fff;
+    cursor: pointer;
+}
+
+.input-row.executive-list input[type="checkbox"] {
+    display: none;
+}
+
+.input-row.executive-list input[type="checkbox"]:checked+label {
+    background: #ff4081;
+}
+
+.excel_down {
+    margin-top: 10px;
+    display: block;
+    text-align: right;
+    font-size: 14px;
+}
+
+.del-btn-wrap {
+    display: flex;
+    justify-content: flex-end;
+}
+
 
 /* 테이블 */
 table {
@@ -1606,6 +1643,11 @@ table caption {
 
 table td {
     line-height: 22px;
+}
+
+table td.text-left {
+    padding: 5px 15px !important;
+    text-align: left !important;
 }
 
 tfoot th,
