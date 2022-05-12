@@ -4011,6 +4011,9 @@ function get_reunion_select($name, $selected='', $event='', $field, $table)
         if($name == 'executive' && $i == 0){
             $str .= '<option value="">없음</option>';
         }
+        if($name == 'type' && $i == 0){
+            $str .= '<option value="">구분</option>';
+        }
         $str .= option_selected($row[$field], $selected, $row[$field]);
     }
     $str .= "</select>";

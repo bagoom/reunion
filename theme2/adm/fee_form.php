@@ -171,6 +171,22 @@ $today = date('Y-m-d', time());
         }
     });
 
+    $(document).on("change","#fee_type",function(){
+        var value = $(this).val();
+        $.ajax({
+                url: "./ajax.get_fee_price.php",
+                type: 'POST',
+                data: {
+                    'fd_name': value
+                },
+                dataType: 'html',
+                async: false,
+                success: function (data, textStatus) {
+                    $("#fee").val(data)
+                }
+            });
+    });
+
     $(document).on("click","#modal .member-list tr",function(){
         value = $(this).data("id");
         name = $(this).data("name");
@@ -184,6 +200,8 @@ $today = date('Y-m-d', time());
             $("input[name=mb_select]").val("0");
         }
     });
+
+
 </script>
 <?php
 run_event('admin_member_form_after', $mb, $w);

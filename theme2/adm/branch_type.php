@@ -1,12 +1,12 @@
 <?php
-$sub_menu = "500200";
+$sub_menu = "500400";
 include_once('./_common.php');
 
 auth_check_menu($auth, $sub_menu, 'r');
-$g5['title'] = '학과설정';
+$g5['title'] = '지회분류 설정';
 include_once('./admin.head.php');
 
-$sql = "SELECT * FROM `department`WHERE reunion_id = '{$reunionID}' " ;
+$sql = "SELECT * FROM `branch_type`  WHERE reunion_id = '{$reunionID}'" ;
 $result = sql_query($sql);
 
 $colspan = 2;
@@ -18,13 +18,13 @@ $colspan = 2;
     }
 </style>
 
-<form action="./department_update.php" method="post">
+<form action="./branch_type_update.php" method="post">
     <input type="hidden" name="w">
     <div class="input-wrap">
         <div class="input-row">
             <div class="input-col">
-                <label for="">학과추가</label>
-                <input type="text" name="dp_name" placeholder="학과명">
+                <label for="">지회구분 추가</label>
+                <input type="text" name="bt_name" placeholder="지회구분명">
                 <button type="submit">추가</button>
             </div>
         </div>
@@ -32,7 +32,7 @@ $colspan = 2;
 </form>
 
 
-<form name="fmemberlist" id="fmemberlist" action="./department_update.php" onsubmit="return fmemberlist_submit(this);" method="post">
+<form name="fmemberlist" id="fmemberlist" action="./branch_type_update.php" onsubmit="return fmemberlist_submit(this);" method="post">
 <input type="hidden" name="page" value="<?php echo $page ?>">
 <input type="hidden" name="token" value="<?php echo isset($token) ? $token : ''; ?>">
 <input type="hidden" name="w" value="u">
@@ -56,12 +56,12 @@ $colspan = 2;
     for ($i=0; $row=sql_fetch_array($result); $i++) { ?>
 
     <tr class="<?php echo $bg; ?>">
-        <input type="hidden" name="dp_id[<?= $i ?>]" value="<?=$row['dp_id']?>">
+        <input type="hidden" name="bt_id[<?= $i ?>]" value="<?=$row['bt_id']?>">
         <td class="td_chk">
             <label for="chk_<?php echo $i; ?>" class="sound_only"></label>
             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
         </td>
-        <td><input type="text" name="dp_name[<?= $i ?>]" value="<?=$row['dp_name']?>"></td>
+        <td><input type="text" name="bt_name[<?= $i ?>]" value="<?=$row['bt_name']?>"></td>
     </tr>
     <?php
     }

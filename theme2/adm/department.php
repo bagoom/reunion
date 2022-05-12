@@ -74,9 +74,7 @@ $colspan = 2;
 
 <div class="btn_fixed_top fs">
     <input type="submit" name="act_button" value="선택수정" onclick="document.pressed=this.value" class="btn_02 btn">
-    <?php if ($is_admin == 'super') { ?>
     <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn_02 btn">
-    <?php } ?>
 </div>
 
 

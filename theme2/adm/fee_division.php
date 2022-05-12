@@ -39,7 +39,7 @@ $colspan = 2;
 
 
 
-<div class="tbl_head01 tbl_wrap" style="width: 350px">
+<div class="tbl_head01 tbl_wrap" style="width: 550px">
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -49,6 +49,7 @@ $colspan = 2;
             <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
         </th>
         <th scope="col">목록</th>
+        <th scope="col">금액</th>
     </tr>
     </thead>
     <tbody>
@@ -62,6 +63,7 @@ $colspan = 2;
             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
         </td>
         <td><input type="text" name="fd_name[<?= $i ?>]" value="<?=$row['fd_name']?>"></td>
+        <td><input type="text" name="fd_price[<?= $i ?>]" value="<?=$row['fd_price']?>" style="text-align:center;"></td>
     </tr>
     <?php
     }
@@ -74,9 +76,7 @@ $colspan = 2;
 
 <div class="btn_fixed_top fs">
     <input type="submit" name="act_button" value="선택수정" onclick="document.pressed=this.value" class="btn_02 btn">
-    <?php if ($is_admin == 'super') { ?>
     <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn_02 btn">
-    <?php } ?>
 </div>
 
 

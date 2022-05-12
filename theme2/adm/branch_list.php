@@ -28,8 +28,11 @@ if($is_admin !== 'superadmin'){
     $sql = "SELECT * FROM {$g5['branch']}  WHERE  $where  ORDER BY branch_id DESC" ;
 }
 $result = sql_query($sql);
-
-$total_count_sql = sql_fetch("SELECT count(*) AS count FROM {$g5['branch']} WHERE  $where");
+if($is_admin !== 'superadmin'){    
+    $total_count_sql = sql_fetch("SELECT count(*) AS count FROM {$g5['branch']} WHERE  $where AND reunion_id = '{$reunionID}' ");
+}else{
+    $total_count_sql = sql_fetch("SELECT count(*) AS count FROM {$g5['branch']} WHERE  $where");
+}
 $total_count = $total_count_sql['count'];
 $colspan = 8;
 ?>
