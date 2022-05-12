@@ -3,7 +3,14 @@
          document.getElementById("mysub"+num).style.display="block";
     }
 </script>
-
+<?php
+    $branch_type = array();
+    $branch_type_sql = "SELECT * FROM `branch_type` WHERE reunion_id = $reunionID";
+    $branch_type_result = sql_query($branch_type_sql);
+    for ($i=0; $branch_type_row=sql_fetch_array($branch_type_result); $i++) {
+        array_push($branch_type, $branch_type_row);
+    }
+    ?>
 
 <div id="mysubmenu">
     <?php
@@ -45,13 +52,17 @@
                     echo ("<script language='javascript'> display_submenu(" .$i. " ); </script> ");
                 }
 
-                if($row2['me_code'] == 1040) {?>
-                    <ul class="mysub-300">
-                        <li class="<?=($type=='기수별' ) ? "on" : null?>"><a href="<?=G5_URL?>/page/branch/?type=기수별">기수</a></li>
-                        <li class="<?=($type=='산하단체' ) ? "on" : null?>"><a href="<?=G5_URL?>/page/branch/?type=산하단체">산하단체</a></li>
-                        <li class="<?=($type=='지역별' ) ? "on" : null?>"><a href="<?=G5_URL?>/page/branch/?type=지역별">지역단체</a></li>
-                    </ul>
-                <?php }
+                if($row2['me_code'] == 1040) {
+                    $repeat = 0;
+                    if($repeat == 0) {
+                    $branch_type_sql = "SELECT * FROM `branch_type` WHERE reunion_id = $reunionID";
+                    $branch_type_result = sql_query($branch_type_sql);
+                    for ($j=0; $branch_type_row=sql_fetch_array($branch_type_result); $j++) { ?>
+                        <ul class="mysub-300">
+                            <li class="<?=($type==$branch_type_row['bt_name'] ) ? "on" : null?>"><a href="<?=G5_URL?>/page/branch/?type=<?=$branch_type_row['bt_name']?>"><?=$branch_type_row['bt_name']?></a></li>
+                        </ul>
+                    <?php } $repeat = 1; ?>
+                <?php } } 
             }
             if($k > 0)
                 echo '</ul>'.PHP_EOL;
