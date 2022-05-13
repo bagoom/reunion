@@ -10,11 +10,11 @@ include_once('./admin.head.php');
         <div class="left">
             <div class="input-row">
                 <div class="input-col">
-                    <?= get_reunion_select('affiliation', $affiliation, 'required', 'af_name', 'affiliation'); ?>
+                    <?= get_reunion_select('affiliation', $affiliation, '', 'af_name', 'affiliation'); ?>
                 </div>
 
                 <div class="input-col">
-                    <?= get_reunion_select('department', $department, 'required', 'dp_name', 'department'); ?>
+                    <?= get_reunion_select('department', $department, '', 'dp_name', 'department'); ?>
                 </div>
 
                 

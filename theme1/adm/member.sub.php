@@ -20,11 +20,11 @@ include_once('./admin.head.php');
                 <?php } ?>
 
                 <div class="input-col">
-                    <?= get_reunion_select('affiliation', $affiliation, 'required', 'af_name', 'affiliation'); ?>
+                    <?= get_reunion_select('affiliation', $affiliation, '', 'af_name', 'affiliation'); ?>
                 </div>
 
                 <div class="input-col">
-                    <?= get_reunion_select('department', $department, 'required', 'dp_name', 'department'); ?>
+                    <?= get_reunion_select('department', $department, '', 'dp_name', 'department'); ?>
                 </div>
 
                 

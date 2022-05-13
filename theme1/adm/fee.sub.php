@@ -17,11 +17,11 @@ if (empty($to_date) || ! preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-
         <div class="left">
             <div class="input-row">
                 <div class="input-col">
-                    <?= get_reunion_select('affiliation', $affiliation, 'required', 'af_name', 'affiliation'); ?>
+                    <?= get_reunion_select('affiliation', $affiliation, '', 'af_name', 'affiliation'); ?>
                 </div>
 
                 <div class="input-col">
-                    <?= get_reunion_select('department', $department, 'required', 'dp_name', 'department'); ?>
+                    <?= get_reunion_select('department', $department, '', 'dp_name', 'department'); ?>
                 </div>
 
                 <div class="input-col">
