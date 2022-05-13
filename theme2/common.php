@@ -585,6 +585,7 @@ $is_member = $is_guest = false;
 $is_admin = '';
 $manager = get_manager($_SESSION['ss_mb_id']);
 $is_manager = false;
+$is_executive = false;
 
 if (isset($member['mb_id']) && $member['mb_id'] && !isset($manager['mg_id']) && !$manager['mg_id']) {
     $is_member = true;
@@ -604,6 +605,11 @@ if (isset($manager['mg_id']) && $manager['mg_id']) {
     $member['mb_level'] = 10;
 } 
 
+// 임원 구분
+$executive = get_executive($_SESSION['ss_mb_id']);
+if (isset($executive['mb_id']) && $executive['mb_id']) {
+    $is_executive = true;
+}
 
 
 if ($is_admin != 'super') {

@@ -275,11 +275,11 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
             <tr>
                 <th scope="row">계열</th>
                 <td>
-                    <?= get_reunion_select('affiliation', $mb['affiliation'], 'required', 'af_name', 'affiliation'); ?>
+                    <?= get_reunion_select('affiliation', $mb['affiliation'], '', 'af_name', 'affiliation'); ?>
                 </td>
                 <th scope="row">학과</th>
                 <td>
-                    <?= get_reunion_select('department', $mb['department'], 'required', 'dp_name', 'department'); ?>
+                    <?= get_reunion_select('department', $mb['department'], '', 'dp_name', 'department'); ?>
                 </td>
                 <th scope="row">기수</th>
                 <td>

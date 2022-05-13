@@ -2,6 +2,8 @@
 include_once('./_common.php');
 
 $g5['title'] = '내가 작성한 글';
+if ($is_guest)
+    alert('로그인 후 이용해 주세요.', G5_BBS_URL.'/login.php');
 include_once('./_head.php');
 
 $sql_common = " from {$g5['board_new_table']} a, {$g5['board_table']} b, {$g5['group_table']} c where a.bo_table = b.bo_table and b.gr_id = c.gr_id  ";

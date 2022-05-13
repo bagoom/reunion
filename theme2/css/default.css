@@ -772,9 +772,17 @@ a.gnb_2da:hover {
   color: #666;
 }
 
+#location .dep2-location {
+  margin-right: 5px;
+}
+
 #mysubmenu {
   width: 240px;
   float: left;
+}
+
+#mysubmenu .onSideMenu {
+  display: block !important;
 }
 
 #mysubmenu .leftmenu_b {
@@ -2772,15 +2780,15 @@ textarea.required {
 
 .pg_current {
   display: inline-block;
-  background: #3a8afd;
-  border: 1px solid #3a8afd;
+  background: #aaa;
+  border: 1px solid #aaa;
   color: #fff;
   font-weight: bold;
   height: 30px;
   line-height: 30px;
   padding: 0 10px;
   min-width: 30px;
-  border-radius: 3px
+  border-radius: 3px;
 }
 
 /* cheditor 이슈 */

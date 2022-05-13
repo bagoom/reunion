@@ -132,7 +132,7 @@ if(!empty($notice_array)) {
 
 // 관리자라면 CheckBox 보임
 $is_checkbox = false;
-if ($is_member && ($is_admin == 'super' || $group['gr_admin'] == $member['mb_id'] || $board['bo_admin'] == $member['mb_id']))
+if ($is_member && ($is_admin == 'supervisor' || $group['gr_admin'] == $member['mb_id'] || $board['bo_admin'] == $member['mb_id']))
     $is_checkbox = true;
 
 // 정렬에 사용하는 QUERY_STRING
@@ -233,9 +233,13 @@ if ($is_search_bbs) {
     }
 }
 
-
+// print_r($is_manager);
 $write_href = '';
-if ($member['mb_level'] >= $board['bo_write_level']) {
+if ($member['mb_level'] >= $board['bo_write_level'] ) {
+    $write_href = short_url_clean(G5_BBS_URL.'/write.php?bo_table='.$bo_table);
+}
+
+if($is_executive && $bo_table == 'executive'){
     $write_href = short_url_clean(G5_BBS_URL.'/write.php?bo_table='.$bo_table);
 }
 

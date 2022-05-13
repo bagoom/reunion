@@ -1,6 +1,6 @@
 ﻿<script type="text/javascript">
     function display_submenu(num) { 
-         document.getElementById("mysub"+num).style.display="block";
+         $("#mysub" + num).addClass("onSideMenu");
     }
 </script>
 <?php

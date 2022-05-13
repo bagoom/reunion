@@ -29,7 +29,7 @@ for ($i=$chk_count-1; $i>=0; $i--)
 {
     $write = sql_fetch(" select * from $write_table where wr_id = '$tmp_array[$i]' ");
 
-    if ($is_admin == 'super') // 최고관리자 통과
+    if ($is_admin == 'supervisor') // 최고관리자 통과
         ;
     else if ($is_admin == 'group') // 그룹관리자
     {

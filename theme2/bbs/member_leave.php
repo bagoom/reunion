@@ -4,7 +4,7 @@ include_once('./_common.php');
 if (!$member['mb_id'])
     alert('회원만 접근하실 수 있습니다.');
 
-if ($is_admin == 'super')
+if ($is_admin == 'supervisor')
     alert('최고 관리자는 탈퇴할 수 없습니다');
 
 $post_mb_password = isset($_POST['mb_password']) ? trim($_POST['mb_password']) : '';

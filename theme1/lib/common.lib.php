@@ -818,6 +818,29 @@ function get_manager($mg_id, $fields='*', $is_cache=false)
     return $cache[$mg_id][$key];
 }
 
+
+// 임원 정보를 얻는다.
+function get_executive($mb_id, $fields='*', $is_cache=false)
+{
+    global $g5, $reunionID;
+    if (preg_match("/[^0-9a-z_]+/i", $mb_id))
+    return array();
+    
+    static $cache = array();
+    
+    $key = md5($fields);
+
+    if( $is_cache && isset($cache[$mb_id]) && isset($cache[$mb_id][$key]) ){
+        return $cache[$mb_id][$key];
+    }
+
+    $sql = " select $fields from {$g5['member_table']} where mb_id = TRIM('$mb_id') and executive != '' ";
+
+    $cache[$mb_id][$key] = run_replace('get_member', sql_fetch($sql), $mb_id, $fields, $is_cache);
+
+    return $cache[$mb_id][$key];
+}
+
 // 그룹 설정 테이블에서 하나의 행을 읽음
 function get_reunion($ru_id, $is_cache=false)
 {
@@ -3202,7 +3225,6 @@ function member_delete($mb_id)
     // 회원자료는 정보만 없앤 후 아이디는 보관하여 다른 사람이 사용하지 못하도록 함 : 061025
     // $sql = " update {$g5['member_table']} set mb_password = '', mb_level = 1, mb_email = '', mb_homepage = '', mb_tel = '', mb_hp = '', mb_zip1 = '', mb_zip2 = '', mb_addr1 = '', mb_addr2 = '', mb_addr3 = '', mb_point = 0, mb_profile = '', mb_birth = '', mb_sex = '', mb_signature = '', mb_memo = '".date('Ymd', G5_SERVER_TIME)." 삭제함\n".sql_real_escape_string($mb['mb_memo'])."' where mb_id = '{$mb_id}' ";
     $sql = " DELETE FROM {$g5['member_table']}  WHERE mb_id = '{$mb_id}' ";
-
     sql_query($sql);
 
     // 포인트 테이블에서 삭제

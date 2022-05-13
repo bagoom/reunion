@@ -147,11 +147,15 @@ if ($w == '' || $w == 'u') {
         $notice = 1;
     }
 
-    // 김선용 1.00 : 글쓰기 권한과 수정은 별도로 처리되어야 함
-    if($w =='u' && $member['mb_id'] && $wr['mb_id'] === $member['mb_id']) {
+    if(!$is_executive && $bo_table !== 'executive'){
+        // 김선용 1.00 : 글쓰기 권한과 수정은 별도로 처리되어야 함
+        if($w =='u' && $member['mb_id'] && $wr['mb_id'] === $member['mb_id']) {
+            ;
+        } else if ($member['mb_level'] < $board['bo_write_level']) {
+            alert('글을 쓸 권한이 없습니다.');
+        }
+    } else{
         ;
-    } else if ($member['mb_level'] < $board['bo_write_level']) {
-        alert('글을 쓸 권한이 없습니다.');
     }
 
 } else if ($w == 'r') {
@@ -229,7 +233,10 @@ if ($w == '' || $w == 'r') {
         $wr_password = '';
         $wr_email = addslashes($member['mb_email']);
         $wr_homepage = addslashes(clean_xss_tags($member['mb_homepage']));
-    } else {
+    }else if($is_manager){
+        $wr_name = $manager['mg_name'];
+    } 
+    else {
         $mb_id = '';
         // 비회원의 경우 이름이 누락되는 경우가 있음
         $wr_name = clean_xss_tags(trim($_POST['wr_name']));
@@ -320,7 +327,7 @@ if ($w == '' || $w == 'r') {
 
     $return_url = get_pretty_url($bo_table, $wr_id);
 
-    if ($is_admin == 'super') // 최고관리자 통과
+    if ($is_admin == 'supervisor') // 최고관리자 통과
         ;
     else if ($is_admin == 'group') { // 그룹관리자
         $mb = get_member($write['mb_id']);

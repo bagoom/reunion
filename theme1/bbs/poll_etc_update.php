@@ -46,7 +46,7 @@ if ($w == '')
 }
 else if ($w == 'd')
 {
-    if ($member['mb_id'] || $is_admin == 'super')
+    if ($member['mb_id'] || $is_admin == 'supervisor')
     {
         $sql = " delete from {$g5['poll_etc_table']} where pc_id = '{$pc_id}' ";
         if (!$is_admin)

@@ -18,7 +18,7 @@ $write = sql_fetch(" select * from {$write_table} where wr_id = '{$comment_id}' 
 if (!$write['wr_id'] || !$write['wr_is_comment'])
     alert('등록된 코멘트가 없거나 코멘트 글이 아닙니다.');
 
-if ($is_admin == 'super') // 최고관리자 통과
+if ($is_admin == 'supervisor') // 최고관리자 통과
     ;
 else if ($is_admin == 'group') { // 그룹관리자
     $mb = get_member($write['mb_id']);

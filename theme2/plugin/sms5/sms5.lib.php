@@ -58,7 +58,7 @@ function ajax_auth_check($auth, $attr)
 {
     global $is_admin;
 
-    if ($is_admin == 'super') return;
+    if ($is_admin == 'supervisor') return;
 
     if (!trim($auth))
         die("{\"error\":\"이 메뉴에는 접근 권한이 없습니다.\\n\\n접근 권한은 최고관리자만 부여할 수 있습니다.\"}");

@@ -282,7 +282,7 @@ else if ($w == 'cu') // 댓글 수정
     $comment_reply = substr($reply_array['wr_comment_reply'], 0, $len);
     //print_r2($GLOBALS); exit;
 
-    if ($is_admin == 'super') // 최고관리자 통과
+    if ($is_admin == 'supervisor') // 최고관리자 통과
         ;
     else if ($is_admin == 'group') { // 그룹관리자
         $mb = get_member($comment['mb_id']);

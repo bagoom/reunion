@@ -18,15 +18,16 @@ if($branch_name)
 if($fee_type)
     $where .= " AND b.fee_type = '$fee_type'";
 
-if($is_admin !== 'superadmin'){    
-    $sql = "SELECT * FROM {$g5['branch']}  WHERE  $where  AND reunion_id = '{$reunionID}' ORDER BY branch_id DESC" ;
-}else{
-    $sql = "SELECT * FROM {$g5['branch']}  WHERE  $where  ORDER BY branch_id DESC" ;
-}
-$result = sql_query($sql);
 
-$total_count_sql = sql_fetch("SELECT count(*) AS count FROM {$g5['branch']} WHERE  $where");
+$total_count_sql = sql_fetch("SELECT count(*) AS count FROM {$g5['branch']} WHERE  $where AND reunion_id = '{$reunionID}'");
 $total_count = $total_count_sql['count'];
+$rows = 12;
+$total_page  = ceil($total_count / $rows);  // 전체 페이지 계산
+if ($page < 1) $page = 1; // 페이지가 없으면 첫 페이지 (1 페이지)
+$from_record = ($page - 1) * $rows; // 시작 열을 구함
+
+$sql = "SELECT * FROM {$g5['branch']}  WHERE  $where  AND reunion_id = '{$reunionID}' ORDER BY branch_id DESC  limit {$from_record}, {$rows}" ;
+$result = sql_query($sql);
 
 ?>
 
@@ -52,10 +53,12 @@ $total_count = $total_count_sql['count'];
                         <div class="member">회원 : <b><?=$branch_mem_count?></b>명</div>
                         <div class="admin">운영자 : <b><?=$chairman['mb_name']?></b></div>
                     </div>
+                </div>
             </li>
             <?php }  if($i == 0) { ?>  <div class="empty">해당 지회가 없습니다.</div> <?php }?>
         </ul>
     </div>
+    <?php echo get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $rows, $page, $total_page, '?'.$qstr.'&amp;page='); ?>
 </div>
 
 

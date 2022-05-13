@@ -65,7 +65,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++) {
     $list2[$i]['datetime'] = $row['pc_datetime'];
 
     $list2[$i]['del'] = '';
-    if ($is_admin == 'super' || ($row['mb_id'] == $member['mb_id'] && $row['mb_id']))
+    if ($is_admin == 'supervisor' || ($row['mb_id'] == $member['mb_id'] && $row['mb_id']))
         $list2[$i]['del'] = '<a href="'.G5_BBS_URL.'/poll_etc_update.php?w=d&amp;pc_id='.$row['pc_id'].'&amp;po_id='.$po_id.'&amp;skin_dir='.$skin_dir.'" class="poll_delete">';
 }
 

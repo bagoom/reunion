@@ -42,13 +42,16 @@ if ($w == '') {
     if ($wr_id) {
         alert('글쓰기에는 \$wr_id 값을 사용하지 않습니다.', G5_BBS_URL.'/board.php?bo_table='.$bo_table);
     }
-
+    if(!$is_executive && $bo_table !== 'executive'){
     if ($member['mb_level'] < $board['bo_write_level']) {
         if ($member['mb_id']) {
             alert('글을 쓸 권한이 없습니다.');
         } else {
             alert("글을 쓸 권한이 없습니다.\\n회원이시라면 로그인 후 이용해 보십시오.", G5_BBS_URL.'/login.php?'.$qstr.'&amp;url='.urlencode($_SERVER['SCRIPT_NAME'].'?bo_table='.$bo_table));
         }
+    }else{
+        ;
+    }
     }
 
     // 음수도 true 인것을 왜 이제야 알았을까?
@@ -175,7 +178,7 @@ if (!empty($group['gr_use_access'])) {
         alert("접근 권한이 없습니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오.", 'login.php?'.$qstr.'&amp;url='.urlencode($_SERVER['SCRIPT_NAME'].'?bo_table='.$bo_table));
     }
 
-    if ($is_admin == 'super' || $group['gr_admin'] === $member['mb_id'] || $board['bo_admin'] === $member['mb_id']) {
+    if ($is_admin == 'supervisor' || $group['gr_admin'] === $member['mb_id'] || $board['bo_admin'] === $member['mb_id']) {
         ; // 통과
     } else {
         // 그룹접근

@@ -12,7 +12,7 @@ if (!($w == '' || $w == 'u')) {
     alert('w 값이 제대로 넘어오지 않았습니다.');
 }
 
-if ($w == 'u' && $is_admin == 'super') {
+if ($w == 'u' && $is_admin == 'supervisor') {
     if (file_exists(G5_PATH.'/DEMO'))
         alert('데모 화면에서는 하실(보실) 수 없는 작업입니다.');
 }

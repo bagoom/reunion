@@ -2,7 +2,7 @@
 include_once('./_common.php');
 
 if ($is_guest)
-    alert_close('회원만 이용하실 수 있습니다.');
+    alert('로그인 후 이용해 주세요.', G5_BBS_URL.'/login.php');
 
 set_session('ss_memo_delete_token', $token = uniqid(time()));
 

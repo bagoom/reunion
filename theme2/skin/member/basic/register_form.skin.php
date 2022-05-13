@@ -33,7 +33,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 				<?php if($w == '') { ?>
 				<li class="half_input ">
 	            <?php if ($config['cf_use_hp'] || $config['cf_cert_hp']) {  ?>
-	                <label for="reg_mb_hp">휴대폰번호<?php if ($config['cf_req_hp']) { ?><strong class="sound_only">필수</strong><?php } ?></label>
+	                <label for="reg_mb_hp">휴대폰번호 (아이디로 사용됩니다.)<?php if ($config['cf_req_hp']) { ?><strong class="sound_only">필수</strong><?php } ?></label>
 	                <input type="text" name="mb_hp" value="<?php echo get_text($member['mb_hp']) ?>" id="reg_mb_hp" <?php echo ($config['cf_req_hp'])?"required":""; ?> class="frm_input full_input <?php echo ($config['cf_req_hp'])?"required":""; ?>" maxlength="20" placeholder="'-'를 제외한 숫자만 입력해주세요. ex) 01012345678">
 	                <?php if ($config['cf_cert_use'] && $config['cf_cert_hp']) { ?>
 	                <input type="hidden" name="old_mb_hp" value="<?php echo get_text($member['mb_hp']) ?>">
@@ -122,11 +122,11 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 				<!-- <li class="third_input"> -->
 				<li class="half_input left_input margin_input">
 					<label >계열</label>
-					<?= get_reunion_select('affiliation', $member['affiliation'], 'required', 'af_name', 'affiliation'); ?>
+					<?= get_reunion_select('affiliation', $member['affiliation'], '', 'af_name', 'affiliation'); ?>
 				</li>
 				<li class="half_input left_input">
 					<label for="reg_mb_tel">학과</label>
-					<?= get_reunion_select('department', $member['department'], 'required', 'dp_name', 'department'); ?>
+					<?= get_reunion_select('department', $member['department'], '', 'dp_name', 'department'); ?>
 				</li>
 
 	        </ul>

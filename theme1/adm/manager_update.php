@@ -37,7 +37,6 @@ else if ($_POST['act_button'] == "선택수정" && $w == 'u')
         // 실제 번호를 넘김
         $k = isset($_POST['chk'][$i]) ? (int) $_POST['chk'][$i] : 0;
 
-
         $post_mg_name =  (isset($_POST['mg_name'][$k]) && $_POST['mg_name'][$k]) ? clean_xss_tags($_POST['mg_name'][$k], 1, 1, 50) : '';
         $post_position =  (isset($_POST['position'][$k]) && $_POST['position'][$k]) ? clean_xss_tags($_POST['position'][$k], 1, 1, 50) : '';
         $post_mg_hp =  (isset($_POST['mg_hp'][$k]) && $_POST['mg_hp'][$k]) ? clean_xss_tags($_POST['mg_hp'][$k], 1, 1, 50) : '';
@@ -45,7 +44,7 @@ else if ($_POST['act_button'] == "선택수정" && $w == 'u')
 
         $sql = " update `manager` set 
                     mg_pass = '".get_encrypt_string($mg_pass[$k])."',
-                    mg_name = '".sql_real_escape_string($mg_name)."',
+                    mg_name = '".sql_real_escape_string($post_mg_name)."',
                     position = '".sql_real_escape_string($post_position)."',
                     mg_hp = '".sql_real_escape_string($post_mg_hp)."',
                     mg_email = '".sql_real_escape_string($post_mg_email)."'

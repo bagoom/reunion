@@ -13,7 +13,7 @@ $count_write = $count_comment = 0;
 
 @include_once($board_skin_path.'/delete.head.skin.php');
 
-if ($is_admin == 'super') // 최고관리자 통과
+if ($is_admin == 'supervisor') // 최고관리자 통과
     ;
 else if ($is_admin == 'group') { // 그룹관리자
     $mb = get_member($write['mb_id']);

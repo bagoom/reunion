@@ -58,7 +58,7 @@ include_once('./admin.head.php');
                 <tr>
                     <th scope="row">지회 구분</th>
                     <td>
-                        <?= get_reunion_select('type', $branch['type'], '', 'bt_name', 'branch_type'); ?>
+                        <?= get_reunion_select('type', $branch['type'], 'required', 'bt_name', 'branch_type'); ?>
                     </td>
                     <th scope="row">지회명</th>
                     <td>

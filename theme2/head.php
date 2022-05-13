@@ -41,7 +41,9 @@ if (!file_exists($reunion_config_file)) {
         <div class="inner">
 			<ul id="hd_qnb">
                 <?php if ($is_member) {  ?>
+                    <?php if (!$is_admin) {  ?>
                     <li><a href="<?php echo G5_BBS_URL ?>/member_confirm.php?url=<?php echo G5_BBS_URL ?>/register_form.php">정보수정</a></li>
+                    <?php } ?>
                     <li><a href="<?php echo G5_BBS_URL ?>/logout.php">로그아웃</a></li>
                     <?php if ($is_admin) {  ?>
                     <li class="tnb_admin"><a href="<?php echo correct_goto_url(G5_ADMIN_URL); ?>">관리자</a></li>
