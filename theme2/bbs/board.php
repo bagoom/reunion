@@ -4,7 +4,6 @@ include_once('./_common.php');
 if (!$board['bo_table']) {
    alert('존재하지 않는 게시판입니다.', G5_URL);
 }
-
 check_device($board['bo_device']);
 
 if (isset($write['wr_is_comment']) && $write['wr_is_comment']) {

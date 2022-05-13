@@ -4014,6 +4014,12 @@ function get_reunion_select($name, $selected='', $event='', $field, $table)
         if($name == 'type' && $i == 0){
             $str .= '<option value="">구분</option>';
         }
+        if($name == 'affiliation' && $i == 0){
+            $str .= '<option value="">계열</option>';
+        }
+        if($name == 'department' && $i == 0){
+            $str .= '<option value="">학과</option>';
+        }
         $str .= option_selected($row[$field], $selected, $row[$field]);
     }
     $str .= "</select>";

@@ -52,7 +52,7 @@ if ($w == '')
 
     $mb['mb_mailling'] = 1;
     $mb['mb_open'] = 1;
-    $mb['mb_level'] = $config['cf_register_level'];
+    $mb['mb_level'] = 2;
     $html_title = '추가';
 }
 else if ($w == 'u')
@@ -187,7 +187,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 <input type="hidden" name="page" value="<?php echo $page ?>">
 <input type="hidden" name="token" value="">
 <input type="hidden" name="mb_open" value="1">
-<input type="hidden" name="mb_level" value="1">
+<input type="hidden" name="mb_level" value="2">
 
 <div class="tbl_frm01 tbl_wrap">
     <div class="tit01">기본 정보</div>

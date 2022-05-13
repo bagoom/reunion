@@ -2273,8 +2273,12 @@ select {
 }
 
 .pa_address {
-    width: 26%;
-    text-align: center;
+    width: 33%;
+    padding: 0 20px;
+    text-align: left;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .pa_time {

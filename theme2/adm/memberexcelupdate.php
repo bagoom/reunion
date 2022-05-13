@@ -162,6 +162,7 @@ if($_FILES['excelfile']['tmp_name']) {
                          mb_password = '".sql_password($mb_password)."',
                          mb_name = '$mb_name',
                          type= '$type',
+                         mb_level= '2',
                          affiliation= '$affiliation',
                          department= '$department',
                          generation= '$generation',

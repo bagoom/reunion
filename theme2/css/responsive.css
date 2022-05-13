@@ -176,6 +176,7 @@
     }
 
     #main_container .sec01 {
+        display: block;
         padding: 30px 10px;
     }
 
@@ -246,7 +247,7 @@
     }
 
     .pic_lt {
-        padding: 20px 10px;
+        padding: 20px 0;
     }
 
     .pic_lt .lat_title {

@@ -9,6 +9,7 @@ include_once('./admin.head.php');
     <div class="flex-box">
         <div class="left">
             <div class="input-row">
+                <?php if( $is_admin == 'superadmin') { ?>
                 <div class="input-col">
                     <select name="type" id="type">
                         <option value="">구분</option>
@@ -16,19 +17,14 @@ include_once('./admin.head.php');
                         <option value="대학원" <?php echo get_selected($type, "대학원"); ?>>대학원</option>
                     </select>
                 </div>
+                <?php } ?>
 
                 <div class="input-col">
-                    <select name="affiliation" id="affiliation">
-                        <option value="">계열</option>
-                        <option value="전자정보 대학"  <?php echo get_selected($affiliation, "전자정보 대학"); ?>>전자정보 대학</option>
-                    </select>
+                    <?= get_reunion_select('affiliation', $affiliation, 'required', 'af_name', 'affiliation'); ?>
                 </div>
 
                 <div class="input-col">
-                    <select name="department" id="department">
-                        <option value="">학과</option>
-                        <option value="전자 재료 공학" <?php echo get_selected($department, "전자 재료 공학"); ?>>전자 재료 공학</option>
-                    </select>
+                    <?= get_reunion_select('department', $department, 'required', 'dp_name', 'department'); ?>
                 </div>
 
                 

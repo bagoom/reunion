@@ -3,11 +3,9 @@ include_once('./_common.php');
 $g5['title'] = '동문 주소록';
 include_once(G5_PATH.'/head.php');
 
-$sql = "SELECT * FROM {$g5['member_table']} WHERE mb_id != 'admin' AND reunion_id = $reunionID";
-$result = sql_query($sql);
+
 $count = sql_fetch( "SELECT count(*) AS num FROM {$g5['member_table']} WHERE mb_id != 'admin' AND reunion_id = $reunionID " );
 $count2 = $count['num'];
-
 function EmailMasking($str){ // 수정 보완 필요
     $pattern = '/(\w+)(\w{3})(@.{1})(?=.*?\.)(.+)/i';
     $replace = '\1***\3*\5';
@@ -27,6 +25,23 @@ function setMasking($obj) {
 
     return $result;
 }
+if (!$sst) {
+    $sst = "mb_no";
+    $sod = "desc";
+}
+
+$sql_order = " order by {$sst} {$sod} ";
+
+$total_count = $count2;
+
+// $rows = $config['cf_page_rows'];
+$rows = 30;
+$total_page  = ceil($total_count / $rows);  // 전체 페이지 계산
+if ($page < 1) $page = 1; // 페이지가 없으면 첫 페이지 (1 페이지)
+$from_record = ($page - 1) * $rows; // 시작 열을 구함
+
+$sql = "SELECT * FROM {$g5['member_table']} WHERE mb_id != 'admin' AND reunion_id = $reunionID $sql_order limit {$from_record}, {$rows} ";
+$result = sql_query($sql);
 
 ?>
 
@@ -51,17 +66,13 @@ function setMasking($obj) {
                     <li class="pa_year"><?= ($row['graduation_year']) ?  $row['graduation_year']  : "-" ?></li>
                     <li class="pa_name"><?=($row['mb_name']) ? $row['mb_name'] : "-" ?></li>
                     <li class="pa_tel"><?=($row['mb_hp']) ? setMasking($row['mb_hp']) : "-" ?></li>
-                    <li class="pa_address"><?php if($list[$i]['wr_3']) { echo $list[$i]['wr_3']." ".$list[$i]['wr_4']; } else { echo "-"; } ?></li>
+                    <li class="pa_address"><?php if($row['mb_addr1']) { echo $row['mb_addr1']." ".$list[$i]['wr_4']; } else { echo "-"; } ?></li>
                     <li class="pa_time"><?=($row['mb_email']) ? EmailMasking($row['mb_email']) : "-" ?></li>
-                    <li class="pa_time"><?=($row['ddd']) ? EmailMasking($row['ddd']) : "-" ?></li>
+                    <li class="pa_name"><?=($row['ddd']) ? EmailMasking($row['ddd']) : "-" ?></li>
                     <li class="pa_link">
-                        <?php if($list[$i]['wr_6']) { ?>
-                        <a href="<?php echo $list[$i]['wr_6'] ?>" target="_blank" class="link_ico">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9.25 4.75H6.75C5.64543 4.75 4.75 5.64543 4.75 6.75V17.25C4.75 18.3546 5.64543 19.25 6.75 19.25H17.25C18.3546 19.25 19.25 18.3546 19.25 17.25V14.75" stroke="#999999" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                <path d="M19.25 9.25V4.75H14.75" stroke="#999999" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                <path d="M19 5L11.75 12.25" stroke="#999999" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
+                        <?php if($row['mb_email']) { ?>
+                        <a href="mailto:<?php echo $row['mb_email'] ?>" target="_blank" class="link_ico">
+                            <i class="xi-mail"></i>
                         </a>
                         <?php }?>
                     </li>
@@ -72,9 +83,7 @@ function setMasking($obj) {
 
             </div>
         </div>
-        <?php for($i=0; $row=sql_fetch_array($result); $i++) { ?>
-
-        <?php }?>
+        <?php echo get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, '?'.$qstr.'&amp;page='); ?>
     </div>
 
 

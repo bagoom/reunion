@@ -289,7 +289,11 @@ $colspan = 20;
             <?= ($row['executive'])? $row['executive'] : "-" ?>
         </td>
         <td onClick="location.href='<?=$s_mod?>'">
-            <?= ($row['mb_sex'] == 'male')? "남": "여" ?>
+            <?php
+             if($row['mb_sex'] == 'male') { echo "남"; }  
+             else if($row['mb_sex'] == 'female') {echo "여";} 
+             else echo "-";
+              ?>
         </td>
         <td onClick="location.href='<?=$s_mod?>'">
             <?= ($row['mb_birth'])? $row['mb_birth'] : "-" ?>
