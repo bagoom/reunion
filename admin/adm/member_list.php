@@ -44,15 +44,17 @@ $sql_search = " where (1) ";
 if ($stx) {
     $sql_search .= " and ( ";
     switch ($sfl) {
-        case 'mb_point' :
-            $sql_search .= " ({$sfl} >= '{$stx}') ";
+        case 'job' :
+            $sql_search .= " ({$sfl} like '%{$stx}%') ";
             break;
-        case 'mb_level' :
-            $sql_search .= " ({$sfl} = '{$stx}') ";
+        case 'job_position' :
+            $sql_search .= " ({$sfl} like '%{$stx}%') ";
             break;
-        case 'mb_tel' :
-        case 'mb_hp' :
-            $sql_search .= " ({$sfl} like '%{$stx}') ";
+        case 'mb_email' :
+            $sql_search .= " ({$sfl} like '%{$stx}%') ";
+            break;
+        case 'addr' :
+            $sql_search .= " (mb_addr1 like '%{$stx}%') OR (mb_addr2 like '%{$stx}%') OR (mb_addr3 like '%{$stx}%')   ";
             break;
         default :
             $sql_search .= " ({$sfl} like '{$stx}%') ";

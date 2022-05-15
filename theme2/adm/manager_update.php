@@ -58,8 +58,7 @@ else if ($_POST['act_button'] == "선택수정" && $w == 'u')
         {
             // 실제 번호를 넘김
             $k = isset($_POST['chk'][$i]) ? (int) $_POST['chk'][$i] : 0;
-
-            sql_query("DELETE FROM `manager` WHERE mg_no = '{$_POST['mg_no'][$k]}' ");
+            sql_query("DELETE FROM `manager` WHERE mg_no = '{$_POST['mg_no'][$k]}'  AND reunion_id = $reunionID");
         }
 
 }

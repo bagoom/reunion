@@ -221,6 +221,8 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                     <label for="male">남</label>
                     <input type="radio" name="mb_sex" value="female" id="female" <?=($mb['mb_sex'] == 'female') ?  'checked' : null ?>>
                     <label for="female">여</label>
+                    <input type="radio" name="mb_sex" value="" id="impertinence" <?=($mb['mb_sex'] == '') ?  'checked' : null ?>>
+                    <label for="impertinence">모름</label> 
                 </td>
 
                 <th scope="row"><label for="mb_email">E-mail<strong class="sound_only">필수</strong></label></th>

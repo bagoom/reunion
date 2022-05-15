@@ -9,8 +9,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 <div id="mb_login" class="mbskin">
     <div class="login-wrap">
         <div class="txt">
-            <h3>우리반넷</h3>
-            <p>통합 관리자 시스템 </p>
+            <h3>북일고 </h3>
+            <p>동문 관리자 시스템 </p>
         </div>
 
 
@@ -29,6 +29,11 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
                     <button type="submit">로그인</button>
                 </div>
             </form>
+        </div>
+
+        <div class="login-footer">
+            <h3>Made by <a href="//wooribannet.com" target="_blank">wooribannet.com</a></h3>
+            <p>온라인 문의 : <a href="mailto:help_blue@naver.com">help_blue@naver.com</a></p>
         </div>
     </div>
 

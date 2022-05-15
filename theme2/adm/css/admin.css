@@ -1379,7 +1379,7 @@ legend {
 }
 
 .local_sch select {
-    width: 90px;
+    width: 130px;
     height: 30px;
     margin-right: 3px;
     border: 1px solid #dcdcdc
@@ -1399,7 +1399,7 @@ legend {
 }
 
 .input-row .input-col input {
-    width: 90px;
+    width: 130px;
 }
 
 .local_sch01 {
@@ -1455,13 +1455,14 @@ legend {
 }
 
 .local_sch03 .btn_submit {
-    width: 60px;
-    height: 50px !important;
+    width: 80px;
+    height: 68px !important;
+    border-radius: 3px;
 }
 
 .local_sch03 button {
     height: 30px;
-    padding: 0 5px;
+    padding: 0 20px;
     border: 0;
     background: #9eacc6;
     color: #fff;
@@ -1593,9 +1594,9 @@ legend {
     font-weight: 500;
 }
 
-.input-row.executive-list label {
+.input-col.executive-list label {
     display: inline-block;
-    width: 90px;
+    width: 130px;
     height: 30px;
     line-height: 30px;
     text-align: center;
@@ -1604,11 +1605,11 @@ legend {
     cursor: pointer;
 }
 
-.input-row.executive-list input[type="checkbox"] {
+.input-col.executive-list input[type="checkbox"] {
     display: none;
 }
 
-.input-row.executive-list input[type="checkbox"]:checked+label {
+.input-col.executive-list input[type="checkbox"]:checked+label {
     background: #ff4081;
 }
 

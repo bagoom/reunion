@@ -33,7 +33,10 @@ if ($url) {
         $link = $url;
 } else if ($bo_table) {
     $link = get_pretty_url($bo_table);
-} else {
+}else if($type== 'adm') {
+    $link = G5_ADMIN_URL;
+}
+ else {
     $link = G5_URL;
 }
 

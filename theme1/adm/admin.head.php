@@ -150,7 +150,7 @@ function imageview(id, w, h)
                 <li class="tnb_li"><button type="button" class="tnb_mb_btn">관리자<span class="./img/btn_gnb.png">메뉴열기</span></button>
                     <ul class="tnb_mb_area">
                         <li><a href="<?php echo G5_ADMIN_URL ?>/member_form.php?w=u&amp;mb_id=<?php echo $member['mb_id'] ?>">관리자정보</a></li>
-                        <li id="tnb_logout"><a href="<?php echo G5_BBS_URL ?>/logout.php">로그아웃</a></li>
+                        <li id="tnb_logout"><a href="<?php echo G5_BBS_URL ?>/logout.php?type=adm">로그아웃</a></li>
                     </ul>
                 </li>
             </ul>

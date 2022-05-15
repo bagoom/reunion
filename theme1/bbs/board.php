@@ -50,7 +50,10 @@ if ((isset($wr_id) && $wr_id) || (isset($wr_seo_title) && $wr_seo_title)) {
         ;
     }else{
         if($bo_table == 'executive'){
-            if ($is_member)
+            if($is_admin == 'supervisor'){
+                ;
+            }
+            else if ($is_member)
                 alert('동문회 임원 전용 게시판 입니다.', G5_URL);
             else
                 alert('로그인 후 이용해 주세요.', G5_BBS_URL.'/login.php?wr_id='.$wr_id.$qstr.'&amp;url='.urlencode(get_pretty_url($bo_table, $wr_id, $qstr)));

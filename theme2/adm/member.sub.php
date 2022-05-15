@@ -26,6 +26,11 @@ include_once('./admin.head.php');
                 <div class="input-col">
                     <input type="text" name="mb_name" value="<?=$mb_name ?>" id="mb_name"  class=" frm_input" placeholder="이름">
                 </div>
+
+                <div class="input-col executive-list">
+                    <input type="checkbox" id="executive-check" name="executive_list" <?=($executive_list == "on") ? "checked": null?>>
+                    <label for="executive-check">임원명단</label>
+                </div>
             </div>
 
             <div class="sch_last">
@@ -46,16 +51,10 @@ include_once('./admin.head.php');
                             <option value="job_position" <?php echo get_selected($sfl, "job_position"); ?>>직위</option>
                             <option value="addr" <?php echo get_selected($sfl, "addr"); ?>>자택주소</option>
                             <option value="mb_email" <?php echo get_selected($sfl, "mb_email"); ?>>이메일</option>
-                            <option value="executive" <?php echo get_selected($sfl, "executive"); ?>>총동문회 임원</option>
                         </select>
                     </div>
                     <div class="input-col"><input type="text" name="stx" value="<?php echo $stx ?>" id="stx"  class=" frm_input" placeholder="검색어 입력"></div>
                 </div>
-            </div>
-
-            <div class="input-row executive-list">
-                <input type="checkbox" id="executive-check" name="executive_list" <?=($executive_list == "on") ? "checked": null?>>
-                <label for="executive-check">임원명단</label>
             </div>
         </div>
 
