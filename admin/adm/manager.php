@@ -1,5 +1,5 @@
 <?php
-$sub_menu = "500500";
+$sub_menu = "500600";
 include_once('./_common.php');
 
 auth_check_menu($auth, $sub_menu, 'r');
@@ -38,19 +38,19 @@ $colspan = 7;
         <div class="input-row">
             <div class="input-col">
                 <label for="">아이디</label>
-                <input type="text" name="mg_id" placeholder="아이디">
+                <input type="text" name="mg_id" placeholder="아이디" required>
             </div>
             <div class="input-col">
                 <label for="">비밀번호</label>
-                <input type="password" name="mg_pass" placeholder="비밀번호">
+                <input type="password" name="mg_pass" placeholder="비밀번호" required>
             </div>
             <div class="input-col">
                 <label for="">비밀번호 확인</label>
-                <input type="password" name="mg_pass_check" placeholder="비밀번호 확인">
+                <input type="password" name="mg_pass_check" placeholder="비밀번호 확인" required>
             </div>
             <div class="input-col">
                 <label for="">이름</label>
-                <input type="text" name="mg_name" placeholder="이름">
+                <input type="text" name="mg_name" placeholder="이름" required>
             </div>
             <div class="input-col">
                 <label for="">직급</label>
@@ -126,9 +126,7 @@ $colspan = 7;
 
 <div class="btn_fixed_top fs">
     <input type="submit" name="act_button" value="선택수정" onclick="document.pressed=this.value" class="btn_02 btn">
-    <?php if ($is_admin == 'super') { ?>
     <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn_02 btn">
-    <?php } ?>
 </div>
 
 

@@ -58,15 +58,7 @@ include_once('./admin.head.php');
                 <tr>
                     <th scope="row">지회 구분</th>
                     <td>
-                        <select name="type" id="type">
-                            <option value="대학원" <?=get_selected($branch['type'], "대학원")?>>대학원</option>
-                            <option value="기수별" <?=get_selected($branch['type'], "기수별")?>>기수별</option>
-                            <option value="단체별" <?=get_selected($branch['type'], "단체별")?>>단체별</option>
-                            <option value="지역별" <?=get_selected($branch['type'], "지역별")?>>지역별</option>
-                            <option value="직능별" <?=get_selected($branch['type'], "직능별")?>>직능별</option>
-                            <option value="직장별" <?=get_selected($branch['type'], "직장별")?>>직장별</option>
-                            <option value="동우회별" <?=get_selected($branch['type'], "동우회별")?>>동우회별</option>
-                        </select>
+                        <?= get_reunion_select('type', $branch['type'], 'required', 'bt_name', 'branch_type'); ?>
                     </td>
                     <th scope="row">지회명</th>
                     <td>

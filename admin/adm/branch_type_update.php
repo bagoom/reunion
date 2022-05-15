@@ -11,13 +11,13 @@ check_admin_token();
 
 
 $sql_common = " 
-                 af_name = '{$af_name}',
+                 bt_name = '{$bt_name}',
                  reunion_id = '{$reunionID}'
                  ";
 
 if ($w == '')
 {
-    sql_query(" INSERT INTO `affiliation` SET   {$sql_common} ");
+    sql_query(" INSERT INTO `branch_type` SET   {$sql_common} ");
 
 }
 else if ($_POST['act_button'] == "선택수정" && $w == 'u') 
@@ -27,11 +27,11 @@ else if ($_POST['act_button'] == "선택수정" && $w == 'u')
         // 실제 번호를 넘김
         $k = isset($_POST['chk'][$i]) ? (int) $_POST['chk'][$i] : 0;
 
-        $post_af_name =  (isset($_POST['af_name'][$k]) && $_POST['af_name'][$k]) ? clean_xss_tags($_POST['af_name'][$k], 1, 1, 50) : '';
+        $post_fd_name =  (isset($_POST['bt_name'][$k]) && $_POST['bt_name'][$k]) ? clean_xss_tags($_POST['bt_name'][$k], 1, 1, 50) : '';
 
-        $sql = " update `affiliation`
-                    set af_name = '".sql_real_escape_string($post_af_name)."'
-                    where af_id = '{$_POST['af_id'][$k]}' and reunion_id = '{$reunionID}' ";
+        $sql = " update `branch_type`
+                    set bt_name = '".sql_real_escape_string($post_fd_name)."'
+                    where bt_id = '{$_POST['bt_id'][$k]}' and reunion_id = '{$reunionID}' ";
         sql_query($sql);
         echo $sql;
 
@@ -43,12 +43,13 @@ else if ($_POST['act_button'] == "선택수정" && $w == 'u')
             $k = isset($_POST['chk'][$i]) ? (int) $_POST['chk'][$i] : 0;
 
             // 회원데이터에 계열값이 들어있는지 확인
-            $overlab = sql_fetch("SELECT count(*) as cnt from {$g5['member_table']} where affiliation = '{$af_name[$k]}' AND reunion_id = $reunionID");
+            $overlab = sql_fetch("SELECT count(*) as cnt from {$g5['branch']} where type = '{$bt_name[$k]}' AND reunion_id = $reunionID");
             if($overlab['cnt'] > 0){
                 alert("회원 데이터가 있어 삭제 할 수 없습니다.");
                 return false;
             }
-            sql_query("DELETE FROM `affiliation` WHERE af_id = '{$_POST['af_id'][$k]}' AND reunion_id = '{$reunionID}'");
+
+            sql_query("DELETE FROM `branch_type` WHERE bt_id = '{$_POST['bt_id'][$k]}' AND reunion_id = '{$reunionID}' ");
         }
 
 }
@@ -56,4 +57,4 @@ else
     alert('제대로 된 값이 넘어오지 않았습니다.');
 
 
-goto_url('./affiliation.php?', false);
+goto_url('./branch_type.php?', false);

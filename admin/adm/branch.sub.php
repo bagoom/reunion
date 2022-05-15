@@ -9,15 +9,7 @@ include_once('./admin.head.php');
         <div class="left">
             <div class="input-row">
                 <div class="input-col">
-                    <select name="type" id="type">
-                       <option value="대학원" <?=get_selected($type, "대학원")?>>대학원</option>
-                       <option value="기수별" <?=get_selected($type, "기수별")?>>기수별</option>
-                       <option value="단체별" <?=get_selected($type, "단체별")?>>단체별</option>
-                       <option value="지역별" <?=get_selected($type, "지역별")?>>지역별</option>
-                       <option value="직능별" <?=get_selected($type, "직능별")?>>직능별</option>
-                       <option value="직장별" <?=get_selected($type, "직장별")?>>직장별</option>
-                       <option value="동우회별" <?=get_selected($type, "동우회별")?>>동우회별</option>
-                    </select>
+                    <?= get_reunion_select('type', $type, '', 'bt_name', 'branch_type'); ?>
                 </div>
 
                 <div class="input-col">

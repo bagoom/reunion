@@ -18,7 +18,7 @@ if($department)
     $where .= " AND department = '$department'";
 
 if($mb_hp)
-    $where .= " AND mb_hp = '$mb_hp'";
+    $where .= " AND replace(mb_hp,'-','') like '%$mb_hp%'";
     
 if($mb_name)
     $where .= " AND mb_name = '$mb_name'";
@@ -72,7 +72,6 @@ if (!$sst) {
 }
 
 $sql_order = " order by {$sst} {$sod} ";
-
 $sql = " select count(*) as cnt {$sql_common} {$sql_search} {$where} {$sql_order} ";
 $row = sql_fetch($sql);
 $total_count = $row['cnt'];
@@ -91,6 +90,8 @@ $sql = " select * {$sql_common} {$sql_search} {$where} {$sql_order} limit {$from
 $result = sql_query($sql);
 
 $colspan = 20;
+
+$q = $_SERVER['QUERY_STRING']; 
 ?>
 
 
@@ -113,7 +114,7 @@ $colspan = 20;
                 <a href="./member_form.php" id="member_add" class="btn btn_01">회원추가</a>
                 <a href="./memberexcel.php" id="member_add" class="btn btn_02" onclick="return excelform(this.href);" target="_blank">엑셀등록</a>
             <?php }?>
-                <a href="./excel.member_export.php" id="member_add" class="btn btn_02">엑셀저장</a>
+                <a href="./excel.member_export.php?q=<?=$q?>" id="member_add" class="btn btn_02">엑셀저장</a>
         </div>
         <?php if($is_admin !== 'superadmin') { ?>
         <div>
@@ -291,7 +292,11 @@ $colspan = 20;
             <?= ($row['executive'])? $row['executive'] : "-" ?>
         </td>
         <td onClick="location.href='<?=$s_mod?>'">
-            <?= ($row['mb_sex'] == 'male')? "남": "여" ?>
+            <?php
+             if($row['mb_sex'] == 'male') { echo "남"; }  
+             else if($row['mb_sex'] == 'female') {echo "여";} 
+             else echo "모름";
+              ?>
         </td>
         <td onClick="location.href='<?=$s_mod?>'">
             <?= ($row['mb_birth'])? $row['mb_birth'] : "-" ?>

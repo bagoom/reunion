@@ -10,25 +10,11 @@ include_once('./admin.head.php');
         <div class="left">
             <div class="input-row">
                 <div class="input-col">
-                    <select name="type" id="type">
-                        <option value="">구분</option>
-                        <option value="대학" <?php echo get_selected($type, "대학"); ?>>대학</option>
-                        <option value="대학원" <?php echo get_selected($type, "대학원"); ?>>대학원</option>
-                    </select>
+                    <?= get_reunion_select('affiliation', $affiliation, '', 'af_name', 'affiliation'); ?>
                 </div>
 
                 <div class="input-col">
-                    <select name="affiliation" id="affiliation">
-                        <option value="">계열</option>
-                        <option value="전자정보 대학"  <?php echo get_selected($affiliation, "전자정보 대학"); ?>>전자정보 대학</option>
-                    </select>
-                </div>
-
-                <div class="input-col">
-                    <select name="department" id="department">
-                        <option value="">학과</option>
-                        <option value="전자 재료 공학" <?php echo get_selected($department, "전자 재료 공학"); ?>>전자 재료 공학</option>
-                    </select>
+                    <?= get_reunion_select('department', $department, '', 'dp_name', 'department'); ?>
                 </div>
 
                 
@@ -39,6 +25,11 @@ include_once('./admin.head.php');
 
                 <div class="input-col">
                     <input type="text" name="mb_name" value="<?=$mb_name ?>" id="mb_name"  class=" frm_input" placeholder="이름">
+                </div>
+
+                <div class="input-col executive-list">
+                    <input type="checkbox" id="executive-check" name="executive_list" <?=($executive_list == "on") ? "checked": null?>>
+                    <label for="executive-check">임원명단</label>
                 </div>
             </div>
 
@@ -60,16 +51,10 @@ include_once('./admin.head.php');
                             <option value="job_position" <?php echo get_selected($sfl, "job_position"); ?>>직위</option>
                             <option value="addr" <?php echo get_selected($sfl, "addr"); ?>>자택주소</option>
                             <option value="mb_email" <?php echo get_selected($sfl, "mb_email"); ?>>이메일</option>
-                            <option value="executive" <?php echo get_selected($sfl, "executive"); ?>>총동문회 임원</option>
                         </select>
                     </div>
                     <div class="input-col"><input type="text" name="stx" value="<?php echo $stx ?>" id="stx"  class=" frm_input" placeholder="검색어 입력"></div>
                 </div>
-            </div>
-
-            <div class="input-row executive-list">
-                <input type="checkbox" id="executive-check" name="executive_list" <?=($executive_list == "on") ? "checked": null?>>
-                <label for="executive-check">임원명단</label>
             </div>
         </div>
 

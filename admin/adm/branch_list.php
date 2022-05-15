@@ -28,8 +28,11 @@ if($is_admin !== 'superadmin'){
     $sql = "SELECT * FROM {$g5['branch']}  WHERE  $where  ORDER BY branch_id DESC" ;
 }
 $result = sql_query($sql);
-
-$total_count_sql = sql_fetch("SELECT count(*) AS count FROM {$g5['branch']} WHERE  $where");
+if($is_admin !== 'superadmin'){    
+    $total_count_sql = sql_fetch("SELECT count(*) AS count FROM {$g5['branch']} WHERE  $where AND reunion_id = '{$reunionID}' ");
+}else{
+    $total_count_sql = sql_fetch("SELECT count(*) AS count FROM {$g5['branch']} WHERE  $where");
+}
 $total_count = $total_count_sql['count'];
 $colspan = 8;
 ?>
@@ -37,7 +40,7 @@ $colspan = 8;
 
 
 
-<form name="fmemberlist" id="fmemberlist" action="./member_list_update.php" onsubmit="return fmemberlist_submit(this);" method="post">
+<form name="fmemberlist" id="fmemberlist" action="./branch_list_update.php" onsubmit="return fmemberlist_submit(this);" method="post">
 <input type="hidden" name="page" value="<?php echo $page ?>">
 <input type="hidden" name="token" value="">
 
@@ -70,6 +73,7 @@ $colspan = 8;
             <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
         </th>
         <th scope="col">등록일</th>
+        <th scope="col">구분</th>
         <th scope="col">상태</th>
         <th scope="col">지회명</th>
         <th scope="col">회장</th>
@@ -92,19 +96,20 @@ $colspan = 8;
         $branch_mem_count = $branch_mem_count_sql['count'];
     ?>
 
-    <tr class="<?php echo $bg; ?>" onClick="location.href='./branch_form.php?branch_id=<?=$row['branch_id']?>&w=u'">
+    <tr class="<?php echo $bg; ?>" >
         <td headers="mb_list_chk" class="td_chk">
-            <input type="hidden" name="mb_id[<?php echo $i ?>]" value="<?php echo $row['mb_id'] ?>" id="mb_id_<?php echo $i ?>">
+            <input type="hidden" name="branch_id[<?php echo $i ?>]" value="<?php echo $row['branch_id'] ?>" id="branch_id_<?php echo $i ?>">
             <label for="chk_<?php echo $i; ?>" class="sound_only"><?php echo get_text($row['mb_name']); ?> <?php echo get_text($row['mb_nick']); ?>님</label>
             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
         </td>
-        <td><?=$row['create_date']?></td>
-        <td><?=$row['status']?></td>
-        <td><?=$row['branch_name']?></td>
-        <td><?=$chairman['mb_name']?></td>
-        <td><?=$chairman['mb_hp']?></td>
-        <td><?=$manager['mb_name']?></td>
-        <td><?=$branch_mem_count?></td>
+        <td onClick="location.href='./branch_form.php?branch_id=<?=$row['branch_id']?>&w=u'"><?=$row['create_date']?></td>
+        <td onClick="location.href='./branch_form.php?branch_id=<?=$row['branch_id']?>&w=u'"><?=$row['type']?></td>
+        <td onClick="location.href='./branch_form.php?branch_id=<?=$row['branch_id']?>&w=u'"><?=$row['status']?></td>
+        <td onClick="location.href='./branch_form.php?branch_id=<?=$row['branch_id']?>&w=u'"><?=$row['branch_name']?></td>
+        <td onClick="location.href='./branch_form.php?branch_id=<?=$row['branch_id']?>&w=u'"><?=$chairman['mb_name']?></td>
+        <td onClick="location.href='./branch_form.php?branch_id=<?=$row['branch_id']?>&w=u'"><?=$chairman['mb_hp']?></td>
+        <td onClick="location.href='./branch_form.php?branch_id=<?=$row['branch_id']?>&w=u'"><?=$manager['mb_name']?></td>
+        <td onClick="location.href='./branch_form.php?branch_id=<?=$row['branch_id']?>&w=u'"><?=$branch_mem_count?></td>
     </tr>
     <?php
     }
@@ -115,7 +120,9 @@ $colspan = 8;
     </table>
 </div>
 
-
+    <div class="del-btn-wrap">
+        <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn btn_02">
+    </div> 
 
 </form>
 

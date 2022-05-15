@@ -52,7 +52,7 @@ if ($w == '')
 
     $mb['mb_mailling'] = 1;
     $mb['mb_open'] = 1;
-    $mb['mb_level'] = $config['cf_register_level'];
+    $mb['mb_level'] = 2;
     $html_title = '추가';
 }
 else if ($w == 'u')
@@ -187,7 +187,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 <input type="hidden" name="page" value="<?php echo $page ?>">
 <input type="hidden" name="token" value="">
 <input type="hidden" name="mb_open" value="1">
-<input type="hidden" name="mb_level" value="1">
+<input type="hidden" name="mb_level" value="2">
 
 <div class="tbl_frm01 tbl_wrap">
     <div class="tit01">기본 정보</div>
@@ -221,6 +221,8 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                     <label for="male">남</label>
                     <input type="radio" name="mb_sex" value="female" id="female" <?=($mb['mb_sex'] == 'female') ?  'checked' : null ?>>
                     <label for="female">여</label>
+                    <input type="radio" name="mb_sex" value="" id="impertinence" <?=($mb['mb_sex'] == '') ?  'checked' : null ?>>
+                    <label for="impertinence">모름</label> 
                 </td>
 
                 <th scope="row"><label for="mb_email">E-mail<strong class="sound_only">필수</strong></label></th>
@@ -275,11 +277,11 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
             <tr>
                 <th scope="row">계열</th>
                 <td>
-                    <?= get_reunion_select('affiliation', $mb['affiliation'], 'required', 'af_name', 'affiliation'); ?>
+                    <?= get_reunion_select('affiliation', $mb['affiliation'], '', 'af_name', 'affiliation'); ?>
                 </td>
                 <th scope="row">학과</th>
                 <td>
-                    <?= get_reunion_select('department', $mb['department'], 'required', 'dp_name', 'department'); ?>
+                    <?= get_reunion_select('department', $mb['department'], '', 'dp_name', 'department'); ?>
                 </td>
                 <th scope="row">기수</th>
                 <td>

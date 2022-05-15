@@ -1,12 +1,9 @@
 <?php 
-//  error_reporting( E_ALL );
-//   ini_set( "display_errors", 1 );
 include_once("./_common.php"); 
 include_once(G5_LIB_PATH.'/PHPExcel.php');
 
 if (!$is_admin =="super")
   alert_close("최고 관리자 영역 입니다.");
-
 function column_char($i) { return chr( 65 + $i ); }
 
 $headers = array('번호', 'ID', '구분', '계열', '학과', '성명1', '성명2', '기수', '학번', '입학', '졸업', '휴대폰', '이메일', '직장', '부서', '직위', '직장전화', '직장주소', '자택주소', '자택전화', '임원명', '성별', '생년월일', '비고');
@@ -14,8 +11,73 @@ $widths  = array(5, 15, 15, 15, 15, 15, 15, 10, 10, 10, 10, 20, 20, 50, 20, 15, 
 $header_bgcolor = 'FFABCDEF';
 $last_char = column_char(count($headers) - 1);
 
+if($type)
+    $where .= " AND type= '$type'";
 
-$sql    = " select * from g5_member where mb_leave_date = ''  order by mb_datetime desc ";
+if($affiliation)
+    $where .= " AND affiliation = '$affiliation'";
+
+if($department)
+    $where .= " AND department = '$department'";
+
+if($mb_hp)
+    $where .= " AND replace(mb_hp,'-','') like '%$mb_hp%'";
+    
+if($mb_name)
+    $where .= " AND mb_name = '$mb_name'";
+    
+if($entrance_num)
+    $where .= " AND entrance_num = '$entrance_num'";
+
+if($graduation_year)
+    $where .= " AND graduation_year = '$graduation_year'";
+
+if($entrance_year)
+    $where .= " AND entrance_year = '$entrance_year'";
+
+if($executive_list)
+    $where .= " AND executive != ''";
+
+ if($is_admin !== 'superadmin'){
+    $where .= " AND reunion_id = '$reunionID'";
+ }
+
+if (!$sst) {
+    $sst = "mb_no";
+    $sod = "desc";
+}
+
+
+$sql_search = " where (1) ";
+if ($stx) {
+    $sql_search .= " and ( ";
+    switch ($sfl) {
+        case 'job' :
+            $sql_search .= " ({$sfl} like '%{$stx}%') ";
+            break;
+        case 'job_position' :
+            $sql_search .= " ({$sfl} like '%{$stx}%') ";
+            break;
+        case 'mb_email' :
+            $sql_search .= " ({$sfl} like '%{$stx}%') ";
+            break;
+        case 'addr' :
+            $sql_search .= " (mb_addr1 like '%{$stx}%') OR (mb_addr2 like '%{$stx}%') OR (mb_addr3 like '%{$stx}%')   ";
+            break;
+        default :
+            $sql_search .= " ({$sfl} like '{$stx}%') ";
+            break;
+    }
+    $sql_search .= " ) ";
+}
+
+if (!$sst) {
+    $sst = "mb_no";
+    $sod = "desc";
+}
+$sql_order = " order by {$sst} {$sod} ";
+
+$sql    = " select * from g5_member {$sql_search} {$where}  {$sql_order} ";
 $result = sql_query($sql);
 for($i=1; $row=sql_fetch_array($result); $i++) {
 

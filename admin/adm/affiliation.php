@@ -23,8 +23,8 @@ $colspan = 2;
     <div class="input-wrap">
         <div class="input-row">
             <div class="input-col">
-                <label for="">대학추가</label>
-                <input type="text" name="af_name" placeholder="대학명">
+                <label for="">계열추가</label>
+                <input type="text" name="af_name" placeholder="계열명">
                 <button type="submit">추가</button>
             </div>
         </div>
@@ -78,9 +78,7 @@ $colspan = 2;
 
 <div class="btn_fixed_top fs">
     <input type="submit" name="act_button" value="선택수정" onclick="document.pressed=this.value" class="btn_02 btn">
-    <?php if ($is_admin == 'super') { ?>
     <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn_02 btn">
-    <?php } ?>
 </div>
 
 

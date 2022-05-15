@@ -17,25 +17,11 @@ if (empty($to_date) || ! preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-
         <div class="left">
             <div class="input-row">
                 <div class="input-col">
-                    <select name="type" id="type">
-                        <option value="">구분</option>
-                        <option value="대학" <?php echo get_selected($type, "대학"); ?>>대학</option>
-                        <option value="대학원" <?php echo get_selected($type, "대학원"); ?>>대학원</option>
-                    </select>
+                    <?= get_reunion_select('affiliation', $affiliation, '', 'af_name', 'affiliation'); ?>
                 </div>
 
                 <div class="input-col">
-                    <select name="affiliation" id="affiliation">
-                        <option value="">계열</option>
-                        <option value="전자정보 대학"  <?php echo get_selected($affiliation, "전자정보 대학"); ?>>전자정보 대학</option>
-                    </select>
-                </div>
-
-                <div class="input-col">
-                    <select name="department" id="department">
-                        <option value="">학과</option>
-                        <option value="전자 재료 공학" <?php echo get_selected($department, "전자 재료 공학"); ?>>전자 재료 공학</option>
-                    </select>
+                    <?= get_reunion_select('department', $department, '', 'dp_name', 'department'); ?>
                 </div>
 
                 <div class="input-col">
@@ -70,27 +56,15 @@ if (empty($to_date) || ! preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-
 
             <div class="sch_last">
                 <strong>회비 구분</strong>
-                <input type="radio" name="fee_type" value="종신회비" <?=($fee_type == "종신회비") ? "checked" : null?> id="fee_type1" class="frm_input" checked>
-                <label for="fee_type1">종신회비</label>
-
-                <input type="radio" name="fee_type" value="연회비" <?=($fee_type == "연회비") ? "checked" : null?> id="fee_type2" class="frm_input">
-                <label for="fee_type2">연회비</label>
-
-                <input type="radio" name="fee_type" value="입회비" <?=($fee_type == "입회비") ? "checked" : null?> id="fee_type3" class="frm_input">
-                <label for="fee_type3">입회비</label>
-
-                <input type="radio" name="fee_type" value="분담금" <?=($fee_type == "분담금") ? "checked" : null?> id="fee_type4" class="frm_input">
-                <label for="fee_type4">분담금</label>
-
-                <input type="radio" name="fee_type" value="장학기금" <?=($fee_type == "장학기금") ? "checked" : null?> id="fee_type5" class="frm_input">
-                <label for="fee_type5">장학기금</label>
-
-                <input type="radio" name="fee_type" value="찬조금" <?=($fee_type == "찬조금") ? "checked" : null?> id="fee_type6" class="frm_input">
-                <label for="fee_type6">찬조금</label>
-
-                <input type="radio" name="fee_type" value="발전기금" <?=($fee_type == "발전기금") ? "checked" : null?> id="fee_type7" class="frm_input">
-                <label for="fee_type7">발전기금</label>
-
+                <input type="radio" name="fee_type" value="" id="fee_type_all" class="frm_input" checked>
+                <label for="fee_type_all">전체</label>
+                <?php 
+                    $fee_type_sql = "SELECT * FROM fee_division WHERE reunion_id = $reunionID";
+                    $fee_type_result = sql_query($fee_type_sql);
+                    for ($i=0; $row=sql_fetch_array($fee_type_result); $i++) { ?>
+                        <input type="radio" name="fee_type" value="<?=$row['fd_name']?>" <?=($fee_type === $row['fd_name']) ? "checked" : null?> id="fee_type_<?=$row['fd_id']?>" class="frm_input" >
+                        <label for="fee_type_<?=$row['fd_id']?>"><?=$row['fd_name']?></label>
+                <?php } ?>
             </div>
         </div>
 

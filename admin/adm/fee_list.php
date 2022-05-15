@@ -40,7 +40,11 @@ if($is_admin !== 'superadmin'){
 }
 $result = sql_query($sql);
 
-$total_count_sql = sql_fetch("SELECT count(*) AS count FROM {$g5['member_table']} a, {$g5['fee']} b WHERE a.mb_id = b.mb_id  $where");
+if($is_admin !== 'superadmin'){    
+    $total_count_sql = sql_fetch("SELECT count(*) AS count FROM {$g5['member_table']} a, {$g5['fee']} b WHERE a.mb_id = b.mb_id  $where  AND b.reunion_id = '{$reunionID}'");
+}else{
+    $total_count_sql = sql_fetch("SELECT count(*) AS count FROM {$g5['member_table']} a, {$g5['fee']} b WHERE a.mb_id = b.mb_id  $where");
+}
 $total_count = $total_count_sql['count'];
 $colspan = 9;
 ?>
@@ -55,7 +59,7 @@ $colspan = 9;
 
 <div class="btn_fixed_top sp" >
     <div class="left">
-        <span class="btn_ov01"><span class="ov_txt">검색 회원수 </span><span class="ov_num"> <?php echo number_format($total_count) ?>명 </span></span>
+        <span class="btn_ov01"><span class="ov_txt">검색 회비수 </span><span class="ov_num"> <?php echo number_format($total_count) ?>명 </span></span>
     </div>
     
     <div class="right">

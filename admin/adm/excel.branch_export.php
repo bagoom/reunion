@@ -13,7 +13,7 @@ $header_bgcolor = 'FFABCDEF';
 $last_char = column_char(count($headers) - 1);
 
 
-$sql = "SELECT * FROM {$g5['branch']}  ORDER BY branch_id DESC" ;
+$sql = "SELECT * FROM {$g5['branch']} WHERE reunion_id = '{$reunionID}'   ORDER BY branch_id DESC" ;
 $result = sql_query($sql);
 for($i=1; $row=sql_fetch_array($result); $i++) {
 

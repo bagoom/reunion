@@ -1,7 +1,7 @@
 <?php
 include_once('./_common.php');
 
-$sql = "SELECT * FROM {$g5['member_table']} WHERE mb_id = '$mb_id'";
+$sql = "SELECT * FROM {$g5['member_table']} WHERE mb_name = '$mb_name'";
 $result = sql_query($sql);
 echo $sql;
 
@@ -10,6 +10,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++) { ?>
         <td><?=$row['mb_id']?></td>
         <td><?=$row['mb_name']?></td>
         <td><?=$row['department']?></td>
+        <td><?=$row['entrance_year']?></td>
         <td><?=$row['graduation_year']?></td>
         <td><?=$row['mb_hp']?></td>
     </tr>
