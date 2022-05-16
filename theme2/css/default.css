@@ -2696,8 +2696,7 @@ textarea.required {
 /* 페이징 */
 .pg_wrap {
   clear: both;
-  float: left;
-  display: inline-block
+  text-align: center;
 }
 
 .pg_wrap:after {

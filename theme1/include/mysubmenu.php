@@ -35,16 +35,21 @@
                         order by me_order, me_id ";
             $result2 = sql_query($sql2);
             
+            $base_filename = basename($_SERVER['PHP_SELF']);
+
             //좌측 서브메뉴 전체 리스트에서 현재 페이지에 해당하는 대메뉴 리스트만 보여줌
-            if ( ($row['me_name']==$board['bo_subject'])||($row['me_name']==$g5['title']) ) {
+            if ( ($row['me_name']==$board['bo_subject'])||($row['me_name']==$g5['title'])) {
                 echo ("<script language='javascript'> display_submenu(" .$i. " ); </script> ");
+            }
+            if (  strpos($base_filename,'memo_form') !== false  ) {
+                echo ("<script language='javascript'> display_submenu(5); </script> ");
             }
     
             for ($k=0; $row2=sql_fetch_array($result2); $k++) {
                 if($k == 0)
                     echo '<ul>'.PHP_EOL;
             ?>
-                <a href="<?=G5_URL?><?php echo $row2['me_link']; ?>" target="_<?php echo $row2['me_target']; ?>" ><li class="leftmenu_s <?=($g5['title'] == $row2['me_name']) ? "on" : null?>  <?=($board['bo_subject'] == $row2['me_name']) ? "on" : null?>"><?php echo $row2['me_name'] ?></li></a>
+                    <a href="<?=G5_URL?><?php echo $row2['me_link']; ?>" target="_<?php echo $row2['me_target']; ?>" ><li class="leftmenu_s <?=($g5['title'] == $row2['me_name']) ? "on" : null?>  <?=(strpos($base_filename,'memo_form') !== false && $row2['me_code'] == 6020) ? "on": null ?>  <?=($board['bo_subject'] == $row2['me_name']) ? "on" : null?>"><?php echo $row2['me_name'] ?></li></a>
             <?php  
 
                 //좌측 서브메뉴 전체 리스트에서 현재 페이지에 해당하는 대메뉴 리스트만 보여줌

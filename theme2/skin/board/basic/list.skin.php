@@ -110,7 +110,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
             <td class="td_num2">
             <?php
             if ($list[$i]['is_notice']) // 공지사항
-                echo '<strong class="notice_icon">공지</strong>';
+                echo $list[$i]['num'];
             else if ($wr_id == $list[$i]['wr_id'])
                 echo "<span class=\"bo_current\">열람중</span>";
             else

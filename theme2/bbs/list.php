@@ -104,7 +104,8 @@ if (!$is_search_bbs) {
 
         $list[$i] = get_list($row, $board, $board_skin_url, G5_IS_MOBILE ? $board['bo_mobile_subject_len'] : $board['bo_subject_len']);
         $list[$i]['is_notice'] = true;
-        $list[$i]['num'] = 0;
+        $list_num = $total_count - ($page - 1) * $list_page_rows - $notice_count;
+        $list[$i]['num'] = $list_num - $k;
         $i++;
         $notice_count++;
 

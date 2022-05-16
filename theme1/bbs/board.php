@@ -54,7 +54,7 @@ if ((isset($wr_id) && $wr_id) || (isset($wr_seo_title) && $wr_seo_title)) {
                 ;
             }
             else if ($is_member)
-                alert('동문회 임원 전용 게시판 입니다.', G5_URL);
+                alert('동문회 임원 전용 게시판 입니다.', $_SERVER['HTTP_REFERER']);
             else
                 alert('로그인 후 이용해 주세요.', G5_BBS_URL.'/login.php?wr_id='.$wr_id.$qstr.'&amp;url='.urlencode(get_pretty_url($bo_table, $wr_id, $qstr)));
         }
@@ -150,13 +150,26 @@ if ((isset($wr_id) && $wr_id) || (isset($wr_seo_title) && $wr_seo_title)) {
         set_session($ss_name, TRUE);
     }
 
-    $g5['title'] = strip_tags(conv_subject($write['wr_subject'], 255))." > ".$g5['board_title'];
+    $g5['title'] = $g5['board_title'];
 } else {
-    if ($member['mb_level'] < $board['bo_list_level']) {
+    if($is_executive && $bo_table == 'executive'){
+        ;
+    }else{
+        if($bo_table == 'executive'){
+            if($is_admin == 'supervisor'){
+                ;
+            }
+            else if ($is_member)
+                alert('동문회 임원 전용 게시판 입니다.', $_SERVER['HTTP_REFERER']);
+            else
+                alert('로그인 후 이용해 주세요.', G5_BBS_URL.'/login.php?wr_id='.$wr_id.$qstr.'&amp;url='.urlencode(get_pretty_url($bo_table, $wr_id, $qstr)));
+        }
+        if ($member['mb_level'] < $board['bo_list_level']) {
         if ($member['mb_id'])
             alert('목록을 볼 권한이 없습니다.', G5_URL);
         else
             alert('목록을 볼 권한이 없습니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오.', G5_BBS_URL.'/login.php?'.$qstr.'&url='.urlencode(G5_BBS_URL.'/board.php?bo_table='.$bo_table.($qstr?'&amp;':'')));
+        }
     }
 
     // 본인확인을 사용한다면

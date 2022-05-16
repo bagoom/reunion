@@ -602,6 +602,8 @@ if (isset($manager['mg_id']) && $manager['mg_id']) {
     $is_manager = true;
     $is_guest = false;
     $is_admin = $manager['rights'];
+    $member['mb_id'] = $manager['mg_id'];
+    $member['mb_name'] = $manager['mg_name'];
     $member['mb_level'] = 10;
 } 
 

@@ -43,7 +43,6 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 
         <div class="win_btn">
         	<button type="submit" id="btn_submit" class="btn btn_b02 reply_btn">보내기</button>
-        	<button type="button" onclick="window.close();" class="btn_close">창닫기</button>
         </div>
     </div>
     </form>

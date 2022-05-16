@@ -136,12 +136,12 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
                 <span id="bo_vc_send_sns"></span>
                 <?php } ?>
 
-                <span class="bo_vc_secret chk_box">
+                <!-- <span class="bo_vc_secret chk_box">
                     <input type="checkbox" name="wr_secret" value="secret" id="wr_secret" class="selec_chk">
                     <label for="wr_secret" class="icon_lock">
                     	<span></span>비밀글
                     </label>
-                </span>
+                </span> -->
             </div>
             <div class="btn_confirm">
                 <button type="submit" id="btn_submit" class="btn_submit">댓글등록</button>

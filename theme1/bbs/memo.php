@@ -46,7 +46,7 @@ else
 
 $list = array();
 
-$sql = " select a.*, b.mb_id, b.mb_nick, b.mb_email, b.mb_homepage
+$sql = " select a.*, b.mb_id, b.mb_name, b.mb_email, b.mb_homepage
             from {$g5['memo_table']} a
             left join {$g5['member_table']} b on (a.me_{$unkind}_mb_id = b.mb_id)
             where a.me_{$kind}_mb_id = '{$member['mb_id']}' and a.me_type = '$kind'
@@ -64,7 +64,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
     else
         $mb_nick = '정보없음';
 
-    $name = get_sideview($row['mb_id'], $row['mb_nick'], $row['mb_email'], $row['mb_homepage']);
+    $name = $row['mb_name']."님";
 
     if (substr($row['me_read_datetime'],0,1) == 0)
         $read_datetime = '아직 읽지 않음';

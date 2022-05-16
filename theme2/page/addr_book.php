@@ -66,7 +66,7 @@ $result = sql_query($sql);
                     <li class="pa_year"><?= ($row['graduation_year']) ?  $row['graduation_year']  : "-" ?></li>
                     <li class="pa_name"><?=($row['mb_name']) ? $row['mb_name'] : "-" ?></li>
                     <li class="pa_tel"><?=($row['mb_hp']) ? setMasking($row['mb_hp']) : "-" ?></li>
-                    <li class="pa_address"><?php if($row['mb_addr1']) { echo $row['mb_addr1']." ".$list[$i]['wr_4']; } else { echo "-"; } ?></li>
+                    <li class="pa_address"><?=($row['mb_addr1']) ? "Y" : "-" ?></li>
                     <li class="pa_time"><?=($row['mb_email']) ? EmailMasking($row['mb_email']) : "-" ?></li>
                     <li class="pa_name"><?=($row['ddd']) ? EmailMasking($row['ddd']) : "-" ?></li>
                     <li class="pa_link">
