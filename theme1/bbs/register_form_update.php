@@ -55,12 +55,12 @@ $mb_profile     = isset($_POST['mb_profile'])       ? trim($_POST['mb_profile'])
 $mb_recommend   = isset($_POST['mb_recommend'])     ? trim($_POST['mb_recommend'])   : "";
 $mb_mailling    = isset($_POST['mb_mailling'])      ? trim($_POST['mb_mailling'])    : "";
 $mb_sms         = isset($_POST['mb_sms'])           ? trim($_POST['mb_sms'])         : "";
-$mb_1           = isset($_POST['mb_1'])             ? trim($_POST['mb_1'])           : "";
-$mb_2           = isset($_POST['mb_2'])             ? trim($_POST['mb_2'])           : "";
-$mb_3           = isset($_POST['mb_3'])             ? trim($_POST['mb_3'])           : "";
-$mb_4           = isset($_POST['mb_4'])             ? trim($_POST['mb_4'])           : "";
-$mb_5           = isset($_POST['mb_5'])             ? trim($_POST['mb_5'])           : "";
-$mb_6           = isset($_POST['mb_6'])             ? trim($_POST['mb_6'])           : "";
+$affiliation           = isset($_POST['affiliation'])             ? trim($_POST['affiliation'])           : "";
+$department           = isset($_POST['department'])             ? trim($_POST['department'])           : "";
+$job           = isset($_POST['job'])             ? trim($_POST['job'])           : "";
+$job_department           = isset($_POST['job_department'])             ? trim($_POST['job_department'])           : "";
+$workplace_tel           = isset($_POST['workplace_tel'])             ? trim($_POST['workplace_tel'])           : "";
+$workplace_addr           = isset($_POST['workplace_addr'])             ? trim($_POST['workplace_addr'])           : "";
 $mb_7           = isset($_POST['mb_7'])             ? trim($_POST['mb_7'])           : "";
 $mb_8           = isset($_POST['mb_8'])             ? trim($_POST['mb_8'])           : "";
 $mb_9           = isset($_POST['mb_9'])             ? trim($_POST['mb_9'])           : "";
@@ -251,7 +251,8 @@ if ($w == '') {
                      executive = '{$executive}',
                      anniversary = '{$anniversary}',
                      organizations = '{$organizations}',
-                     candidate = '{$candidate}'
+                     candidate = '{$candidate}',
+                     reunion_id = '{$reunionID}'
                      {$sql_certify} ";
 
     // 이메일 인증을 사용하지 않는다면 이메일 인증시간을 바로 넣는다
@@ -312,10 +313,10 @@ if ($w == '') {
     }
 
     // 메일인증 사용하지 않는 경우에만 로그인
-    if (!$config['cf_use_email_certify'])
-        set_session('ss_mb_id', $mb_id);
+    // if (!$config['cf_use_email_certify'])
+    //     set_session('ss_mb_id', $mb_id);
 
-    set_session('ss_mb_reg', $mb_id);
+    // set_session('ss_mb_reg', $mb_id);
 
 } else if ($w == 'u') {
     if (!trim(get_session('ss_mb_id')))
@@ -585,34 +586,34 @@ if ($msg)
 
 run_event('register_form_update_after', $mb_id, $w);
 
-// if ($w == '') {
-//     goto_url(G5_HTTP_BBS_URL.'/register_result.php');
-// } else if ($w == 'u') {
-//     $row  = sql_fetch(" select mb_password from {$g5['member_table']} where mb_id = '{$member['mb_id']}' ");
-//     $tmp_password = $row['mb_password'];
+if ($w == '') {
+    goto_url(G5_HTTP_BBS_URL.'/register_result.php');
+} else if ($w == 'u') {
+    $row  = sql_fetch(" select mb_password from {$g5['member_table']} where mb_id = '{$member['mb_id']}' ");
+    $tmp_password = $row['mb_password'];
 
-//     if ($old_email != $mb_email && $config['cf_use_email_certify']) {
-//         set_session('ss_mb_id', '');
-//         alert('회원 정보가 수정 되었습니다.\n\nE-mail 주소가 변경되었으므로 다시 인증하셔야 합니다.', G5_URL);
-//     } else {
-//         echo '
-//         <!doctype html>
-//         <html lang="ko">
-//         <head>
-//         <meta charset="utf-8">
-//         <title>회원정보수정</title>
-//         <body>
-//         <form name="fregisterupdate" method="post" action="'.G5_HTTP_BBS_URL.'/register_form.php">
-//         <input type="hidden" name="w" value="u">
-//         <input type="hidden" name="mb_id" value="'.$mb_id.'">
-//         <input type="hidden" name="mb_password" value="'.$tmp_password.'">
-//         <input type="hidden" name="is_update" value="1">
-//         </form>
-//         <script>
-//         alert("회원 정보가 수정 되었습니다.");
-//         document.fregisterupdate.submit();
-//         </script>
-//         </body>
-//         </html>';
-//     }
-// }
+    if ($old_email != $mb_email && $config['cf_use_email_certify']) {
+        set_session('ss_mb_id', '');
+        alert('회원 정보가 수정 되었습니다.\n\nE-mail 주소가 변경되었으므로 다시 인증하셔야 합니다.', G5_URL);
+    } else {
+        echo '
+        <!doctype html>
+        <html lang="ko">
+        <head>
+        <meta charset="utf-8">
+        <title>회원정보수정</title>
+        <body>
+        <form name="fregisterupdate" method="post" action="'.G5_HTTP_BBS_URL.'/register_form.php">
+        <input type="hidden" name="w" value="u">
+        <input type="hidden" name="mb_id" value="'.$mb_id.'">
+        <input type="hidden" name="mb_password" value="'.$tmp_password.'">
+        <input type="hidden" name="is_update" value="1">
+        </form>
+        <script>
+        alert("회원 정보가 수정 되었습니다.");
+        document.fregisterupdate.submit();
+        </script>
+        </body>
+        </html>';
+    }
+}

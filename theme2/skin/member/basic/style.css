@@ -443,8 +443,8 @@
 #reg_result {
   padding: 40px 30px;
   text-align: center;
-  background: #edf3fc;
-  border: 1px solid #d6e2f4;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
   border-radius: 5px
 }
 
@@ -481,7 +481,9 @@
 }
 
 #reg_result .result_txt {
-  text-align: left
+  text-align: center;
+  white-space: pre-line;
+  font-size: 14px;
 }
 
 #reg_result .btn_confirm {
@@ -495,7 +497,7 @@
 #reg_result .reg_result_p {
   font-size: 1.25em;
   margin: 0 0 10px;
-  color: #3684fa
+  color: #4e4339
 }
 
 .btn_confirm_reg {
@@ -505,7 +507,7 @@
 
 .reg_btn_submit {
   display: inline-block;
-  background: #3a8afd;
+  background: #4e4339;
   color: #fff;
   text-align: center;
   border-radius: 3px;

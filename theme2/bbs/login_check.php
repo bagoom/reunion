@@ -27,6 +27,10 @@ if(function_exists('social_is_login_check')){
     $is_social_password_check = social_is_login_password_check($mb_id);
 }
 
+if( (isset($mb['mb_id']) && $mb['mb_id']) && $mb['confirm'] == 'N' && login_password_check($mb, $mb_password, $mb['mb_password'])){
+    alert('동문인증 승인전입니다.');
+}
+
 //소셜 로그인이 맞다면 패스워드를 체크하지 않습니다.
 // 가입된 회원이 아니다. 비밀번호가 틀리다. 라는 메세지를 따로 보여주지 않는 이유는
 // 회원아이디를 입력해 보고 맞으면 또 비밀번호를 입력해보는 경우를 방지하기 위해서입니다.

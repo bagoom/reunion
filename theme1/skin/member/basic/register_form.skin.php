@@ -102,8 +102,36 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	                <input type="text" name="mb_tel" value="<?php echo get_text($member['mb_tel']) ?>" id="reg_mb_tel" <?php echo $config['cf_req_tel']?"required":""; ?> class="frm_input full_input <?php echo $config['cf_req_tel']?"required":""; ?>" maxlength="20" placeholder="전화번호">
 	            <?php }  ?>
 				</li>
+	        </ul>
+	    </div>
 
-				<?php if ($config['cf_use_addr']) { ?>
+		 <div class="tbl_frm01 tbl_wrap register_form_inner">
+	        <h2>학교 정보</h2>
+	        <ul>
+	            <li class="half_input left_input margin_input">
+					<label >계열</label>
+					<?= get_reunion_select('affiliation', $member['affiliation'], '', 'af_name', 'affiliation'); ?>
+				</li>
+				<li class="half_input left_input">
+					<label for="reg_mb_tel">학과</label>
+					<?= get_reunion_select('department', $member['department'], '', 'dp_name', 'department'); ?>
+				</li>
+	            <li class="half_input left_input margin_input">
+	                <label for="entrance_year">입학년도</label>
+	                <input type="text" name="entrance_year" id="entrance_year" value="<?=$member['entrance_year']?>"  class="frm_input full_input required " minlength="3" maxlength="20" placeholder="입학년도" required>
+				</li>
+				<li class="half_input left_input">
+	                <label for="graduation_year">졸업년도</label>
+	                <input type="text" name="graduation_year" id="graduation_year"  value="<?=$member['graduation_year']?>"  class="frm_input full_input required " minlength="3" maxlength="20" placeholder="졸업년도" required>
+				</li>
+	        </ul>
+	    </div>
+
+
+		 <div class="tbl_frm01 tbl_wrap register_form_inner">
+	        <h2>자택 주소</h2>
+	        <ul>
+	            <?php if ($config['cf_use_addr']) { ?>
 	            <li>
 	            	<label>자택 주소</label>
 					<?php if ($config['cf_req_addr']) { ?><strong class="sound_only">필수</strong><?php }  ?>
@@ -118,17 +146,6 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	                <input type="hidden" name="mb_addr_jibeon" value="<?php echo get_text($member['mb_addr_jibeon']); ?>">
 	            </li>
 	            <?php }  ?>
-
-				<!-- <li class="third_input"> -->
-				<li class="half_input left_input margin_input">
-					<label >계열</label>
-					<?= get_reunion_select('affiliation', $member['affiliation'], '', 'af_name', 'affiliation'); ?>
-				</li>
-				<li class="half_input left_input">
-					<label for="reg_mb_tel">학과</label>
-					<?= get_reunion_select('department', $member['department'], '', 'dp_name', 'department'); ?>
-				</li>
-
 	        </ul>
 	    </div>
 	
@@ -137,19 +154,19 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	        <ul>
 	            <li class="half_input left_input margin_input">
 	                <label for="job">직장명</label>
-	                <input type="text" name="job" id="job"  class="frm_input full_input " minlength="3" maxlength="20" placeholder="직장명">
+	                <input type="text" name="job" id="job"  class="frm_input full_input " value="<?=$member['job']?>" minlength="3" maxlength="20" placeholder="직장명">
 				</li>
 				<li class="half_input left_input">
 	                <label for="job_department">부서</label>
-	                <input type="text" name="job_department" id="job_department"  class="frm_input full_input " minlength="3" maxlength="20" placeholder="부서">
+	                <input type="text" name="job_department" id="job_department" value="<?=$member['job_department']?>"  class="frm_input full_input " minlength="3" maxlength="20" placeholder="부서">
 				</li>
 	            <li class="half_input left_input margin_input">
 	                <label for="workplace_tel">직장전화</label>
-	                <input type="text" name="workplace_tel" id="workplace_tel"  class="frm_input full_input " minlength="3" maxlength="20" placeholder="직장전화">
+	                <input type="text" name="workplace_tel" id="workplace_tel"  value="<?=$member['workplace_tel']?>" class="frm_input full_input " minlength="3" maxlength="20" placeholder="직장전화">
 				</li>
 				<li class="half_input left_input">
 	                <label for="workplace_addr">직장주소</label>
-	                <input type="text" name="workplace_addr" id="workplace_addr"  class="frm_input full_input " minlength="3" maxlength="20" placeholder="직장주소">
+	                <input type="text" name="workplace_addr" id="workplace_addr" value="<?=$member['workplace_addr']?>"  class="frm_input full_input " minlength="3" maxlength="20" placeholder="직장주소">
 				</li>
 	        </ul>
 	    </div>
@@ -159,7 +176,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	        <ul>
 				<li class="half_input  margin_input">
 	                <label for="mb_birth">생년월일</label>
-	                <input type="text" name="mb_birth" id="mb_birth"  class="frm_input full_input " minlength="3" maxlength="20" placeholder="생년월일">
+	                <input type="text" name="mb_birth" id="mb_birth"  class="frm_input full_input "  value="<?=$member['mb_birth']?>"minlength="3" maxlength="20" placeholder="생년월일">
 				</li>
 
 

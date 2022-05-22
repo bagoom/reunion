@@ -251,7 +251,8 @@ if ($w == '') {
                      executive = '{$executive}',
                      anniversary = '{$anniversary}',
                      organizations = '{$organizations}',
-                     candidate = '{$candidate}'
+                     candidate = '{$candidate}',
+                     reunion_id = '{$reunionID}'
                      {$sql_certify} ";
 
     // 이메일 인증을 사용하지 않는다면 이메일 인증시간을 바로 넣는다
@@ -312,8 +313,8 @@ if ($w == '') {
     }
 
     // 메일인증 사용하지 않는 경우에만 로그인
-    if (!$config['cf_use_email_certify'])
-        set_session('ss_mb_id', $mb_id);
+    // if (!$config['cf_use_email_certify'])
+    //     set_session('ss_mb_id', $mb_id);
 
     set_session('ss_mb_reg', $mb_id);
 
