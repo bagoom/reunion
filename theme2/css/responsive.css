@@ -96,6 +96,8 @@
     #gnb .gnb_1dli {
         float: none;
         text-align: left;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #eee;
     }
 
     .gnb_1da {
@@ -108,6 +110,17 @@
         text-decoration: none;
         transition: 0.3s all;
         text-align: left;
+    }
+
+    .gnb_2dul {
+        position: relative;
+        top: 0;
+    }
+
+    .gnb_2da {
+        padding: 0 15px;
+        font-size: 15px;
+        color: #444;
     }
 
     .nav-open-btn {
@@ -327,5 +340,9 @@
 
     .greeting .box .txt {
         font-size: 14px;
+    }
+
+    .gall_row .col-gn-4 {
+        width: 50%;
     }
 }

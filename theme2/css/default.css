@@ -716,7 +716,7 @@ a.gnb_2da:hover {
 }
 
 #container_wr {
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 #wrapper.main #container_wr {
@@ -2119,7 +2119,7 @@ a.btn_admin:hover {
   border-bottom: 1px solid #ecf0f1;
   line-height: 1.4em;
   height: 60px;
-  word-break: break-all
+  word-break: break-all;
 }
 
 .tbl_head01 tbody tr:hover td {
@@ -2369,8 +2369,8 @@ textarea.required {
 
 /* 테이블 항목별 정의 */
 .td_board {
-  width: 80px;
-  text-align: center
+  width: 100px;
+  text-align: left;
 }
 
 .td_category {
@@ -2697,6 +2697,7 @@ textarea.required {
 .pg_wrap {
   clear: both;
   text-align: center;
+  margin-bottom: 30px;
 }
 
 .pg_wrap:after {

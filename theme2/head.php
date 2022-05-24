@@ -42,7 +42,7 @@ if (!file_exists($reunion_config_file)) {
 			<ul id="hd_qnb">
                 <?php if ($is_member) {  ?>
                     <?php if (!$is_admin) {  ?>
-                    <li><a href="<?php echo G5_BBS_URL ?>/member_confirm.php?url=<?php echo G5_BBS_URL ?>/register_form.php">정보수정</a></li>
+                    <li><a href="<?php echo G5_BBS_URL ?>/member_confirm.php?url=/bbs/register_form.php">정보수정</a></li>
                     <?php } ?>
                     <li><a href="<?php echo G5_BBS_URL ?>/logout.php">로그아웃</a></li>
                     <?php if ($is_admin) {  ?>
@@ -152,6 +152,21 @@ if (!file_exists($reunion_config_file)) {
                     ?>
                     <li class="gnb_1dli <?php echo $add_class; ?>" style="z-index:<?php echo $gnb_zindex--; ?>">
                         <a href="<?=G5_URL?><?php echo $row['me_link']; ?>" target="_<?php echo $row['me_target']; ?>" class="gnb_1da"><?php echo $row['me_name'] ?></a>
+                    
+                    <?php
+                    $k = 0;
+                    foreach( (array) $row['sub'] as $row2 ){
+						if( empty($row2) ) continue;
+                        if($k == 0)
+                            echo '<ul class="gnb_2dul">'.PHP_EOL;
+                    ?>
+                        <li class="gnb_2dli"><a href="<?=G5_URL?><?php echo $row2['me_link']; ?>" target="_<?php echo $row2['me_target']; ?>" class="gnb_2da"><span></span><?php echo $row2['me_name'] ?></a></li>
+                    <?php
+					$k++;
+                    }	//end foreach $row2
+                    if($k > 0)
+                        echo '</ul>'.PHP_EOL;
+                    ?>
                     </li>
                     <?php
                     $i++;
@@ -161,41 +176,6 @@ if (!file_exists($reunion_config_file)) {
                         <li class="gnb_empty">메뉴 준비 중입니다.<?php if ($is_admin) { ?> <a href="<?php echo G5_ADMIN_URL; ?>/menu_list.php">관리자모드 &gt; 환경설정 &gt; 메뉴설정</a>에서 설정하실 수 있습니다.<?php } ?></li>
                     <?php } ?>
                 </ul>
-                <div id="gnb_all">
-                    <div class="inner-wrapper">
-                    <ul class="gnb_al_ul">
-                        <?php
-                        
-                        $i = 0;
-                        foreach( $menu_datas as $row ){
-                        ?>
-                        <li class="gnb_al_li">
-                            <!-- <a href="<?php echo $row['me_link']; ?>" target="_<?php echo $row['me_target']; ?>" class="gnb_al_a"><?php echo $row['me_name'] ?></a> -->
-                            <?php
-                            $k = 0;
-                            foreach( (array) $row['sub'] as $row2 ){
-                                if($k == 0)
-                                    echo '<ul>'.PHP_EOL;
-                            ?>
-                                <li><a href="<?=G5_URL?><?php echo $row2['me_link']; ?>" target="_<?php echo $row2['me_target']; ?>"><?php echo $row2['me_name'] ?></a></li>
-                            <?php
-                            $k++;
-                            }   //end foreach $row2
-    
-                            if($k > 0)
-                                echo '</ul>'.PHP_EOL;
-                            ?>
-                        </li>
-                        <?php
-                        $i++;
-                        }   //end foreach $row
-    
-                        if ($i == 0) {  ?>
-                            <li class="gnb_empty">메뉴 준비 중입니다.<?php if ($is_admin) { ?> <br><a href="<?php echo G5_ADMIN_URL; ?>/menu_list.php">관리자모드 &gt; 환경설정 &gt; 메뉴설정</a>에서 설정하실 수 있습니다.<?php } ?></li>
-                        <?php } ?>
-                    </ul>
-                    </div>
-                </div>
             </div>
         </nav>
     </div>
@@ -207,7 +187,7 @@ if (!file_exists($reunion_config_file)) {
               bg = $("#gnb_all");
 
         menu.on('mouseenter focusin', function () {
-            console.log(menu);
+            // console.log(menu);
             menu.find("a").removeClass('on');
             bg.show();
             // $('.gnb-2dep').removeClass('on');
@@ -232,6 +212,11 @@ if (!file_exists($reunion_config_file)) {
                 duration: 600,
                 easing: "easeOutBack"
             });
+        });
+
+        $("#gnb.m-show .gnb_al_li_plus .gnb_1da ").click(function(){
+            $(this).siblings(".gnb_2dul").toggle(300)
+            return false;
         });
 
         $(".nav-open-btn").click(function(){

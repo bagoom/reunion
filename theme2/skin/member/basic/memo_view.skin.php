@@ -57,7 +57,6 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
         </article>
 		<div class="win_btn">
 			<?php if ($kind == 'recv') {  ?><a href="./memo_form.php?me_recv_mb_id=<?php echo $mb['mb_id'] ?>&amp;me_id=<?php echo $memo['me_id'] ?>" class="reply_btn">답장</a><?php }  ?>
-			<button type="button" onclick="window.close();" class="btn_close">창닫기</button>
     	</div>
     </div>
 </div>

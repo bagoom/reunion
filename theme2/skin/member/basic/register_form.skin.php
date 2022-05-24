@@ -12,7 +12,6 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 <?php if($config['cf_cert_use'] && ($config['cf_cert_ipin'] || $config['cf_cert_hp'])) { ?>
 <script src="<?php echo G5_JS_URL ?>/certify.js?v=<?php echo G5_JS_VER; ?>"></script>
 <?php } ?>
-
 	<form id="fregisterform" name="fregisterform" action="<?php echo $register_action_url ?>" onsubmit="return fregisterform_submit(this);" method="post" enctype="multipart/form-data" autocomplete="off">
 	<input type="hidden" name="w" value="<?php echo $w ?>">
 	<input type="hidden" name="url" value="<?php echo $urlencode ?>">
@@ -295,6 +294,38 @@ gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_
 	
 	        </ul>
 	    </div>
+
+
+	    <div class="tbl_frm01 tbl_wrap register_form_inner">
+	        <h2>회원탈퇴 안내 </h2>
+	        <ul>
+
+	
+	            <?php
+	            //회원정보 수정인 경우 소셜 계정 출력
+	            if( $w == 'u'){ ?>
+					<div class="leave_txt">
+						<h3>회원 탈퇴를 신청하기 전 안내사항을 꼭 확인해 주세요.</h3>
+						<ol>
+							<li>사용하는 아이디 및  홈페이지 정보만 삭제됩니다.</li>
+							<li>작성된 게시글 및 댓글 등은 그대로 남아 있습니다.</li>
+							<li>홈페이지 회원 탈퇴에도 총동문회 동문 정보는 유지됩니다.</li>
+						</ol>
+
+						<li class="chk_box">
+							<input type="checkbox" name="mb_leave_check" value="1" id="mb_leave_check"  class="selec_chk">
+							<label for="mb_leave_check">
+								<span></span>
+								<b class="sound_only">탈퇴 여부</b>
+							</label>        
+							<span class="chk_li">안내 사항을 모두 확인하였으며, 이에 동의합니다.</span>
+						</li>
+
+						<a href="javascript:member_leave();" class="btn_cancel">회원탈퇴</a>
+					</div>
+	            <?php } ?>
+	        </ul>
+	    </div>
 	</div>
 	<div class="btn_confirm">
 	    <a href="<?php echo G5_URL ?>" class="btn_close">취소</a>
@@ -350,6 +381,17 @@ $(function() {
     });
     <?php } ?>
 });
+
+function member_leave() { // 회원 탈퇴 tto
+	var leave_check = $('#mb_leave_check').is(':checked');
+	if (!leave_check) {
+		alert("회원탈퇴 안내 내용에 동의하셔야 회원탈퇴 하실 수 있습니다.");
+		return false;
+	} else {
+		if (confirm("회원에서 탈퇴 하시겠습니까?"))
+			location.href = '<?php echo G5_BBS_URL ?>/member_confirm.php?url=/bbs/member_leave.php';
+	}
+}
 
 // submit 최종 폼체크
 function fregisterform_submit(f)

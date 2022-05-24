@@ -44,17 +44,19 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
             </li>
             <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>" class="btn_b01 btn" title="글쓰기"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sound_only">글쓰기</span></a></li><?php } ?>
             <?php if ($is_admin == 'supervisor' || $is_auth) {  ?>
-            <li>
-                <button type="button" class="btn_more_opt is_list_btn btn_b01 btn" title="게시판 리스트 옵션"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sound_only">게시판 리스트 옵션</span></button>
-                <?php if ($is_checkbox) { ?>    
-                <ul class="more_opt is_list_btn">  
-                    <li><button type="submit" name="btn_submit" value="선택삭제" onclick="document.pressed=this.value"><i class="fa fa-trash-o" aria-hidden="true"></i> 선택삭제</button></li>
-                    <li><button type="submit" name="btn_submit" value="선택복사" onclick="document.pressed=this.value"><i class="fa fa-files-o" aria-hidden="true"></i> 선택복사</button></li>
-                    <li><button type="submit" name="btn_submit" value="선택이동" onclick="document.pressed=this.value"><i class="fa fa-arrows" aria-hidden="true"></i> 선택이동</button></li>
-                </ul>
-                <?php } ?>
-            </li>
-            <?php }  ?>
+                <?php /*
+        	<li>
+        		<button type="button" class="btn_more_opt is_list_btn btn_b01 btn" title="게시판 리스트 옵션"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sound_only">게시판 리스트 옵션</span></button>
+        		<?php if ($is_checkbox) { ?>	
+                    <!-- <ul class="more_opt is_list_btn">  
+                        <li><button type="submit" name="btn_submit" value="선택복사" onclick="document.pressed=this.value"><i class="fa fa-files-o" aria-hidden="true"></i> 선택복사</button></li>
+                        <li><button type="submit" name="btn_submit" value="선택이동" onclick="document.pressed=this.value"><i class="fa fa-arrows" aria-hidden="true"></i> 선택이동</button></li>
+                    </ul> -->
+                    <?php } ?>
+                </li>
+                */ ?>
+            <li><button type="submit" name="btn_submit" value="선택삭제" class="btn_b01 btn" title="선택삭제" onclick="document.pressed=this.value"><i class="fa fa-trash-o" aria-hidden="true"></i></button></li>
+        	<?php }  ?>
         </ul>
     </div>
     <!-- } 게시판 페이지 정보 및 버튼 끝 -->
@@ -108,22 +110,18 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
                     </span>
                 </div>
                 <div class="gall_con">
-                    <div class="gall_img" style="<?php if ($board['bo_gallery_height'] > 0) echo 'height:'.$board['bo_gallery_height'].'px;max-height:'.$board['bo_gallery_height'].'px'; ?>">
+                    <div class="gall_img" style="<?php if ($board['bo_gallery_height'] > 0) echo 'max-height:'.$board['bo_gallery_height'].'px'; ?>">
                         <a href="<?php echo $list[$i]['href'] ?>">
                         <?php
-                        if ($list[$i]['is_notice']) { // 공지사항  ?>
-                            <span class="is_notice" style="<?php echo $line_height_style; ?>">공지</span>
-                        <?php } else {
                             $thumb = get_list_thumbnail($board['bo_table'], $list[$i]['wr_id'], $board['bo_gallery_width'], $board['bo_gallery_height'], false, true);
 
                             if($thumb['src']) {
                                 $img_content = '<img src="'.$thumb['src'].'" alt="'.$thumb['alt'].'" >';
                             } else {
-                                $img_content = '<span class="no_image" style="'.$line_height_style.'">no image</span>';
+                                $img_content = '<img  class="no_image" src="'.G5_URL.'/img/no_img.png">';
                             }
 
                             echo run_replace('thumb_image_tag', $img_content, $thumb);
-                        }
                          ?>
                         </a>
                     </div>
@@ -132,7 +130,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
                         <a href="<?php echo $list[$i]['ca_name_href'] ?>" class="bo_cate_link"><?php echo $list[$i]['ca_name'] ?></a>
                         <?php } ?>
                         <a href="<?php echo $list[$i]['href'] ?>" class="bo_tit">
-                            
+                            <?php if ($list[$i]['is_notice']){?>
+                            <span class="list_notice">공지</span>
+                            <?php }?>
                             <?php // echo $list[$i]['icon_reply']; ?>
                             <!-- 갤러리 댓글기능 사용시 주석을 제거하세요. -->
                         
@@ -258,7 +258,7 @@ function fboardlist_submit(f) {
     }
 
     if(document.pressed == "선택삭제") {
-        if (!confirm("선택한 게시물을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다\n\n답변글이 있는 게시글을 선택하신 경우\n답변글도 선택하셔야 게시글이 삭제됩니다."))
+        if (!confirm("선택한 게시물을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다."))
             return false;
 
         f.removeAttribute("target");

@@ -73,28 +73,28 @@ include_once(G5_PATH.'/head.php');
         <div class="quick_wrap">
             <ul>
                 <li>
-                    <a href="">
+                    <a href="<?=G5_URL?>/page/rule.php">
                         <div class="con">
                             <h3 class="tit">동문회 회칙 안내</h3>
                         </div>
                     </a>
                     <div class="link">
                         <div class="btn">
-                            <a href="">
+                            <a href="<?=G5_URL?>/page/rule.php">
                                 <i class="xi-arrow-right"></i>
                             </a>
                         </div>
                     </div>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="<?=G5_URL?>/page/fees.php">
                         <div class="con">
                             <h3 class="tit">동문회비 안내</h3>
                         </div>
                     </a>
                     <div class="link">
                         <div class="btn">
-                            <a href="">
+                            <a href="<?=G5_URL?>/page/fees.php">
                                 <i class="xi-arrow-right"></i>
                             </a>
                         </div>
@@ -118,7 +118,7 @@ include_once(G5_PATH.'/head.php');
     <div class="latest_top_wr">
         <?php
             echo latest('pic_list', 'event', 4, 40);			
-            echo latest('pic_list', 'news', 4, 40);			
+            echo latest('pic_list', 'report', 4, 40);			
             echo latest('pic_list', 'promotion', 4, 40);		
         ?>
     </div>

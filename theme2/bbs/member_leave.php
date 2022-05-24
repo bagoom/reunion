@@ -28,4 +28,4 @@ if(function_exists('social_member_link_delete')){
     social_member_link_delete($member['mb_id']);
 }
 
-alert(''.$member['mb_nick'].'님께서는 '. date("Y년 m월 d일") .'에 회원에서 탈퇴 하셨습니다.', $url);
+alert(''.$member['mb_name'].'님께서는 '. date("Y년 m월 d일") .'에 회원에서 탈퇴 하셨습니다.', $url);

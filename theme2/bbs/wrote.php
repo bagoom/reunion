@@ -46,7 +46,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++) {
 $group_select .= '</select>';
 
 $list = array();
-$sql = " select a.*, b.bo_subject, c.gr_subject, c.gr_id {$sql_common} {$sql_order} limit {$from_record}, {$rows} ";
+$sql = " select a.*, b.bo_subject, b.bo_5, c.gr_subject, c.gr_id {$sql_common} {$sql_order} limit {$from_record}, {$rows} ";
 $result = sql_query($sql);
 for ($i=0; $row=sql_fetch_array($result); $i++) {
     $tmp_write_table = $g5['write_prefix'].$row['bo_table'];
@@ -102,7 +102,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++) {
     $list[$i]['datetime'] = $datetime;
     $list[$i]['datetime2'] = $datetime2;
 
-    $list[$i]['gr_subject'] = $row['gr_subject'];
+    $list[$i]['gr_subject'] = $row['bo_5'];
     $list[$i]['bo_subject'] = $row['bo_subject'];
     $list[$i]['wr_subject'] = $row2['wr_subject'];
 }

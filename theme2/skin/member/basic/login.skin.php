@@ -10,7 +10,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
         <h1><?php echo $g5['title'] ?></h1>
         <div class="mb_log_cate">
             <h2><span class="sound_only">회원</span>로그인</h2>
-            <a href="<?php echo G5_BBS_URL ?>/register.php" class="join">동문인증</a>
+            <a href="<?php echo G5_BBS_URL ?>/register.php" class="join">회원가입</a>
         </div>
         <form name="flogin" action="<?php echo $login_action_url ?>" onsubmit="return flogin_submit(this);" method="post">
         <input type="hidden" name="url" value="<?php echo $login_url ?>">
@@ -29,7 +29,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
                     <label for="login_auto_login"><span></span> 자동로그인</label>  
                 </div>
                 <div class="login_if_lpl">
-                    <a href="<?php echo G5_BBS_URL ?>/password_lost.php" target="_blank" id="login_password_lost">정보찾기</a>  
+                    <a href="<?php echo G5_BBS_URL ?>/password_lost.php" target="_blank" id="login_password_lost">ID / 비밀번호 찾기 </a>  
                 </div>
             </div>
         </fieldset> 

@@ -41,7 +41,7 @@
             if ( ($row['me_name']==$board['bo_subject'])||($row['me_name']==$g5['title'])) {
                 echo ("<script language='javascript'> display_submenu(" .$i. " ); </script> ");
             }
-            if (  strpos($base_filename,'memo_form') !== false  ) {
+            if (  strpos($base_filename,'memo_form') !== false || strpos($base_filename,'memo_view')   !== false || strpos($base_filename,'member_confirm')   !== false || (strpos($base_filename,'register_form')   !== false && $w == 'u') ) {
                 echo ("<script language='javascript'> display_submenu(5); </script> ");
             }
     
@@ -49,7 +49,9 @@
                 if($k == 0)
                     echo '<ul>'.PHP_EOL;
             ?>
-                    <a href="<?=G5_URL?><?php echo $row2['me_link']; ?>" target="_<?php echo $row2['me_target']; ?>" ><li class="leftmenu_s <?=($g5['title'] == $row2['me_name']) ? "on" : null?>  <?=(strpos($base_filename,'memo_form') !== false && $row2['me_code'] == 6020) ? "on": null ?>  <?=($board['bo_subject'] == $row2['me_name']) ? "on" : null?>"><?php echo $row2['me_name'] ?></li></a>
+                    <a href="<?=G5_URL?><?php echo $row2['me_link']; ?>" target="_<?php echo $row2['me_target']; ?>" >
+                    <li class="leftmenu_s <?=($g5['title'] == $row2['me_name']) ? "on" : null?>  <?=(strpos($base_filename,'memo_form') !== false && $row2['me_code'] == 6020) ? "on": null ?>  <?=(strpos($base_filename,'memo_view') !== false && $row2['me_code'] == 6020) ? "on": null ?>  <?=(strpos($base_filename,'member_confirm') !== false && $row2['me_code'] == 6030) ? "on": null ?>  <?=(strpos($base_filename,'register_form') !== false && $row2['me_code'] == 6030 && $w == 'u') ? "on": null ?>  <?=($board['bo_subject'] == $row2['me_name']) ? "on" : null?>"><?php echo $row2['me_name'] ?></li>
+            </a>
             <?php  
 
                 //좌측 서브메뉴 전체 리스트에서 현재 페이지에 해당하는 대메뉴 리스트만 보여줌
@@ -75,7 +77,7 @@
     </ul>
     <?php } ?>
 
-    <?php if (defined("_REGISTER_")) { ?>
+    <?php if (defined("_REGISTER_") && !$w) { ?>
             <ul id="mysub<?php echo $i+1 ?>" style="display:none;">
                 <a href="<?php echo G5_BBS_URL ?>/register.php" target="_self"><li class="leftmenu_b"><?=$reunion['reunion_title']?></li></a>
                 <ul>

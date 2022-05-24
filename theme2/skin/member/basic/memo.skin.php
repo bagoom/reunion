@@ -27,7 +27,6 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
                 ?>
 	            <li class="<?php echo $readed; ?>">
 	            	<div class="memo_li profile_big_img">
-	            		<?php echo get_member_profile_img($list[$i]['mb_id']); ?>
 	            		<?php if (! $readed){ ?><span class="no_read">안 읽은 쪽지</span><?php } ?>
 	            	</div>
 	                <div class="memo_li memo_name">

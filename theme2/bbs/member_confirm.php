@@ -19,7 +19,7 @@ if( function_exists('social_member_comfirm_redirect') && (! $url || $url === 're
 }
 
 $g5['title'] = '회원 비밀번호 확인';
-include_once('./_head.sub.php');
+include_once('./_head.php');
 
 // url 체크
 check_url_host($url, '', G5_URL, true);
@@ -33,8 +33,8 @@ if($url){
 }
 
 
-$url = get_text($url);
+$url = G5_URL.get_text($url);
 
 include_once($member_skin_path.'/member_confirm.skin.php');
 
-include_once('./_tail.sub.php');
+include_once('./_tail.php');
