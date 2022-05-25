@@ -1,7 +1,7 @@
 <?php
 include_once('./_common.php');
 
-$sql = "SELECT * FROM {$g5['member_table']} WHERE mb_name = '$mb_name'";
+$sql = "SELECT * FROM {$g5['member_table']} WHERE mb_name = '$mb_name' AND confirm = 'Y' AND reunion_id = '$reunionID'";
 $result = sql_query($sql);
 echo $sql;
 
@@ -18,5 +18,5 @@ for ($i=0; $row=sql_fetch_array($result); $i++) { ?>
 <?php }?>
 
 <?php if ($i == 0)
-    echo "<tr><td colspan='5' class=\"empty_table\">자료가 없습니다.</td></tr>";
+    echo "<tr><td colspan='6' class=\"empty_table\">자료가 없습니다.</td></tr>";
 ?>

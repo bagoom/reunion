@@ -51,5 +51,6 @@ header("Content-Disposition: attachment; filename=\"branchs-".date("ymd", time()
 header("Cache-Control: max-age=0");
 
 $writer = PHPExcel_IOFactory::createWriter($excel, 'Excel5');
+ob_end_clean();
 $writer->save('php://output');
 ?>

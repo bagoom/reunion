@@ -16,7 +16,8 @@ include_once('./_common.php');
          $where .= "and mb_hp = '{$mb_hp}'";
         if($mb_name)
          $where .= "and mb_name = '{$mb_name}'";
-         $where .= "and confirm = 'Y'";
+
+         $where .= "and confirm = 'Y' and  reunion_id = '$reunionID'";
 
         $sql = sql_query("SELECT * FROM {$g5['member_table']} WHERE  $where ");
         $members = array();

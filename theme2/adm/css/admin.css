@@ -321,8 +321,8 @@ h2 {
 
 /*gnb*/
 #gnb {
-    width: 800px;
-    margin-left: 50px;
+    width: 1000px;
+    margin-left: 30px;
     /* float: left; */
 }
 
@@ -335,7 +335,7 @@ h2 {
     position: relative;
     /* width: 20%; */
     display: inline-block;
-    padding: 0 4%;
+    padding: 0 3%;
     vertical-align: top;
 }
 
@@ -5289,6 +5289,20 @@ button.btn {
 #modal.id-search-modal {
     width: 800px;
     min-height: 200px;
+}
+
+#modal.id-search-modal.new-mem {
+    width: 900px;
+}
+
+#modal.id-search-modal .confirm {
+    width: 70px;
+    height: 30px;
+    font-size: 14px;
+    background: #000;
+    border: 0;
+    color: #fff;
+    border-radius: 3px;
 }
 
 #modal .close-modal {

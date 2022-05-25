@@ -4,15 +4,25 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 
 <link rel="stylesheet" href="<?php echo $new_skin_url ?>/style.css">
 
+<style>
+    .tbl_head01 thead th{
+        padding: 20px 10px;
+    }
+
+    .tbl_head01 td{
+        padding: 10px;
+    }
+</style>
+
 <!-- 전체게시물 목록 시작 { -->
 <div class="tbl_head01 tbl_wrap">
     <table>
     <thead>
     <tr>
-        <th scope="col">그룹</th>
-        <th scope="col">게시판</th>
+        <th scope="col" style="text-align:left">그룹</th>
+        <th scope="col" style="text-align:left">게시판</th>
         <th scope="col">제목</th>
-        <th scope="col">이름</th>
+        <th scope="col" style="text-align:left">이름</th>
         <th scope="col">일시</th>
     </tr>
     </thead>

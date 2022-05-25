@@ -297,8 +297,8 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
                     check_byte('wr_content', 'char_count');
                 if (document.getElementById('secret_comment_'+comment_id).value)
                     document.getElementById('wr_secret').checked = true;
-                else
-                    document.getElementById('wr_secret').checked = false;
+                // else
+                //     document.getElementById('wr_secret').checked = false;
             }
 
             document.getElementById('comment_id').value = comment_id;

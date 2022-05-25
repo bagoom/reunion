@@ -296,36 +296,32 @@ gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_
 	    </div>
 
 
+		<?php if( $w == 'u'){ ?>
 	    <div class="tbl_frm01 tbl_wrap register_form_inner">
-	        <h2>회원탈퇴 안내 </h2>
-	        <ul>
+	    	<h2>회원탈퇴 안내 </h2>
+	    	<ul>
+	    		<div class="leave_txt">
+	    			<h3>회원 탈퇴를 신청하기 전 안내사항을 꼭 확인해 주세요.</h3>
+	    			<ol>
+	    				<li>사용하는 아이디 및 홈페이지 정보만 삭제됩니다.</li>
+	    				<li>작성된 게시글 및 댓글 등은 그대로 남아 있습니다.</li>
+	    				<li>홈페이지 회원 탈퇴에도 총동문회 동문 정보는 유지됩니다.</li>
+	    			</ol>
 
-	
-	            <?php
-	            //회원정보 수정인 경우 소셜 계정 출력
-	            if( $w == 'u'){ ?>
-					<div class="leave_txt">
-						<h3>회원 탈퇴를 신청하기 전 안내사항을 꼭 확인해 주세요.</h3>
-						<ol>
-							<li>사용하는 아이디 및  홈페이지 정보만 삭제됩니다.</li>
-							<li>작성된 게시글 및 댓글 등은 그대로 남아 있습니다.</li>
-							<li>홈페이지 회원 탈퇴에도 총동문회 동문 정보는 유지됩니다.</li>
-						</ol>
+	    			<li class="chk_box">
+	    				<input type="checkbox" name="mb_leave_check" value="1" id="mb_leave_check" class="selec_chk">
+	    				<label for="mb_leave_check">
+	    					<span></span>
+	    					<b class="sound_only">탈퇴 여부</b>
+	    				</label>
+	    				<span class="chk_li">안내 사항을 모두 확인하였으며, 이에 동의합니다.</span>
+	    			</li>
 
-						<li class="chk_box">
-							<input type="checkbox" name="mb_leave_check" value="1" id="mb_leave_check"  class="selec_chk">
-							<label for="mb_leave_check">
-								<span></span>
-								<b class="sound_only">탈퇴 여부</b>
-							</label>        
-							<span class="chk_li">안내 사항을 모두 확인하였으며, 이에 동의합니다.</span>
-						</li>
-
-						<a href="javascript:member_leave();" class="btn_cancel">회원탈퇴</a>
-					</div>
-	            <?php } ?>
-	        </ul>
+	    			<a href="javascript:member_leave();" class="btn_cancel">회원탈퇴</a>
+	    		</div>
+	    	</ul>
 	    </div>
+		<?php } ?>
 	</div>
 	<div class="btn_confirm">
 	    <a href="<?php echo G5_URL ?>" class="btn_close">취소</a>

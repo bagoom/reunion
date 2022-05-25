@@ -184,6 +184,7 @@ if($_FILES['excelfile']['tmp_name']) {
                          mb_tel= '$mb_tel',
                          mb_birth= '$mb_birth',
                          etc= '$etc',
+                         confirm= 'N',
                          reunion_id = '{$reunionID}' ";
         sql_query($sql);
 
