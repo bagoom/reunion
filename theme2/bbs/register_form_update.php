@@ -252,6 +252,7 @@ if ($w == '') {
                      anniversary = '{$anniversary}',
                      organizations = '{$organizations}',
                      candidate = '{$candidate}',
+                     mb_new = 'Y',
                      reunion_id = '{$reunionID}'
                      {$sql_certify} ";
 

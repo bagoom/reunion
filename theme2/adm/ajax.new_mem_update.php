@@ -3,6 +3,7 @@ include_once('./_common.php');
 
 $site_mem = get_member($site_mb_id);
 $site_mem['confirm'] = 'Y';
+$site_mem['new'] = '';
 
 $site_mem_no = $site_mem['mb_no'];
 array_splice($site_mem, 0, 1);

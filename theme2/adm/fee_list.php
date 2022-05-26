@@ -34,9 +34,9 @@ if($fee_type)
     $where .= " AND b.fee_type = '$fee_type'";
 
 if($is_admin !== 'superadmin'){    
-    $sql = "SELECT * FROM {$g5['member_table']} a, {$g5['fee']} b WHERE a.mb_id = b.mb_id $where AND b.reunion_id = '{$reunionID}' ORDER BY id DESC" ;
+    $sql = "SELECT * FROM {$g5['member_table']} a, {$g5['fee']} b WHERE a.mb_no = b.mb_no $where AND b.reunion_id = '{$reunionID}' ORDER BY id DESC" ;
 }else{
-    $sql = "SELECT * FROM {$g5['member_table']} a, {$g5['fee']} b WHERE a.mb_id = b.mb_id $where ORDER BY id DESC" ;
+    $sql = "SELECT * FROM {$g5['member_table']} a, {$g5['fee']} b WHERE a.mb_no = b.mb_no $where ORDER BY id DESC" ;
 }
 $result = sql_query($sql);
 
@@ -100,7 +100,7 @@ $colspan = 9;
         $bg = 'bg'.($i%2);
     ?>
 
-    <tr class="<?php echo $bg; ?>" onClick="location.href='./fee_form.php?mb_id=<?=$row['mb_id']?>&w=u&id=<?=$row['id']?>'">
+    <tr class="<?php echo $bg; ?>" onClick="location.href='./fee_form.php?mb_id=<?=$row['mb_id']?>&w=u&id=<?=$row['id']?>&mb_no=<?=$row['mb_no']?>'">
         <td headers="mb_list_chk" class="td_chk">
             <input type="hidden" name="mb_id[<?php echo $i ?>]" value="<?php echo $row['mb_id'] ?>" id="mb_id_<?php echo $i ?>">
             <label for="chk_<?php echo $i; ?>" class="sound_only"><?php echo get_text($row['mb_name']); ?> <?php echo get_text($row['mb_nick']); ?>님</label>

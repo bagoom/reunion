@@ -226,7 +226,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                 </td>
 
                 <th scope="row"><label for="mb_email">E-mail<strong class="sound_only">필수</strong></label></th>
-                <td><input type="text" name="mb_email" value="<?php echo $mb['mb_email'] ?>" id="mb_email" maxlength="100" required class="required frm_input email" size="30"></td>
+                <td><input type="text" name="mb_email" value="<?php echo $mb['mb_email'] ?>" id="mb_email" maxlength="100"  class=" frm_input email" size="30"></td>
             </tr>
 
             <tr>
@@ -465,8 +465,9 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 </div>
 
 <?php if ($w == 'u') {
-    
-    $fee_sql = "SELECT * FROM {$g5['fee']}  WHERE mb_id ='$mb_id' " ;   
+    $mb_data =get_member($mb_id);
+    $mb_no = $mb_data['mb_no'];
+    $fee_sql = "SELECT * FROM {$g5['fee']}  WHERE mb_no ='$mb_no' " ;   
     $fee_result = sql_query($fee_sql);
 ?>
 

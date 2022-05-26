@@ -7,7 +7,7 @@ $g5['title'] = '신규회원확인';
 include_once('./admin.head.php');
 $sql_common = " from {$g5['member_table']} ";
 
-$where = "WHERE confirm = 'N' AND  mb_password !='' AND reunion_id = '{$reunionID}'";
+$where = "WHERE confirm = 'N' AND  mb_new ='Y' AND reunion_id = '{$reunionID}'";
 if (!$sst) {
     $sst = "mb_no";
     $sod = "desc";
@@ -31,7 +31,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
 $sql = " select * {$sql_common}  {$where} {$sql_order} limit {$from_record}, {$rows} ";
 $result = sql_query($sql);
 
-$colspan = 20;
+$colspan = 6;
 
 $q = $_SERVER['QUERY_STRING']; 
 ?>

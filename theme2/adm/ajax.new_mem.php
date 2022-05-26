@@ -35,7 +35,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++) { ?>
                     'site_mb_id': site_mb_id,
                     'reunion_mb_id': reunion_mb_id
                 },
-                dataType: 'json',
+                dataType: 'html',
                 async: false,
                 success: function (data, textStatus) {
                     console.log(data)

@@ -1,4 +1,6 @@
 <?php
+error_reporting( E_ALL );
+  ini_set( "display_errors", 1 );
 $sub_menu = '200100';
 include_once('./_common.php');
 
@@ -74,14 +76,14 @@ if($_FILES['excelfile']['tmp_name']) {
     $total_count = 0;
     $fail_count = 0;
     $succ_count = 0;
-
+        
     for ($i = 3; $i <= $data->sheets[0]['numRows']; $i++) {
         $total_count++;
-
+        
         $j = 1;
 
 		$mb_id				= addslashes($data->sheets[0]['cells'][$i][$j++]);
-		$mb_password		= addslashes($data->sheets[0]['cells'][$i][$j++]);
+		// $mb_password		= addslashes($data->sheets[0]['cells'][$i][$j++]);
 		$mb_name			= addslashes($data->sheets[0]['cells'][$i][$j++]);
         // 구분
 		$type		= addslashes($data->sheets[0]['cells'][$i][$j++]);
@@ -133,18 +135,19 @@ if($_FILES['excelfile']['tmp_name']) {
             continue;
         }
 
-        if( !preg_match( "/^[0-9]/i", $mb_id )) {
-             alert( $mb_name."님의 아이디는 '-'를 제외한 숫자만 입력해주세요." );
-            continue;
-        } 
+        // if( !preg_match( "/^[0-9]/i", $mb_id )) {
+        //      alert( $mb_name."님의 아이디는 '-'를 제외한 숫자만 입력해주세요." );
+        //     continue;
+        // } 
             
-
+            
 
 
 
         // mb_id 중복체크
         $sql2 = " select count(*) as cnt from {$g5['member_table']} where mb_id = '$mb_id' ";
         $row2 = sql_fetch($sql2);
+        
         if($row2['cnt']) {
             $fail_mb_id[] = $mb_id;
             $dup_mb_id[] = $mb_id;
@@ -159,7 +162,7 @@ if($_FILES['excelfile']['tmp_name']) {
 
         $sql = " INSERT INTO {$g5['member_table']}
                      SET mb_id = '$mb_id',
-                         mb_password = '".sql_password($mb_password)."',
+                        --  mb_password = '".sql_password($mb_password)."',
                          mb_name = '$mb_name',
                          type= '$type',
                          mb_level= '2',
@@ -186,6 +189,7 @@ if($_FILES['excelfile']['tmp_name']) {
                          etc= '$etc',
                          confirm= 'N',
                          reunion_id = '{$reunionID}' ";
+                         
         sql_query($sql);
 
         // echo $sql;
@@ -193,6 +197,7 @@ if($_FILES['excelfile']['tmp_name']) {
         $succ_count++;
     }
 }
+
 
 $g5['title'] = '회원 엑셀일괄등록 결과';
 include_once(G5_PATH.'/head.sub.php');

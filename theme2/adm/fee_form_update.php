@@ -11,8 +11,8 @@ auth_check_menu($auth, $sub_menu, 'w');
 
 check_admin_token();
 
-$mb_id = isset($_POST['mb_id']) ? trim($_POST['mb_id']) : '';
-echo $mb_id."<br>";
+$mb_no = isset($_POST['mb_no']) ? trim($_POST['mb_no']) : '';
+echo $mb_no."<br>";
 
 $sql_common = "  fee_type = '{$fee_type}',
                  deposit_date = '{$deposit_date}',
@@ -21,13 +21,13 @@ $sql_common = "  fee_type = '{$fee_type}',
 
 if ($w == '')
 {
-    sql_query(" insert into {$g5['fee']} set mb_id = '{$mb_id}' , {$sql_common}, reunion_id = '{$reunionID}' ");
+    sql_query(" insert into {$g5['fee']} set mb_no = '{$mb_no}' , {$sql_common}, reunion_id = '{$reunionID}' ");
 }
 else if ($w == 'u')
 {
     $sql = " update {$g5['fee']}
                 set {$sql_common}
-                where mb_id = '{$mb_id}' and id = '{$id}' ";
+                where mb_no = '{$mb_no}' and id = '{$id}' ";
     sql_query($sql);
 }
 else
@@ -35,4 +35,4 @@ else
 
 
 
-goto_url('./fee_list.php?'.$qstr.'&amp;w=u&amp;mb_id='.$mb_id, false);
+goto_url('./fee_list.php?'.$qstr, false);

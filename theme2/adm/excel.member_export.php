@@ -38,6 +38,8 @@ if($entrance_year)
 if($executive_list)
     $where .= " AND executive != ''";
 
+    $where .= " AND mb_new = ''";
+
  if($is_admin !== 'superadmin'){
     $where .= " AND reunion_id = '$reunionID'";
  }

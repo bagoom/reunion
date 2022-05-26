@@ -1,12 +1,12 @@
 <?php
 include_once('./_common.php');
 
-$sql = "SELECT * FROM {$g5['member_table']} WHERE mb_name = '$mb_name' AND confirm = 'Y' AND reunion_id = '$reunionID'";
-$result = sql_query($sql);
+$sql = "SELECT * FROM {$g5['member_table']} WHERE mb_name = '$mb_name'  AND mb_new = '' AND reunion_id = '$reunionID'";
 echo $sql;
+$result = sql_query($sql);
 
 for ($i=0; $row=sql_fetch_array($result); $i++) { ?>
-    <tr data-id="<?=$row['mb_id']?>" data-name="<?=$row['mb_name']?>">
+    <tr data-id="<?=$row['mb_no']?>" data-name="<?=$row['mb_name']?>">
         <td><?=$row['mb_id']?></td>
         <td><?=$row['mb_name']?></td>
         <td><?=$row['department']?></td>

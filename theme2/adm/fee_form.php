@@ -24,7 +24,7 @@ else if ($w == 'u')
     $mb = get_member($mb_id);
     if (!$mb['mb_id'])
         alert('존재하지 않는 회원자료입니다.');
-    $fee = sql_fetch("SELECT * FROM {$g5['fee']} WHERE mb_id = '$mb_id' AND id = '$id' ");
+    $fee = sql_fetch("SELECT * FROM {$g5['fee']} WHERE mb_no = '$mb_no' AND id = '$id' ");
 
     $required_mb_id = 'readonly';
     $html_title = '수정';
@@ -54,13 +54,14 @@ $today = date('Y-m-d', time());
 <input type="hidden" name="token" value="">
 <input type="hidden" name="mb_select" value="<?=($w=='u') ? 1 : 0?>">
 <input type="hidden" name="mb_id" value="<?=($w=='u') ? $mb_id : null ?>">
+<input type="hidden" name="mb_no" value="<?=($w=='u') ? $mb_no : null ?>">
 <input type="hidden" name="id" value="<?=($w=='u') ? $id : null ?>">
 
 <div class="tbl_frm01 tbl_wrap">
     <div class="tit01">회원 검색</div>
     <div class="serach-id">
         <?php if($w=='') {?>
-            <input type="text" placeholder="이름검색" class="frm_input" name="mb_id" value="<?=$mb_id?>">
+            <input type="text" placeholder="이름검색" class="frm_input" name="mb_no" value="<?=$mb_no?>">
             <button class="btn03 open-modal" type="button" style="height:35px; width:60px">검색</button>
             <div class="desc"></div>
         <?php }?>
@@ -141,9 +142,11 @@ $today = date('Y-m-d', time());
 </form>
 
 <script>
-    $(document).ready(function(){
-        $('#fee_type').val($("#fee_type option:first").val()).trigger('change');
-    });
+    <?php if($w == ''){?>
+        $(document).ready(function(){
+            $('#fee_type').val($("#fee_type option:first").val()).trigger('change');
+        });
+    <?php }?>
 
     function fmember_submit(f) {
         mb_check = $("input[name=mb_select]").val();

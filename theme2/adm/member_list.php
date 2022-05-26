@@ -34,6 +34,8 @@ if($entrance_year)
 
 if($executive_list)
     $where .= " AND executive != ''";
+    
+    $where .= " AND mb_new = ''";
 
  if($is_admin !== 'superadmin'){
     $where .= " AND reunion_id = '$reunionID'";
@@ -89,7 +91,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
 $sql = " select * {$sql_common} {$sql_search} {$where} {$sql_order} limit {$from_record}, {$rows} ";
 $result = sql_query($sql);
 
-$colspan = 20;
+$colspan = 23;
 
 $q = $_SERVER['QUERY_STRING']; 
 ?>
