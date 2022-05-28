@@ -37,7 +37,7 @@ $q = $_SERVER['QUERY_STRING'];
 ?>
 
 
-<form name="fmemberlist" id="fmemberlist" action="./member_list_update.php" onsubmit="return fmemberlist_submit(this);" method="post">
+<form name="fmemberlist" id="fmemberlist" action="./new_member_update.php" onsubmit="return fmemberlist_submit(this);" method="post">
 <input type="hidden" name="sst" value="<?php echo $sst ?>">
 <input type="hidden" name="sod" value="<?php echo $sod ?>">
 <input type="hidden" name="sfl" value="<?php echo $sfl ?>">
@@ -79,6 +79,11 @@ $q = $_SERVER['QUERY_STRING'];
     for ($i=0; $row=sql_fetch_array($result); $i++) { ?>
 
     <tr class="<?php echo $bg; ?>" >
+        <!-- <td headers="mb_list_chk" class="td_chk">
+            <input type="hidden" name="mb_no[<?php echo $i ?>]" value="<?php echo $row['mb_no'] ?>" id="mb_no_<?php echo $i ?>">
+            <label for="chk_<?php echo $i; ?>" class="sound_only"><?php echo get_text($row['mb_name']); ?> <?php echo get_text($row['mb_nick']); ?>님</label>
+            <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
+        </td> -->
         <td >
             <?= $row['mb_id'] ?>
         </td>
@@ -96,6 +101,7 @@ $q = $_SERVER['QUERY_STRING'];
         </td>
         <td >
             <button type="button" class="btn btn_02 modal-open" data-name="<?=$row['mb_name']?>" data-id="<?=$row['mb_id']?>">인증확인</button>
+            <a href="new_member_update.php?w=d&mb_id=<?=$row['mb_id']?>&mb_no=<?=$row['mb_no']?>" onclick="return delete_confirm(this, 'new_mem');" class="btn btn_01">인증취소</a>
         </td>
     </tr>
     <?php
@@ -142,6 +148,7 @@ $q = $_SERVER['QUERY_STRING'];
 <?php echo get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, '?'.$qstr.'&amp;page='); ?>
 
 <script>
+    
     $(".modal-open").click(function () {
         $("#modal, #overlay").show();
         var mb_name = $(this).data("name");

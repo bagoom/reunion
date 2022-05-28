@@ -45,6 +45,7 @@ $result = sql_query($sql);
                 $branch_mem_count = $branch_mem_count_sql['count'];
             ?>
             <li>
+                <div class="cover"  style="background-image: url(<?=($row['branch_img']) ? G5_DATA_URL.$row['branch_img'] : null?>)"></div>
                 <div class="contents">
                     <div class="icon"></div>
                     <div class="tit"><?=$row['branch_name']?></div>
@@ -60,7 +61,6 @@ $result = sql_query($sql);
     </div>
     <?php echo get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $rows, $page, $total_page, '?'.$qstr.'&amp;page='); ?>
 </div>
-
 
 <?php
 include_once(G5_PATH.'/tail.php');

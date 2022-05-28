@@ -1,6 +1,4 @@
 <?php
-error_reporting( E_ALL );
-  ini_set( "display_errors", 1 );
 $sub_menu = '200100';
 include_once('./_common.php');
 

@@ -37,8 +37,17 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	                <?php if ($config['cf_cert_use'] && $config['cf_cert_hp']) { ?>
 	                <input type="hidden" name="old_mb_hp" value="<?php echo get_text($member['mb_hp']) ?>">
 	                <?php } ?>
-	            <?php }  }?>
-	            </li>
+	            <?php }?>
+				</li>
+				<?php }?>
+				<?php if($w == 'u') { ?>
+				<li class="half_input ">
+					<label for="reg_mb_hp">휴대폰번호 (아이디로 사용됩니다.)<?php if ($config['cf_req_hp']) { ?><strong class="sound_only">필수</strong><?php } ?></label>
+					<p class="frm_input"><?=$mb_id?></p>
+					<input type="hidden" name="mb_id" value="<?=$member['mb_id']?>">
+	                <input type="hidden" name="mb_hp" value="<?php echo get_text($member['mb_hp']) ?>" id="reg_mb_hp" <?php echo ($config['cf_req_hp'])?"required":""; ?> class="frm_input readonly full_input <?php echo ($config['cf_req_hp'])?"required":""; ?>" readonly maxlength="20" placeholder="'-'를 제외한 숫자만 입력해주세요. ex) 01012345678">
+				</li>
+				<?php }?>
 	            <li class="half_input left_input margin_input">
 	                <label for="reg_mb_password">비밀번호<strong class="sound_only">필수</strong></label>
 	                <input type="password" name="mb_password" id="reg_mb_password" <?php echo $required ?> class="frm_input full_input <?php echo $required ?>" minlength="3" maxlength="20" placeholder="비밀번호">

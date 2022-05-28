@@ -9,9 +9,9 @@ var app = new Vue({
       mb_name: "",
     },
     branchMemberData: {
-      memId: "",
+      memNo: "",
       grade: "",
-      etc: "",
+      branch_etc: "",
     },
     errorMsg: "",
     successMsg: "",
@@ -37,15 +37,17 @@ var app = new Vue({
     },
 
     onChangeEtc(event) {
-      app.branchMemberData.etc = event.target.value;
+      app.branchMemberData.branch_etc = event.target.value;
     },
 
     selectMember(member) {
       console.log(member);
       app.memberToModify = member.mb_no;
       app.branchMemberData.grade = member.grade;
-      app.branchMemberData.etc = member.etc;
-      app.branchMemberData.memId = member.mb_id;
+      app.branchMemberData.branch_etc = member.branch_etc
+        ? member.branch_etc
+        : "";
+      app.branchMemberData.memNo = member.mb_no;
     },
 
     searchMembers() {
@@ -67,9 +69,9 @@ var app = new Vue({
 
     addBranchMembe() {
       let formdata = new FormData();
-      formdata.append("mb_id", app.branchMemberData.memId);
+      formdata.append("mb_no", app.branchMemberData.memNo);
       formdata.append("grade", app.branchMemberData.grade);
-      formdata.append("etc", app.branchMemberData.etc);
+      formdata.append("etc", app.branchMemberData.branch_etc);
       formdata.append("branch_id", app.branch_id);
 
       axios
@@ -80,8 +82,10 @@ var app = new Vue({
             app.failToast();
           } else {
             app.successMsg = response.data.message;
-            app.successToast();
-            app.searchMembers();
+            alert(response.data.message);
+            window.location.reload(true);
+            // app.successToast();
+            // app.searchMembers();
           }
         });
     },
@@ -89,7 +93,7 @@ var app = new Vue({
     updateBranchMember(id) {
       let formdata = new FormData();
       formdata.append("grade", app.branchMemberData.grade);
-      formdata.append("etc", app.branchMemberData.etc);
+      formdata.append("etc", app.branchMemberData.branch_etc);
       formdata.append("id", id);
       axios
         .post(`${vue_url}/vue.branch.php?action=update`, formdata, {})
@@ -99,8 +103,10 @@ var app = new Vue({
             app.failToast();
           } else {
             app.successMsg = response.data.message;
-            app.successToast();
-            app.searchMembers();
+            alert(response.data.message);
+            // app.successToast();
+            // app.searchMembers();
+            window.location.reload(true);
           }
           console.log(response.data);
         });

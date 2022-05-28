@@ -22,8 +22,9 @@ include_once('./_common.php');
         $sql = sql_query("SELECT * FROM {$g5['member_table']} WHERE  $where ");
         $members = array();
         while($row = sql_fetch_array($sql)){
-            $sql2 = sql_fetch("SELECT * FROM `branch_member` WHERE branch_id = '{$branch_id}' AND mb_id = '{$row['mb_id']}'");
+            $sql2 = sql_fetch("SELECT * FROM `branch_member` WHERE branch_id = '{$branch_id}' AND mb_no = '{$row['mb_no']}'");
             if(count($sql2) > 0){
+                $sql2['branch_etc'] = $sql2['etc'];
                 $merge_arr = array_merge($sql2, $row);
                 array_push($members, $merge_arr);
             }else{
@@ -42,7 +43,7 @@ include_once('./_common.php');
     if($action == 'create'){
         $sql = sql_query("INSERT INTO `branch_member` SET 
             branch_id = '{$branch_id}',
-            mb_id = '{$mb_id}',
+            mb_no = '{$mb_no}',
             grade = '{$grade}', 
             etc = '{$etc}',
             reg_date = '".G5_TIME_YMD."' "
@@ -50,8 +51,9 @@ include_once('./_common.php');
         $al_id = sql_insert_id();
         $result['dddd'] = "INSERT INTO `branch_member` SET 
             branch_id = '{$branch_id}',
+            mb_no = '{$mb_no}',
             grade = '{$grade}', 
-            etc = '{$etc}'
+            etc = '{$etc}',
             reg_date = '".G5_TIME_YMD."' ";
         if($sql){
             $result['message'] = "지회 회원을 추가하였습니다.";

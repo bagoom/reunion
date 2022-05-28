@@ -80,6 +80,8 @@ $check_keys = array(
 'candidate',
 'generation',
 'admission_year',
+'mb_newsletter',
+'mb_newsletter_ship',
 'etc'
 
 );
@@ -138,6 +140,8 @@ $sql_common = "  mb_name = '{$posts['mb_name']}',
                  candidate = '{$posts['candidate']}' ,
                  generation = '{$posts['generation']}', 
                  admission_year = '{$posts['admission_year']}',
+                 mb_newsletter = '{$posts['mb_newsletter']}',
+                 mb_newsletter_ship = '{$posts['mb_newsletter_ship']}',
                  etc = '{$posts['etc']}'
                  ";
 

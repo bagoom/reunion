@@ -133,6 +133,11 @@ $mb_sms_no          = !$mb['mb_sms']        ? 'checked="checked"' : '';
 $mb_open_yes        =  $mb['mb_open']       ? 'checked="checked"' : '';
 $mb_open_no         = !$mb['mb_open']       ? 'checked="checked"' : '';
 
+
+// 발송지 공개
+$mb_newsletter_ship_yes        =  $mb['mb_newsletter_ship'] == '자택'      ? 'checked="checked"' : '';
+$mb_newsletter_ship_no         =  $mb['mb_newsletter_ship'] == '직장'      ? 'checked="checked"' : '';
+
 if (isset($mb['mb_certify'])) {
     // 날짜시간형이라면 drop 시킴
     if (preg_match("/-/", $mb['mb_certify'])) {
@@ -443,21 +448,14 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
             <tr>
                 <th scope="row">회보 발송</th>
                 <td >
-                    <select name="" id="">
-                        <option value="">미신청</option>
-                        <option value="">신청</option>
+                    <select name="mb_newsletter" id="mb_newsletter">
+                        <option value="0" <?=($mb['mb_newsletter'] == '0' ) ? 'selected' : null?>  >미신청</option>
+                        <option value="1" <?=($mb['mb_newsletter'] == '1' ) ? 'selected' : null?>>신청</option>
                     </select>
-                </td>
-                <th scope="row">회보 발송지 선택</th>
-                <td colspan="3">
-                    <select name="" id="">
-                        <option value="">미신청</option>
-                        <option value="">신청</option>
-                    </select>
-                    <input type="radio" name="mb_sms" value="1" id="mb_sms_yes" <?php echo $mb_sms_yes; ?>>
-                    <label for="mb_sms_yes">자택</label>
-                    <input type="radio" name="mb_sms" value="0" id="mb_sms_no" <?php echo $mb_sms_no; ?>>
-                    <label for="mb_sms_no">직장</label>
+                    <input type="radio" name="mb_newsletter_ship" value="자택" id="mb_newsletter_ship_yes" <?php echo $mb_newsletter_ship_yes; ?>>
+                    <label for="mb_newsletter_ship_yes">자택</label>
+                    <input type="radio" name="mb_newsletter_ship" value="직장" id="mb_newsletter_ship_no" <?php echo $mb_newsletter_ship_no; ?>>
+                    <label for="mb_newsletter_ship_no">직장</label>
                 </td>
             </tr>
         </tbody>

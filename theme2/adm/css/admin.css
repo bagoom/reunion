@@ -5272,6 +5272,15 @@ button.btn {
     font-size: 13px;
 }
 
+.branch_img {
+    width: 284px;
+    margin-top: 15px;
+}
+
+.branch_img img {
+    max-width: 100%;
+}
+
 #modal {
     display: none;
     position: fixed;
@@ -5359,7 +5368,7 @@ button.btn {
 }
 
 #modal.branch-modal {
-    width: 850px;
+    width: 1000px;
 }
 
 #modal.branch-modal .input-row {
@@ -5445,7 +5454,7 @@ button.btn {
 #modal .branch-list .thead div {
     display: table-cell;
     padding: 5px;
-    width: 14.285%;
+    width: 11.1111%;
 }
 
 #modal .branch-list .tbody li .con {
@@ -5461,7 +5470,7 @@ button.btn {
 
 #modal .branch-list .tbody li .con div {
     display: table-cell;
-    width: 14.285%;
+    width: 11.1111%;
     padding: 5px;
     border-bottom: 1px solid #eee;
 }

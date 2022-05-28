@@ -1283,12 +1283,36 @@ a.gnb_2da:hover {
   transition: 0.3s all;
 }
 
+.branch-list li .cover {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-size: cover;
+  opacity: 0;
+  transition: 0.3s all;
+}
+
+.branch-list li .cover::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 20%);
+  z-index: 1;
+}
+
 .branch-list li:nth-child(3n) {
   margin-right: 0;
 }
 
 .branch-list li:hover {
   background: #203864;
+}
+
+.branch-list li:hover .cover {
+  opacity: 1;
 }
 
 .branch-list li:hover .tit,
@@ -2228,6 +2252,10 @@ a.btn_admin:hover {
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
   -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+
+p.frm_input {
+  line-height: 30px;
 }
 
 .tbl_frm01 textarea {

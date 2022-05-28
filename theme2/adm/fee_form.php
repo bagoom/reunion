@@ -61,7 +61,8 @@ $today = date('Y-m-d', time());
     <div class="tit01">회원 검색</div>
     <div class="serach-id">
         <?php if($w=='') {?>
-            <input type="text" placeholder="이름검색" class="frm_input" name="mb_no" value="<?=$mb_no?>">
+            <input type="text" placeholder="이름검색" class="frm_input" id="search" value="<?=$mb_no?>">
+            <input type="hidden"  name="mb_no" value="<?=$mb_no?>" id="num">
             <button class="btn03 open-modal" type="button" style="height:35px; width:60px">검색</button>
             <div class="desc"></div>
         <?php }?>
@@ -158,7 +159,19 @@ $today = date('Y-m-d', time());
         return true;
     }
 
+    $("#search").keydown(function (key) {
+        if(key.keyCode == 13){//키가 13이면 실행 (엔터는 13)
+            searchMember();
+            return false;
+        }
+    });
+    
+
     $(".serach-id button").click(function(){
+        searchMember();
+    })
+
+    function searchMember(){
         mb_name = $(".serach-id input").val();
         $("input[name=mb_select]").val("0");
         $(".serach-id .desc").text("");
@@ -166,6 +179,7 @@ $today = date('Y-m-d', time());
         if(!mb_name){
             alert("검색할 회원의 이름을 입력하세요.")
         }else{
+            $("#modal, #overlay").show();
             $.ajax({
                 url: "./ajax.search_mem.php",
                 type: 'POST',
@@ -184,7 +198,7 @@ $today = date('Y-m-d', time());
                 }
             });
         }
-    });
+    };
 
     $(document).on("change","#fee_type",function(){
         var value = $(this).val();
@@ -206,7 +220,8 @@ $today = date('Y-m-d', time());
         value = $(this).data("id");
         name = $(this).data("name");
         if(value){
-            $(".serach-id input").val(value);
+            $(".serach-id #search").val(name);
+            $(".serach-id #num").val(value);
             $("#modal, #overlay").hide();
             $(".serach-id input").css("border", "2px solid #3e51b5")
             $(".serach-id .desc").text(name+"님의 회비를 등록 합니다.");

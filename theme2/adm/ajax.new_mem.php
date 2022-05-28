@@ -1,7 +1,7 @@
 <?php
 include_once('./_common.php');
 
-$sql = "SELECT * FROM {$g5['member_table']} WHERE mb_id != '{$mb_id}'  AND mb_name = '{$mb_name}' AND confirm = 'N' AND reunion_id = '{$reunionID}'";
+$sql = "SELECT * FROM {$g5['member_table']} WHERE mb_id != '{$mb_id}'  AND mb_name = '{$mb_name}' AND mb_new = '' AND reunion_id = '{$reunionID}'";
 $result = sql_query($sql);
 echo $sql;
 

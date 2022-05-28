@@ -32,7 +32,7 @@ include_once('./admin.head.php');
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
 
-<form name="fmember" id="fmember" action="./branch_form_update.php" onsubmit="return fmember_submit(this);" method="post">
+<form name="fmember" id="fmember" action="./branch_form_update.php" onsubmit="return fmember_submit(this);" method="post" enctype="multipart/form-data">
     <input type="hidden" name="w" value="<?php echo $w ?>">
     <input type="hidden" name="branch_id" value="<?php echo $branch_id?>">
     <input type="hidden" name="sfl" value="<?php echo $sfl ?>">
@@ -80,9 +80,17 @@ include_once('./admin.head.php');
                     </td>
                 </tr>
                 <tr>
-                    <th scope="row">사진등록 (미구현)</th>
+                    <th scope="row">사진등록 권장사이즈 284*284</th>
                     <td colspan="5">
-                        <input type="file">
+                        <input type="file" name="branch_img">
+
+                        <div class="branch_img">
+                            <?php if($w == 'u' && $branch['branch_img']){ ?>
+                                <div class="img">
+                                    <img src="<?=G5_DATA_URL?><?=$branch['branch_img']?>" alt="">
+                                </div>
+                            <?php }?>
+                        </div>
                     </td>
                 </tr>
             </tbody>
@@ -91,7 +99,7 @@ include_once('./admin.head.php');
 
     <?php if ($w == 'u') {
     
-    $branch_mem_sql = "SELECT * FROM {$g5['member_table']} a, {$g5['branch_member']} b WHERE a.mb_id = b.mb_id AND b.branch_id ='$branch_id' " ;   
+    $branch_mem_sql = "SELECT * FROM {$g5['member_table']} a, {$g5['branch_member']} b WHERE a.mb_no = b.mb_no AND b.branch_id ='$branch_id' " ;   
     $branch_mem_result = sql_query($branch_mem_sql);
 ?>
     <div class="tbl_frm01 tbl_wrap table02">
@@ -172,9 +180,11 @@ include_once('./admin.head.php');
             <h3 class="tit01"></h3>
             <div class="branch-list">
                 <div class="thead">
-                    <div class="name">성명</div>
+                    <div class="id">아이디</div>
+                    <div class="name">이름</div>
                     <div class="department">학과</div>
                     <div class="entrance_year">입학</div>
+                    <div class="graduation_year">졸업</div>
                     <div class="mb_hp">전화번호</div>
                     <div class="grade">등급</div>
                     <div class="etc">비고</div>
@@ -188,9 +198,11 @@ include_once('./admin.head.php');
                         </div>
                         <li v-for="member in members">
                             <div class="con" :class="{ 'on' : memberToModify == member.mb_no}">
+                                <div class="id">{{member.mb_id}}</div>
                                 <div class="name">{{member.mb_name}}</div>
                                 <div class="department">{{member.department}}</div>
                                 <div class="entrance_year">{{member.entrance_year}}</div>
+                                <div class="graduation_year">{{member.graduation_year}}</div>
                                 <div class="mb_hp">{{member.mb_hp}}</div>
                                 <div class="grade">{{member.grade? member.grade : '일반'}}</div>
                                 <div class="etc">{{member.etc}}</div>
@@ -213,7 +225,7 @@ include_once('./admin.head.php');
                                     </div>
                                     <div class="input-col">
                                         <label for="">비고</label>
-                                        <input type="text" name="etc" :value="member.etc" @keyup="onChangeEtc">
+                                        <input type="text" name="etc" :value="member.branch_etc" @keyup="onChangeEtc">
                                     </div>
                                     <div class="input-col">
                                         <button type="button" class="submit" @click="member.id ? updateBranchMember(member.id) : addBranchMembe()">확인</button>
@@ -237,7 +249,7 @@ include_once('./admin.head.php');
     });
     $(document).on("click", ".modal-close", function () {
         $("#modal, #overlay").hide();
-        location.reload();
+        // location.reload();
     });
 </script>
 <link rel="stylesheet" href="https://unpkg.com/vue-snotify@latest/styles/material.css">

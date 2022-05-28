@@ -45,22 +45,34 @@ function is_checked(elements_name) {
   return checked;
 }
 
-function delete_confirm(el) {
-  if (
-    confirm(
-      "한번 삭제한 자료는 복구할 방법이 없습니다.\n\n정말 삭제하시겠습니까?"
-    )
-  ) {
-    var token = get_ajax_token();
-    var href = el.href.replace(/&token=.+$/g, "");
-    if (!token) {
-      alert("토큰 정보가 올바르지 않습니다.");
+function delete_confirm(el, where) {
+  console.log(where)
+  if(!where){
+    if (confirm("한번 삭제한 자료는 복구할 방법이 없습니다.\n\n정말 삭제하시겠습니까?")) {
+      var token = get_ajax_token();
+      var href = el.href.replace(/&token=.+$/g, "");
+      if (!token) {
+        alert("토큰 정보가 올바르지 않습니다.");
+        return false;
+      }
+      el.href = href + "&token=" + token;
+      return true;
+    } else {
       return false;
     }
-    el.href = href + "&token=" + token;
-    return true;
-  } else {
-    return false;
+  }else{
+    if (confirm("해당 회원의 동문인증을 취소 하시겠습니까?")) {
+      var token = get_ajax_token();
+      var href = el.href.replace(/&token=.+$/g, "");
+      if (!token) {
+        alert("토큰 정보가 올바르지 않습니다.");
+        return false;
+      }
+      el.href = href + "&token=" + token;
+      return true;
+    } else {
+      return false;
+    }
   }
 }
 
