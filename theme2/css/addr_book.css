@@ -2099,7 +2099,7 @@ html.no-overflowscrolling #autosave_pop {
 
 
 .pg_wrap {
-    margin-top: 10px
+    margin-top: 30px
 }
 
 .pg_current {
@@ -2254,10 +2254,14 @@ select {
 
 .tables_th li {
     float: left;
+    padding: 0 5px;
+    text-align: center;
 }
 
 .tables_td li {
     float: left;
+    padding: 0 5px;
+    text-align: center;
 }
 
 .tables_td2 li {
@@ -2265,37 +2269,58 @@ select {
 }
 
 .pa_year {
-    width: 5%;
+    width: 7%;
+    text-align: center;
+}
+
+.pa_graduation_year {
+    width: 11%;
     text-align: center;
 }
 
 .pa_name {
-    width: 10%;
+    width: 13%;
     text-align: center;
 }
 
 .pa_tel {
-    width: 15%;
+    width: 13%;
     text-align: center;
 }
 
 .pa_address {
-    width: 33%;
-    padding: 0 20px;
-    text-align: left;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
+    width: 13%;
 }
 
-.pa_time {
-    width: 15%;
+.pa_email {
+    width: 13%;
     text-align: center;
 }
 
-.pa_link {
-    width: 12%;
+.pa_branch {
+    width: 30%;
     text-align: center;
+}
+
+.tables_td i {
+    display: inline-block;
+    padding: 5px 5px 5.5px;
+    font-size: 16px;
+    color: #fff;
+    border-radius: 3px;
+    background: #d4d4d4;
+}
+
+.tables_td i.xi-call.on {
+    background: #ffcc00;
+}
+
+.tables_td i.xi-home.on {
+    background: #0080ff;
+}
+
+.tables_td i.xi-mail.on {
+    background: #ff9500;
 }
 
 .bd_on {
@@ -2452,6 +2477,15 @@ select {
 
 .cb {
     clear: both;
+}
+
+.help {
+    padding: 15px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    line-height: 1.4;
+    border-radius: 3px
 }
 
 .font-b {

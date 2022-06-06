@@ -27,9 +27,9 @@ else if($w == ''){
 else
     alert('잘못된 접근입니다', G5_URL);
 
-    echo $mb_id ; 
+    // echo $mb_id ; 
 
-    var_dump( $_SESSION['ss_check_mb_id'] ) . '<br>';
+    // var_dump( $_SESSION['ss_check_mb_id'] ) . '<br>';
 
 if(!$mb_id)
     alert('회원아이디 값이 없습니다. 올바른 방법으로 이용해 주십시오.');
@@ -118,7 +118,6 @@ if ($w == '' || $w == 'u') {
     }
 
     if ($w=='') {
-        var_dump( $_SESSION );
         if ($msg = exist_mb_id($mb_id))     alert($msg);
 
         if (get_session('ss_check_mb_id') != $mb_id || get_session('ss_check_mb_nick') != $mb_nick || get_session('ss_check_mb_email') != $mb_email) {
@@ -201,13 +200,14 @@ if ($config['cf_cert_use'] && $cert_type && $md5_cert_no) {
         $sql_certify .= " , mb_hp = '{$mb_hp}' ";
         $sql_certify .= " , mb_certify = '' ";
         $sql_certify .= " , mb_adult = 0 ";
-        $sql_certify .= " , mb_birth = '' ";
+        $sql_certify .= " , mb_birth = '{$mb_birth}' ";
         $sql_certify .= " , mb_sex = '' ";
     }
 }
 //===============================================================
 
 if ($w == '') {
+    // var_dump($_SESSION);
     $sql = " insert into {$g5['member_table']}
                 set mb_id = '{$mb_id}',
                      mb_password = '".get_encrypt_string($mb_password)."',
@@ -261,7 +261,7 @@ if ($w == '') {
         $sql .= " , mb_email_certify = '".G5_TIME_YMDHIS."' ";
     sql_query($sql);
 
-    echo $sql;
+    // echo $sql;
 
     // 회원가입 포인트 부여
     insert_point($mb_id, $config['cf_register_point'], '회원가입 축하', '@member', $mb_id, '회원가입');

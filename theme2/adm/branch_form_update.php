@@ -1,6 +1,6 @@
 <?php
-error_reporting( E_ALL );
-ini_set( "display_errors", 1 );
+// error_reporting( E_ALL );
+// ini_set( "display_errors", 1 );
 $sub_menu = "300100";
 include_once("./_common.php");
 include_once(G5_LIB_PATH."/register.lib.php");
@@ -27,7 +27,7 @@ if ($w == '')
     @chmod(G5_DATA_PATH."/branch", G5_DIR_PERMISSION);
     if(isset($_FILES['branch_img']['name'])){
         $image_name = $_FILES['branch_img']['name'];
-        echo $image_name;
+        // echo $image_name;
         $valid_extensions = array("jpg","jpeg","png", "gif");
         $extension = pathinfo($image_name, PATHINFO_EXTENSION);
         if(in_array($extension, $valid_extensions)){
@@ -39,11 +39,11 @@ if ($w == '')
             if(upload_file($_FILES['branch_img']['tmp_name'], "cover.".$extension, $upload_path)){
                 $image = $upload_path;
             }else{
-                $result['message'] = '이미지 업로드중 에러가 발생하였습니다.';
+                alert('이미지 업로드중 에러가 발생하였습니다.');
             }
         }
         else{
-            $result['message'] = '이미지 파일만 업로드 하여 주십시오.';
+            alert('이미지 파일만 업로드 하여 주십시오.');
         }
     }
     sql_query("UPDATE {$g5['branch']} SET branch_img = '{$img_url}' WHERE branch_id = '{$branch_id}' ");
@@ -52,10 +52,11 @@ else if ($w == 'u')
 {
     @mkdir(G5_DATA_PATH."/branch", G5_DIR_PERMISSION);
     @chmod(G5_DATA_PATH."/branch", G5_DIR_PERMISSION);
-    if(isset($_FILES['branch_img']['name'])){
+    var_dump(empty($_FILES['branch_img']['name']));
+    if(!empty($_FILES['branch_img']['name'])){
         $image_name = $_FILES['branch_img']['name'];
-        echo $image_name;
-        $valid_extensions = array("jpg","jpeg","png", "gif");
+        // echo $image_name;
+        $valid_extensions = array("jpg","jpeg","png", "gif", "JPG");
         $extension = pathinfo($image_name, PATHINFO_EXTENSION);
         if(in_array($extension, $valid_extensions)){
             $upload_path = G5_DATA_PATH."/branch/".$branch_id;
@@ -66,22 +67,23 @@ else if ($w == 'u')
             if(upload_file($_FILES['branch_img']['tmp_name'], "cover.".$extension, $upload_path)){
                 $image = $upload_path;
             }else{
-                $result['message'] = '이미지 업로드중 에러가 발생하였습니다.';
+                alert('이미지 업로드중 에러가 발생하였습니다.');
             }
         }
         else{
-            $result['message'] = '이미지 파일만 업로드 하여 주십시오.';
+            alert('이미지 파일만 업로드 하여 주십시오.');
         }
-    }
-
-    $sql = " update {$g5['branch']}
-                set {$sql_common} , branch_img = '{$img_url}'
-                where branch_id = '{$branch_id}' ";
-    sql_query($sql);
-    echo $sql;
+        $sql = " update {$g5['branch']}
+                    set branch_img = '{$img_url}' where branch_id = '{$branch_id}' AND reunion_id = '{$reunionID}' ";
+                    sql_query($sql);
+        }
+                
+        $sql = " update {$g5['branch']}
+                    set {$sql_common} where branch_id = '{$branch_id}' AND reunion_id = '{$reunionID}'";
+                    sql_query($sql);
 }
 else
     alert('제대로 된 값이 넘어오지 않았습니다.');
 
 
-goto_url('./branch_list.php?', false);
+goto_url('./branch_form.php?branch_id='.$branch_id.'&w=u', false);

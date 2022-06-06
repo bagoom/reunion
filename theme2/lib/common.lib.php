@@ -792,6 +792,29 @@ function get_member($mb_id, $fields='*', $is_cache=false)
     return $cache[$mb_id][$key];
 }
 
+// 회원 정보를 얻는다.
+function get_member2($mb_no, $fields='*', $is_cache=false)
+{
+    global $g5;
+    
+    if (preg_match("/[^0-9a-z_]+/i", $mb_no))
+        return array();
+
+    static $cache = array();
+
+    $key = md5($fields);
+
+    if( $is_cache && isset($cache[$mb_no]) && isset($cache[$mb_id][$key]) ){
+        return $cache[$mb_no][$key];
+    }
+
+    $sql = " select $fields from {$g5['member_table']} where mb_no = TRIM('$mb_no') ";
+
+    $cache[$mb_no][$key] = run_replace('get_member', sql_fetch($sql), $mb_no, $fields, $is_cache);
+
+    return $cache[$mb_no][$key];
+}
+
 
 // 매니저 정보를 얻는다.
 function get_manager($mg_id, $fields='*', $is_cache=false)
@@ -4064,5 +4087,20 @@ function get_reunion_select2($name, $selected='', $event='', $field, $table)
         $str .= option_selected($row[$field], $selected, $row[$field]);
     }
     $str .= "</select>";
+    return $str;
+}
+
+// 지회정보를 얻음
+function get_branch($mb_no, $where)
+{
+    global $g5, $is_admin, $member, $reunionID;
+
+    $sql = "SELECT * FROM {$g5['branch']} a, `branch_member` b WHERE a.branch_id = b.branch_id AND  a.reunion_id = '{$reunionID}' AND b.mb_no = '{$mb_no}'";
+    $result = sql_query($sql);
+    for ($i=0; $row=sql_fetch_array($result); $i++) {
+        $str .= $row['branch_name']. ",";
+    }
+
+    $str = substr($str, 0, -1);
     return $str;
 }

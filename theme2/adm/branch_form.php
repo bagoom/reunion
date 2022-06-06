@@ -62,7 +62,7 @@ include_once('./admin.head.php');
                     </td>
                     <th scope="row">지회명</th>
                     <td>
-                        <input type="text" name="branch_name" value="<?php echo $branch['branch_name'] ?>" id="branch_name" class=" frm_input" size="15" maxlength="20">
+                        <input type="text" name="branch_name" value="<?php echo $branch['branch_name'] ?>" id="branch_name" class=" frm_input required"  required size="15" maxlength="20">
                     </td>
                     <th scope="row">상태</th>
                     <td>
@@ -82,7 +82,7 @@ include_once('./admin.head.php');
                 <tr>
                     <th scope="row">사진등록 권장사이즈 284*284</th>
                     <td colspan="5">
-                        <input type="file" name="branch_img">
+                        <input type="file" name="branch_img" value="<?=$branch['branch_img']?>">
 
                         <div class="branch_img">
                             <?php if($w == 'u' && $branch['branch_img']){ ?>

@@ -241,7 +241,7 @@ gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_
 	            <?php } ?>
 
 	            <li class="chk_box">
-		        	<input type="checkbox" name="mb_mailling" value="1" id="reg_mb_mailling" <?php echo ($w=='' || $member['mb_mailling'])?'checked':''; ?> class="selec_chk">
+		        	<input type="checkbox" name="mb_mailling" value="1" id="reg_mb_mailling" <?php echo ( $member['mb_mailling'])?'checked':''; ?> class="selec_chk">
 		            <label for="reg_mb_mailling">
 		            	<span></span>
 		            	<b class="sound_only">메일링서비스</b>
@@ -251,7 +251,7 @@ gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_
 	
 				<?php if ($config['cf_use_hp']) { ?>
 		        <li class="chk_box">
-		            <input type="checkbox" name="mb_sms" value="1" id="reg_mb_sms" <?php echo ($w=='' || $member['mb_sms'])?'checked':''; ?> class="selec_chk">
+		            <input type="checkbox" name="mb_sms" value="1" id="reg_mb_sms" <?php echo ( $member['mb_sms'])?'checked':''; ?> class="selec_chk">
 		        	<label for="reg_mb_sms">
 		            	<span></span>
 		            	<b class="sound_only">SMS 수신여부</b>
@@ -260,6 +260,7 @@ gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_
 		        </li>
 		        <?php } ?>
 	
+				<?php /*
 		        <?php if (isset($member['mb_open_date']) && $member['mb_open_date'] <= date("Y-m-d", G5_SERVER_TIME - ($config['cf_open_modify'] * 86400)) || empty($member['mb_open_date'])) { // 정보공개 수정일이 지났다면 수정가능 ?>
 		        <li class="chk_box">
 		            <input type="checkbox" name="mb_open" value="1" id="reg_mb_open" <?php echo ($w=='' || $member['mb_open'])?'checked':''; ?> class="selec_chk">
@@ -286,6 +287,7 @@ gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_
 	                
 	            </li>
 	            <?php }  ?>
+				*/ ?>
 	
 	            <?php
 	            //회원정보 수정인 경우 소셜 계정 출력
@@ -397,7 +399,13 @@ function member_leave() { // 회원 탈퇴 tto
 			location.href = '<?php echo G5_BBS_URL ?>/member_confirm.php?url=/bbs/member_leave.php';
 	}
 }
-
+$('#fregisterform').on('keyup keypress', function (e) {
+	var keyCode = e.keyCode || e.which;
+	if (keyCode === 13) {
+		e.preventDefault();
+		return false;
+	}
+});
 // submit 최종 폼체크
 function fregisterform_submit(f)
 {

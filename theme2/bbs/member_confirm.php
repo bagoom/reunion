@@ -4,6 +4,11 @@ include_once('./_common.php');
 if ($is_guest)
     alert('로그인 후 이용해 주세요.', G5_BBS_URL.'/login.php');
 
+if($mb_no){
+    $prevPage = $_SERVER['HTTP_REFERER'];
+    if($mb_no != $member['mb_no'])
+    alert('본인이 아닌 경우 열람하실 수 없습니다.', $prevPage);
+}
 /*
 if ($url)
     $urlencode = urlencode($url);

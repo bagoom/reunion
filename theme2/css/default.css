@@ -515,8 +515,8 @@ select:focus {
 .gnb_1da {
   display: block;
   width: 130px;
+  line-height: 75px;
   font-weight: bold;
-  padding-bottom: 20px;
   font-size: 19px;
   color: #444;
   text-decoration: none;
@@ -712,7 +712,7 @@ a.gnb_2da:hover {
 
 /* 중간 레이아웃 */
 #wrapper {
-  margin-top: 124px;
+  margin-top: 119px;
 }
 
 #container_wr {
@@ -1289,7 +1289,9 @@ a.gnb_2da:hover {
   right: 0;
   bottom: 0;
   left: 0;
-  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
   opacity: 0;
   transition: 0.3s all;
 }
@@ -1352,16 +1354,20 @@ a.gnb_2da:hover {
 }
 
 .branch-list li .info {
-  display: flex;
   margin-top: 10px;
   font-size: 14px;
   color: #666;
   white-space: nowrap;
+  text-align: center;
 }
 
-.branch-list li .member {
-  margin-right: 10px;
+.branch-list li .info div {
+  margin-bottom: 5px;
 }
+
+/* .branch-list li .member {
+  margin-right: 10px;
+} */
 
 .branch-list li::before {
   content: '';
@@ -2840,4 +2846,99 @@ textarea.required {
   font-size: 2em;
   text-decoration: none;
   text-align: center
+}
+
+#modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  max-width: 500px;
+  min-height: 300px;
+  background: #fff;
+  border-radius: 5px;
+  transform: translate(-50%, -50%);
+  z-index: 1001;
+}
+
+#modal .modal-head {
+  position: relative;
+  padding: 15px;
+  font-size: 20px;
+  color: #333;
+  border-bottom: 1px solid #eee;
+}
+
+#modal .modal-head .modal-close {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  color: #000;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+#modal .modal-con .txt {
+  padding: 15px;
+  font-size: 16px;
+  white-space: pre-line;
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 50%);
+  z-index: 1000;
+}
+
+#modal,
+#overlay {
+  display: none;
+}
+
+#modal.open,
+#overlay.open {
+  display: block;
+}
+
+.local_sch .flex-box {
+  display: flex;
+}
+
+.local_sch .input-row {
+  display: flex;
+}
+
+.local_sch .input-col {
+  margin-right: 10px;
+}
+
+.local_sch .input-col input {
+  width: 150px;
+}
+
+.local_sch .btn_submit {
+  width: 50px;
+  height: 40px;
+}
+
+#bo_w .write_div .input-row {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+#bo_w .write_div .input-col {
+  width: 50%;
+}
+
+#bo_w .write_div .input-col:first-child {
+  margin-right: 10px;
+}
+
+#bo_w .write_div .input-row.full .input-col {
+  width: 100%;
+  margin-right: 0;
 }

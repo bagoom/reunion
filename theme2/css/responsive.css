@@ -168,6 +168,10 @@
         font-size: 13px;
     }
 
+    #visual .notice-bar .notice-slide {
+        width: 100%;
+    }
+
     #visual .notice-bar .notice-slide .notice-list {
         padding: 0 10px;
     }

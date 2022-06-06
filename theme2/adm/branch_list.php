@@ -89,8 +89,8 @@ $colspan = 8;
         $chairman_data = sql_fetch("SELECT * FROM {$g5['branch_member']} WHERE branch_id = '{$row['branch_id']}' AND grade = '회장'");
         $manager_data = sql_fetch("SELECT * FROM {$g5['branch_member']} WHERE branch_id = '{$row['branch_id']}' AND grade = '총무'");
 
-        $chairman = get_member($chairman_data['mb_id']);
-        $manager = get_member($manager_data['mb_id']);
+        $chairman = get_member2($chairman_data['mb_no']);
+        $manager = get_member2($manager_data['mb_no']);
 
         $branch_mem_count_sql = sql_fetch("SELECT count(*) AS count FROM {$g5['branch']} a, {$g5['branch_member']} b  WHERE a.branch_id = b.branch_id AND b.branch_id = '{$row['branch_id']}' ");
         $branch_mem_count = $branch_mem_count_sql['count'];

@@ -119,7 +119,7 @@ include_once(G5_PATH.'/head.php');
         <?php
             echo latest('pic_list', 'event', 4, 40);			
             echo latest('pic_list', 'report', 4, 40);			
-            echo latest('pic_list', 'promotion', 4, 40);		
+            echo latest('promotion', 'promotion', 3, 40);		
         ?>
     </div>
 

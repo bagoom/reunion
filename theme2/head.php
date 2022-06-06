@@ -58,7 +58,7 @@ if (!file_exists($reunion_config_file)) {
     </div>
     <div id="hd_wrapper">
         <div id="logo">
-            <a href="<?php echo G5_URL ?>"><img src="<?php echo G5_IMG_URL ?>/logo.gif" alt="<?php echo $config['cf_title']; ?>"></a>
+            <a href="<?php echo G5_URL ?>"><img src="<?php echo G5_IMG_URL ?>/logo.png" alt="<?php echo $config['cf_title']; ?>"></a>
         </div>
 
         <div class="nav-open-btn m-show">
