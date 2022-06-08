@@ -280,7 +280,7 @@
     border-radius: 3px;
     text-align: center;
     overflow: hidden;
-    min-height: 310px;
+    min-height: 313px;
     background: #eee;
 }
 
@@ -1989,4 +1989,22 @@ html.no-overflowscrolling #autosave_pop {
 #bo_w .btn_cancel {
     border-radius: 3px;
     font-size: 1.167em
+}
+
+@media (max-width:768px) {
+    #bo_gall .gall_li {
+        width: calc(50% - 5px);
+    }
+
+    #bo_gall .gall_li:nth-child(even) {
+        margin-right: 0;
+    }
+
+    #bo_gall .gall_li:nth-child(odd) {
+        margin-right: 10px;
+    }
+
+    #bo_gall .gall_img {
+        min-height: 244px;
+    }
 }

@@ -27,18 +27,18 @@ if (G5_IS_MOBILE) {
         
         <div class="ft_logo"><img src="<?= G5_IMG_URL ?>/ft_logo.png?v=<?=G5_IMG_VER?>" alt=""></div>
         <div class="ft_content">
-        <div id="ft_link" class="ft_cnt">
+        <!-- <div id="ft_link" class="ft_cnt">
             <a href="<?php echo get_pretty_url('content', 'company'); ?>">동문회 안내</a>
             <a href="<?php echo get_pretty_url('content', 'privacy'); ?>">개인정보처리방침</a>
             <a href="<?php echo get_pretty_url('content', 'provision'); ?>">서비스이용약관</a>
-        </div>
+        </div> -->
 
 
         <div id="ft_company" class="ft_cnt">
 	        <p class="ft_info">
-	        	북일고등학교 충천남도 천안시 동나묵 단대로 69 (신부동)  Tel: 041.520-8600 Fax: 041.551.7116 <br>
+	        	북일고등학교 충천남도 천안시 동나묵 단대로 69 (신부동)<br class="m-show">  Tel: 041.520-8600 Fax: 041.551.7116 <br>
 	        	<!-- E-mail:alumni1398@hanmail.net<br> -->
-	        	COPYRIGHT ⓒ SCHOOL ALL RIGHTS RESERVED.
+                COPYRIGHTⓒ2022 북일고등학교 총동문회<br class="m-show"> ALL RIGHTS RESERVED.
 			</p>
 	    </div>
         </div>

@@ -1819,3 +1819,16 @@ html.no-overflowscrolling #autosave_pop {
     border-radius: 3px;
     font-size: 1.167em
 }
+
+@media (max-width:768px) {
+    .bo_tit {
+        overflow: hidden;
+        width: 140px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    #bo_list .td_name {
+        text-align: center;
+    }
+}

@@ -34,7 +34,7 @@ if($is_admin !== 'superadmin'){
     $total_count_sql = sql_fetch("SELECT count(*) AS count FROM {$g5['branch']} WHERE  $where");
 }
 $total_count = $total_count_sql['count'];
-$colspan = 8;
+$colspan = 9;
 ?>
 
 

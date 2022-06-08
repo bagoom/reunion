@@ -1,4 +1,4 @@
-﻿<?php $base_filename = basename($_SERVER['PHP_SELF']); ?>
+<?php $base_filename = basename($_SERVER['PHP_SELF']); ?>
 <div id="location">
  <!-- 현재 위치 표시 -->
         <a href="<?php echo G5_URL ?>"><i class="xi-home"></i> Home ></a>

@@ -239,12 +239,12 @@ if (!file_exists($reunion_config_file)) {
 <div id="wrapper" class="<?=(!defined("_INDEX_")) ? "sub" : "main"?>">
     <?php if (!defined("_INDEX_")) { ?>
         <div id="sub-title">
-            <h2 class="sub-title-h2"><?=$reunion['reunion_title']?> 총동문회에 오신것을<br> 환영합니다</h2>
+            <h2 class="sub-title-h2"><?=$reunion['reunion_title']?>에<br class="m-show"> 오신것을<br class="pc-show"> 환영합니다</h2>
         </div>
     <?php } ?>
     <div id="container_wr">
-        <?php if (!defined("_INDEX_")) {  
-            include_once(G5_PATH.'/include/location.php'); 
-            include_once(G5_PATH.'/include/mysubmenu.php'); 
+        <?php if (!defined("_INDEX_")) {
+            include_once(G5_PATH.'/include/location.php');
+            include_once(G5_PATH.'/include/mysubmenu.php');
         } ?>
         <div id="container">

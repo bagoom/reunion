@@ -53,10 +53,17 @@ include_once(G5_PATH.'/head.php');
 
         <?=latest('pic_list', 'notice', 4, 33);?>
 
-        <div class="main_gallery">
+        <div class="main_gallery pc-show">
             <div class="inner-wrapper">
                 <div class="latest_wr">
                     <?=latest('pic_block', 'gallery', 3, 23)?>
+                </div>
+            </div>
+        </div>
+        <div class="main_gallery m-show">
+            <div class="inner-wrapper">
+                <div class="latest_wr">
+                    <?=latest('pic_block', 'gallery', 4, 23)?>
                 </div>
             </div>
         </div>
@@ -123,7 +130,21 @@ include_once(G5_PATH.'/head.php');
         ?>
     </div>
 
-    <div class="banner-wrap banner02">배너영역</div>
+    <div class="banner-wrap banner02">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="<?= G5_IMG_URL ?>/banner/banner01.jpg?v=<?=G5_IMG_VER?>" alt=""></div>
+                <div class="swiper-slide"><img src="<?= G5_IMG_URL ?>/banner/banner02.jpg?v=<?=G5_IMG_VER?>" alt=""></div>
+                <div class="swiper-slide"><img src="<?= G5_IMG_URL ?>/banner/banner03.jpg?v=<?=G5_IMG_VER?>" alt=""></div>
+                <div class="swiper-slide"><img src="<?= G5_IMG_URL ?>/banner/banner04.jpg?v=<?=G5_IMG_VER?>" alt=""></div>
+                <div class="swiper-slide"><img src="<?= G5_IMG_URL ?>/banner/banner05.jpg?v=<?=G5_IMG_VER?>" alt=""></div>
+                <div class="swiper-slide"><img src="<?= G5_IMG_URL ?>/banner/banner06.jpg?v=<?=G5_IMG_VER?>" alt=""></div>
+                <div class="swiper-slide"><img src="<?= G5_IMG_URL ?>/banner/banner07.jpg?v=<?=G5_IMG_VER?>" alt=""></div>
+                <div class="swiper-slide"><img src="<?= G5_IMG_URL ?>/banner/banner08.jpg?v=<?=G5_IMG_VER?>" alt=""></div>
+                <div class="swiper-slide"><img src="<?= G5_IMG_URL ?>/banner/banner09.jpg?v=<?=G5_IMG_VER?>" alt=""></div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -179,6 +200,15 @@ include_once(G5_PATH.'/head.php');
     var slide_bn = new Swiper('#main_container .sec02 .swiper-container', {
         autoplay: {
             delay: 2500,
+            disableOnInteraction: false,
+        },
+    });
+    var slide_bn = new Swiper('#main_container .banner02 .swiper-container', {
+        slidesPerView: 5, // 영역내 보여질 배너 갯수
+        spaceBetween: 30, // 배너간격
+        speed: 1200,
+        autoplay: {
+            delay: 3500,
             disableOnInteraction: false,
         },
     });

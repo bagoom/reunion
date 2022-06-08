@@ -71,30 +71,54 @@ $result = sql_query($sql);
 
 <link rel="stylesheet" href="<?=G5_CSS_URL?>/addr_book.css?ver=<?=G5_CSS_VER?>">
 
-<form id="fsearch" name="fsearch"class="local_sch03 local_sch" method="get">
-    <div class="flex-box">
-        <div class="left">
-            <div class="input-row">
-                <div class="input-col">
-                    <input type="text" name="generation" value="<?= $generation?>" id="generation" class="frm_input" placeholder="기수">
+<form id="fsearch" name="fsearch" class="local_sch03 local_sch" method="get">
+        <div class="flex-box ">
+            <div class="left">
+                <div class="input-row">
+                    <div class="input-col">
+                        <input type="text" name="generation" value="<?= $generation?>" id="generation" class="frm_input" placeholder="기수">
+                    </div>
+                    <div class="input-col">
+                        <input type="text" name="graduation_year" value="<?= $graduation_year?>" id="graduation_year" class="frm_input" placeholder="졸업">
+                    </div>
+                    <div class="input-col">
+                        <input type="text" name="branch_name" value="<?php echo $branch_name ?>" id="branch_name" class=" frm_input" placeholder="소속지회">
+                    </div>
+                    <div class="input-col">
+                        <input type="text" name="mb_name" value="<?=$mb_name ?>" id="mb_name" class=" frm_input" placeholder="이름">
+                    </div>
                 </div>
-                <div class="input-col">
-                    <input type="text" name="graduation_year" value="<?= $graduation_year?>" id="graduation_year" class="frm_input" placeholder="졸업">
+
+            </div>
+
+            <div class="rigth">
+                <input type="submit" value="검색" class="btn_submit">
+            </div>
+        </div>
+        <!-- <div class="flex-box ">
+            <div class="left">
+                <div class="input-row">
+                    <div class="input-col">
+                        <input type="text" name="generation" value="<?= $generation?>" id="generation" class="frm_input" placeholder="기수">
+                    </div>
+                    <div class="input-col">
+                        <input type="text" name="graduation_year" value="<?= $graduation_year?>" id="graduation_year" class="frm_input" placeholder="졸업">
+                    </div>
                 </div>
-                <div class="input-col">
-                    <input type="text" name="branch_name" value="<?php echo $branch_name ?>" id="branch_name"  class=" frm_input" placeholder="소속지회">
-                </div>
-                <div class="input-col">
-                    <input type="text" name="mb_name" value="<?=$mb_name ?>" id="mb_name" class=" frm_input" placeholder="이름">
+                <div class="input-row">
+                    <div class="input-col">
+                        <input type="text" name="branch_name" value="<?php echo $branch_name ?>" id="branch_name" class=" frm_input" placeholder="소속지회">
+                    </div>
+                    <div class="input-col">
+                        <input type="text" name="mb_name" value="<?=$mb_name ?>" id="mb_name" class=" frm_input" placeholder="이름">
+                    </div>
                 </div>
             </div>
 
-        </div>
-
-        <div class="rigth">
-            <input type="submit" value="검색" class="btn_submit" >
-        </div>
-    </div>
+            <div class="rigth">
+                <input type="submit" value="검색" class="btn_submit">
+            </div>
+        </div> -->
 </form>
 
 <div class="cont addr_book">

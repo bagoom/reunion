@@ -36,6 +36,12 @@ function mailer($fname, $fmail, $to, $subject, $content, $type=0, $file="", $cc=
         $mail->From = $fmail;
         $mail->FromName = $fname;
         $mail->Subject = $subject;
+        $mail-> SMTPAuth = true;
+        $mail->Username = 'contact@wooribannet.com';
+        $mail->Password = 'dnflqks114@';   
+        $mail->SMTPKeepAlive = true;
+        $mail->SMTPSecure = 'tls'; 
+        $mail->SMTPDebug = 0;
         $mail->AltBody = ""; // optional, comment out and test
         $mail->msgHTML($content);
         $mail->addAddress($to);

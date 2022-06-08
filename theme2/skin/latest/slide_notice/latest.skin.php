@@ -29,8 +29,8 @@ $list_count = (is_array($list) && $list) ? count($list) : 0;
             echo "</a>";
 			
 
-            if ($list[$i]['comment_cnt'])  echo "
-            <span class=\"lt_cmt\">".$list[$i]['wr_comment']."</span>";
+            // if ($list[$i]['comment_cnt'])  echo "
+            // <span class=\"lt_cmt\">".$list[$i]['wr_comment']."</span>";
 
             ?>
 

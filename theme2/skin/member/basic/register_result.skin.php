@@ -31,7 +31,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
     <p class="result_txt">
         동문 인증 후 기입하신 이메일로 가입 승인 메일을 발송해 드립니다.
         (업무일 기준 2일 이내)
-        가입 승인 후 동문자유게시판, 댓글, 쪽지 등 이용 가능 합니다.
+        가입 승인 후 동문자유게시판, 동문경조사, 댓글 등 이용 가능 합니다.
         동문님의 관심에 감사 드립니다.
     </p>
 </div>

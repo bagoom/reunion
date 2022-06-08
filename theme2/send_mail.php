@@ -26,6 +26,5 @@ $content  = "
 ";
 
 $system_email = "contact@wooribannet.com"; // 
-mailer($config['cf_title'], $system_email, 'help_blue@naver.com',   'test 님이 메일을 발송하였습니다.', $content, 1);
-echo json_encode($data);
- 
+mailer($config['cf_title'], $system_email, 'graum-dev2@daum.net',   'test 님이 메일을 발송하였습니다.', $content, 1);
+// echo json_encode($data);

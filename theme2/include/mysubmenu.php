@@ -1,4 +1,4 @@
-﻿<script type="text/javascript">
+<script type="text/javascript">
     function display_submenu(num) { 
          $("#mysub" + num).addClass("onSideMenu");
     }

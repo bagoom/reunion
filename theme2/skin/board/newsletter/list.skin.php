@@ -73,6 +73,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 
     <ul id="gall_ul" class="gall_row">
         <?php for ($i=0; $i<count($list); $i++) {
+            $ss_name = "ss_view_{$bo_table}_{$list[$i]['wr_id']}";
+            if (!get_session($ss_name)); set_session($ss_name, TRUE);
+
             $list[$i]['file'] = get_file($bo_table, $list[$i]['wr_id']);
             $file_img1 = $list[$i]['file'][1]['path'].'/'.$list[$i]['file'][1]['file'];
             $pdf_link = $list[$i]['file'][1]['href'];
@@ -114,7 +117,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
                 </div>
                 <div class="gall_con">
                     <div class="gall_text_href bo_tit">
-                        <?= $list[$i]['subject'] ?>
+                        <a href="<?=$list[$i]['href']?>"><?= $list[$i]['subject'] ?></a>
                     </div>
                     <div class="gall_img" >
                         <?php

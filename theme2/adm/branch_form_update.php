@@ -25,7 +25,7 @@ if ($w == '')
 
     @mkdir(G5_DATA_PATH."/branch", G5_DIR_PERMISSION);
     @chmod(G5_DATA_PATH."/branch", G5_DIR_PERMISSION);
-    if(isset($_FILES['branch_img']['name'])){
+    if(!empty($_FILES['branch_img']['name'])){
         $image_name = $_FILES['branch_img']['name'];
         // echo $image_name;
         $valid_extensions = array("jpg","jpeg","png", "gif");

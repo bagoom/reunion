@@ -1926,3 +1926,11 @@ html.no-overflowscrolling #autosave_pop {
 .promotion_top #bo_v_img img {
     margin-bottom: 0;
 }
+
+@media (max-width:768px) {
+    .promotion_list li {
+        width: 100%;
+        margin-right: 0;
+    }
+
+}
