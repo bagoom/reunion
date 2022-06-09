@@ -1199,6 +1199,26 @@ a.gnb_2da:hover {
 
 .banner02 img {
   max-width: 100%;
+  transition: 0.3s all;
+}
+
+.banner02 .swiper-slide {
+  cursor: pointer;
+}
+
+.banner02 .swiper-slide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #000;
+  z-index: -1;
+}
+
+.banner02 .swiper-slide:hover img {
+  opacity: .5;
 }
 
 .main_gallery {

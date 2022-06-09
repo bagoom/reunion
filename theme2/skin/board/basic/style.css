@@ -31,7 +31,7 @@
 }
 
 #bo_list .td_datetime {
-    width: 60px;
+    width: 100px;
     text-align: center
 }
 
@@ -51,7 +51,7 @@
 }
 
 #bo_list .td_name {
-    width: 90px;
+    width: 70px;
     text-align: left;
     padding: 10px 0
 }
@@ -220,6 +220,10 @@
     border-radius: 3px
 }
 
+
+.tbl_head01 thead th.basic_name {
+    text-align: left;
+}
 
 #bo_btn_top {
     margin: 10px 0

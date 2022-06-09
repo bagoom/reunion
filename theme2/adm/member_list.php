@@ -120,7 +120,7 @@ $q = $_SERVER['QUERY_STRING'];
         </div>
         <?php if($is_admin !== 'superadmin') { ?>
         <div>
-            <a href="<?php echo G5_URL; ?>/<?php echo G5_LIB_DIR; ?>/Excel/memberexcel3.xls" class="excel_down">회원일괄등록용 엑셀파일 다운로드</a>
+            <a href="<?php echo G5_URL; ?>/<?php echo G5_LIB_DIR; ?>/Excel/memberexcel.xls?v=<?=G5_IMG_VER?>" class="excel_down">회원일괄등록용 엑셀파일 다운로드</a>
         </div>
         <?php }?>
     </div> 

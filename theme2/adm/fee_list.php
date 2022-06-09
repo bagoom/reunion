@@ -33,26 +33,36 @@ if($fr_date)
 if($fee_type)
     $where .= " AND b.fee_type = '$fee_type'";
 
+
+
 if($is_admin !== 'superadmin'){    
-    $sql = "SELECT * FROM {$g5['member_table']} a, {$g5['fee']} b WHERE a.mb_no = b.mb_no $where AND b.reunion_id = '{$reunionID}' ORDER BY id DESC" ;
+    $total_count_sql = sql_fetch("SELECT count(*) AS count FROM {$g5['member_table']} a, {$g5['fee']} b WHERE a.mb_no = b.mb_no  $where  AND b.reunion_id = '{$reunionID}'");
 }else{
-    $sql = "SELECT * FROM {$g5['member_table']} a, {$g5['fee']} b WHERE a.mb_no = b.mb_no $where ORDER BY id DESC" ;
+    $total_count_sql = sql_fetch("SELECT count(*) AS count FROM {$g5['member_table']} a, {$g5['fee']} b WHERE a.mb_no = b.mb_no  $where");
+}
+$total_count = $total_count_sql['count'];
+
+$rows = 30;
+$total_page  = ceil($total_count / $rows);  // 전체 페이지 계산
+if ($page < 1) $page = 1; // 페이지가 없으면 첫 페이지 (1 페이지)
+$from_record = ($page - 1) * $rows; // 시작 열을 구함
+
+$listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목록</a>';
+
+if($is_admin !== 'superadmin'){    
+    $sql = "SELECT * FROM {$g5['member_table']} a, {$g5['fee']} b WHERE a.mb_no = b.mb_no $where AND b.reunion_id = '{$reunionID}' ORDER BY id DESC LIMIT {$from_record}, {$rows}" ;
+}else{
+    $sql = "SELECT * FROM {$g5['member_table']} a, {$g5['fee']} b WHERE a.mb_no = b.mb_no $where ORDER BY id DESC LIMIT {$from_record}, {$rows}" ;
 }
 $result = sql_query($sql);
 
-if($is_admin !== 'superadmin'){    
-    $total_count_sql = sql_fetch("SELECT count(*) AS count FROM {$g5['member_table']} a, {$g5['fee']} b WHERE a.mb_id = b.mb_id  $where  AND b.reunion_id = '{$reunionID}'");
-}else{
-    $total_count_sql = sql_fetch("SELECT count(*) AS count FROM {$g5['member_table']} a, {$g5['fee']} b WHERE a.mb_id = b.mb_id  $where");
-}
-$total_count = $total_count_sql['count'];
 $colspan = 9;
 ?>
 
 
 
 
-<form name="fmemberlist" id="fmemberlist" action="./member_list_update.php" onsubmit="return fmemberlist_submit(this);" method="post">
+<form name="fmemberlist" id="fmemberlist" action="./fee_list_update.php" onsubmit="return fmemberlist_submit(this);" method="post">
 <input type="hidden" name="page" value="<?php echo $page ?>">
 <input type="hidden" name="token" value="">
 
@@ -100,20 +110,20 @@ $colspan = 9;
         $bg = 'bg'.($i%2);
     ?>
 
-    <tr class="<?php echo $bg; ?>" onClick="location.href='./fee_form.php?mb_id=<?=$row['mb_id']?>&w=u&id=<?=$row['id']?>&mb_no=<?=$row['mb_no']?>'">
+    <tr class="<?php echo $bg; ?>">
         <td headers="mb_list_chk" class="td_chk">
-            <input type="hidden" name="mb_id[<?php echo $i ?>]" value="<?php echo $row['mb_id'] ?>" id="mb_id_<?php echo $i ?>">
+            <input type="hidden" name="fee_id[<?php echo $i ?>]" value="<?php echo $row['id'] ?>" id="fee_id_<?php echo $i ?>">
             <label for="chk_<?php echo $i; ?>" class="sound_only"><?php echo get_text($row['mb_name']); ?> <?php echo get_text($row['mb_nick']); ?>님</label>
             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
         </td>
-        <td><?=$row['fee_type']?></td>
-        <td><?=$row['deposit_date']?></td>
-        <td><?=number_format($row['fee'])?></td>
-        <td><?=$row['mb_name']?></td>
-        <td><?=$row['department']?></td>
-        <td><?=$row['graduation_year']?></td>
-        <td><?=$row['mb_hp']?></td>
-        <td><?=$row['etc']?></td>
+        <td onClick="location.href='./fee_form.php?mb_id=<?=$row['mb_id']?>&w=u&id=<?=$row['id']?>&mb_no=<?=$row['mb_no']?>'"><?=$row['fee_type']?></td>
+        <td onClick="location.href='./fee_form.php?mb_id=<?=$row['mb_id']?>&w=u&id=<?=$row['id']?>&mb_no=<?=$row['mb_no']?>'"><?=$row['deposit_date']?></td>
+        <td onClick="location.href='./fee_form.php?mb_id=<?=$row['mb_id']?>&w=u&id=<?=$row['id']?>&mb_no=<?=$row['mb_no']?>'"><?=number_format($row['fee'])?></td>
+        <td onClick="location.href='./fee_form.php?mb_id=<?=$row['mb_id']?>&w=u&id=<?=$row['id']?>&mb_no=<?=$row['mb_no']?>'"><?=$row['mb_name']?></td>
+        <td onClick="location.href='./fee_form.php?mb_id=<?=$row['mb_id']?>&w=u&id=<?=$row['id']?>&mb_no=<?=$row['mb_no']?>'"><?=$row['department']?></td>
+        <td onClick="location.href='./fee_form.php?mb_id=<?=$row['mb_id']?>&w=u&id=<?=$row['id']?>&mb_no=<?=$row['mb_no']?>'"><?=$row['graduation_year']?></td>
+        <td onClick="location.href='./fee_form.php?mb_id=<?=$row['mb_id']?>&w=u&id=<?=$row['id']?>&mb_no=<?=$row['mb_no']?>'"><?=$row['mb_hp']?></td>
+        <td onClick="location.href='./fee_form.php?mb_id=<?=$row['mb_id']?>&w=u&id=<?=$row['id']?>&mb_no=<?=$row['mb_no']?>'"><?=$row['etc']?></td>
     </tr>
     <?php
     }
@@ -124,7 +134,9 @@ $colspan = 9;
     </table>
 </div>
 
-
+<div class="del-btn-wrap">
+    <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn btn_02">
+</div> 
 
 </form>
 

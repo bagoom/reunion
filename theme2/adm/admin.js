@@ -61,7 +61,13 @@ function delete_confirm(el, where) {
       return false;
     }
   }else{
-    if (confirm("해당 회원의 동문인증을 취소 하시겠습니까?")) {
+    var confirm1;
+    if(where == 'new_mem') 
+      confirm1 = confirm("해당 회원의 동문인증을 취소 하시겠습니까?");
+    if (where == "branch_mem")
+      confirm1 = confirm("해당 회원을 지회에서 탈퇴 하시겠습니까?");
+      
+    if (confirm1) {
       var token = get_ajax_token();
       var href = el.href.replace(/&token=.+$/g, "");
       if (!token) {

@@ -510,4 +510,22 @@
     .location .location-info .col02 {
         margin-top: 30px;
     }
+
+    .tbl_head01 thead th.basic_name {
+        text-align: center;
+    }
+
+    #bo_list .td_datetime {
+        width: 70px;
+    }
+
+    .banner02 {
+        min-height: auto;
+        line-height: normal;
+        padding: 0 15px;
+    }
+
+    .banner02 .swiper-slide::before {
+        display: none;
+    }
 }

@@ -22,18 +22,27 @@ if($branch_name)
 if($fee_type)
     $where .= " AND b.fee_type = '$fee_type'";
 
-if($is_admin !== 'superadmin'){    
-    $sql = "SELECT * FROM {$g5['branch']}  WHERE  $where  AND reunion_id = '{$reunionID}' ORDER BY branch_id DESC" ;
-}else{
-    $sql = "SELECT * FROM {$g5['branch']}  WHERE  $where  ORDER BY branch_id DESC" ;
-}
-$result = sql_query($sql);
+
 if($is_admin !== 'superadmin'){    
     $total_count_sql = sql_fetch("SELECT count(*) AS count FROM {$g5['branch']} WHERE  $where AND reunion_id = '{$reunionID}' ");
 }else{
     $total_count_sql = sql_fetch("SELECT count(*) AS count FROM {$g5['branch']} WHERE  $where");
 }
 $total_count = $total_count_sql['count'];
+
+$rows = 30;
+$total_page  = ceil($total_count / $rows);  // 전체 페이지 계산
+if ($page < 1) $page = 1; // 페이지가 없으면 첫 페이지 (1 페이지)
+$from_record = ($page - 1) * $rows; // 시작 열을 구함
+
+$listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목록</a>';
+
+if($is_admin !== 'superadmin'){    
+    $sql = "SELECT * FROM {$g5['branch']}  WHERE  $where  AND reunion_id = '{$reunionID}' ORDER BY branch_id DESC LIMIT {$from_record}, {$rows}" ;
+}else{
+    $sql = "SELECT * FROM {$g5['branch']}  WHERE  $where  ORDER BY branch_id DESC LIMIT {$from_record}, {$rows}" ;
+}
+$result = sql_query($sql);
 $colspan = 9;
 ?>
 

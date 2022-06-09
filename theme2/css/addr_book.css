@@ -2480,6 +2480,7 @@ select {
 }
 
 .help {
+    margin-top: 30px;
     padding: 15px;
     background: #f9f9f9;
     border: 1px solid #ddd;

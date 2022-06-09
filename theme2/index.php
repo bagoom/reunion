@@ -16,6 +16,8 @@ if (G5_IS_MOBILE) {
 
 include_once(G5_PATH.'/head.php');
 ?>
+<link  href="<?=G5_CSS_URL?>/viewer.min.css" rel="stylesheet">
+<script src="<?=G5_JS_URL?>/viewer.min.js"></script>
 
 <script src="<?=G5_JS_URL?>/inewsticker.js"></script>
 <script src="https://unpkg.com/swiper@5.4.5/js/swiper.min.js"></script>
@@ -133,15 +135,9 @@ include_once(G5_PATH.'/head.php');
     <div class="banner-wrap banner02">
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="<?= G5_IMG_URL ?>/banner/banner01.jpg?v=<?=G5_IMG_VER?>" alt=""></div>
-                <div class="swiper-slide"><img src="<?= G5_IMG_URL ?>/banner/banner02.jpg?v=<?=G5_IMG_VER?>" alt=""></div>
-                <div class="swiper-slide"><img src="<?= G5_IMG_URL ?>/banner/banner03.jpg?v=<?=G5_IMG_VER?>" alt=""></div>
-                <div class="swiper-slide"><img src="<?= G5_IMG_URL ?>/banner/banner04.jpg?v=<?=G5_IMG_VER?>" alt=""></div>
-                <div class="swiper-slide"><img src="<?= G5_IMG_URL ?>/banner/banner05.jpg?v=<?=G5_IMG_VER?>" alt=""></div>
-                <div class="swiper-slide"><img src="<?= G5_IMG_URL ?>/banner/banner06.jpg?v=<?=G5_IMG_VER?>" alt=""></div>
-                <div class="swiper-slide"><img src="<?= G5_IMG_URL ?>/banner/banner07.jpg?v=<?=G5_IMG_VER?>" alt=""></div>
-                <div class="swiper-slide"><img src="<?= G5_IMG_URL ?>/banner/banner08.jpg?v=<?=G5_IMG_VER?>" alt=""></div>
-                <div class="swiper-slide"><img src="<?= G5_IMG_URL ?>/banner/banner09.jpg?v=<?=G5_IMG_VER?>" alt=""></div>
+                <?php for ($i=0; $i < 7; $i++) { ?>
+                    <div class="swiper-slide"><img src="<?= G5_IMG_URL ?>/banner/banner0<?=$i+1?>.jpg?v=<?=G5_IMG_VER?>" data-original="<?= G5_IMG_URL ?>/banner/banner_b0<?=$i+1?>.jpg?v=<?=G5_IMG_VER?>" alt=""></div>
+                <?php }?>
             </div>
         </div>
     </div>
@@ -204,14 +200,35 @@ include_once(G5_PATH.'/head.php');
         },
     });
     var slide_bn = new Swiper('#main_container .banner02 .swiper-container', {
-        slidesPerView: 5, // 영역내 보여질 배너 갯수
-        spaceBetween: 30, // 배너간격
+        slidesPerView: 2, // 영역내 보여질 배너 갯수
+        spaceBetween: 20, // 배너간격
         speed: 1200,
         autoplay: {
             delay: 3500,
             disableOnInteraction: false,
         },
+        breakpoints: {
+            1024: { // 가로 1024px 이상
+                slidesPerView: 3, // 보여질 배너 갯수
+                spaceBetween: 30 // 배너간격
+            },
+        }
     });
+
+    var $image = $('.banner02 .swiper-slide img');
+    var viewer = $image.data('viewer');
+    $image.viewer({
+        navbar: false,
+        toolbar: false,
+        url: 'data-original',
+        title: function (image, imageData) {
+            return image.title;
+        },
+        view(event) {
+            event.detail.image.title = event.detail.originalImage.title;
+        },
+    });
+
 </script>
 <?php
 include_once(G5_PATH.'/tail.php');

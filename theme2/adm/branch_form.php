@@ -123,6 +123,7 @@ include_once('./admin.head.php');
                 <th>전화번호</th>
                 <th>이메일</th>
                 <th>비고</th>
+                <th></th>
             </thead>
             <tbody>
                 <?php for ($i=0; $row=sql_fetch_array($branch_mem_result); $i++) { ?>
@@ -134,11 +135,12 @@ include_once('./admin.head.php');
                     <td><?=$row['mb_hp']?></td>
                     <td><?=$row['mb_email']?></td>
                     <td><?=$row['etc']?></td>
+                    <td><a href="branch_member_update.php?w=d&mb_id=<?=$row['mb_id']?>&mb_no=<?=$row['mb_no']?>" onclick="return delete_confirm(this, 'branch_mem');" class="btn btn_01">회원탈퇴</a></td>
                 </tr>
                 <?php }?>
                 <?php 
             if ($i == 0)
-                echo "<tr><td colspan='7' class=\"empty_table\">등록된 회원이 없습니다.</td></tr>";
+                echo "<tr><td colspan='8' class=\"empty_table\">등록된 회원이 없습니다.</td></tr>";
             ?>
             </tbody>
         </table>

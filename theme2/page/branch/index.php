@@ -70,7 +70,7 @@ $result = sql_query($sql);
     </div>
     <div class="modal-body">
         <div class="modal-con">
-            <div class="txt"></div>
+            <div class="txt">지회 소개 글이 없습니다.</div>
         </div>
     </div>
 </div>
@@ -95,7 +95,11 @@ $result = sql_query($sql);
             success: function (data, textStatus) {
                 console.log(data)
                 $("#modal .modal-head h3").text(data.branch_name);
-                $("#modal .modal-con .txt").text(data.branch_content);
+                if(data.branch_content){
+                    $("#modal .modal-con .txt").text(data.branch_content);
+                }else{
+                    $("#modal .modal-con .txt").text('지회 소개 글이 없습니다.');
+                }
                 if (data.error) {
                     alert(data.error);
                     return false;

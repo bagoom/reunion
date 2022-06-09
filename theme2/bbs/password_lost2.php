@@ -62,8 +62,8 @@ $content .= '비밀번호가 변경되었다는 인증 메세지가 출력되면
 $content .= '임시 비밀번호로 로그인 후에는 반드시 <span style="color:#ff3061"><b>개인정보수정</b></span> 메뉴에서 새로운 비밀번호로 변경하여 이용해 주십시오.';
 $content .= '</p>';
 $content .= '<p style="margin:0;padding:30px 30px 30px;border-bottom:1px solid #eee;line-height:1.7em">';
-$content .= '<span style="display:inline-block;width:110px">회원아이디</span> '.$mb['mb_id'].'<br>';
-$content .= '<span style="display:inline-block;width:110px">변경될 비밀번호</span> <strong style="color:#ff3061">'.$change_password.'</strong>';
+$content .= '<span style="display:inline-block;width:120px">회원아이디</span> '.$mb['mb_id'].'<br>';
+$content .= '<span style="display:inline-block;width:120px">변경될 비밀번호</span> <strong style="color:#ff3061">'.$change_password.'</strong>';
 $content .= '</p>';
 $content .= '<a href="'.$href.'" target="_blank" style="display:block;padding:30px 0;background:#484848;color:#fff;text-decoration:none;text-align:center">비밀번호 변경</a>';
 $content .= '<ul style="margin: 30px 0; padding-left: 40px;"> <li>해당 메일은 <b>우리반넷</b> 시스템에서 자동발송되는 메일입니다.</li> <li>본 메일은 발신 전용이므로, 회신 내용을 확인할 수 없습니다.</li> <li>문의 사항은 우리학교 동문회 사무국으로 문의하시기 바랍니다.</li> </ul>';

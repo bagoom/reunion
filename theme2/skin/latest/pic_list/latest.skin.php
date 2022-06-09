@@ -26,8 +26,12 @@ $list_count = (is_array($list) && $list) ? count($list) : 0;
             echo "<a href=\"".$wr_href."\" class=\"pic_li_tit\"> ";
             if ($list[$i]['is_notice'])
                 echo "<strong>".$list[$i]['subject']."</strong>";
-            else
+            else{
+                if($list[$i]['ca_name']){
+                    echo "[".$list[$i]['ca_name']."] ";
+                }
                 echo $list[$i]['subject'];
+            }
 
             echo "</a>";
 			
