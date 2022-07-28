@@ -1,11 +1,11 @@
 <?php
 // 이 파일은 새로운 파일 생성시 반드시 포함되어야 함
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
-
+$config['cf_title'] = '우리반넷';
 $g5_debug['php']['begin_time'] = $begin_time = get_microtime();
 if (!isset($g5['title'])) {
-    $g5['title'] = $reunion['reunion_title'];
-    $g5_head_title = $reunion['reunion_title'];
+    $g5['title'] = '우리반넷';
+    $g5_head_title = '우리반넷';
 }
 else {
     $g5_head_title = $g5['title']; // 상태바에 표시될 제목
@@ -14,7 +14,6 @@ else {
 
 $g5['title'] = strip_tags($g5['title']);
 $g5_head_title = strip_tags($g5_head_title);
-
 // 현재 접속자
 // 게시판 제목에 ' 포함되면 오류 발생
 $g5['lo_location'] = addslashes($g5['title']);

@@ -26,12 +26,12 @@ if ($w == 'd') {
             $msg .= $mb['mb_name'].' : 자신보다 권한이 높거나 같은 회원은 삭제할 수 없습니다.\\n';
         } else {
             // 회원자료 삭제
-            sql_query("DELETE FROM {$g5['branch_member']} WHERE mb_no = '{$mb['mb_no']}' ");
+            sql_query("DELETE FROM {$g5['branch_member']} WHERE branch_id = '{$bid}' AND mb_no = '{$mb['mb_no']}' ");
             $msg = $mb['mb_name'].'회원이 해당 지회에서 탈퇴 처리 되었습니다.';
         }
 }
 
-
+// print_r($_REQUEST);
 
 
 if ($msg)
@@ -39,4 +39,4 @@ if ($msg)
     alert($msg);
 
 
-goto_url('./branch_form.php?'.$qstr);
+// goto_url('./branch_form.php?'.$qstr);

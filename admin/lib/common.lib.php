@@ -818,6 +818,28 @@ function get_manager($mg_id, $fields='*', $is_cache=false)
     return $cache[$mg_id][$key];
 }
 
+// 임원 정보를 얻는다.
+function get_executive($mb_id, $fields='*', $is_cache=false)
+{
+    global $g5, $reunionID;
+    if (preg_match("/[^0-9a-z_]+/i", $mb_id))
+    return array();
+    
+    static $cache = array();
+    
+    $key = md5($fields);
+
+    if( $is_cache && isset($cache[$mb_id]) && isset($cache[$mb_id][$key]) ){
+        return $cache[$mb_id][$key];
+    }
+
+    $sql = " select $fields from {$g5['member_table']} where mb_id = TRIM('$mb_id') and executive != '' ";
+
+    $cache[$mb_id][$key] = run_replace('get_member', sql_fetch($sql), $mb_id, $fields, $is_cache);
+
+    return $cache[$mb_id][$key];
+}
+
 // 그룹 설정 테이블에서 하나의 행을 읽음
 function get_reunion($ru_id, $is_cache=false)
 {

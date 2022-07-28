@@ -519,6 +519,11 @@
         width: 70px;
     }
 
+    .greeting .box .swiper-slide[data-swiper-slide-index="0"] {
+        background: url(../img/greeting01.jpg) no-repeat center / cover;
+        background-position: center;
+    }
+
     .banner02 {
         min-height: auto;
         line-height: normal;

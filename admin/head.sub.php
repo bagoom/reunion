@@ -9,14 +9,13 @@ if(!defined('G5_IS_ADMIN') && defined('G5_THEME_PATH') && is_file(G5_THEME_PATH.
 }
 
 $g5_debug['php']['begin_time'] = $begin_time = get_microtime();
-
 if (!isset($g5['title'])) {
-    $g5['title'] = $config['cf_title'];
-    $g5_head_title = $g5['title'];
+    $g5['title'] = $reunion['reunion_title'];
+    $g5_head_title = $reunion['reunion_title'];
 }
 else {
     $g5_head_title = $g5['title']; // 상태바에 표시될 제목
-    $g5_head_title .= " | ".$config['cf_title'];
+    $g5_head_title .= " | ".$reunion['reunion_title']; 
 }
 
 $g5['title'] = strip_tags($g5['title']);

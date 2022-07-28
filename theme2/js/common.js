@@ -824,3 +824,49 @@ $(document).ready(function () {
     $("#modal, #overlay").show();
   });
 });
+
+function deviceType() {
+  var mobile = /iphone|ipad|ipod|android/i.test(
+    navigator.userAgent.toLowerCase()
+  );
+
+  if (mobile) {
+    // 유저에이전트를 불러와서 OS를 구분합니다.
+    var userAgent = navigator.userAgent.toLowerCase();
+    if (userAgent.search("android") > -1) currentOS = "android";
+    else if (
+      userAgent.search("iphone") > -1 ||
+      userAgent.search("ipod") > -1 ||
+      userAgent.search("ipad") > -1
+    )
+      currentOS = "ios";
+    else currentOS = "else";
+  } else {
+    // 모바일이 아닐 때
+    currentOS = "nomobile";
+  }
+
+  return currentOS;
+  //alert(currentOS);
+}
+
+//1.앱 호출(푸시키)
+function getPushToken() {
+  //alert(deviceType());
+  if (deviceType() == "android") {
+    bugilgoaos.getPushToken();
+  } else {
+    //var obj ={'name':'getPushToken'};
+    //webkit.messageHandlers.fancwallet.postMessage(obj);
+
+    var obj = {};
+    obj.name = "getPushToken";
+    webkit.messageHandlers.bugilgoaos.postMessage(JSON.stringify(obj));
+  }
+}
+
+//두개값 전달받은값 디비에 저장해주세요.(안드로이드, 아이폰꼭 구분해서 저장해주셔야 나중에 푸시보낼떄 구분할수있습니다.)
+function RgetPushToken(obj, obj2) {
+  alert(obj);
+  alert(obj2);
+}

@@ -69,9 +69,30 @@ if ($config['cf_analytics']) {
 ?>
 
 <!-- } 하단 끝 -->
-
+<script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
 <script>
+  // VConsole will be exported to `window.VConsole` by default.
+//   var vConsole = new window.VConsole();
+</script>
+<script>
+
+    function gotoMobileUrl(url){
+        if(deviceType() == 'android'){
+            bugilgoaos.goWebSafari(url); 
+        }
+        else if(deviceType() == 'ios'){
+            var obj ={};
+            obj.name = "goWebSafari"; 
+            obj.url = url; 
+            webkit.messageHandlers.bugilgoaos.postMessage(JSON.stringify(obj));
+            console.log(webkit)
+        }else{
+            window.open ( url, "_blank", )
+        }
+    }
 $(function() {
+
+
     var dep2Text = $(".onSideMenu .leftmenu_b").text();
     var dep2Link = $(".onSideMenu >a").attr("href");
     $(".dep2-location a").text(dep2Text);

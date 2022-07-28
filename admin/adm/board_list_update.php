@@ -37,7 +37,7 @@ if ($act_button === "선택수정") {
         $post_bo_order = isset($_POST['bo_order'][$k]) ? clean_xss_tags($_POST['bo_order'][$k], 1, 1) : '';
         $post_board_table = isset($_POST['board_table'][$k]) ? clean_xss_tags($_POST['board_table'][$k], 1, 1) : '';
 
-        if ($is_admin != 'super') {
+        if ($is_admin != 'superadmin') {
             $sql = " select count(*) as cnt from {$g5['board_table']} a, {$g5['group_table']} b
                       where a.gr_id = '".sql_real_escape_string($post_gr_id)."'
                         and a.gr_id = b.gr_id

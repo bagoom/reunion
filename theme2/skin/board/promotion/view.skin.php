@@ -105,7 +105,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
                         </dl>
                         <dl>
                             <dt>홈페이지</dt>
-                            <dd><i class="xi-external-link"> </i> <a href="<?=$view['wr_2']?>" target="_blank"><?=$view['wr_2']?></a> </dd>
+                            <dd><i class="xi-external-link"> </i> <a href="javascript:gotoMobileUrl('<?=$view['wr_2']?>');" ><?=$view['wr_2']?></a> </dd>
                         </dl>
                         <dl>
                             <dt>전화번호</dt>

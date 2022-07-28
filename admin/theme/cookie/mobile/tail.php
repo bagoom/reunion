@@ -8,7 +8,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 <div id="ft">
     <div class="ft_wr">
         <div id="ft_copy">
-            Copyright &copy; 코드몽키. All rights reserved.<span class="adm_btn"><a href="<?php echo G5_BBS_URL ?>/login.php">adm</a></span><br>
+            Copyright &copy; 우리반넷. All rights reserved.<span class="adm_btn"><a href="<?php echo G5_BBS_URL ?>/login.php">adm</a></span><br>
         </div>
     </div>
     <button type="button" id="top_btn"><i class="fa fa-arrow-up" aria-hidden="true"></i><span class="sound_only">상단으로</span></button>

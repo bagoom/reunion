@@ -135,7 +135,7 @@ include_once('./admin.head.php');
                     <td><?=$row['mb_hp']?></td>
                     <td><?=$row['mb_email']?></td>
                     <td><?=$row['etc']?></td>
-                    <td><a href="branch_member_update.php?w=d&mb_id=<?=$row['mb_id']?>&mb_no=<?=$row['mb_no']?>" onclick="return delete_confirm(this, 'branch_mem');" class="btn btn_01">회원탈퇴</a></td>
+                    <td><a href="branch_member_update.php?w=d&mb_id=<?=$row['mb_id']?>&mb_no=<?=$row['mb_no']?>&bid=<?=$branch_id?>" onclick="return delete_confirm(this, 'branch_mem');" class="btn btn_01">회원탈퇴</a></td>
                 </tr>
                 <?php }?>
                 <?php 

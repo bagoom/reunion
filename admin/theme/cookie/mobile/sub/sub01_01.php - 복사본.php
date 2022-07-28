@@ -1,23 +1,19 @@
 <?php
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
-$g5['title'] = "우리반넷 소개";
+$g5['title'] = "해킹강의 신청";
 
 include_once(G5_THEME_PATH.'/head.php');
 ?>
 <div class="sub_wrap">
 	<div class="sub_con">
-		<div>
-			<div class="greetingimg"><img src="<?=G5_THEME_IMG_URL?>/sub01_01.jpg"></div>
-			우리반넷은 20여년간 초·중/고·대학교를 비롯해 각종 단체의 회원명부 제작/발행, 행사/이벤트 지원, 홈페이지 제작과 운영 대행 등을 통해 각 단체의 원할한 교류 활동을 지원하고 있습니다.
-			특히 수 많은 동창회와 단체와 협업을 통해 각 단체의 회원 관리를 보다 체계적이며 스마트한 시스템 필요를 적극 반영한 통합 회원관리시스템을 서비스하게 되었습니다.<br />
-			이로써 회원명부와 함께 스마트한 회원통합시스템 그리고 홈페이지와 애플리케이션(안드로이드, 아이폰 지원)까지 통합 서비스하는 명실상부한 동문회, 단체를 위한 최적의 솔루션을 제안하고 있습니다. 
-
-		</div>
+		<a href="https://monkeycheat1.com/%ec%bd%94%eb%93%9c%eb%aa%bd%ed%82%a4-%ed%95%b4%ed%82%b9%ea%b3%bc%ec%99%b8-%ec%98%88%ec%95%bd/" target="_blank"><div class="column">
+			강의 신청 전 칼럼 읽기
+		</div></a>
 	</div>
 </div>
 
 <!-- 모딩강의 -->
-<!--<div class="sub_back_wrap">
+<div class="sub_back_wrap">
 	<div class="sub_con">
 		<div class="tit_wrap">
 			<h2>해킹강의</h2>
@@ -46,16 +42,16 @@ include_once(G5_THEME_PATH.'/head.php');
 			</div>
 		</div>
 	</div>
-</div>-->
+</div>
 
 <!-- 비용안내 -->
 <div class="sub_con">
-	<!--<div class="tit_wrap">
+	<div class="tit_wrap">
 		<h2>코드몽키 비용안내</h2>
-	</div>-->
+	</div>
 	<div class="index_wrap_1200">
 		<!-- 비용 위 -->
-		<!--<div class="cost_box_con">
+		<div class="cost_box_con">
 			<div class="col-md-6">
 				<li>
 					<h2>커리큘럼A-모딩문서형</h2>
@@ -80,9 +76,9 @@ include_once(G5_THEME_PATH.'/head.php');
 					<a href="https://open.kakao.com/o/scADhrrc" target="_blank"><p class="btn_more">신청하기</p></a>
 				</li>
 			</div>
-		</div>-->
+		</div>
 		<!-- 비용 아래 -->
-		<!--<div class="cost_box_con">
+		<div class="cost_box_con">
 			<div class="col-md-3">
 				<li>
 					<h2>01</h2>
@@ -115,18 +111,18 @@ include_once(G5_THEME_PATH.'/head.php');
 					</p>
 				</li>
 			</div>
-		</div>-->
+		</div>
 	</div>
 </div>
 
-<!--<div class="sub_back_wrap">
+<div class="sub_back_wrap">
 	<div class="sub_con">
 		<div class="tit_wrap">
 			<h2>모딩강의신청</h2>
 			<a href="https://open.kakao.com/o/scADhrrc" target="_blank"><div class="column">kakaotalk<b>openchat</b> 신청하기</div></a>
 		</div>
 	</div>
-</div>-->
+</div>
 
 <?php
 include_once(G5_THEME_PATH.'/tail.php');

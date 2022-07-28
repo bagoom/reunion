@@ -4104,3 +4104,53 @@ function get_branch($mb_no, $where)
     $str = substr($str, 0, -1);
     return $str;
 }
+
+// 푸시알림 
+define("GOOGLE_API_KEY", "AAAAHAx_ZSY:APA91bHwSXxcYKVHar5rBIjkKSlpNGH8JeBXWTLUmYUosuOOfXpGsRKGVCifF-GJ7LQB8URhvtqsxYFuAV-bhLP7Kfu-G_OHV8PgRnJKu4YeVXvDfELp7_Ffbr7wz3buRDHkS_fz11Lx");
+define("GOOGLE_GCM_URL", "https://fcm.googleapis.com/fcm/send");
+
+function send_gcm_notify($reg_id, $title, $message ,$url , $deviceType) {
+	$fields;
+	if($deviceType == 'ANDROID'){
+		//android
+		$fields = array(
+			'registration_ids'  => array( $reg_id ),
+			'data'              => array( "msg" => $message ,"title" => $title , "url" => $url ),
+		);
+	}else{
+		//ios
+		$fields = array(
+			 'registration_ids'  => array( $reg_id ),
+			 'mutable_content'=> true,
+			 'url'=> $url,
+			 'notification' => array( "subtitle" => $message ,
+									  "title" => "알림"  ,
+									  "url" => $url  ,
+									  'push_message'=> $message,
+
+									  'sound'=>'Default',
+									  "body" => $message )
+		);
+	}
+
+    $headers = array(
+        'Authorization: key=AAAAHAx_ZSY:APA91bHwSXxcYKVHar5rBIjkKSlpNGH8JeBXWTLUmYUosuOOfXpGsRKGVCifF-GJ7LQB8URhvtqsxYFuAV-bhLP7Kfu-G_OHV8PgRnJKu4YeVXvDfELp7_Ffbr7wz3buRDHkS_fz11Lx',
+        'Content-Type: application/json'
+    );
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, GOOGLE_GCM_URL);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+
+    $result = curl_exec($ch);
+    if ($result === FALSE) {
+        die('Problem occurred: ' . curl_error($ch));
+    }
+
+    curl_close($ch);
+    echo $result;
+ }

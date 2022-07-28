@@ -1251,15 +1251,41 @@ a.gnb_2da:hover {
 
 
 .greeting .box {
-  display: flex;
+  /* display: flex; */
 }
 
 .greeting .box .txt {
   /* width: 600px; */
+  /* padding-right: 20px; */
   white-space: pre-line;
   font-size: 16px;
   line-height: 1.7;
 }
+
+.greeting .box .img {
+  width: 100%;
+}
+
+.greeting .box .img .swiper-container {
+  height: 400px;
+}
+
+.greeting .box .swiper-slide {
+  height: 100%;
+}
+
+.greeting .box .swiper-slide[data-swiper-slide-index="0"] {
+  background: url(../img/greeting01.jpg) no-repeat center / cover;
+  background-position: 0 -150px;
+}
+
+.greeting .box .swiper-slide[data-swiper-slide-index="1"] {
+  background: url(../img/greeting02.jpg) no-repeat center / cover;
+}
+
+/* .greeting .box .img img {
+  max-width: 100%;
+} */
 
 .greeting .sign {
   margin-top: 30px;

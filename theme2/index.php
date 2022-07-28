@@ -116,8 +116,8 @@ include_once(G5_PATH.'/head.php');
         <div class="main_banner">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="<?= G5_IMG_URL ?>/main_banner.jpg?v=<?=G5_IMG_VER?>" alt=""></div>
-                    <div class="swiper-slide"><img src="<?= G5_IMG_URL ?>/main_banner.jpg?v=<?=G5_IMG_VER?>" alt=""></div>
+                    <div class="swiper-slide"><a href="javascript:gotoMobileUrl('http://wooribannet.com/');" ><img src="<?= G5_IMG_URL ?>/main_banner.png?v=<?=G5_IMG_VER?>" alt=""></a></div>
+                    <div class="swiper-slide"><a href="javascript:gotoMobileUrl('http://wooribannet.com/');" ><img src="<?= G5_IMG_URL ?>/main_banner.png?v=<?=G5_IMG_VER?>" alt=""></a></div>
                 </div>
             </div>
         </div>

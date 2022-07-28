@@ -1,6 +1,6 @@
 <?php
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
-$g5['title'] = "회원명부제작";
+$g5['title'] = "모바일앱";
 
 include_once(G5_THEME_PATH.'/head.php');
 ?>
@@ -11,19 +11,19 @@ include_once(G5_THEME_PATH.'/head.php');
 			<!-- 01 -->
 				<div class="column_wrap">
 					<div class="col-md-6">
-						<img src="<?=G5_THEME_IMG_URL?>/sub02_01.jpg">
+						<img src="<?=G5_THEME_IMG_URL?>/sub03_03.jpg">
 					</div>
 					<div class="col-md-6 column_box">
 						<!--<h2 class="">Unity3D</h2>-->
-						<h3>■ 회원명부제작</h3>
-						<p>우리반넷은 30여명의 전문 리서치(TM) 조사요원, 빅데이터 관리시스템, 전문 광고 및 편집디자이너를 보유하여 귀 동문회(단체)가 원하시는 최적의 동문명부를 만들어 드립니다.</p>
-						<div class="sub02_red">
+						<h3>■ 모바일앱 서비스(안드로이드, 아이폰)</h3>
+						<p>PC 홈페이지와 연동되는 모바일 앱으로 언제 어디서나 편하게 사용할 수 있습니다.</p>
+						<!--<div class="sub02_red">
 							※회원명부 제작 시 제작비용 전혀없음<br />
 							※우리반넷이 총동문회측에 발전기금 기증
 						</div>
 						<div class="sub02_blue">
 							제작 문의 : 02-948-2212, 이메일 : admin@wooribannet.com
-						</div>
+						</div>-->
 					</div>
 				</div>
 

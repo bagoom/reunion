@@ -1,6 +1,6 @@
 <?php
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
-$g5['title'] = "회원명부제작";
+$g5['title'] = "모딩칼럼";
 
 include_once(G5_THEME_PATH.'/head.php');
 ?>
@@ -9,28 +9,29 @@ include_once(G5_THEME_PATH.'/head.php');
 	
 		<div class="container">
 			<!-- 01 -->
+			<a href="https://monkeycheat1.com/%ed%95%b4%ed%82%b9%ec%8b%9c%ec%97%b0/" target="_blank">
 				<div class="column_wrap">
 					<div class="col-md-6">
-						<img src="<?=G5_THEME_IMG_URL?>/sub02_01.jpg">
+						<img src="<?=G5_THEME_IMG_URL?>/column01.jpg">
 					</div>
 					<div class="col-md-6 column_box">
-						<!--<h2 class="">Unity3D</h2>-->
-						<h3>■ 회원명부제작</h3>
-						<p>우리반넷은 30여명의 전문 리서치(TM) 조사요원, 빅데이터 관리시스템, 전문 광고 및 편집디자이너를 보유하여 귀 동문회(단체)가 원하시는 최적의 동문명부를 만들어 드립니다.</p>
-						<div class="sub02_red">
-							※회원명부 제작 시 제작비용 전혀없음<br />
-							※우리반넷이 총동문회측에 발전기금 기증
-						</div>
-						<div class="sub02_blue">
-							제작 문의 : 02-948-2212, 이메일 : admin@wooribannet.com
-						</div>
+						<h2 class="">Unity3D</h2>
+						<h3>코몽이 사기꾼이라니?ㅎㅎ</h3>
+						<p>어처구니가 없었지만 뭐 언젠간 한번은 해야할 인증작업같아 오늘은 이에 관해 포스팅하려합니다.
+							오늘이자리에서 코몽이 간단한 해킹시연으로
+							사기꾼 오명을 씻어보도록 하겠습니다.
+							블로그 주인장 코드몽키는
+							올해로 해킹8년차,
+							전직 Unity3D 게임개발자입니다.</p>
 					</div>
 				</div>
+			</a>
 
 			<!-- 02 -->
-				<!--<div class="column_wrap">
+			<a href="https://monkeycheat1.com/%ec%bd%94%eb%93%9c%eb%aa%bd%ed%82%a4%ea%b2%b0%ec%a0%9c%ed%81%ac%eb%9e%99-%eb%a7%8c%eb%93%a4%ea%b8%b0/" target="_blank">
+				<div class="column_wrap">
 					<div class="col-md-6 float_right">
-						<img src="<?=G5_THEME_IMG_URL?>/sub02_01.jpg">
+						<img src="<?=G5_THEME_IMG_URL?>/column02.jpg">
 					</div>
 					<div class="col-md-6 column_box float_right">
 						<h2 class="">메소드</h2>
@@ -40,10 +41,11 @@ include_once(G5_THEME_PATH.'/head.php');
 							$99 딸라를 결제하면 모든 무기를 지급하는 올인원 팩을 확인.
 							게임내 확인이 끝났으니 클래스와 메소드를 이잡듯 뒤져 이녀석에 관련된 구매 메소드를 찾았습니다.</p>
 					</div>
-				</div>-->
+				</div>
+			</a>
 			
 			<!-- 01 -->
-			<!--<a href="https://monkeycheat1.com/%ea%b0%95%ec%a2%8c%eb%84%a5%ec%8a%a8-%eb%84%b7%eb%a7%88%eb%b8%94-%ec%84%9c%eb%b2%84%ed%84%b0%eb%8a%94-%eb%b0%a9%eb%b2%95-%ec%84%9c%eb%b2%84%ec%97%90-%ed%8c%a8%ed%82%b7%ed%86%b5%ec%8b%a0-%ea%b5%ac/" target="_blank">
+			<a href="https://monkeycheat1.com/%ea%b0%95%ec%a2%8c%eb%84%a5%ec%8a%a8-%eb%84%b7%eb%a7%88%eb%b8%94-%ec%84%9c%eb%b2%84%ed%84%b0%eb%8a%94-%eb%b0%a9%eb%b2%95-%ec%84%9c%eb%b2%84%ec%97%90-%ed%8c%a8%ed%82%b7%ed%86%b5%ec%8b%a0-%ea%b5%ac/" target="_blank">
 				<div class="column_wrap">
 					<div class="col-md-6">
 						<img src="<?=G5_THEME_IMG_URL?>/column03.jpg">
@@ -58,7 +60,7 @@ include_once(G5_THEME_PATH.'/head.php');
 							일단 밝혀둘건 제 블로그 카탈로그를보면 이 패킷해킹이 카테고리6번에 등록되어있는걸 보실수 있을겁니다.</p>
 					</div>
 				</div>
-			</a>-->
+			</a>
 		</div>
 
 	</div>

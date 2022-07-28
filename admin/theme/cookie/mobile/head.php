@@ -10,7 +10,6 @@ include_once(G5_LIB_PATH.'/connect.lib.php');
 include_once(G5_LIB_PATH.'/popular.lib.php');
 
 ?>
-
 <header id="hd">
     <h1 id="hd_h1"><?php echo $g5['title'] ?></h1>
 
@@ -23,18 +22,6 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
 
 
     
-
-    <!-- <div id="tnb" class="pc_view">
-
-        <ul>
-            <li class="right tnb_res"><a href=""><i class="fa fa-calendar"></i> 예약하기</a></li>
-            <?php echo outlogin('theme/basic'); // 외부 로그인 ?>
-            <li class="tnb_sns"><a href=""><i class="fa fa-phone"></i> 02-123-1234</a></li>
-
-
-        </ul>
-  
-    </div> -->
 
 
     <div id="hd_wrapper">
@@ -93,28 +80,76 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
                     <a href="<?=G5_URL?>/sub/sub01_01.php" class="gnb_1da">우리반넷 소개</a>
                 </li>
                 <li class="gnb_1dli">
-                    <a href="<?=G5_URL?>/sub/sub01_02.php" class="gnb_1da">회원 명부 사업</a>
+                    <a href="<?=G5_URL?>/sub/sub02_01.php" class="gnb_1da">회원명부사업</a>
                     <ul class="gnb_2dul">
-                        <li class="gnb_2dli"><a href="<?=G5_URL?>/sub/sub01_02.php"  class="gnb_2da"><span></span>주요 포트폴리오</a></li>
-                        <li class="gnb_2dli"><a href="<?=G5_URL?>/sub/sub01_02.php"  class="gnb_2da"><span></span>기타 사업 </a></li>
+                        <li class="gnb_2dli"><a href="<?=G5_URL?>/sub/sub02_01.php"  class="gnb_2da"><span></span>회원명부제작</a></li>
+                        <li class="gnb_2dli"><a href="<?=G5_URL?>/sub/sub02_02.php"  class="gnb_2da"><span></span>기타홍보물 제작사업 </a></li>
+                        <li class="gnb_2dli"><a href="<?=G5_URL?>/sub/sub02_03.php"  class="gnb_2da"><span></span>주요 포트폴리오 </a></li>
                     </ul>
                 </li>
                 <li class="gnb_1dli">
-                    <a href="<?=G5_URL?>/sub/sub01_02.php" class="gnb_1da">솔루션 소개</a>
+                    <a href="<?=G5_URL?>/sub/sub03_01.php" class="gnb_1da">통합솔루션 안내</a>
                     <ul class="gnb_2dul">
-                        <li class="gnb_2dli"><a href="<?=G5_URL?>/sub/sub01_02.php"  class="gnb_2da"><span></span>동문회원 관리 시스템</a></li>
-                        <li class="gnb_2dli"><a href="<?=G5_URL?>/sub/sub01_02.php"  class="gnb_2da"><span></span>홈페이지 </a></li>
-                        <li class="gnb_2dli"><a href="<?=G5_URL?>/sub/sub01_02.php"  class="gnb_2da"><span></span>모바일 앱 </a></li>
+                        <li class="gnb_2dli"><a href="<?=G5_URL?>/sub/sub03_01.php"  class="gnb_2da"><span></span>동문회원 관리시스템</a></li>
+                        <li class="gnb_2dli"><a href="<?=G5_URL?>/sub/sub03_02.php"  class="gnb_2da"><span></span>홈페이지 </a></li>
+                        <li class="gnb_2dli"><a href="<?=G5_URL?>/sub/sub03_03.php"  class="gnb_2da"><span></span>모바일앱 </a></li>
                     </ul>
                 </li>
                 <li class="gnb_1dli">
-                    <a href="<?=G5_URL?>/sub/sub01_02.php" class="gnb_1da">고객센터</a>
+                    <a href="<?=G5_BBS_URL?>/board.php?bo_table=qa" class="gnb_1da">고객센터</a>
                     <ul class="gnb_2dul">
-                        <li class="gnb_2dli"><a href="<?=G5_URL?>/sub/sub01_02.php"  class="gnb_2da"><span></span>문의 게시판</a></li>
-                        <li class="gnb_2dli"><a href="<?=G5_URL?>/sub/sub01_02.php"  class="gnb_2da"><span></span>FAQ </a></li>
+                        <li class="gnb_2dli"><a href="<?=G5_BBS_URL?>/board.php?bo_table=qa"  class="gnb_2da"><span></span>문의 게시판</a></li>
+                        <li class="gnb_2dli"><a href="<?=G5_BBS_URL?>/board.php?bo_table=faq"  class="gnb_2da"><span></span>FAQ </a></li>
                     </ul>
                 </li>
             </ul>
+        </div>     
+
+        <div id="gnb2">
+            <button type="button" class="btn_close"><i class="fa fa-times"></i></button>
+            <ul class="gnb_tnb">
+                <?php if ($is_member) {  ?>
+
+                <li><a href="<?php echo G5_BBS_URL ?>/member_confirm.php?url=<?php echo G5_BBS_URL ?>/register_form.php">정보수정</a></li>
+                <li><a href="<?php echo G5_BBS_URL ?>/logout.php">로그아웃</a></li>
+                <?php } else {  ?>
+                <li><a href="<?php echo G5_BBS_URL ?>/register.php">회원가입</a></li>
+                <li><a href="<?php echo G5_BBS_URL ?>/login.php">로그인</a></li>
+                <?php }  ?>
+
+            </ul>
+            <ul id="gnb2_1dul">
+                <li class="gnb2_2dli">
+                    <a href="<?=G5_URL?>/sub/sub01_01.php" class="gnb2_1da">우리반넷 소개</a>
+                </li>
+                <li class="gnb2_1dli">
+                    <a href="<?=G5_URL?>/sub/sub02_01.php" class="gnb2_1da">회원명부사업</a>
+                    <button type="button" class="btn_gnb_op">하위분류</button>
+                    <ul class="gnb2_2dul">
+                        <li class="gnb2_2dli"><a href="<?=G5_URL?>/sub/sub02_01.php"  class="gnb2_2da"><span></span>회원명부제작</a></li>
+                        <li class="gnb2_2dli"><a href="<?=G5_URL?>/sub/sub02_02.php"  class="gnb2_2da"><span></span>기타홍보물 제작사업 </a></li>
+                        <li class="gnb2_2dli"><a href="<?=G5_URL?>/sub/sub02_03.php"  class="gnb2_2da"><span></span>주요 포트폴리오 </a></li>
+                    </ul>
+                </li>
+                <li class="gnb2_1dli">
+                    <a href="<?=G5_URL?>/sub/sub03_01.php" class="gnb2_1da">통합솔루션 안내</a>
+                    <button type="button" class="btn_gnb_op">하위분류</button>
+                    <ul class="gnb2_2dul">
+                        <li class="gnb2_2dli"><a href="<?=G5_URL?>/sub/sub03_01.php"  class="gnb2_2da"><span></span>동문회원 관리시스템</a></li>
+                        <li class="gnb2_2dli"><a href="<?=G5_URL?>/sub/sub03_02.php"  class="gnb2_2da"><span></span>홈페이지 </a></li>
+                        <li class="gnb2_2dli"><a href="<?=G5_URL?>/sub/sub03_03.php"  class="gnb2_2da"><span></span>모바일앱 </a></li>
+                    </ul>
+                </li>
+                <li class="gnb2_1dli">
+                    <a href="<?=G5_BBS_URL?>/board.php?bo_table=qa" class="gnb2_1da">고객센터</a>
+                    <button type="button" class="btn_gnb_op">하위분류</button>
+                    <ul class="gnb2_2dul">
+                        <li class="gnb2_2dli"><a href="<?=G5_BBS_URL?>/board.php?bo_table=qa"  class="gnb2_2da"><span></span>문의 게시판</a></li>
+                        <li class="gnb2_2dli"><a href="<?=G5_BBS_URL?>/board.php?bo_table=faq"  class="gnb2_2da"><span></span>FAQ </a></li>
+                    </ul>
+                </li>
+            </ul>
+
         </div>     
         <script>
         $(function () {
@@ -175,7 +210,7 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
             });
 
  
-        });
+        }); 
 
         //상단고정
         if( $("#hd").length ){

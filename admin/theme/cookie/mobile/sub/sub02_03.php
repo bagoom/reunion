@@ -1,6 +1,6 @@
 <?php
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
-$g5['title'] = "회원명부제작";
+$g5['title'] = "주요 포트폴리오";
 
 include_once(G5_THEME_PATH.'/head.php');
 ?>
@@ -10,12 +10,12 @@ include_once(G5_THEME_PATH.'/head.php');
 		<div class="container">
 			<!-- 01 -->
 				<div class="column_wrap">
-					<div class="col-md-6">
-						<img src="<?=G5_THEME_IMG_URL?>/sub02_01.jpg">
+					<div>
+						<img src="<?=G5_THEME_IMG_URL?>/portfolio.jpg">
 					</div>
-					<div class="col-md-6 column_box">
-						<!--<h2 class="">Unity3D</h2>-->
-						<h3>■ 회원명부제작</h3>
+					<!--<div class="col-md-6 column_box">
+						<h2 class="">Unity3D</h2>
+						<h3>■ 회원 명부 제작</h3>
 						<p>우리반넷은 30여명의 전문 리서치(TM) 조사요원, 빅데이터 관리시스템, 전문 광고 및 편집디자이너를 보유하여 귀 동문회(단체)가 원하시는 최적의 동문명부를 만들어 드립니다.</p>
 						<div class="sub02_red">
 							※회원명부 제작 시 제작비용 전혀없음<br />
@@ -24,7 +24,7 @@ include_once(G5_THEME_PATH.'/head.php');
 						<div class="sub02_blue">
 							제작 문의 : 02-948-2212, 이메일 : admin@wooribannet.com
 						</div>
-					</div>
+					</div>-->
 				</div>
 
 			<!-- 02 -->

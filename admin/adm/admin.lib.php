@@ -536,6 +536,7 @@ function admin_menu_find_by($call, $search_key){
 // 접근 권한 검사
 if (!$manager['mg_id'])
 {
+    print_r($manager['mg_id']);
     goto_url(G5_BBS_URL.'/admin_login.php?url=' . urlencode(correct_goto_url(G5_ADMIN_URL)));
 }
 else if ($is_admin != 'super')

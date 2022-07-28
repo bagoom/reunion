@@ -162,5 +162,8 @@ if( is_admin($mb['mb_id']) && is_dir(G5_DATA_PATH.'/tmp/') ){
         alert("data 폴더에 쓰기권한이 없거나 또는 웹하드 용량이 없는 경우\\n로그인을 못할수도 있으니, 용량 체크 및 쓰기 권한을 확인해 주세요.", $link);
     }
 }
-
+if($token && $device){
+    sql_query("UPDATE {$g5['member_table']}  SET token = '{$token}' , device ='{$device}' WHERE mb_no = '{$member['mb_no']}'");
+    send_gcm_notify($token, '푸시알림 테스트',  '로그인 되었습니다.', 'https://naver.com' , $device);
+}
 goto_url($link);
