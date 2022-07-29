@@ -29,7 +29,6 @@ if($mb['rights'] == 'superadmin'){
         }
 }
 
-
 run_event('login_session_before', $mb, $is_social_login);
 
 @include_once($member_skin_path.'/login_check.skin.php');

@@ -105,7 +105,9 @@ if(!defined('G5_IS_ADMIN'))
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?=G5_CSS_URL?>/responsive.css?v=<?=G5_CSS_VER?>">
+<link rel="stylesheet" href="<?=G5_CSS_URL?>/custom.css?v=<?=G5_CSS_VER?>">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<link href="http://fonts.cdnfonts.com/css/mont" rel="stylesheet">
 </head>
 <body<?php echo isset($g5['body_script']) ? $g5['body_script'] : ''; ?>>
 <?php

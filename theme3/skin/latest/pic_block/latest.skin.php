@@ -10,7 +10,7 @@ $list_count = (is_array($list) && $list) ? count($list) : 0;
 ?>
 
 <div class="pic_lt">
-    <h2 class="lat_title"><a href="<?php echo get_pretty_url($bo_table); ?>"><?php echo $bo_subject ?></a></h2>
+    <h2 class="lat_title"><a href="<?php echo get_pretty_url($bo_table); ?>">POPUP ZONE</a></h2>
     <ul>
     <?php
     for ($i=0; $i<$list_count; $i++) {
