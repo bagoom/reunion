@@ -7,6 +7,7 @@ if (!defined('_GNUBOARD_')) exit;
 function latest($skin_dir='', $bo_table, $rows=10, $subject_len=40, $cache_time=1, $options='')
 {
     global $g5;
+    global $reunionID;
 
     if (!$skin_dir) $skin_dir = 'basic';
     
@@ -43,7 +44,7 @@ function latest($skin_dir='', $bo_table, $rows=10, $subject_len=40, $cache_time=
     }
 
     if( $caches === false ){
-
+        
         $list = array();
 
         $board = get_board_db($bo_table, true);
@@ -55,7 +56,9 @@ function latest($skin_dir='', $bo_table, $rows=10, $subject_len=40, $cache_time=
         $bo_subject = get_text($board['bo_subject']);
 
         $tmp_write_table = $g5['write_prefix'] . $bo_table; // 게시판 테이블 전체이름
-        $sql = " select * from {$tmp_write_table} where wr_is_comment = 0 order by wr_num limit 0, {$rows} ";
+        $sql = " select * from {$tmp_write_table} where wr_10 = {$reunionID} and wr_is_comment = 0 order by wr_num limit 0, {$rows} ";
+
+        // return print_r($sql);
         
         $result = sql_query($sql);
         for ($i=0; $row = sql_fetch_array($result); $i++) {

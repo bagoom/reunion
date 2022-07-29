@@ -60,9 +60,10 @@ if ($sca || $stx || $stx === '0') {     //검색이면
     $total_count = sql_num_rows($result);
     */
 } else {
-    $sql_search = "";
-
-    $total_count = $board['bo_count_write'];
+    $sql_search = "wr_10 = {$reunionID}";
+    $sql = " SELECT COUNT(DISTINCT `wr_parent`) AS `cnt` FROM {$write_table} WHERE {$sql_search} ";
+    $row = sql_fetch($sql);
+    $total_count = $row['cnt'];
 }
 
 if(G5_IS_MOBILE) {
@@ -94,7 +95,7 @@ if (!$is_search_bbs) {
     for ($k=0; $k<$board_notice_count; $k++) {
         if (trim($arr_notice[$k]) == '') continue;
 
-        $row = sql_fetch(" select * from {$write_table} where wr_id = '{$arr_notice[$k]}' ");
+        $row = sql_fetch(" select * from {$write_table} where wr_id = '{$arr_notice[$k]}' and wr_10 = {$reunionID} ");
 
         if (!isset($row['wr_id']) || !$row['wr_id']) continue;
 
@@ -113,6 +114,8 @@ if (!$is_search_bbs) {
             break;
     }
 }
+
+
 
 $total_page  = ceil($total_count / $page_rows);  // 전체 페이지 계산
 $from_record = ($page - 1) * $page_rows; // 시작 열을 구함
@@ -173,9 +176,9 @@ if ($sst) {
 }
 
 if ($is_search_bbs) {
-    $sql = " select distinct wr_parent from {$write_table} where {$sql_search} {$sql_order} limit {$from_record}, $page_rows ";
+    $sql = " select distinct wr_parent from {$write_table} where {$sql_search} and wr_10 = {$reunionID} {$sql_order} limit {$from_record}, $page_rows ";
 } else {
-    $sql = " select * from {$write_table} where wr_is_comment = 0 ";
+    $sql = " select * from {$write_table} where wr_is_comment = 0 and wr_10 = {$reunionID} ";
     if(!empty($notice_array))
         $sql .= " and wr_id not in (".implode(', ', $notice_array).") ";
     $sql .= " {$sql_order} limit {$from_record}, $page_rows ";

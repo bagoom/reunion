@@ -28,7 +28,7 @@ if ($mb_id) {
 }
 $sql_order = " order by a.bn_id desc ";
 
-$sql = " select count(*) as cnt {$sql_common} ";
+$sql = " select count(*) as cnt {$sql_common} and a.reunion_id = {$reunionID} ";
 $row = sql_fetch($sql);
 $total_count = $row['cnt'];
 
@@ -46,7 +46,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++) {
 $group_select .= '</select>';
 
 $list = array();
-$sql = " select a.*, b.bo_subject, b.bo_5, c.gr_subject, c.gr_id {$sql_common} {$sql_order} limit {$from_record}, {$rows} ";
+$sql = " select a.*, b.bo_subject, b.bo_5, c.gr_subject, c.gr_id {$sql_common} and a.reunion_id = {$reunionID} {$sql_order} limit {$from_record}, {$rows} ";
 $result = sql_query($sql);
 for ($i=0; $row=sql_fetch_array($result); $i++) {
     $tmp_write_table = $g5['write_prefix'].$row['bo_table'];
