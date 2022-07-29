@@ -28,7 +28,7 @@ if ($mb_id) {
 }
 $sql_order = " order by a.bn_id desc ";
 
-$sql = " select count(*) as cnt {$sql_common} ";
+$sql = " select count(*) as cnt {$sql_common} and a.reunion_id = {$reunionID} ";
 $row = sql_fetch($sql);
 $total_count = $row['cnt'];
 
@@ -46,7 +46,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++) {
 $group_select .= '</select>';
 
 $list = array();
-$sql = " select a.*, b.bo_subject, c.gr_subject, c.gr_id {$sql_common} {$sql_order} limit {$from_record}, {$rows} ";
+$sql = " select a.*, b.bo_subject, b.bo_5, c.gr_subject, c.gr_id {$sql_common} and a.reunion_id = {$reunionID} {$sql_order} limit {$from_record}, {$rows} ";
 $result = sql_query($sql);
 for ($i=0; $row=sql_fetch_array($result); $i++) {
     $tmp_write_table = $g5['write_prefix'].$row['bo_table'];
@@ -59,7 +59,8 @@ for ($i=0; $row=sql_fetch_array($result); $i++) {
         $row2 = sql_fetch(" select * from {$tmp_write_table} where wr_id = '$row[wr_id]' ");
         $list[$i] = $row2;
 
-        $name = get_sideview($row2['mb_id'], cut_str($row2['wr_name'], $config['cf_cut_name']), $row2['wr_email'], $row2['wr_homepage']);
+        // $name = get_sideview($row2['mb_id'], cut_str($row2['wr_name'], $config['cf_cut_name']), $row2['wr_email'], $row2['wr_homepage']);
+        $name = $row2['wr_name'];
         // 당일인 경우 시간으로 표시함
         $datetime = substr($row2['wr_datetime'],0,10);
         $datetime2 = $row2['wr_datetime'];
@@ -82,7 +83,8 @@ for ($i=0; $row=sql_fetch_array($result); $i++) {
         $list[$i]['wr_email'] = $row3['wr_email'];
         $list[$i]['wr_homepage'] = $row3['wr_homepage'];
 
-        $name = get_sideview($row3['mb_id'], cut_str($row3['wr_name'], $config['cf_cut_name']), $row3['wr_email'], $row3['wr_homepage']);
+        // $name = get_sideview($row3['mb_id'], cut_str($row3['wr_name'], $config['cf_cut_name']), $row3['wr_email'], $row3['wr_homepage']);
+        $name = $row3['wr_name'];
         // 당일인 경우 시간으로 표시함
         $datetime = substr($row3['wr_datetime'],0,10);
         $datetime2 = $row3['wr_datetime'];
@@ -102,7 +104,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++) {
     $list[$i]['datetime'] = $datetime;
     $list[$i]['datetime2'] = $datetime2;
 
-    $list[$i]['gr_subject'] = $row['gr_subject'];
+    $list[$i]['gr_subject'] = $row['bo_5'];
     $list[$i]['bo_subject'] = $row['bo_subject'];
     $list[$i]['wr_subject'] = $row2['wr_subject'];
 }
