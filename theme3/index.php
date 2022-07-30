@@ -61,96 +61,65 @@ include_once G5_PATH . "/head.php";
 <div id="main_container">
 
     <div class="main_con sec01">
+        <div class="inner-wrapper">
+            <?= latest("pic_notice", "notice", 2, 33) ?>
 
-        <?= latest("pic_notice", "notice", 4, 33) ?>
-
-        <div class="main_gallery pc-show">
-            <div class="lat_title">POPUP ZONE</div>
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <a href="javascript:gotoMobileUrl('http://wooribannet.com/');">
-                            <img src="<?= G5_IMG_URL ?>/main_banner.png?v=<?= G5_IMG_VER ?>" alt="">
-                        </a>
+            <div class="main_gallery pc-show">
+                <div class="lat_title">BANNER ZONE</div>
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <a href="javascript:gotoMobileUrl('http://wooribannet.com/');">
+                                <img src="<?= G5_IMG_URL ?>/main_banner.png?v=<?= G5_IMG_VER ?>" alt="">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="javascript:gotoMobileUrl('http://wooribannet.com/');">
+                                <img src="<?= G5_IMG_URL ?>/main_banner.png?v=<?= G5_IMG_VER ?>" alt="">
+                            </a>
+                        </div>
                     </div>
-                    <div class="swiper-slide">
-                        <a href="javascript:gotoMobileUrl('http://wooribannet.com/');">
-                            <img src="<?= G5_IMG_URL ?>/main_banner.png?v=<?= G5_IMG_VER ?>" alt="">
-                        </a>
+                </div>
+            </div>
+            <div class="main_gallery m-show">
+                <div class="inner-wrapper">
+                    <div class="latest_wr">
+                        <?= latest("pic_block", "gallery", 4, 23) ?>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="main_gallery m-show">
-            <div class="inner-wrapper">
-                <div class="latest_wr">
-                    <?= latest("pic_block", "gallery", 4, 23) ?>
-                </div>
-            </div>
-        </div>
-        <!-- <div class="event">
-            <div class="tit">
-                동문의 경조사를<br> 빠르게 확인해보세요.
-                <div class="desc"><a href="#">더보기</a></div>
-        </div>
-
-        </div> -->
     </div>
 
     <div class="main_con sec02">
-        <div class="quick_wrap">
-            <ul>
-                <li>
-                    <a href="<?= G5_URL ?>/page/rule.php">
-                        <div class="con">
-                            <h3 class="tit">동문회 회칙 안내</h3>
-                        </div>
-                    </a>
-                    <div class="link">
-                        <div class="btn">
-                            <a href="<?= G5_URL ?>/page/rule.php">
-                                <i class="xi-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <a href="<?= G5_URL ?>/page/fees.php">
-                        <div class="con">
-                            <h3 class="tit">동문회비 안내</h3>
-                        </div>
-                    </a>
-                    <div class="link">
-                        <div class="btn">
-                            <a href="<?= G5_URL ?>/page/fees.php">
-                                <i class="xi-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+        <div class="inner-wrapper">
+            <?= latest("slide_gallery", "gallery", 4, 45) ?>
         </div>
-
     </div>
 
     <h2 class="sound_only">최신글</h2>
     <div class="latest_top_wr">
-        <?php
+        <div class="inner-wrapper">
+            <?php
         echo latest("pic_list", "event", 4, 40);
         echo latest("pic_list", "report", 4, 40);
         echo latest("promotion", "promotion", 3, 40);
         ?>
+        </div>
     </div>
 
     <div class="banner-wrap banner02">
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <?php for ($i = 0; $i < 7; $i++) { ?>
-                <div class="swiper-slide">
-                    <img src="<?= G5_IMG_URL ?>/banner/banner0<?= $i +  1 ?>.jpg?v=<?= G5_IMG_VER ?>"
-                        data-original="<?= G5_IMG_URL ?>/banner/banner_b0<?= $i +1 ?>.jpg?v=<?= G5_IMG_VER ?>" alt="">
+        <div class="inner-wrapper">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <?php for ($i = 0; $i < 7; $i++) { ?>
+                    <div class="swiper-slide">
+                        <img src="<?= G5_IMG_URL ?>/banner/banner0<?= $i +  1 ?>.jpg?v=<?= G5_IMG_VER ?>"
+                            data-original="<?= G5_IMG_URL ?>/banner/banner_b0<?= $i +1 ?>.jpg?v=<?= G5_IMG_VER ?>"
+                            alt="">
+                    </div>
+                    <?php } ?>
                 </div>
-                <?php } ?>
             </div>
         </div>
     </div>
@@ -213,6 +182,15 @@ include_once G5_PATH . "/head.php";
             disableOnInteraction: false,
         },
     });
+
+    var slide_bn = new Swiper('.sec02 .swiper-container', {
+        speed: 1300,
+        slidesPerView : 4,
+        spaceBetween: 20,
+        touchRatio: 0,
+        loop: true, // 반복옵션 true, false
+    });
+
     var slide_bn = new Swiper('#main_container .banner02 .swiper-container', {
         slidesPerView: 2, // 영역내 보여질 배너 갯수
         spaceBetween: 20, // 배너간격

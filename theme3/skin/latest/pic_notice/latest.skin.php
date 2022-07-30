@@ -30,15 +30,7 @@ $list_count = is_array($list) && $list ? count($list) : 0;
             }
 
             echo "<a href=\"" . $wr_href . "\" class=\"pic_li_tit\"> ";
-            if ($list[$i]["is_notice"]) {
-              echo "<strong>" . $list[$i]["subject"] . "</strong>";
-            } else {
-              if ($list[$i]["ca_name"]) {
-                echo "[" . $list[$i]["ca_name"] . "] ";
-              }
-              echo $list[$i]["subject"];
-            }
-
+            echo $list[$i]["subject"];
             echo "</a>";
 
             // if ($list[$i]['link']['count']) { echo "[{$list[$i]['link']['count']}]"; }
@@ -55,11 +47,16 @@ $list_count = is_array($list) && $list ? count($list) : 0;
                 "</span>";
             }
             ?>
+            <div class="desc">
+              <?php $clear_desc = strip_tags($list[$i]["wr_content"]);?>
+              <?= iconv_substr($clear_desc, 0, 164, "utf-8")?>
+              
+
+
+            </div>
 
             <div class="lt_info">
-                <span class="lt_date"><?php echo $list[$i][
-               "datetime"
-             ]; ?></span>
+                <span class="lt_date"><?php echo $list[$i]["datetime"]; ?></span>
             </div>
         </li>
         <?php
