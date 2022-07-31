@@ -9,7 +9,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 <div id="mb_login" class="mbskin">
     <div class="login-wrap">
         <div class="txt">
-            <h3>북일고 </h3>
+            <h3><?=$reunion['reunion_title']?> </h3>
             <p>동문 관리자 시스템 </p>
         </div>
 

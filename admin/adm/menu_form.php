@@ -2,7 +2,7 @@
 $sub_menu = "100290";
 include_once('./_common.php');
 
-if ($is_admin != 'super')
+if ($is_admin != 'superadmin')
     alert_close('최고관리자만 접근 가능합니다.');
 
 $g5['title'] = '메뉴 추가';

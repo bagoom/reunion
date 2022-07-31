@@ -8,6 +8,7 @@ function latest($skin_dir='', $bo_table, $rows=10, $subject_len=40, $cache_time=
 {
     global $g5;
     global $reunionID;
+    global $reunion;
 
     if (!$skin_dir) $skin_dir = 'basic';
     

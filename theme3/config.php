@@ -70,6 +70,7 @@ define('G5_THEME_DIR',      'theme');
 define('G5_GROUP_DIR',      'group');
 define('G5_CONTENT_DIR',    'content');
 define('VUE_DIR',    'vue');
+define('PAGE_DIR',    'page');
 
 // URL 은 브라우저상에서의 경로 (도메인으로 부터의)
 if (G5_DOMAIN) {
@@ -103,6 +104,7 @@ define('G5_SNS_URL',        G5_PLUGIN_URL.'/'.G5_SNS_DIR);
 define('G5_SYNDI_URL',      G5_PLUGIN_URL.'/'.G5_SYNDI_DIR);
 define('G5_MOBILE_URL',     G5_URL.'/'.G5_MOBILE_DIR);
 define('VUE_URL',     G5_URL.'/'.VUE_DIR);
+define('PAGE_URL',     G5_URL.'/'.PAGE_DIR);
 
 // PATH 는 서버상에서의 절대경로
 define('G5_ADMIN_PATH',     G5_PATH.'/'.G5_ADMIN_DIR);
@@ -114,6 +116,7 @@ define('G5_PLUGIN_PATH',    G5_PATH.'/'.G5_PLUGIN_DIR);
 define('G5_SKIN_PATH',      G5_PATH.'/'.G5_SKIN_DIR);
 define('G5_MOBILE_PATH',    G5_PATH.'/'.G5_MOBILE_DIR);
 define('VUE_PATH',    G5_PATH.'/'.VUE_DIR);
+define('PAGE_PATH',    G5_PATH.'/'.PAGE_DIR);
 define('G5_SESSION_PATH',   G5_DATA_PATH.'/'.G5_SESSION_DIR);
 define('G5_EDITOR_PATH',    G5_PLUGIN_PATH.'/'.G5_EDITOR_DIR);
 define('G5_OKNAME_PATH',    G5_PLUGIN_PATH.'/'.G5_OKNAME_DIR);

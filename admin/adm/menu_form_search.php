@@ -1,7 +1,7 @@
 <?php
 include_once('./_common.php');
 
-if ($is_admin != 'super')
+if ($is_admin != 'superadmin')
     die('최고관리자만 접근 가능합니다.');
 
 $type = isset($_REQUEST['type']) ? preg_replace('/[^0-9a-z_]/i', '', $_REQUEST['type']) : '';

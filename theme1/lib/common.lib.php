@@ -403,7 +403,7 @@ function get_list($write_row, $board, $skin_url, $subject_len=40)
     if ($list['datetime'] == G5_TIME_YMD)
         $list['datetime2'] = substr($list['datetime2'],11,5);
     else
-        $list['datetime2'] = substr($list['datetime2'],5,5);
+        $list['datetime2'] = date("y.m.d", strtotime($list['wr_datetime']));
     // 4.1
     $list['last'] = substr($list['wr_last'],0,10);
     $list['last2'] = $list['wr_last'];
@@ -792,6 +792,29 @@ function get_member($mb_id, $fields='*', $is_cache=false)
     return $cache[$mb_id][$key];
 }
 
+// 회원 정보를 얻는다.
+function get_member2($mb_no, $fields='*', $is_cache=false)
+{
+    global $g5;
+    
+    if (preg_match("/[^0-9a-z_]+/i", $mb_no))
+        return array();
+
+    static $cache = array();
+
+    $key = md5($fields);
+
+    if( $is_cache && isset($cache[$mb_no]) && isset($cache[$mb_id][$key]) ){
+        return $cache[$mb_no][$key];
+    }
+
+    $sql = " select $fields from {$g5['member_table']} where mb_no = TRIM('$mb_no') ";
+
+    $cache[$mb_no][$key] = run_replace('get_member', sql_fetch($sql), $mb_no, $fields, $is_cache);
+
+    return $cache[$mb_no][$key];
+}
+
 
 // 매니저 정보를 얻는다.
 function get_manager($mg_id, $fields='*', $is_cache=false)
@@ -834,7 +857,7 @@ function get_executive($mb_id, $fields='*', $is_cache=false)
         return $cache[$mb_id][$key];
     }
 
-    $sql = " select $fields from {$g5['member_table']} where mb_id = TRIM('$mb_id') and executive != '' ";
+    $sql = " select $fields from {$g5['member_table']} where mb_id = TRIM('$mb_id') and executive != '' and reunion_id = $reunionID ";
 
     $cache[$mb_id][$key] = run_replace('get_member', sql_fetch($sql), $mb_id, $fields, $is_cache);
 
@@ -4066,3 +4089,77 @@ function get_reunion_select2($name, $selected='', $event='', $field, $table)
     $str .= "</select>";
     return $str;
 }
+
+// 지회정보를 얻음
+function get_branch($mb_no, $where)
+{
+    global $g5, $is_admin, $member, $reunionID;
+
+    $sql = "SELECT * FROM {$g5['branch']} a, `branch_member` b WHERE a.branch_id = b.branch_id AND  a.reunion_id = '{$reunionID}' AND b.mb_no = '{$mb_no}'";
+    $result = sql_query($sql);
+    for ($i=0; $row=sql_fetch_array($result); $i++) {
+        $str .= $row['branch_name']. ",";
+    }
+
+    $str = substr($str, 0, -1);
+    return $str;
+}
+
+// 푸시알림 
+define("GOOGLE_API_KEY", "AAAAHAx_ZSY:APA91bHwSXxcYKVHar5rBIjkKSlpNGH8JeBXWTLUmYUosuOOfXpGsRKGVCifF-GJ7LQB8URhvtqsxYFuAV-bhLP7Kfu-G_OHV8PgRnJKu4YeVXvDfELp7_Ffbr7wz3buRDHkS_fz11Lx");
+define("GOOGLE_GCM_URL", "https://fcm.googleapis.com/fcm/send");
+
+function send_gcm_notify($reg_id, $title, $message ,$url , $deviceType) {
+	$fields;
+	if($deviceType == 'ANDROID'){
+		//android
+		$fields = array(
+			'registration_ids'  => array( $reg_id ),
+			'data'              => array( "msg" => $message ,"title" => $title , "url" => $url ),
+		);
+	}else{
+		//ios
+		$fields = array(
+			 'registration_ids'  => array( $reg_id ),
+			 'mutable_content'=> true,
+			 'url'=> $url,
+			 'notification' => array( "subtitle" => $message ,
+									  "title" => "알림"  ,
+									  "url" => $url  ,
+									  'push_message'=> $message,
+
+									  'sound'=>'Default',
+									  "body" => $message )
+		);
+	}
+
+    $headers = array(
+        'Authorization: key=AAAAHAx_ZSY:APA91bHwSXxcYKVHar5rBIjkKSlpNGH8JeBXWTLUmYUosuOOfXpGsRKGVCifF-GJ7LQB8URhvtqsxYFuAV-bhLP7Kfu-G_OHV8PgRnJKu4YeVXvDfELp7_Ffbr7wz3buRDHkS_fz11Lx',
+        'Content-Type: application/json'
+    );
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, GOOGLE_GCM_URL);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+
+    $result = curl_exec($ch);
+    if ($result === FALSE) {
+        die('Problem occurred: ' . curl_error($ch));
+    }
+
+    curl_close($ch);
+    echo $result;
+ }
+
+ function ignore_menu () {
+    global $reunionID;
+
+    $sql = "SELECT * FROM `menu_ignore` WHERE reunion_id = '{$reunionID}'";
+    $result = sql_fetch($sql);
+
+    return $result;
+ }

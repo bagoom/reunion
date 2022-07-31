@@ -4,7 +4,7 @@ include_once('./_common.php');
 
 check_demo();
 
-if ($is_admin != 'super')
+if ($is_admin != 'superadmin')
     alert('최고관리자만 접근 가능합니다.');
 
 check_admin_token();

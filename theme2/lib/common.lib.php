@@ -857,7 +857,7 @@ function get_executive($mb_id, $fields='*', $is_cache=false)
         return $cache[$mb_id][$key];
     }
 
-    $sql = " select $fields from {$g5['member_table']} where mb_id = TRIM('$mb_id') and executive != '' ";
+    $sql = " select $fields from {$g5['member_table']} where mb_id = TRIM('$mb_id') and executive != '' and reunion_id = $reunionID  ";
 
     $cache[$mb_id][$key] = run_replace('get_member', sql_fetch($sql), $mb_id, $fields, $is_cache);
 
@@ -4153,4 +4153,13 @@ function send_gcm_notify($reg_id, $title, $message ,$url , $deviceType) {
 
     curl_close($ch);
     echo $result;
+ }
+
+ function ignore_menu () {
+    global $reunionID;
+
+    $sql = "SELECT * FROM `menu_ignore` WHERE reunion_id = '{$reunionID}'";
+    $result = sql_fetch($sql);
+
+    return $result;
  }

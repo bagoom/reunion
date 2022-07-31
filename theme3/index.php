@@ -25,7 +25,8 @@ include_once G5_PATH . "/head.php";
 <script src="<?= G5_JS_URL ?>/viewer.min.js"></script>
 
 <script src="<?= G5_JS_URL ?>/inewsticker.js"></script>
-<script src="https://unpkg.com/swiper@5.4.5/js/swiper.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
 
 <div id="visual">
@@ -54,6 +55,13 @@ include_once G5_PATH . "/head.php";
         </div>
         <div class="inner-wrapper">
             <div class="swiper-pagination"></div>
+
+            <div class="quick-menu">
+                <ul>
+                    <li><a href="<?=PAGE_URL?>/rule.php">회칙안내 <i class="xi-paper-o"></i></a></li>
+                    <li><a href="<?=PAGE_URL?>/fees.php">회비안내 <i class="xi-paper-o"></i></a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
@@ -66,17 +74,25 @@ include_once G5_PATH . "/head.php";
 
             <div class="main_gallery pc-show">
                 <div class="lat_title">BANNER ZONE</div>
+                <div class="maing-gallery-control">
+                    <div class="box">
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+
+                </div>
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <a href="javascript:gotoMobileUrl('http://wooribannet.com/');">
+                            <!-- <a href="javascript:gotoMobileUrl('http://wooribannet.com/');">
                                 <img src="<?= G5_IMG_URL ?>/main_banner.png?v=<?= G5_IMG_VER ?>" alt="">
-                            </a>
+                            </a> -->
                         </div>
                         <div class="swiper-slide">
-                            <a href="javascript:gotoMobileUrl('http://wooribannet.com/');">
+                            <!-- <a href="javascript:gotoMobileUrl('http://wooribannet.com/');">
                                 <img src="<?= G5_IMG_URL ?>/main_banner.png?v=<?= G5_IMG_VER ?>" alt="">
-                            </a>
+                            </a> -->
                         </div>
                     </div>
                 </div>
@@ -181,11 +197,19 @@ include_once G5_PATH . "/head.php";
             delay: 2500,
             disableOnInteraction: false,
         },
+        pagination: {
+            el: ".main_gallery .swiper-pagination",
+            type: "fraction",
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
     });
 
     var slide_bn = new Swiper('.sec02 .swiper-container', {
         speed: 1300,
-        slidesPerView : 4,
+        slidesPerView: 4,
         spaceBetween: 20,
         touchRatio: 0,
         loop: true, // 반복옵션 true, false

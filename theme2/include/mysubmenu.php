@@ -18,9 +18,11 @@
                 from {$g5['menu_table']}
                 where me_use = '1'
                   and length(me_code) = '2'
-                order by me_order, me_id ";
+                order by me_order, me_code ";
     $result = sql_query($sql, false);
     $gnb_zindex = 999; // gnb_1dli z-index 값 설정용
+
+    $ignore = ignore_menu();
 
     for ($i=0; $row=sql_fetch_array($result); $i++) {
     ?>
@@ -32,7 +34,7 @@
                         where me_use = '1'
                           and length(me_code) = '4'
                           and substring(me_code, 1, 2) = '{$row['me_code']}'
-                        order by me_order, me_id ";
+                        order by me_order, me_code ";
             $result2 = sql_query($sql2);
             
             $base_filename = basename($_SERVER['PHP_SELF']);
@@ -46,6 +48,8 @@
             }
     
             for ($k=0; $row2=sql_fetch_array($result2); $k++) {
+                if($row2['me_code'] == $ignore['cate2'])
+                continue;
                 if($k == 0)
                     echo '<ul>'.PHP_EOL;
             ?>
@@ -59,7 +63,7 @@
                     echo ("<script language='javascript'> display_submenu(" .$i. " ); </script> ");
                 }
 
-                if($row2['me_code'] == 1040) {
+                if($row2['me_code'] == 1060) {
                     $repeat = 0;
                     if($repeat == 0) {
                     $branch_type_sql = "SELECT * FROM `branch_type` WHERE reunion_id = $reunionID";

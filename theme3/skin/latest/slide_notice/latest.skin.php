@@ -3,8 +3,8 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 include_once(G5_LIB_PATH.'/thumbnail.lib.php');
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 add_stylesheet('<link rel="stylesheet" href="'.$latest_skin_url.'/style.css">', 0);
-$thumb_width = 297;
-$thumb_height = 212;
+$thumb_width = 400;
+$thumb_height = 400;
 $list_count = (is_array($list) && $list) ? count($list) : 0;
 ?>
 

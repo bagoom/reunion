@@ -42,6 +42,10 @@
   top: 98px;
 }
 
+#hd #hd_wrapper #gnb_all .gnb_al_li {
+  min-height: 245px;
+}
+
 #hd #hd_wrapper #gnb_all .gnb_al_li li a:hover {
   color: #016cb5;
 }
@@ -62,7 +66,7 @@
 
 #visual {
   margin: 30px;
-  animation-duration: 1.4s;
+  animation-duration: 1.2s;
   animation-name: scalein;
 }
 
@@ -115,8 +119,50 @@
   background-image: url(../img/visual02.jpg);
 }
 
+#visual .quick-menu {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+#visual .quick-menu ul {
+  display: flex;
+  border-radius: 4px 4px 0 0;
+  overflow: hidden;
+}
+
+#visual .quick-menu ul li {
+  background: #004186;
+}
+
+#visual .quick-menu ul li:first-child {
+  border-right: 1px dashed rgba(255, 255, 255, 0.15);
+}
+
+#visual .quick-menu ul li a {
+  position: relative;
+  display: block;
+  padding: 20px 30px;
+  color: #fff;
+  font-size: 14px;
+  transition: 0.3s all;
+}
+
+#visual .quick-menu ul li a:hover {
+  background: #016cb5;
+}
+
+#visual .quick-menu ul li a i {
+  position: relative;
+  top: 1px;
+  margin-left: 5px;
+  color: #fff;
+}
+
 #visual .swiper-pagination {
-  bottom: 25px;
+  bottom: 85px;
   left: 50%;
 }
 
@@ -217,13 +263,57 @@
 }
 
 #main_container .sec01 .main_gallery {
+  position: relative;
   width: 35%;
   margin-left: 20px;
 }
 
+#main_container .sec01 .main_gallery .maing-gallery-control {
+  position: absolute;
+  top: 6px;
+  right: 0;
+}
+
+#main_container .sec01 .main_gallery .maing-gallery-control .swiper-pagination-fraction {
+  width: auto;
+  bottom: 50%;
+  font-size: 16px;
+  letter-spacing: -0.03em;
+  transform: translateY(50%);
+}
+
+#main_container .sec01 .main_gallery .maing-gallery-control .swiper-button-prev {
+  left: auto;
+  right: 40px;
+}
+
+#main_container .sec01 .main_gallery .maing-gallery-control .swiper-button-next {
+  right: 0px;
+}
+
+#main_container .sec01 .main_gallery .maing-gallery-control .swiper-button-prev,
+#main_container .sec01 .main_gallery .maing-gallery-control .swiper-button-next {
+  width: 23px;
+  height: 23px;
+  margin-top: 0;
+  transform: translateY(-50%);
+}
+
+#main_container .sec01 .main_gallery .maing-gallery-control .swiper-button-prev:after,
+#main_container .sec01 .main_gallery .maing-gallery-control .swiper-button-next:after {
+  font-size: 14px;
+  color: #000;
+}
+
+#main_container .sec01 .main_gallery .maing-gallery-control .box {
+  position: relative;
+  width: 100px;
+  height: 30px;
+}
+
 #main_container .sec01 .main_gallery .swiper-slide {
   height: 175px;
-  background: #f9f9f9;
+  background: #eee;
 }
 
 #main_container .sec01 .main_gallery .swiper-slide img {
@@ -235,7 +325,7 @@
   display: block;
   min-height: 300px;
   margin-top: 30px;
-  padding: 50px 0;
+  padding: 80px 0;
   background: #e7ebf1;
 }
 
@@ -245,10 +335,16 @@
   font-size: 20px;
 }
 
+#main_container .sec02 .lat_title p {
+  margin-top: 8px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
 #main_container .sec02 .swiper-slide .lt_info {
   display: flex;
-  padding: 15px;
-  border-top: 4px solid #016cb5;
+  padding: 20px;
+  border-top: 4px solid #004186;
   background: #fff;
   align-items: center;
 }
@@ -263,8 +359,10 @@
 #main_container .sec02 .swiper-slide .lt_info .lt_date {
   flex: 1;
   display: flex;
+  padding-left: 10px;
   flex-direction: column;
   align-items: center;
+  color: #000;
 }
 
 #main_container .sec02 .swiper-slide .lt_info .lt_date .day {
@@ -284,6 +382,36 @@
   to {
     margin: 30px;
   }
+}
+
+.greeting .box {
+  display: flex;
+}
+
+.greeting .box .txt {
+  flex: 1;
+  margin-right: 35px;
+  word-break: keep-all;
+}
+
+.greeting .box .img {
+  width: 200px;
+}
+
+.greeting .box .img .sign {
+  margin-top: 15px;
+}
+
+.greeting .box .img .sign span {
+  font-size: 14px;
+}
+
+.greeting .box .img .sign p {
+  margin-top: 5px;
+}
+
+.greeting .box .img img {
+  max-width: 100%;
 }
 
 .organization .box {
@@ -319,6 +447,7 @@ table.basic-type02 thead tr:first-child {
 table.basic-type02 thead tr:first-child th {
   background: #f3f3f3;
   color: #016cb5;
+  font-size: 16px;
 }
 
 table.basic-type02 th {

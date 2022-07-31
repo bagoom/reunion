@@ -112,7 +112,7 @@ function get_menu_db($use_mobile=0, $is_cache=false){
                 from {$g5['menu_table']}
                 where $where
                 and length(me_code) = '2'
-                order by me_order, me_id ";
+                order by me_order, me_code ";
         $result = sql_query($sql, false);
 
         for ($i=0; $row=sql_fetch_array($result); $i++) {
@@ -127,7 +127,7 @@ function get_menu_db($use_mobile=0, $is_cache=false){
                     where $where
                     and length(me_code) = '4'
                     and substring(me_code, 1, 2) = '{$row['me_code']}'
-                    order by me_order, me_id ";
+                    order by me_order, me_code ";
             $result2 = sql_query($sql2);
             for ($k=0; $row2=sql_fetch_array($result2); $k++) {
                 $row2['ori_me_link'] = $row2['me_link'];

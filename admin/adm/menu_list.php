@@ -24,7 +24,7 @@ if(!sql_query(" DESCRIBE {$g5['menu_table']} ", false)) {
                 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ", true);
 }
 
-$sql = " select * from {$g5['menu_table']} order by me_id ";
+$sql = " select * from {$g5['menu_table']} order by me_code ";
 $result = sql_query($sql);
 
 $g5['title'] = "메뉴설정";

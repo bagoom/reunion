@@ -9,12 +9,15 @@ $thumb_height = 204;
 $list_count = (is_array($list) && $list) ? count($list) : 0;
 ?>
 
-<h2 class="lat_title"><a href="<?php echo get_pretty_url($bo_table); ?>"><?=$bo_subject?></a></h2>
+<h2 class="lat_title">
+    <a href="<?php echo get_pretty_url($bo_table); ?>"><?=$bo_subject?></a>
+    <p><?=$reunion['reunion_title']?>의 행사 갤러리 입니다.</p>
+</h2>
 <div class="swiper-container">
     <div class="swiper-wrapper">
         <?php
     for ($i=0; $i<$list_count; $i++) {
-    $thumb = get_list_thumbnail($bo_table, $list[$i]['wr_id'], $thumb_width, $thumb_height, false, true);
+    $thumb = get_list_thumbnail($bo_table, $list[$i]['wr_id'], $thumb_width, $thumb_height, false, true, 'top');
 
     if($thumb['src']) {
         $img = $thumb['src'];
