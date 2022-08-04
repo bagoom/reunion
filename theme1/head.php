@@ -89,6 +89,7 @@ if (!file_exists($reunion_config_file)) {
                         <?php
                         
                         $i = 0;
+                        $ignore = ignore_menu();
                         foreach( $menu_datas as $row ){
                         ?>
                         <li class="gnb_al_li">
@@ -96,6 +97,8 @@ if (!file_exists($reunion_config_file)) {
                             <?php
                             $k = 0;
                             foreach( (array) $row['sub'] as $row2 ){
+                                if($row2['me_code'] == $ignore['cate2'])
+                                continue;
                                 if($k == 0)
                                     echo '<ul>'.PHP_EOL;
                             ?>

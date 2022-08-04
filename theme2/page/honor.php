@@ -8,7 +8,7 @@ include_once(G5_PATH.'/head.php');
 
     <div class="box">
         <div class="con01">
-            <div class="preparing">현재 준비 중인 페이지입니다.</div>
+            <div class="preparing">서비스 준비중 입니다.</div>
             <!-- <div class="img"><img src="<?= G5_IMG_URL ?>/hall_of_fame.jpg?v=<?=G5_IMG_VER?>" alt=""></div> -->
         </div>
     </div>

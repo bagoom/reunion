@@ -107,6 +107,7 @@
         font-size: 18px;
         padding: 0 15px;
         color: #282828;
+        line-height: 45px;
         text-decoration: none;
         transition: 0.3s all;
         text-align: left;
@@ -533,4 +534,21 @@
     .banner02 .swiper-slide::before {
         display: none;
     }
+
+    #bo_gall .gall_text_href a{
+        font-size: 13px;
+      }
+
+      #fregister p{
+        font-size: 12px;
+        height: auto;
+        line-height: 1.5;
+        text-align: left;
+        padding: 10px;
+        padding-left: 10px;
+      }
+      
+      #fregister p:before{
+        height: 100%;
+      }
 }

@@ -7,7 +7,8 @@ include_once(G5_PATH.'/head.php');
 <div class="cont fees">
 
     <div class="box">
-        <div class="con01">
+        <div class="preparing">서비스 준비중 입니다.</div>
+        <!-- <div class="con01">
             <div class="tit01">납부안내</div>
             <div class="txt">
                 총동문회는 그동안 이러한 목적을 달성하기 위해 여러 가지 사업을 추진해 왔으며, <br>
@@ -62,7 +63,7 @@ include_once(G5_PATH.'/head.php');
                     <td class="rpColumn">은행, 카드, 지로, 핸드폰</td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
     </div>
 
 

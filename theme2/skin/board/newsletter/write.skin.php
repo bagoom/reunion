@@ -147,6 +147,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     </div>
     <div class="bo_w_flie write_div">
         <p style="margin: 10px 0 5px; font-size: 14px;">PDF파일</p>
+        <p style="margin:5px 0; font-size: 13px; color: #999;">30M 미만 파일만 등록 가능합니다.</p>
         <div class="file_wr write_div">
             <label for="bf_file_1" class="lb_icon"><i class="fa fa-folder-open" aria-hidden="true"></i><span class="sound_only"> 파일 #1</span></label>
             <input type="file" name="bf_file[]" id="bf_file_1" title="파일첨부 1 : 용량 <?php echo $upload_max_filesize ?> 이하만 업로드 가능" class="frm_file ">

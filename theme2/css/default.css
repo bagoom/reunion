@@ -261,6 +261,7 @@ select:focus {
   right: 0;
   left: 0;
   background: #fff;
+  border-bottom: 1px solid #eee;
   z-index: 1000;
 }
 
@@ -467,7 +468,7 @@ select:focus {
 
 #gnb .gnb_wrap {
   overflow: hidden;
-  max-width: 780px;
+  max-width: 900px;
   margin: 0 auto;
   position: relative
 }
@@ -514,7 +515,7 @@ select:focus {
 
 .gnb_1da {
   display: block;
-  width: 130px;
+  width: 150px;
   line-height: 75px;
   font-weight: bold;
   font-size: 19px;
@@ -648,8 +649,8 @@ a.gnb_2da:hover {
 }
 
 #gnb_all .gnb_al_ul {
-  max-width: 780px;
-  margin-left: 420px;
+  max-width: 900px;
+  margin-left: 300px;
 }
 
 #gnb_all .gnb_al_ul:after {
@@ -666,7 +667,7 @@ a.gnb_2da:hover {
 #gnb_all .gnb_al_li {
   position: relative;
   float: left;
-  width: 130px;
+  width: 150px;
   padding: 10px 0 20px 20px;
   min-height: 200px;
   border-left: 1px solid #e5e5e5
@@ -827,7 +828,7 @@ a.gnb_2da:hover {
 
 #container_wr {
   margin: 0 auto;
-  height: 100%;
+  /* height: 100%; */
   zoom: 1
 }
 
@@ -3049,4 +3050,19 @@ textarea.required {
 .preparing {
   padding: 50px 0;
   text-align: center;
+}
+
+.pic_li_lt li .pic_li_tit, .pic_lt li a{
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#bo_gall .gall_text_href a{
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 15px;
 }

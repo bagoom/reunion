@@ -58,7 +58,7 @@ if (!file_exists($reunion_config_file)) {
     </div>
     <div id="hd_wrapper">
         <div id="logo">
-            <a href="<?php echo G5_URL ?>"><img src="<?php echo G5_IMG_URL ?>/logo_gray.png?v=<?=G5_IMG_VER?>" alt="<?php echo $config['cf_title']; ?>"></a>
+            <a href="<?php echo G5_URL ?>"><img src="<?php echo G5_IMG_URL ?>/logo.png?v=<?=G5_IMG_VER?>" alt="<?=$reunion['reunion_title'] ?>"></a>
         </div>
 
         <div class="nav-open-btn m-show">
@@ -93,6 +93,8 @@ if (!file_exists($reunion_config_file)) {
                         <?php
                         
                         $i = 0;
+                        $ignore = ignore_menu();
+                        $ignore_arr = explode(',',$ignore['cate2']);
                         foreach( $menu_datas as $row ){
                         ?>
                         <li class="gnb_al_li">
@@ -100,6 +102,11 @@ if (!file_exists($reunion_config_file)) {
                             <?php
                             $k = 0;
                             foreach( (array) $row['sub'] as $row2 ){
+                                foreach( $ignore_arr as $ignore_m ){
+                                    if($row2['me_code'] == $ignore_m) {
+                                        continue 2;
+                                    }
+                                }
                                 if($k == 0)
                                     echo '<ul>'.PHP_EOL;
                             ?>
@@ -155,7 +162,13 @@ if (!file_exists($reunion_config_file)) {
                     
                     <?php
                     $k = 0;
-                    foreach( (array) $row['sub'] as $row2 ){
+                    foreach( (array) $row['sub'] as $row2 ){ 
+                        // 모바일 메뉴 ignore적용
+                        foreach( $ignore_arr as $ignore_m ){
+                            if($row2['me_code'] == $ignore_m) {
+                                continue 2;
+                            }
+                        }
 						if( empty($row2) ) continue;
                         if($k == 0)
                             echo '<ul class="gnb_2dul">'.PHP_EOL;

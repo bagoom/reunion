@@ -187,7 +187,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
             ?>
             <li>
                 <i class="fa fa-link" aria-hidden="true"></i>
-                <a href="<?php echo $view['link_href'][$i] ?>" target="_blank">
+                
+                <a href="javascript:gotoMobileUrl('<?=$view['link_href'][$i]?>'); " >
                     <strong><?php echo $link ?></strong>
                 </a>
                 <br>

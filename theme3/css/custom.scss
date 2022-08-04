@@ -70,6 +70,23 @@ sans-serif;
       }
     }
   }
+
+  &.sub {
+    #sub-title {
+      position: relative;
+      background: url(../img/visual01.jpg) no-repeat center / cover;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.4);
+      }
+    }
+  }
 }
 
 #visual {
@@ -389,6 +406,20 @@ sans-serif;
   }
 }
 
+#ft {
+  #ft_wr {
+    align-items: center;
+
+    .ft_logo {
+      width: 250px;
+
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+}
+
 .latest_top_wr {
   margin: 0;
 }
@@ -404,6 +435,14 @@ sans-serif;
 }
 
 // PAGE
+.cont {
+  &>.title {
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 500;
+  }
+}
+
 .greeting {
   .box {
     display: flex;
@@ -450,7 +489,93 @@ sans-serif;
   }
 }
 
+.chairmen {
+  .tab-content {
+    margin-top: 30px;
 
+    .chairmen-list {
+      display: flex;
+      flex-wrap: wrap;
+
+      li {
+        display: flex;
+        width: calc(33.333% - 10px);
+        margin-right: 15px;
+        margin-bottom: 15px;
+        padding: 10px 15px;
+        align-items: center;
+        vertical-align: top;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background: #f9f9f9;
+
+        &:nth-child(3n) {
+          margin-right: 0;
+        }
+
+        .img {
+          width: 100px;
+          margin-right: 15px;
+
+          img {
+            max-width: 100%;
+          }
+        }
+
+        .info {
+          .career {
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            color: $color2;
+          }
+
+          .flex {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3px;
+
+            .major {
+              margin-left: 5px;
+              letter-spacing: -0.03em;
+              word-spacing: -4px;
+            }
+
+            .name {
+              font-size: 18px;
+              font-weight: 500;
+            }
+          }
+
+          .year {
+            font-size: 13px;
+          }
+        }
+      }
+
+    }
+  }
+}
+
+.fees,
+.fund {
+  .txt {
+    flex: 1;
+    margin-right: 35px;
+    white-space: pre-line;
+    word-break: keep-all;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .img {
+    width: 100%;
+
+    img {
+      max-width: 100%;
+    }
+  }
+}
 
 
 // Table
@@ -500,6 +625,42 @@ table.basic-type02 {
   }
 }
 
+// Tab
+.tab-list.basic {
+  ul {
+
+    li {
+      display: inline-block;
+      margin-right: 5px;
+      padding: 12px 20px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+      color: #888;
+      cursor: pointer;
+
+      &.on {
+        background: $color1;
+        color: #fff;
+        border-color: $color1;
+      }
+    }
+  }
+}
+
+.tab-content {
+  .box {
+    display: none;
+
+    &.on {
+      display: block;
+    }
+
+  }
+
+}
+
+
 // color setting
 
 #mysubmenu .leftmenu_b,
@@ -511,4 +672,174 @@ table.basic-type02 {
 
 #mysubmenu .leftmenu_s.on {
   color: $color2;
+}
+
+@media (max-width:768px) {
+  #hd {
+    height: 55px;
+
+    #hd_wrapper {
+      height: 100%;
+      margin-top: 0;
+      padding: 10px 20px;
+
+      #logo {
+        top: 50%;
+        width: 200px;
+        transform: translateY(-50%);
+      }
+
+      .nav-open-btn {
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+      }
+
+      #gnb {
+        padding: 20px;
+
+        .gnb_1da {
+          line-height: 45px;
+        }
+      }
+    }
+
+    #tnb {
+      .inner {
+        #hd_qnb {
+          position: relative;
+          right: auto;
+        }
+      }
+    }
+  }
+
+  #wrapper {
+    margin-top: 55px;
+
+    #visual {
+      margin: 0;
+      animation: none;
+
+      .visual-slide {
+        .swiper-slide {
+          height: 350px;
+
+          .txt {
+            h3 {
+              font-size: 28px;
+            }
+
+            p {
+              font-size: 18px;
+            }
+          }
+        }
+      }
+
+      .quick-menu {
+        white-space: nowrap;
+
+        ul {
+          li {
+            a {
+              padding: 10px 20px;
+            }
+          }
+        }
+      }
+    }
+
+    .sec01 {
+      .inner-wrapper {
+        display: block;
+
+        .pic_li_lt {
+          width: 100%;
+
+          ul {
+            display: block;
+
+            li {
+              width: 100%;
+              margin-bottom: 20px;
+
+              .pic_li_tit {
+                font-size: 16px;
+              }
+
+              .desc {
+                margin: 15px 0;
+              }
+            }
+          }
+        }
+      }
+
+      .main_gallery {
+        width: 100%;
+        margin: 0;
+      }
+    }
+
+    .sec02 {
+      .swiper-container {
+        margin: 0 30px;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .greeting {
+    .box {
+      display: block;
+
+      .txt {
+        margin-right: 0;
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  .chairmen {
+    .tab-content {
+      .chairmen-list {
+
+        li {
+          width: 100%;
+          min-height: 145px;
+          margin-right: 0px;
+        }
+      }
+    }
+  }
+
+  .tab-list.basic {
+    ul {
+
+      li {
+        width: calc(33.333% - 9px);
+        margin-bottom: 7px;
+        padding: 6px 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 12px;
+        color: #888;
+        text-align: center;
+      }
+    }
+  }
+
+    #ft {
+      #ft_wr {
+        .ft_logo{
+          margin: 0 auto 25px;
+        }
+      }
+    }
+
 }

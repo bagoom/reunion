@@ -27,13 +27,13 @@ if (G5_IS_MOBILE) {
         
         <div class="ft_logo"><img src="<?= G5_IMG_URL ?>/ft_logo.png?v=<?=G5_IMG_VER?>" alt=""></div>
         <div class="ft_content">
-        <!-- <div id="ft_link" class="ft_cnt">
-            <a href="<?php echo get_pretty_url('content', 'company'); ?>">동문회 안내</a>
-            <a href="<?php echo get_pretty_url('content', 'privacy'); ?>">개인정보처리방침</a>
-            <a href="<?php echo get_pretty_url('content', 'provision'); ?>">서비스이용약관</a>
-        </div> -->
+        <div id="ft_link" class="ft_cnt">
+            <!-- <a href="<?php echo get_pretty_url('content', 'company'); ?>">동문회 안내</a> -->
+            <a href="<?=PAGE_URL?>/privacy.php">개인정보처리방침</a>
+            <a href="<?=PAGE_URL?>/termofuse.php">서비스이용약관</a>
+        </div>
 
-
+        
         <div id="ft_company" class="ft_cnt">
 	        <p class="ft_info">
 	        	북일고등학교 충천남도 천안시 동나묵 단대로 69 (신부동)<br class="m-show">  Tel: 041.520-8600 Fax: 041.551.7116 <br>
@@ -75,19 +75,21 @@ if ($config['cf_analytics']) {
 //   var vConsole = new window.VConsole();
 </script>
 <script>
-
-    function gotoMobileUrl(url){
-        if(deviceType() == 'android'){
-            bugilgoaos.goWebSafari(url); 
-        }
-        else if(deviceType() == 'ios'){
-            var obj ={};
-            obj.name = "goWebSafari"; 
-            obj.url = url; 
-            webkit.messageHandlers.bugilgoaos.postMessage(JSON.stringify(obj));
-            console.log(webkit)
-        }else{
-            window.open ( url, "_blank", )
+    var is_app = bugilgoaos ? bugilgoaos : null;
+    function gotoMobileUrl(url) {
+        if (is_app) {
+            if (deviceType() == 'android') {
+                bugilgoaos.goWebSafari(url);
+            } else if (deviceType() == 'ios' && is_mobile) {
+                var obj = {};
+                obj.name = "goWebSafari";
+                obj.url = url;
+                webkit.messageHandlers.bugilgoaos.postMessage(JSON.stringify(obj));
+                console.log(webkit)
+            }
+        } else {
+            console.log(url)
+            window.open(url, "_blank", )
         }
     }
 $(function() {

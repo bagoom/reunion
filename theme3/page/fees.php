@@ -7,7 +7,21 @@ include_once(G5_PATH.'/head.php');
 <div class="cont fees">
 
     <div class="box">
-        <div class="con01">
+
+        <div class="img">
+            <img src="<?=G5_IMG_URL?>/fees01.jpg?v=<?=G5_IMG_VER?>" alt="">
+        </div>
+        <div class="txt">
+            동문여러분의 소중한 성원이 필요합니다!
+
+            사회 각계각층에서 선도적인 역할을 하고 있는 동문님들의 건승을 기원합니다.
+            동문 여러분께서 아낌없이 지원해 주시는 동문회비는 후배 장학기금 마련, 총동문회 발전을
+            위한 기금 조성, 동문 친목사업 운영, 모교 발전을 위한 사업 추진 등 우리 동문의 위상을
+            높이며, 총동문회와 모교의 발전을 위한 원동력이 되고 있습니다.
+        </div>
+
+
+        <!-- <div class="con01">
             <div class="tit01">납부안내</div>
             <div class="txt">
                 총동문회는 그동안 이러한 목적을 달성하기 위해 여러 가지 사업을 추진해 왔으며, <br>
@@ -62,10 +76,10 @@ include_once(G5_PATH.'/head.php');
                     <td class="rpColumn">은행, 카드, 지로, 핸드폰</td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
     </div>
 
 
-<?php
+    <?php
 include_once(G5_PATH.'/tail.php');
 ?>

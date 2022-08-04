@@ -47,6 +47,7 @@ include_once('./admin.head.php');
                     <div class="input-col">
                         <select name="sfl" id="sfl">
                             <option value="">검색어구분</option>
+                            <option value="generation" <?php echo get_selected($sfl, "generation"); ?>>기수</option>
                             <option value="job" <?php echo get_selected($sfl, "job"); ?>>직장명</option>
                             <option value="job_position" <?php echo get_selected($sfl, "job_position"); ?>>직위</option>
                             <option value="addr" <?php echo get_selected($sfl, "addr"); ?>>자택주소</option>

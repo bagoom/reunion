@@ -36,9 +36,9 @@ if (G5_IS_MOBILE) {
 
             <div id="ft_company" class="ft_cnt">
                 <p class="ft_info">
-                    북일고등학교 충천남도 천안시 동나묵 단대로 69 (신부동)<br class="m-show"> Tel: 041.520-8600 Fax: 041.551.7116 <br>
+                    인천기계공업고등학교 인천광역시 <br class="m-show"> 미추홀구 한나루로 545 (주안2동 625-2)<br class="m-show"> Tel: 032.865.9801 Fax: 032.865.9807 <br>
                     <!-- E-mail:alumni1398@hanmail.net<br> -->
-                    COPYRIGHTⓒ2022 북일고등학교 총동문회<br class="m-show"> ALL RIGHTS RESERVED.
+                    COPYRIGHTⓒ2022 인천기계공업고등학교 총동문회<br class="m-show"> ALL RIGHTS RESERVED.
                 </p>
             </div>
         </div>
@@ -77,16 +77,20 @@ if ($config['cf_analytics']) {
     //   var vConsole = new window.VConsole();
 </script>
 <script>
+    var is_app = bugilgoaos ? bugilgoaos : null;
     function gotoMobileUrl(url) {
-        if (deviceType() == 'android') {
-            bugilgoaos.goWebSafari(url);
-        } else if (deviceType() == 'ios') {
-            var obj = {};
-            obj.name = "goWebSafari";
-            obj.url = url;
-            webkit.messageHandlers.bugilgoaos.postMessage(JSON.stringify(obj));
-            console.log(webkit)
+        if (is_app) {
+            if (deviceType() == 'android') {
+                bugilgoaos.goWebSafari(url);
+            } else if (deviceType() == 'ios' && is_mobile) {
+                var obj = {};
+                obj.name = "goWebSafari";
+                obj.url = url;
+                webkit.messageHandlers.bugilgoaos.postMessage(JSON.stringify(obj));
+                console.log(webkit)
+            }
         } else {
+            console.log(url)
             window.open(url, "_blank", )
         }
     }

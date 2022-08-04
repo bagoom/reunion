@@ -23,6 +23,7 @@
     $gnb_zindex = 999; // gnb_1dli z-index 값 설정용
 
     $ignore = ignore_menu();
+    $ignore_arr = explode(',',$ignore['cate2']);
 
     for ($i=0; $row=sql_fetch_array($result); $i++) {
     ?>
@@ -48,8 +49,11 @@
             }
     
             for ($k=0; $row2=sql_fetch_array($result2); $k++) {
-                if($row2['me_code'] == $ignore['cate2'])
-                    continue;
+                foreach( $ignore_arr as $ignore_m ){
+                    if($row2['me_code'] == $ignore_m) {
+                        continue 2;
+                    }
+                }
                 if($k == 0)
                     echo '<ul>'.PHP_EOL;
             ?>

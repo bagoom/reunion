@@ -1,0 +1,319 @@
+$color1: #fa7200;
+$color2: #4e4339;
+
+$font2: "Mont",
+sans-serif;
+
+
+//Page
+.history {
+  .tab-content {
+    margin-top: 50px;
+
+    .title {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .area {
+      margin-top: 50px;
+    }
+
+    .history-list li {
+      display: flex;
+      margin-bottom: 20px;
+      font-size: 15px;
+      line-height: 1.7;
+
+      dt {
+        min-width: 110px;
+        color: $color1;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.chairmen {
+  .tab-content {
+    margin-top: 30px;
+
+    .chairmen-list {
+      display: flex;
+      flex-wrap: wrap;
+
+      li {
+        display: flex;
+        width: calc(33.333% - 10px);
+        margin-right: 15px;
+        margin-bottom: 15px;
+        padding: 10px 15px;
+        align-items: center;
+        vertical-align: top;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background: #f9f9f9;
+
+        &:nth-child(3n) {
+          margin-right: 0;
+        }
+
+        .img {
+          width: 100px;
+          margin-right: 15px;
+
+          img {
+            max-width: 100%;
+          }
+        }
+
+        .info {
+          .career {
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            color: $color2;
+          }
+
+          .flex {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3px;
+
+            .major {
+              margin-left: 5px;
+              letter-spacing: -0.03em;
+              word-spacing: -4px;
+            }
+
+            .name {
+              font-size: 18px;
+              font-weight: 500;
+            }
+          }
+
+          .year {
+            font-size: 13px;
+          }
+        }
+      }
+
+    }
+  }
+}
+
+.cultural-foundation,
+.baseball-sponsorship {
+  .box {
+    display: flex;
+
+    .txt {
+      flex: 1;
+      margin-right: 35px;
+      word-break: keep-all;
+      line-height: 1.6;
+      white-space: pre-line;
+      font-size: 14px;
+    }
+
+    .img {
+      width: 200px;
+
+      .sign {
+        margin-top: 15px;
+
+        span {
+          font-size: 14px;
+        }
+
+        p {
+          margin-top: 5px;
+        }
+      }
+
+      img {
+        max-width: 100%;
+      }
+    }
+
+    &.box02 {
+      margin-top: 20px;
+
+      .txt {
+
+        // font-weight: 500;
+        .cate {
+          margin-bottom: -17px;
+          font-size: 16px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+
+// .baseball-sponsorship {
+//   .box {
+//     display: block;
+
+//     .img {
+//       width: 350px;
+//       margin-bottom: 20px;
+//     }
+//   }
+// }
+
+.privacy, .termofuse {
+  .title{
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .txt{
+    font-size: 15px;
+    line-height: 1.7;
+    white-space: pre-line;
+    word-break: keep-all;
+  }
+}
+
+.register {
+  .title{
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .txt{
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+    font-size: 13px;
+    line-height: 1.7;
+    white-space: pre-line;
+    word-break: keep-all;
+  }
+}
+
+
+
+
+// Tab
+.tab-list.basic {
+  ul {
+
+    li {
+      display: inline-block;
+      margin-right: 5px;
+      padding: 12px 13px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+      color: #888;
+      cursor: pointer;
+
+      &.on {
+        background: $color1;
+        color: #fff;
+        border-color: $color1;
+      }
+    }
+  }
+}
+
+.tab-content {
+  .box {
+    display: none;
+
+    &.on {
+      display: block;
+    }
+
+  }
+
+}
+
+
+@media (max-width:768px) {
+  .tab-list.basic {
+    ul {
+
+      li {
+        width: calc(33.333% - 9px);
+        margin-bottom: 7px;
+        padding: 6px 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 12px;
+        color: #888;
+        text-align: center;
+      }
+    }
+  }
+
+  .history {
+    .tab-content {
+      margin-top: 20px;
+
+      .area {
+        margin-top: 20px;
+
+        .history-list li {
+          display: block;
+          margin-bottom: 20px;
+
+          dd {
+            font-size: 13px;
+            word-break: keep-all;
+          }
+        }
+      }
+    }
+  }
+
+  .chairmen {
+    .tab-content {
+      .chairmen-list {
+
+        li {
+          width: 100%;
+          min-height: 145px;
+          margin-right: 0px;
+        }
+      }
+    }
+  }
+
+  .cultural-foundation{
+    .box{
+      display: block;
+
+      .img{
+        display: flex;
+        width: 100%;
+        img{
+          max-width: 90px;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+
+  .baseball-sponsorship{
+    .box{
+      .img{
+        width: 100%;
+        img{
+          max-width: 100%;
+        }
+      }
+    }
+  }
+
+  .pic_lt li a{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+
+}

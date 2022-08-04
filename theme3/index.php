@@ -98,9 +98,27 @@ include_once G5_PATH . "/head.php";
                 </div>
             </div>
             <div class="main_gallery m-show">
-                <div class="inner-wrapper">
-                    <div class="latest_wr">
-                        <?= latest("pic_block", "gallery", 4, 23) ?>
+                <div class="lat_title">BANNER ZONE</div>
+                <div class="maing-gallery-control">
+                    <div class="box">
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+
+                </div>
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <!-- <a href="javascript:gotoMobileUrl('http://wooribannet.com/');">
+                                <img src="<?= G5_IMG_URL ?>/main_banner.png?v=<?= G5_IMG_VER ?>" alt="">
+                            </a> -->
+                        </div>
+                        <div class="swiper-slide">
+                            <!-- <a href="javascript:gotoMobileUrl('http://wooribannet.com/');">
+                                <img src="<?= G5_IMG_URL ?>/main_banner.png?v=<?= G5_IMG_VER ?>" alt="">
+                            </a> -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -108,9 +126,12 @@ include_once G5_PATH . "/head.php";
     </div>
 
     <div class="main_con sec02">
-        <div class="inner-wrapper">
+        <div class="inner-wrapper pc-show">
             <?= latest("slide_gallery", "gallery", 4, 45) ?>
-        </div>
+        </div> 
+        <div class="inner-wrapper m-show">
+            <?= latest("slide_gallery", "gallery", 4, 45) ?>
+        </div> 
     </div>
 
     <h2 class="sound_only">최신글</h2>
@@ -207,11 +228,21 @@ include_once G5_PATH . "/head.php";
         },
     });
 
-    var slide_bn = new Swiper('.sec02 .swiper-container', {
+    var slide_bn = new Swiper('.sec02 .pc-show .swiper-container', {
         speed: 1300,
         slidesPerView: 4,
         spaceBetween: 20,
         touchRatio: 0,
+        loop: true, // 반복옵션 true, false
+    });
+    var slide_bn = new Swiper('.sec02 .m-show .swiper-container', {
+        speed: 1300,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        slidesPerView: 1,
+        spaceBetween: 20,
         loop: true, // 반복옵션 true, false
     });
 
