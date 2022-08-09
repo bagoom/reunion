@@ -133,7 +133,6 @@
   font-size: 13px;
   line-height: 1.7;
   white-space: pre-line;
-  word-break: keep-all;
 }
 
 .tab-list.basic ul li {
@@ -157,6 +156,10 @@
 }
 .tab-content .box.on {
   display: block;
+}
+
+#bo_gall .gall_li {
+  min-height: 310px;
 }
 
 @media (max-width: 768px) {
@@ -209,6 +212,9 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+  #bo_gall .gall_li {
+    min-height: 230px;
   }
 }
 

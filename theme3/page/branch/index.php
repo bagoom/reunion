@@ -5,8 +5,10 @@ include_once(G5_PATH.'/head.php');
 
 $where = "(1=1)";
 
-if($type)
+if($type){
     $where .= " AND type= '$type'";
+    $qstr = "type=$type";
+}
 
 if($status)
     $where .= " AND status= '$status'";
