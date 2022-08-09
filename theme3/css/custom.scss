@@ -674,6 +674,27 @@ table.basic-type02 {
   color: $color2;
 }
 
+.pic_li_lt{
+  li{
+     .pic_li_tit{
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+     }
+  }
+}
+#bo_gall {
+  .gall_text_href {
+    a{
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
 @media (max-width:768px) {
   #hd {
     height: 55px;
@@ -801,6 +822,14 @@ table.basic-type02 {
       .txt {
         margin-right: 0;
         margin-bottom: 20px;
+      }
+
+
+      .img {
+        width: 100%;
+        .m-img{
+          width: 200px;
+        }
       }
     }
   }

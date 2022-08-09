@@ -1557,6 +1557,26 @@ a.gnb_2da:hover {
   background: #fa7200;
   transform: translateY(-50%);
 }
+.tit02 {
+  position: relative;
+  margin-bottom: 5px;
+  padding-left: 15px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.tit02::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: block;
+  width: 5px;
+  height: 15px;
+  margin-right: 5px;
+  background: #fa7200;
+  transform: translateY(-50%);
+}
 
 .latest_top_wr:after {
   display: block;

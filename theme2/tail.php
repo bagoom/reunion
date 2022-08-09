@@ -71,21 +71,26 @@ if ($config['cf_analytics']) {
 <!-- } 하단 끝 -->
 <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
 <script>
-  // VConsole will be exported to `window.VConsole` by default.
-//   var vConsole = new window.VConsole();
+    var vConsole = new window.VConsole();
 </script>
 <script>
-    var is_app = bugilgoaos ? bugilgoaos : null;
+    // var bugilgoaos;
+    // var webkit;
+    
+    
+    
     function gotoMobileUrl(url) {
-        if (is_app) {
+        var is_mobile = <?=is_mobile()?>;
+        if (is_mobile) {
             if (deviceType() == 'android') {
                 bugilgoaos.goWebSafari(url);
-            } else if (deviceType() == 'ios' && is_mobile) {
+            } else if (deviceType() == 'ios') {
                 var obj = {};
                 obj.name = "goWebSafari";
                 obj.url = url;
+                console.log(JSON.stringify(obj))
                 webkit.messageHandlers.bugilgoaos.postMessage(JSON.stringify(obj));
-                console.log(webkit)
+                // window.open(url, "_blank", )
             }
         } else {
             console.log(url)
@@ -93,7 +98,6 @@ if ($config['cf_analytics']) {
         }
     }
 $(function() {
-
 
     var dep2Text = $(".onSideMenu .leftmenu_b").text();
     var dep2Link = $(".onSideMenu >a").attr("href");

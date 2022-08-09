@@ -526,6 +526,20 @@ table.basic-type02 td.text-center {
   color: #004186;
 }
 
+.pic_li_lt li .pic_li_tit {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#bo_gall .gall_text_href a {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 @media (max-width: 768px) {
   #hd {
     height: 55px;
@@ -613,6 +627,12 @@ table.basic-type02 td.text-center {
   .greeting .box .txt {
     margin-right: 0;
     margin-bottom: 20px;
+  }
+  .greeting .box .img {
+    width: 100%;
+  }
+  .greeting .box .img .m-img {
+    width: 200px;
   }
   .chairmen .tab-content .chairmen-list li {
     width: 100%;

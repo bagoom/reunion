@@ -38,7 +38,7 @@ include_once G5_PATH . "/head.php";
                         <h3 data-aos="fade-down" data-aos-duration="1300">"멀리 함게 가는"</h3>
                     </div>
                     <div class="mask">
-                        <p data-aos="fade-down" data-aos-duration="1300" data-aos-delay="150">인천기계공고 동문장학회</p>
+                        <p data-aos="fade-down" data-aos-duration="1300" data-aos-delay="150">인천기계공업고등학교 총동문회</p>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@ include_once G5_PATH . "/head.php";
                         <h3 data-aos="fade-down" data-aos-duration="1300">"멀리 함게 가는"</h3>
                     </div>
                     <div class="mask">
-                        <p data-aos="fade-down" data-aos-duration="1300" data-aos-delay="150">인천기계공고 동문장학회</p>
+                        <p data-aos="fade-down" data-aos-duration="1300" data-aos-delay="150">인천기계공업고등학교 총동문회</p>
                     </div>
                 </div>
             </div>
@@ -127,10 +127,10 @@ include_once G5_PATH . "/head.php";
 
     <div class="main_con sec02">
         <div class="inner-wrapper pc-show">
-            <?= latest("slide_gallery", "gallery", 4, 45) ?>
+            <?= latest("slide_gallery", "gallery", 4, 35) ?>
         </div> 
         <div class="inner-wrapper m-show">
-            <?= latest("slide_gallery", "gallery", 4, 45) ?>
+            <?= latest("slide_gallery", "gallery", 4, 30) ?>
         </div> 
     </div>
 
@@ -167,7 +167,6 @@ include_once G5_PATH . "/head.php";
 <script>
     AOS.init();
     var mainVisual = new Swiper('#visual .swiper-container', {
-        slidesPerView: 1, // 영역내 보여질 배너 갯수
         loop: true, // 반복옵션 true, false
         speed: 1300,
         autoplay: {
@@ -182,24 +181,24 @@ include_once G5_PATH . "/head.php";
 
         // 반응형 세팅
         // 필요시 설정하시면 됩니다.
-        breakpoints: {
-            1024: { // 가로 1024px 이상
-                slidesPerView: 1, // 보여질 배너 갯수
-                spaceBetween: 0 // 배너간격
-            },
-            768: { // 가로 768px 이하
-                slidesPerView: 1, // 보여질 배너 갯수
-                spaceBetween: 0 // 배너간격
-            },
-            640: { // 가로 640px 이하
-                slidesPerView: 1, // 보여질 배너 갯수
-                spaceBetween: 0 // 배너간격
-            },
-            450: { // 가로 450px 이하
-                slidesPerView: 1, // 보여질 배너 갯수
-                spaceBetween: 0 // 배너간격
-            }
-        }
+        // breakpoints: {
+        //     1024: { // 가로 1024px 이상
+        //         slidesPerView: 1, // 보여질 배너 갯수
+        //         spaceBetween: 0 // 배너간격
+        //     },
+        //     768: { // 가로 768px 이하
+        //         slidesPerView: 1, // 보여질 배너 갯수
+        //         spaceBetween: 0 // 배너간격
+        //     },
+        //     640: { // 가로 640px 이하
+        //         slidesPerView: 1, // 보여질 배너 갯수
+        //         spaceBetween: 0 // 배너간격
+        //     },
+        //     450: { // 가로 450px 이하
+        //         slidesPerView: 1, // 보여질 배너 갯수
+        //         spaceBetween: 0 // 배너간격
+        //     }
+        // }
     });
 
     mainVisual.on('slideChangeTransitionEnd', function () {

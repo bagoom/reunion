@@ -4,7 +4,7 @@ $g5['title'] = '동문 주소록';
 include_once(G5_PATH.'/head.php');
 
 
-$count = sql_fetch( "SELECT count(*) AS num FROM {$g5['member_table']} WHERE mb_id != 'admin' AND reunion_id = $reunionID " );
+$count = sql_fetch( "SELECT count(*) AS num FROM {$g5['member_table']} WHERE mb_id != 'admin' AND mb_new != 'Y' AND reunion_id = $reunionID " );
 $count2 = $count['num'];
 function EmailMasking($str){ // 수정 보완 필요
     $pattern = '/(\w+)(\w{3})(@.{1})(?=.*?\.)(.+)/i';
@@ -60,9 +60,9 @@ if ($page < 1) $page = 1; // 페이지가 없으면 첫 페이지 (1 페이지)
 $from_record = ($page - 1) * $rows; // 시작 열을 구함
 
 if($branch_name){
-    $sql = "SELECT * FROM {$g5['member_table']} a, `branch_member`b, {$g5['branch']} c WHERE $where AND b.branch_id = c.branch_id AND a.mb_no = b.mb_no AND  a.mb_id != 'admin' AND a.reunion_id = $reunionID  $sql_order limit {$from_record}, {$rows} ";
+    $sql = "SELECT * FROM {$g5['member_table']} a, `branch_member`b, {$g5['branch']} c WHERE $where AND b.branch_id = c.branch_id AND a.mb_no = b.mb_no AND  a.mb_id != 'admin' AND a.mb_new != 'Y'  AND a.reunion_id = $reunionID  $sql_order limit {$from_record}, {$rows} ";
 }else{
-    $sql = "SELECT * FROM {$g5['member_table']} WHERE $where AND mb_id != 'admin' AND reunion_id = $reunionID  $sql_order limit {$from_record}, {$rows} ";
+    $sql = "SELECT * FROM {$g5['member_table']} WHERE $where AND mb_id != 'admin' AND mb_new != 'Y' AND reunion_id = $reunionID  $sql_order limit {$from_record}, {$rows} ";
 }
 
 $result = sql_query($sql);

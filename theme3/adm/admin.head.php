@@ -1,6 +1,6 @@
 <?php
 if (!defined('_GNUBOARD_')) exit;
-
+define("_ADMIN_", true);
 $g5_debug['php']['begin_time'] = $begin_time = get_microtime();
 
 $files = glob(G5_ADMIN_PATH.'/css/admin_extend_*');
@@ -102,7 +102,7 @@ function imageview(id, w, h)
 </script>
 
 <div id="to_content"><a href="#container">본문 바로가기</a></div>
-<header id="hd">
+<header id="hd" class="admin">
     <h1><?php echo $config['cf_title'] ?></h1>
     <div id="hd_top">
         <div class="left">

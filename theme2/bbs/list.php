@@ -1,29 +1,66 @@
 <?php
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
+$ignore_arr = explode(',',$ignore['board']);
+$ignore_arr = array_filter($ignore_arr);
+
 // 분류 사용 여부
 $is_category = false;
 $category_option = '';
-if ($board['bo_use_category']) {
-    $is_category = true;
-    $category_href = get_pretty_url($bo_table);
-
-    $category_option .= '<li><a href="'.$category_href.'"';
-    if ($sca=='')
-        $category_option .= ' id="bo_cate_on"';
-    $category_option .= '>전체</a></li>';
-
-    $categories = explode('|', $board['bo_category_list']); // 구분자가 , 로 되어 있음
-    for ($i=0; $i<count($categories); $i++) {
-        $category = trim($categories[$i]);
-        if ($category=='') continue;
-        $category_option .= '<li><a href="'.(get_pretty_url($bo_table,'','sca='.urlencode($category))).'"';
-        $category_msg = '';
-        if ($category==$sca) { // 현재 선택된 카테고리라면
-            $category_option .= ' id="bo_cate_on"';
-            $category_msg = '<span class="sound_only">열린 분류 </span>';
+if($ignore_arr){
+    foreach( $ignore_arr as $ignore_m ){
+        if ($board['bo_use_category']) {
+                if($bo_table == $ignore_m) {
+                    continue 1;
+                }
+            
+            $is_category = true;
+            $category_href = get_pretty_url($bo_table);
+    
+            $category_option .= '<li><a href="'.$category_href.'"';
+            if ($sca=='')
+                $category_option .= ' id="bo_cate_on"';
+            $category_option .= '>전체</a></li>';
+    
+            $categories = explode('|', $board['bo_category_list']); // 구분자가 , 로 되어 있음
+            for ($i=0; $i<count($categories); $i++) {
+                
+                $category = trim($categories[$i]);
+                if ($category=='') continue;
+                $category_option .= '<li><a href="'.(get_pretty_url($bo_table,'','sca='.urlencode($category))).'"';
+                $category_msg = '';
+                if ($category==$sca) { // 현재 선택된 카테고리라면
+                    $category_option .= ' id="bo_cate_on"';
+                    $category_msg = '<span class="sound_only">열린 분류 </span>';
+                }
+                $category_option .= '>'.$category_msg.$category.'</a></li>';
+            }
         }
-        $category_option .= '>'.$category_msg.$category.'</a></li>';
+    }
+
+}else{
+    if ($board['bo_use_category']) {
+        $is_category = true;
+        $category_href = get_pretty_url($bo_table);
+
+        $category_option .= '<li><a href="'.$category_href.'"';
+        if ($sca=='')
+            $category_option .= ' id="bo_cate_on"';
+        $category_option .= '>전체</a></li>';
+
+        $categories = explode('|', $board['bo_category_list']); // 구분자가 , 로 되어 있음
+        for ($i=0; $i<count($categories); $i++) {
+            
+            $category = trim($categories[$i]);
+            if ($category=='') continue;
+            $category_option .= '<li><a href="'.(get_pretty_url($bo_table,'','sca='.urlencode($category))).'"';
+            $category_msg = '';
+            if ($category==$sca) { // 현재 선택된 카테고리라면
+                $category_option .= ' id="bo_cate_on"';
+                $category_msg = '<span class="sound_only">열린 분류 </span>';
+            }
+            $category_option .= '>'.$category_msg.$category.'</a></li>';
+        }
     }
 }
 

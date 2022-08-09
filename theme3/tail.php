@@ -36,7 +36,7 @@ if (G5_IS_MOBILE) {
 
             <div id="ft_company" class="ft_cnt">
                 <p class="ft_info">
-                    인천기계공업고등학교 인천광역시 <br class="m-show"> 미추홀구 한나루로 545 (주안2동 625-2)<br class="m-show"> Tel: 032.865.9801 Fax: 032.865.9807 <br>
+                인천 미추홀구 한나루로 545, 5동 3층<br class="m-show"> Tel: 032-865-5222 <br>
                     <!-- E-mail:alumni1398@hanmail.net<br> -->
                     COPYRIGHTⓒ2022 인천기계공업고등학교 총동문회<br class="m-show"> ALL RIGHTS RESERVED.
                 </p>

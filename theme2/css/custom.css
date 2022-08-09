@@ -73,34 +73,29 @@
   font-size: 13px;
 }
 
-.cultural-foundation .box,
-.baseball-sponsorship .box {
-  display: flex;
-}
 .cultural-foundation .box .txt,
 .baseball-sponsorship .box .txt {
   flex: 1;
-  margin-right: 35px;
   word-break: keep-all;
   line-height: 1.6;
   white-space: pre-line;
   font-size: 14px;
 }
+.cultural-foundation .box .sign,
+.baseball-sponsorship .box .sign {
+  margin-top: 15px;
+}
+.cultural-foundation .box .sign span,
+.baseball-sponsorship .box .sign span {
+  font-size: 14px;
+}
+.cultural-foundation .box .sign p,
+.baseball-sponsorship .box .sign p {
+  margin-top: 5px;
+}
 .cultural-foundation .box .img,
 .baseball-sponsorship .box .img {
   width: 200px;
-}
-.cultural-foundation .box .img .sign,
-.baseball-sponsorship .box .img .sign {
-  margin-top: 15px;
-}
-.cultural-foundation .box .img .sign span,
-.baseball-sponsorship .box .img .sign span {
-  font-size: 14px;
-}
-.cultural-foundation .box .img .sign p,
-.baseball-sponsorship .box .img .sign p {
-  margin-top: 5px;
 }
 .cultural-foundation .box .img img,
 .baseball-sponsorship .box .img img {
@@ -125,7 +120,6 @@
   font-size: 15px;
   line-height: 1.7;
   white-space: pre-line;
-  word-break: keep-all;
 }
 
 .register .title {
@@ -203,8 +197,7 @@
     width: 100%;
   }
   .cultural-foundation .box .img img {
-    max-width: 90px;
-    margin-right: 10px;
+    max-width: 100%;
   }
   .baseball-sponsorship .box .img {
     width: 100%;
