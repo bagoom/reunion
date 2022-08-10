@@ -773,6 +773,10 @@ a.gnb_2da:hover {
   color: #666;
 }
 
+#location span:nth-of-type(1) {
+  padding-right: 5px;
+}
+
 #location .dep2-location {
   margin-right: 5px;
 }

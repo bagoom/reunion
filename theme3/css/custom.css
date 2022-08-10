@@ -570,6 +570,18 @@ table.basic-type02 td.text-center {
     position: relative;
     right: auto;
   }
+  #hd .gnb_wrap .gnb_3dul {
+    padding: 10px 0 10px 25px;
+    background: #f9f9f9;
+  }
+  #hd .gnb_wrap .gnb_3dul li {
+    line-height: 28px;
+  }
+  #hd .gnb_wrap .gnb_3dul li a {
+    display: block;
+    font-size: 13px;
+    color: #666;
+  }
   #wrapper {
     margin-top: 55px;
   }
@@ -584,6 +596,7 @@ table.basic-type02 td.text-center {
     font-size: 28px;
   }
   #wrapper #visual .visual-slide .swiper-slide .txt p {
+    white-space: nowrap;
     font-size: 18px;
   }
   #wrapper #visual .quick-menu {

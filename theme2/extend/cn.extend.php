@@ -232,10 +232,10 @@ class Menu {
 
         if(!$str) $str = explode("&", $_SERVER['QUERY_STRING'] );
         $token = ''; //토큰 초기화
+        $token = basename($_SERVER['PHP_SELF']);
 
         foreach($str as $val)
         {
-            $token = $base_filename = basename($_SERVER['PHP_SELF']);
             if(substr($val, 0, 8) == "bo_table") $token = $val;
             if(substr($val, 0, 5) == "co_id") $token = $val;
             if(substr($val, 0, 5) == "ca_id") $token = $val;
@@ -320,6 +320,7 @@ class Menu {
         $middleMenuCode = substr($me_code, 0, 2); // 1차메뉴 코드
         $middleMenu = $this->getMenu($middleMenuCode); // 1차메뉴 배열
         $middleMenuTitle = $this->getMenuTitle($middleMenuCode); // 1차메뉴 이름
+        $middleMenuLink = $this->getMenuLink($middleMenuCode); // 1차메뉴 이름
         $curMenu    = $this->getMenu($me_code[0]); // 현재메뉴 배열
         $curMenuTitle = $this->getMenuTitle($me_code); // 현재메뉴 이름
         $menuLength = strlen($me_code);
@@ -361,7 +362,7 @@ class Menu {
         }
 
         $strNav .= "<a href='".G5_URL."'><i class='xi-home'></i> Home ></a>";
-        $strNav .= "<span>{$middleMenuTitle}</span>";
+        $strNav .= "<span><a href='".G5_URL.$middleMenuLink."'>{$middleMenuTitle}</a> </span>";
         if($menuLength !== 1)
         $strNav .= "<span> > {$g5['title']}</span>";
 

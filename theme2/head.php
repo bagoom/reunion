@@ -94,6 +94,7 @@ if (!file_exists($reunion_config_file)) {
                         
                         $i = 0;
                         $ignore = ignore_menu();
+                        $ignore_arr = explode(',',$ignore['cate2']);
                         foreach( $menu_datas as $row ){
                         ?>
                         <li class="gnb_al_li">
@@ -101,8 +102,11 @@ if (!file_exists($reunion_config_file)) {
                             <?php
                             $k = 0;
                             foreach( (array) $row['sub'] as $row2 ){
-                                if($row2['me_code'] == $ignore['cate2'])
-                                continue;
+                                foreach( $ignore_arr as $ignore_m ){
+                                    if($row2['me_code'] == $ignore_m) {
+                                        continue 2;
+                                    }
+                                }
                                 if($k == 0)
                                     echo '<ul>'.PHP_EOL;
                             ?>
@@ -159,11 +163,31 @@ if (!file_exists($reunion_config_file)) {
                     <?php
                     $k = 0;
                     foreach( (array) $row['sub'] as $row2 ){
+                        // 모바일 메뉴 ignore적용
+                        foreach( $ignore_arr as $ignore_m ){
+                            if($row2['me_code'] == $ignore_m) {
+                                continue 2;
+                            }
+                        }
 						if( empty($row2) ) continue;
                         if($k == 0)
                             echo '<ul class="gnb_2dul">'.PHP_EOL;
                     ?>
-                        <li class="gnb_2dli"><a href="<?=G5_URL?><?php echo $row2['me_link']; ?>" target="_<?php echo $row2['me_target']; ?>" class="gnb_2da"><span></span><?php echo $row2['me_name'] ?></a></li>
+                        <li class="gnb_2dli">
+                            <a href="<?=G5_URL?><?php echo $row2['me_link']; ?>" target="_<?php echo $row2['me_target']; ?>" class="gnb_2da"><span></span><?php echo $row2['me_name'] ?></a>
+                                <?php if($row2['me_code'] == 1060) {
+                                $repeat = 0;
+                                if($repeat == 0) {
+                                $branch_type_sql = "SELECT * FROM `branch_type` WHERE reunion_id = $reunionID";
+                                $branch_type_result = sql_query($branch_type_sql);
+                                ?>
+                                <ul class="gnb_3dul">
+                                    <?php for ($j=0; $branch_type_row=sql_fetch_array($branch_type_result); $j++) { ?>
+                                            <li class="gnb_3dli"><a class="gnb_3da"href="<?=G5_URL?>/page/branch/?type=<?=$branch_type_row['bt_name']?>"><?=$branch_type_row['bt_name']?></a></li>
+                                    <?php } $repeat = 1; ?>
+                                </ul>
+                            <?php } } ?>
+                        </li>
                     <?php
 					$k++;
                     }	//end foreach $row2

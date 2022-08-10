@@ -734,6 +734,20 @@ table.basic-type02 {
         }
       }
     }
+    .gnb_wrap{
+      .gnb_3dul{
+        padding: 10px 0 10px 25px;
+        background: #f9f9f9;
+        li{
+          line-height: 28px;
+          a{
+            display: block;
+            font-size: 13px;
+            color: #666;
+          }
+        }
+      }
+    }
   }
 
   #wrapper {
@@ -753,6 +767,7 @@ table.basic-type02 {
             }
 
             p {
+              white-space: nowrap;
               font-size: 18px;
             }
           }

@@ -106,24 +106,29 @@ sans-serif;
 .baseball-sponsorship {
   .box {
     // display: flex;
-
+    &.box02{
+      .txt{
+        font-size: 14px;
+      }
+    }
     .txt {
       flex: 1;
       word-break: keep-all;
       line-height: 1.6;
       white-space: pre-line;
-      font-size: 14px;
+      font-size: 16px;
     }
 
     .sign {
       margin-top: 15px;
 
       span {
-        font-size: 14px;
+        font-size: 16px;
       }
 
       p {
         margin-top: 5px;
+        font-size: 14px;
       }
     }
     .img {
@@ -236,6 +241,21 @@ sans-serif;
 }
 
 @media (max-width:768px) {
+  .gnb_wrap{
+    .gnb_3dul{
+      padding: 10px 0 10px 25px;
+      background: #f9f9f9;
+      li{
+        line-height: 28px;
+        a{
+          display: block;
+          font-size: 13px;
+          color: #666;
+        }
+      }
+    }
+  }
+
   .tab-list.basic {
     ul {
 
@@ -293,7 +313,7 @@ sans-serif;
         display: flex;
         width: 100%;
         img{
-          max-width: 100%;
+          max-width: 60%;
         }
       }
     }
@@ -304,7 +324,7 @@ sans-serif;
       .img{
         width: 100%;
         img{
-          max-width: 100%;
+          max-width: 60%;
         }
       }
     }
@@ -315,9 +335,10 @@ sans-serif;
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
   #bo_gall {
     .gall_li{
-      min-height: 230px;
+      min-height: 250px;
     }
   }
 

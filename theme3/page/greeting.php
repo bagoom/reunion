@@ -16,7 +16,8 @@ include_once(G5_PATH.'/head.php');
             </div>
 
             <div class="sign">
-                <span>인천기계공업고등학교 총동문회장<b style="margin-left : 5px ;font-size: 22px; font-weight: 700">이 찬 용</span></b>
+                <span>인천기계공업고등학교 총동문회장</span>
+                <p style="font-size: 22px; font-weight: 700">이 찬 용</p>
                 
                 <!-- <span><img src="<?= G5_IMG_URL ?>/greeting02.jpg?v=<?=G5_IMG_VER?>" alt=""></span> -->
             </div>

@@ -71,31 +71,34 @@ if ($config['cf_analytics']) {
 <!-- } 하단 끝 -->
 <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
 <script>
-    // var vConsole = new window.VConsole();
+    var vConsole = new window.VConsole();
 </script>
 <script>
-    // var bugilgoaos;
+    var bugilgoaos = bugilgoaos ? bugilgoaos : null;
     // var webkit;
     
     
     
     function gotoMobileUrl(url) {
         var is_mobile = <?=is_mobile()?>;
-        if (is_mobile) {
-            if (deviceType() == 'android') {
-                bugilgoaos.goWebSafari(url);
-            } else if (deviceType() == 'ios') {
-                var obj = {};
-                obj.name = "goWebSafari";
-                obj.url = url;
-                console.log(JSON.stringify(obj))
-                webkit.messageHandlers.bugilgoaos.postMessage(JSON.stringify(obj));
-                // window.open(url, "_blank", )
-            }
-        } else {
             console.log(url)
+        if (deviceType() == 'android' && bugilgoaos) {
+            console.log(url)
+            console.log(bugilgoaos)
+            bugilgoaos.goWebSafari(url);
+        } else if (deviceType() == 'ios') {
+            var obj = {};
+            obj.name = "goWebSafari";
+            obj.url = url;
+            // console.log('ftp://'+g5_url+'/bridge.html')
+            // webkit.messageHandlers.bugilgoaos.postMessage(JSON.stringify(obj));
+            // location.href='ftp://'+g5_url+'/bridge.html'
             window.open(url, "_blank", )
+        } else {
+        console.log(url)
+        window.open(url, "_blank", )
         }
+        
     }
 $(function() {
 

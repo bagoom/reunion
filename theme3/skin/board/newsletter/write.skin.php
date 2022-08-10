@@ -187,6 +187,16 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     });
 
     <?php } ?>
+
+    $("#bf_file_1").change(function(){
+        var maxSize = parseInt(<?=$board['bo_upload_size']?>);
+        var size = this.files[0].size;
+        if (maxSize < size) {
+        alert("해당 파일은 제한된 용량을 초과하였습니다.");
+        $(this).val('');
+        return false;
+        }
+    })
     function html_auto_br(obj)
     {
         if (obj.checked) {

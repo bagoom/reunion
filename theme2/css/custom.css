@@ -73,13 +73,17 @@
   font-size: 13px;
 }
 
+.cultural-foundation .box.box02 .txt,
+.baseball-sponsorship .box.box02 .txt {
+  font-size: 14px;
+}
 .cultural-foundation .box .txt,
 .baseball-sponsorship .box .txt {
   flex: 1;
   word-break: keep-all;
   line-height: 1.6;
   white-space: pre-line;
-  font-size: 14px;
+  font-size: 16px;
 }
 .cultural-foundation .box .sign,
 .baseball-sponsorship .box .sign {
@@ -87,11 +91,12 @@
 }
 .cultural-foundation .box .sign span,
 .baseball-sponsorship .box .sign span {
-  font-size: 14px;
+  font-size: 16px;
 }
 .cultural-foundation .box .sign p,
 .baseball-sponsorship .box .sign p {
   margin-top: 5px;
+  font-size: 14px;
 }
 .cultural-foundation .box .img,
 .baseball-sponsorship .box .img {
@@ -163,6 +168,18 @@
 }
 
 @media (max-width: 768px) {
+  .gnb_wrap .gnb_3dul {
+    padding: 10px 0 10px 25px;
+    background: #f9f9f9;
+  }
+  .gnb_wrap .gnb_3dul li {
+    line-height: 28px;
+  }
+  .gnb_wrap .gnb_3dul li a {
+    display: block;
+    font-size: 13px;
+    color: #666;
+  }
   .tab-list.basic ul li {
     width: calc(33.333% - 9px);
     margin-bottom: 7px;
@@ -200,13 +217,13 @@
     width: 100%;
   }
   .cultural-foundation .box .img img {
-    max-width: 100%;
+    max-width: 60%;
   }
   .baseball-sponsorship .box .img {
     width: 100%;
   }
   .baseball-sponsorship .box .img img {
-    max-width: 100%;
+    max-width: 60%;
   }
   .pic_lt li a {
     white-space: nowrap;
@@ -214,7 +231,7 @@
     text-overflow: ellipsis;
   }
   #bo_gall .gall_li {
-    min-height: 230px;
+    min-height: 250px;
   }
 }
 
