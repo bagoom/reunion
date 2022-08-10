@@ -48,7 +48,20 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     echo $option_hidden;
     ?>
 
-    <?php if ($is_category) { ?>
+    <?php 
+    $ignore_arr = explode(',',$ignore['board']);
+    $ignore_arr = array_filter($ignore_arr);
+    $ignore_status = false;
+    if($ignore_arr){
+        foreach( $ignore_arr as $ignore_m ){
+            if($bo_table == $ignore_m) {
+                $ignore_status = true;
+                continue 1;
+            }
+        }
+    }
+
+    if ($is_category && !$ignore_status) { ?>
     <div class="bo_w_select write_div">
         <label for="ca_name" class="sound_only">분류<strong>필수</strong></label>
         <select name="ca_name" id="ca_name" required>
@@ -57,6 +70,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
         </select>
     </div>
     <?php } ?>
+    <input type="hidden" name="ignore_status" value="<?php echo $ignore_status ?>">
 
     <div class="bo_w_info write_div">
 	    <?php if ($is_name) { ?>

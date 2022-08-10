@@ -11,7 +11,7 @@ $g5['title'] = '게시글 저장';
 $msg = array();
 $uid = isset($_POST['uid']) ? preg_replace('/[^0-9]/', '', $_POST['uid']) : 0;
 
-if($board['bo_use_category']) {
+if($board['bo_use_category'] && !$ignore_status) {
     $ca_name = isset($_POST['ca_name']) ? trim($_POST['ca_name']) : '';
     if(!$ca_name) {
         $msg[] = '<strong>분류</strong>를 선택하세요.';

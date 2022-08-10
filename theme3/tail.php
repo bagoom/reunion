@@ -27,11 +27,11 @@ if (G5_IS_MOBILE) {
 
         <div class="ft_logo"><img src="<?= G5_IMG_URL ?>/ft_logo.png?v=<?=G5_IMG_VER?>" alt=""></div>
         <div class="ft_content">
-            <!-- <div id="ft_link" class="ft_cnt">
-            <a href="<?php echo get_pretty_url('content', 'company'); ?>">동문회 안내</a>
-            <a href="<?php echo get_pretty_url('content', 'privacy'); ?>">개인정보처리방침</a>
-            <a href="<?php echo get_pretty_url('content', 'provision'); ?>">서비스이용약관</a>
-        </div> -->
+            <div id="ft_link" class="ft_cnt">
+            <!-- <a href="<?php echo get_pretty_url('content', 'company'); ?>">동문회 안내</a> -->
+            <a href="<?=PAGE_URL?>/privacy.php">개인정보처리방침</a>
+            <a href="<?=PAGE_URL?>/termofuse.php">서비스이용약관</a>
+        </div>
 
 
             <div id="ft_company" class="ft_cnt">

@@ -577,6 +577,36 @@ sans-serif;
   }
 }
 
+.privacy, .termofuse {
+  .title{
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .txt{
+    font-size: 15px;
+    line-height: 1.7;
+    white-space: pre-line;
+  }
+}
+
+.register {
+  .title{
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .txt{
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+    font-size: 13px;
+    line-height: 1.7;
+    white-space: pre-line;
+    // word-break: keep-all;
+  }
+}
+
 
 // Table
 table.basic-type02 {
