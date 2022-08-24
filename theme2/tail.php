@@ -36,7 +36,7 @@ if (G5_IS_MOBILE) {
         
         <div id="ft_company" class="ft_cnt">
 	        <p class="ft_info">
-	        	북일고등학교 충천남도 천안시 동나묵 단대로 69 (신부동)<br class="m-show">  Tel: 041.520-8600 Fax: 041.551.7116 <br>
+	        	북일고등학교 충천남도 천안시 동남구 단대로 69 (신부동)<br class="m-show"> 총동문회 어플운영팀 전희근(7회) Tel : 010-5422-8248 Fax : 0504-060-8248 <br>
 	        	<!-- E-mail:alumni1398@hanmail.net<br> -->
                 COPYRIGHTⓒ2022 북일고등학교 총동문회<br class="m-show"> ALL RIGHTS RESERVED.
 			</p>

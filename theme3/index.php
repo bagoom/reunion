@@ -85,15 +85,15 @@ include_once G5_PATH . "/head.php";
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <!-- <a href="javascript:gotoMobileUrl('http://wooribannet.com/');">
-                                <img src="<?= G5_IMG_URL ?>/main_banner.png?v=<?= G5_IMG_VER ?>" alt="">
-                            </a> -->
+                            <a href="javascript:gotoMobileUrl('http://wooribannet.com/');">
+                                <img src="<?= G5_IMG_URL ?>/main_banner01.png?v=<?= G5_IMG_VER ?>" alt="">
+                            </a>
                         </div>
-                        <div class="swiper-slide">
-                            <!-- <a href="javascript:gotoMobileUrl('http://wooribannet.com/');">
+                        <!-- <div class="swiper-slide">
+                            <a href="javascript:gotoMobileUrl('http://wooribannet.com/');">
                                 <img src="<?= G5_IMG_URL ?>/main_banner.png?v=<?= G5_IMG_VER ?>" alt="">
-                            </a> -->
-                        </div>
+                            </a>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -110,15 +110,15 @@ include_once G5_PATH . "/head.php";
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <!-- <a href="javascript:gotoMobileUrl('http://wooribannet.com/');">
-                                <img src="<?= G5_IMG_URL ?>/main_banner.png?v=<?= G5_IMG_VER ?>" alt="">
-                            </a> -->
+                            <a href="javascript:gotoMobileUrl('http://wooribannet.com/');">
+                                <img src="<?= G5_IMG_URL ?>/main_banner01.png?v=<?= G5_IMG_VER ?>" alt="">
+                            </a>
                         </div>
-                        <div class="swiper-slide">
-                            <!-- <a href="javascript:gotoMobileUrl('http://wooribannet.com/');">
+                        <!-- <div class="swiper-slide">
+                            <a href="javascript:gotoMobileUrl('http://wooribannet.com/');">
                                 <img src="<?= G5_IMG_URL ?>/main_banner.png?v=<?= G5_IMG_VER ?>" alt="">
-                            </a> -->
-                        </div>
+                            </a>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -149,10 +149,10 @@ include_once G5_PATH . "/head.php";
         <div class="inner-wrapper">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <?php for ($i = 0; $i < 7; $i++) { ?>
+                    <?php for ($i = 0; $i < 6; $i++) { ?>
                     <div class="swiper-slide">
-                        <img src="<?= G5_IMG_URL ?>/banner/banner0<?= $i +  1 ?>.jpg?v=<?= G5_IMG_VER ?>"
-                            data-original="<?= G5_IMG_URL ?>/banner/banner_b0<?= $i +1 ?>.jpg?v=<?= G5_IMG_VER ?>"
+                        <img src="<?= G5_IMG_URL ?>/banner/banner0<?= $i +  1 ?>.png?v=<?= G5_IMG_VER ?>"
+                            data-original="<?= G5_IMG_URL ?>/banner/banner_b0<?= $i +1 ?>.png?v=<?= G5_IMG_VER ?>"
                             alt="">
                     </div>
                     <?php } ?>

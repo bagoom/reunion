@@ -7,8 +7,8 @@ include_once(G5_PATH.'/head.php');
 <div class="cont location">
     <div class="box">
         <h3>북일고등학교 오시는 길</h3>
-        <div class="txt01">북일고등학교 충천남도 천안시 동나묵 단대로 69 (신부동) </div>
-        <div class="txt01"> Tel: 041.520-8600 Fax: 041.551.7116</div>
+        <div class="txt01">북일고등학교 충천남도 천안시 동남구 단대로 69 (신부동) </div>
+        <div class="txt01"> 총동문회 어플운영팀 전희근(7회) Tel: 010-5422-8248 Fax: 0504-060-8248</div>
 
         <div id="map" style="width: 100; height: 500px; margin-top: 50px; background: #eee"></div>
 
