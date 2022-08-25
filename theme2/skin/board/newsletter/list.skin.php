@@ -133,12 +133,19 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
                     </div>
                     <div class="gall_info">
                         <div class="btn-wrap <?=($pdf_link) ? 'hasPDF' : 'null' ?> ">
+                        <?php if($file_img1 != '/'){ ?>
+                                <a href="javascript:gotoMobileUrl('<?=G5_URL?>/lib/pdfjs/web/viewer.html?file=<?=$file_img1?>');" >바로보기</a>
+                                <?php }else {?>
+                                <a href="javascript:gotoMobileUrl('<?=$list[$i]['href']?>');" >바로보기</a>
+                            <?php }?>
+                        <?php /*
                             <?php if($pdf_link) { ?> <a href="<?=$pdf_link?>">다운로드</a> <?php } ?>
                             <?php if($file_img1 != '/'){ ?>
                                 <a href="javascript:gotoMobileUrl('<?=G5_URL?>/lib/pdfjs/web/viewer.html?file=<?=$file_img1?>');" >바로보기</a>
                                 <?php }else {?>
                                 <a href="javascript:gotoMobileUrl('<?=$list[$i]['href']?>');" >바로보기</a>
                             <?php }?>
+                            */ ?>
                         </div>
                     </div>
                 </div>

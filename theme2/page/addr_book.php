@@ -4,28 +4,6 @@ $g5['title'] = '동문 주소록';
 include_once(G5_PATH.'/head.php');
 
 
-$count = sql_fetch( "SELECT count(*) AS num FROM {$g5['member_table']} WHERE mb_id != 'admin' AND mb_new != 'Y' AND reunion_id = $reunionID " );
-$count2 = $count['num'];
-function EmailMasking($str){ // 수정 보완 필요
-    $pattern = '/(\w+)(\w{3})(@.{1})(?=.*?\.)(.+)/i';
-    $replace = '\1***\3*\5';
-    $str = preg_replace('/(\w+)(\w{3})(@.{1})([\w*?]+)(.+)/i','\1***\3*\5',$str);
-    return $str;
-}
-
-function setMasking($obj) {
-    $result = "";
-    $strLen = mb_strlen($obj);
-
-    switch($strLen) {
-        case 12 : $result = preg_replace('/([0-9]+)-([0-9]+)-([0-9]{4})/', '${1}-***-$3', $obj); break;
-        case 13 : $result = preg_replace('/([0-9]+)-([0-9]+)-([0-9]{4})/', '${1}-****-$3', $obj); break;
-        default : $result = preg_replace('/([0-9]+)-([0-9]+)-([0-9]{4})/', '${1}-****-$3', $obj); break;
-    }
-
-    return $result;
-}
-
 $where = "(1=1)";
 
 if($generation)
@@ -49,6 +27,30 @@ if (!$sst) {
     $sod = "desc";
 }
 
+
+$count = sql_fetch( "SELECT count(*) AS num FROM {$g5['member_table']} WHERE mb_id != 'admin' AND mb_new != 'Y' AND reunion_id = $reunionID AND $where" );
+$count2 = $count['num'];
+function EmailMasking($str){ // 수정 보완 필요
+    $pattern = '/(\w+)(\w{3})(@.{1})(?=.*?\.)(.+)/i';
+    $replace = '\1***\3*\5';
+    $str = preg_replace('/(\w+)(\w{3})(@.{1})([\w*?]+)(.+)/i','\1***\3*\5',$str);
+    return $str;
+}
+
+function setMasking($obj) {
+    $result = "";
+    $strLen = mb_strlen($obj);
+
+    switch($strLen) {
+        case 12 : $result = preg_replace('/([0-9]+)-([0-9]+)-([0-9]{4})/', '${1}-***-$3', $obj); break;
+        case 13 : $result = preg_replace('/([0-9]+)-([0-9]+)-([0-9]{4})/', '${1}-****-$3', $obj); break;
+        default : $result = preg_replace('/([0-9]+)-([0-9]+)-([0-9]{4})/', '${1}-****-$3', $obj); break;
+    }
+
+    return $result;
+}
+
+
 $sql_order = " order by {$sst} {$sod} ";
 
 $total_count = $count2;
@@ -64,7 +66,6 @@ if($branch_name){
 }else{
     $sql = "SELECT * FROM {$g5['member_table']} WHERE $where AND mb_id != 'admin' AND mb_new != 'Y' AND reunion_id = $reunionID  $sql_order limit {$from_record}, {$rows} ";
 }
-
 $result = sql_query($sql);
 
 ?>
@@ -154,7 +155,7 @@ $result = sql_query($sql);
 
             </div>
         </div>
-        <?php echo get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, '?'.$qstr.'&amp;page='); ?>
+        <?php echo get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, '?'.$qstr.'&amp;page=&generation='.$generation.'&graduation_year='.$graduation_year.'&branch_name='.$branch_name.'&mb_name='.$mb_name); ?>
     </div>
 
     <div class="help">

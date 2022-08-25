@@ -71,7 +71,7 @@ if ($config['cf_analytics']) {
 <!-- } 하단 끝 -->
 <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
 <script>
-    var vConsole = new window.VConsole();
+    // var vConsole = new window.VConsole();
 </script>
 <script>
     var bugilgoaos = bugilgoaos ? bugilgoaos : null;

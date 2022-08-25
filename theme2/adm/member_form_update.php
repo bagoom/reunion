@@ -309,4 +309,5 @@ if( $w == '' || $w == 'u' ){
 
 run_event('admin_member_form_update', $w, $mb_id);
 
-goto_url('./member_form.php?'.$qstr.'&amp;w=u&amp;mb_id='.$mb_id, false);
+goto_url('./member_list.php?');
+// goto_url('./member_form.php?'.$qstr.'&amp;w=u&amp;mb_id='.$mb_id, false);

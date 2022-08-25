@@ -455,13 +455,16 @@
     text-align: center;
 }
 
-#bo_gall .gall_info .btn-wrap.hasPDF a:first-child {
+/* #bo_gall .gall_info .btn-wrap.hasPDF a:first-child {
     margin-right: 10px;
-}
+} */
 
 #bo_gall .gall_info .btn-wrap.hasPDF a {
-    width: 50%;
+    width: 100%;
 }
+/* #bo_gall .gall_info .btn-wrap.hasPDF a {
+    width: 50%;
+} */
 
 
 

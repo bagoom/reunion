@@ -143,16 +143,16 @@ if($_FILES['excelfile']['tmp_name']) {
 
 
         // mb_id 중복체크
-        $sql2 = " select count(*) as cnt from {$g5['member_table']} where mb_id = '$mb_id' ";
-        $row2 = sql_fetch($sql2);
+        // $sql2 = " select count(*) as cnt from {$g5['member_table']} where mb_id = '$mb_id' ";
+        // $row2 = sql_fetch($sql2);
         
-        if($row2['cnt']) {
-            $fail_mb_id[] = $mb_id;
-            $dup_mb_id[] = $mb_id;
-            $dup_count++;
-            $fail_count++;
-            continue;
-        }
+        // if($row2['cnt']) {
+        //     $fail_mb_id[] = $mb_id;
+        //     $dup_mb_id[] = $mb_id;
+        //     $dup_count++;
+        //     $fail_count++;
+        //     continue;
+        // }
 
 		/*
 		mb_datetime = '".G5_TIME_YMDHIS."',
