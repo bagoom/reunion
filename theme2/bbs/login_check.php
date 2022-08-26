@@ -39,7 +39,7 @@ if (!$is_social_password_check && (! (isset($mb['mb_id']) && $mb['mb_id']) || !l
 
     run_event('password_is_wrong', 'login', $mb);
 
-    alert('동문인증을 받으세요.');
+    alert('아이디 또는 비밀번호를 잘못 입력했습니다.\n입력하신 내용을 다시 확인해주세요.\n(인증이 되지 않은 회원의 경우 로그인이 되지 않습니다.)');
 }
 
 // 차단된 아이디인가?
