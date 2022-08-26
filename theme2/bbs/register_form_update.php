@@ -155,7 +155,7 @@ if ($w == '' || $w == 'u') {
     run_event('register_form_update_valid', $w, $mb_id, $mb_nick, $mb_email);
 
     if ($msg = exist_mb_nick($mb_nick, $mb_id))     alert($msg, "", true, true);
-    // if ($msg = exist_mb_email($mb_email, $mb_id))   alert($msg, "", true, true);
+    if ($msg = exist_mb_email($mb_email, $mb_id))   alert($msg, "", true, true);
 }
 
 // 사용자 코드 실행

@@ -10,6 +10,6 @@ set_session('ss_check_mb_email', '');
 if ($msg = empty_mb_email($mb_email)) die($msg);
 if ($msg = valid_mb_email($mb_email)) die($msg);
 if ($msg = prohibit_mb_email($mb_email)) die($msg);
-// if ($msg = exist_mb_email($mb_email, $mb_id)) die($msg);
+if ($msg = exist_mb_email($mb_email, $mb_id)) die($msg);
 
 set_session('ss_check_mb_email', $mb_email);
