@@ -9,6 +9,8 @@ for ($i=0; $row=sql_fetch_array($result); $i++) { ?>
     <tr data-id="<?=$row['mb_no']?>" data-name="<?=$row['mb_name']?>">
         <td><?=$row['mb_id']?></td>
         <td><?=$row['mb_name']?></td>
+        <td><?=$row['generation']?></td>
+        <td><?=$row['affiliation']?></td>
         <td><?=$row['department']?></td>
         <td><?=$row['entrance_year']?></td>
         <td><?=$row['graduation_year']?></td>

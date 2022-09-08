@@ -82,6 +82,8 @@ $today = date('Y-m-d', time());
             <thead>
                 <th>아이디</th>
                 <th>이름</th>
+                <th>기수</th>
+                <th>계열</th>
                 <th>학과</th>
                 <th>입학</th>
                 <th>졸업</th>
@@ -101,14 +103,6 @@ $today = date('Y-m-d', time());
     <div class="tit01">회비 정보</div>
     <table>
         <caption><?php echo $g5['title']; ?></caption>
-         <colgroup>
-            <col class="grid_4">
-            <col >
-            <col class="grid_4">
-            <col >
-            <col class="grid_4">
-            <col >
-        </colgroup>
         <tbody>
             <tr>
                 <th scope="row">회비 구분</th>

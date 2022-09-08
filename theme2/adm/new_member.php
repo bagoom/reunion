@@ -57,7 +57,7 @@ $q = $_SERVER['QUERY_STRING'];
     </p>
 </div> -->
 
-<div class="tbl_head01 tbl_wrap">
+<div class="tbl_head01 tbl_wrap new_mem">
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -69,8 +69,13 @@ $q = $_SERVER['QUERY_STRING'];
         <th scope="col">아이디</th>
         <th scope="col">이름</th>
         <th scope="col">e-mail</th>
+        <th scope="col">기수</th>
+        <th scope="col">계열</th> 
+        <th scope="col">학과</th>
+        <th scope="col">학번</th>
         <th scope="col">입학</th>
         <th scope="col">졸업</th>
+        <th scope="col">전화번호</th>
         <th scope="col"></th>
     </tr>
     </thead>
@@ -94,10 +99,25 @@ $q = $_SERVER['QUERY_STRING'];
             <?= $row['mb_email'] ?>
         </td>
         <td >
+            <?= $row['generation'] ?>
+        </td>
+        <td >
+            <?= $row['affiliation'] ?>
+        </td>
+        <td >
+            <?= $row['department'] ?>
+        </td>
+        <td >
+            <?= $row['admission_year'] ?>
+        </td>
+        <td >
             <?= ($row['entrance_year'])? $row['entrance_year'] : "-" ?>
         </td>
         <td >
             <?= ($row['graduation_year'])? $row['graduation_year'] : "-" ?>
+        </td>
+        <td >
+            <?= ($row['mb_hp'])? $row['mb_hp'] : "-" ?>
         </td>
         <td >
             <button type="button" class="btn btn_02 modal-open" data-name="<?=$row['mb_name']?>" data-id="<?=$row['mb_id']?>">인증확인</button>
@@ -129,7 +149,11 @@ $q = $_SERVER['QUERY_STRING'];
             <thead>
                 <th>아이디</th>
                 <th>이름</th>
+                <th>이메일</th>
+                <th>기수</th>
+                <th>계열</th>
                 <th>학과</th>
+                <th>학번</th>
                 <th>입학</th>
                 <th>졸업</th>
                 <th>전화번호</th>

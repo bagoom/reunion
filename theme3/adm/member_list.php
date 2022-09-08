@@ -58,6 +58,9 @@ if ($stx) {
         case 'addr' :
             $sql_search .= " (mb_addr1 like '%{$stx}%') OR (mb_addr2 like '%{$stx}%') OR (mb_addr3 like '%{$stx}%')   ";
             break;
+        case 'generation' :
+            $sql_search .= " ({$sfl} = '{$stx}') ";
+            break;
         default :
             $sql_search .= " ({$sfl} like '{$stx}%') ";
             break;
@@ -295,8 +298,8 @@ $q = $_SERVER['QUERY_STRING'];
         </td>
         <td onClick="location.href='<?=$s_mod?>'">
             <?php
-             if($row['mb_sex'] == 'male') { echo "남"; }  
-             else if($row['mb_sex'] == 'female') {echo "여";} 
+             if($row['mb_sex'] == 'm') { echo "남"; }  
+             else if($row['mb_sex'] == 'f') {echo "여";} 
              else echo "모름";
               ?>
         </td>

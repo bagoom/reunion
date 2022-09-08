@@ -20,8 +20,16 @@ if (empty($to_date) || ! preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-
                     <?= get_reunion_select('affiliation', $affiliation, '', 'af_name', 'affiliation'); ?>
                 </div>
 
-                <div class="input-col">
+                <div class="input-col department">
                     <?= get_reunion_select('department', $department, '', 'dp_name', 'department'); ?>
+                </div>
+                
+                <div class="input-col">
+                    <input type="text" name="generation" value="<?=$generation?>" id="generation" class="frm_input" placeholder="기수">
+                </div>
+
+                <div class="input-col">
+                    <input type="text" name="entrance_year" value="<?= $entrance_year?>" id="entrance_year" class="frm_input" placeholder="입학">
                 </div>
 
                 <div class="input-col">
@@ -81,6 +89,28 @@ $(function(){
 });
 
 
+$("#affiliation").change(function () {
+    var val = $(this).val();
+    var department = '<?=$mb[department]?>'
+    $.ajax({
+        url: "./ajax.get_department_select.php",
+        type: 'POST',
+        data: {
+            'affiliation': val,
+            'department': department
+        },
+        dataType: 'html',
+        async: false,
+        success: function (data, textStatus) {
+            if (data.error) {
+                alert(data.error);
+                return false;
+            } else {
+                $(".department").html(data);
+            }
+        }
+    });
+})
 
 var dateInput = $("#fr_date");
 $("#7d_ago").click(function(){

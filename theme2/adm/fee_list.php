@@ -18,6 +18,12 @@ if($affiliation)
 if($department)
     $where .= " AND a.department = '$department'";
 
+if($generation)
+    $where .= " AND a.generation = '$generation'";
+
+if($entrance_year)
+    $where .= " AND a.entrance_year = '$entrance_year'";
+
 if($graduation_year)
     $where .= " AND a.graduation_year = '$graduation_year'";
 
@@ -55,8 +61,8 @@ if($is_admin !== 'superadmin'){
     $sql = "SELECT * FROM {$g5['member_table']} a, {$g5['fee']} b WHERE a.mb_no = b.mb_no $where ORDER BY id DESC LIMIT {$from_record}, {$rows}" ;
 }
 $result = sql_query($sql);
-
 $colspan = 9;
+$q = $_SERVER['QUERY_STRING']; 
 ?>
 
 
@@ -76,7 +82,7 @@ $colspan = 9;
         <?php if($is_admin !== 'superadmin') { ?>
             <a href="./fee_form.php" id="member_add" class="btn btn_01">회비등록</a>
         <?php } ?>
-            <a href="./excel.fee_export.php" id="member_add" class="btn btn_02">엑셀저장</a>
+            <a href="./excel.fee_export.php?q=<?=$q?>" id="member_add" class="btn btn_02">엑셀저장</a>
     </div>
 </div>
 <!-- <div class="local_desc01 local_desc">
@@ -98,7 +104,10 @@ $colspan = 9;
         <th scope="col">입금날짜</th>
         <th scope="col">금액</th>
         <th scope="col">성명</th>
+        <th scope="col">기수</th>
+        <th scope="col">계열</th>
         <th scope="col">학과</th>
+        <th scope="col">입학</th>
         <th scope="col">졸업</th>
         <th scope="col">전화번호</th>
         <th scope="col">비고</th>
@@ -120,7 +129,10 @@ $colspan = 9;
         <td onClick="location.href='./fee_form.php?mb_id=<?=$row['mb_id']?>&w=u&id=<?=$row['id']?>&mb_no=<?=$row['mb_no']?>'"><?=$row['deposit_date']?></td>
         <td onClick="location.href='./fee_form.php?mb_id=<?=$row['mb_id']?>&w=u&id=<?=$row['id']?>&mb_no=<?=$row['mb_no']?>'"><?=number_format($row['fee'])?></td>
         <td onClick="location.href='./fee_form.php?mb_id=<?=$row['mb_id']?>&w=u&id=<?=$row['id']?>&mb_no=<?=$row['mb_no']?>'"><?=$row['mb_name']?></td>
+        <td onClick="location.href='./fee_form.php?mb_id=<?=$row['mb_id']?>&w=u&id=<?=$row['id']?>&mb_no=<?=$row['mb_no']?>'"><?=$row['generation']?></td>
+        <td onClick="location.href='./fee_form.php?mb_id=<?=$row['mb_id']?>&w=u&id=<?=$row['id']?>&mb_no=<?=$row['mb_no']?>'"><?=$row['affiliation']?></td>
         <td onClick="location.href='./fee_form.php?mb_id=<?=$row['mb_id']?>&w=u&id=<?=$row['id']?>&mb_no=<?=$row['mb_no']?>'"><?=$row['department']?></td>
+        <td onClick="location.href='./fee_form.php?mb_id=<?=$row['mb_id']?>&w=u&id=<?=$row['id']?>&mb_no=<?=$row['mb_no']?>'"><?=$row['entrance_year']?></td>
         <td onClick="location.href='./fee_form.php?mb_id=<?=$row['mb_id']?>&w=u&id=<?=$row['id']?>&mb_no=<?=$row['mb_no']?>'"><?=$row['graduation_year']?></td>
         <td onClick="location.href='./fee_form.php?mb_id=<?=$row['mb_id']?>&w=u&id=<?=$row['id']?>&mb_no=<?=$row['mb_no']?>'"><?=$row['mb_hp']?></td>
         <td onClick="location.href='./fee_form.php?mb_id=<?=$row['mb_id']?>&w=u&id=<?=$row['id']?>&mb_no=<?=$row['mb_no']?>'"><?=$row['etc']?></td>

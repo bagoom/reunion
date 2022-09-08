@@ -12,6 +12,7 @@ check_admin_token();
 
 $sql_common = " 
                  dp_name = '{$dp_name}',
+                 affiliation = '{$affiliation}',
                  reunion_id = '{$reunionID}'
                  ";
 
@@ -22,18 +23,21 @@ if ($w == '')
 }
 else if ($_POST['act_button'] == "선택수정" && $w == 'u') 
 {
-    var_dump($_POST);
+    // var_dump($_POST);
     for ($i=0; $i<count($_POST['chk']); $i++){
         // 실제 번호를 넘김
         $k = isset($_POST['chk'][$i]) ? (int) $_POST['chk'][$i] : 0;
 
         $post_dp_name =  (isset($_POST['dp_name'][$k]) && $_POST['dp_name'][$k]) ? clean_xss_tags($_POST['dp_name'][$k], 1, 1, 50) : '';
+        $post_affiliation =  (isset($_POST['affiliation'][$k]) && $_POST['affiliation'][$k]) ? clean_xss_tags($_POST['affiliation'][$k], 1, 1, 50) : '';
 
         $sql = " update `department`
-                    set dp_name = '".sql_real_escape_string($post_dp_name)."'
+                    set dp_name = '".sql_real_escape_string($post_dp_name)."',
+                    affiliation = '".sql_real_escape_string($post_affiliation)."'
                     where dp_id = '{$_POST['dp_id'][$k]}' and reunion_id = '{$reunionID}'";
         sql_query($sql);
-        echo $sql;
+        // echo $sql;
+        alert("해당 학과의 정보를 수정하였습니다.");
 
     }
 }else if ($_POST['act_button'] == "선택삭제") {

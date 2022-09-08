@@ -125,12 +125,20 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 					<?= get_reunion_select('department', $member['department'], '', 'dp_name', 'department'); ?>
 				</li>
 	            <li class="half_input left_input margin_input">
+	                <label for="generation">기수</label>
+	                <input type="text" name="generation" id="generation" value="<?=$member['generation']?>"  class="frm_input full_input  " minlength="0" maxlength="20" placeholder="기수" >
+				</li>
+				<li class="half_input left_input">
+	                <label for="admission_year">학번</label>
+	                <input type="text" name="admission_year" id="admission_year"  value="<?=$member['admission_year']?>"  class="frm_input full_input  " minlength="3" maxlength="20" placeholder="학번" >
+				</li>
+	            <li class="half_input left_input margin_input">
 	                <label for="entrance_year">입학년도</label>
 	                <input type="text" name="entrance_year" id="entrance_year" value="<?=$member['entrance_year']?>"  class="frm_input full_input required " minlength="3" maxlength="20" placeholder="입학년도 ex) 1980" required>
 				</li>
 				<li class="half_input left_input">
 	                <label for="graduation_year">졸업년도</label>
-	                <input type="text" name="graduation_year" id="graduation_year"  value="<?=$member['graduation_year']?>"  class="frm_input full_input required " minlength="3" maxlength="20" placeholder="졸업년도 ex) 1980" required>
+	                <input type="text" name="graduation_year" id="graduation_year"  value="<?=$member['graduation_year']?>"  class="frm_input full_input  " minlength="3" maxlength="20" placeholder="졸업년도 ex) 1980" >
 				</li>
 	        </ul>
 	    </div>
@@ -162,11 +170,11 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	        <ul>
 	            <li class="half_input left_input margin_input">
 	                <label for="job">직장명</label>
-	                <input type="text" name="job" id="job"  class="frm_input full_input " value="<?=$member['job']?>" minlength="3" maxlength="20" placeholder="직장명">
+	                <input type="text" name="job" id="job"  class="frm_input full_input " value="<?=$member['job']?>" minlength="0" maxlength="20" placeholder="직장명">
 				</li>
 				<li class="half_input left_input">
 	                <label for="job_department">부서</label>
-	                <input type="text" name="job_department" id="job_department" value="<?=$member['job_department']?>"  class="frm_input full_input " minlength="3" maxlength="20" placeholder="부서">
+	                <input type="text" name="job_department" id="job_department" value="<?=$member['job_department']?>"  class="frm_input full_input " minlength="0" maxlength="20" placeholder="부서">
 				</li>
 	            <li class="half_input left_input margin_input">
 	                <label for="workplace_tel">직장전화</label>

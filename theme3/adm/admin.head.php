@@ -1,6 +1,6 @@
 <?php
 if (!defined('_GNUBOARD_')) exit;
-define("_ADMIN_", true);
+
 $g5_debug['php']['begin_time'] = $begin_time = get_microtime();
 
 $files = glob(G5_ADMIN_PATH.'/css/admin_extend_*');
@@ -102,7 +102,7 @@ function imageview(id, w, h)
 </script>
 
 <div id="to_content"><a href="#container">본문 바로가기</a></div>
-<header id="hd" class="admin">
+<header id="hd">
     <h1><?php echo $config['cf_title'] ?></h1>
     <div id="hd_top">
         <div class="left">
@@ -145,11 +145,10 @@ function imageview(id, w, h)
 
         <div id="tnb">
             <ul>
-                <li class="tnb_li"><a href="<?php echo G5_URL ?>/" class="tnb_community" target="_blank" title="커뮤니티 바로가기">커뮤니티 바로가기</a></li>
+                <li class="tnb_li"><a href="<?php echo G5_URL ?>/" class="tnb_community" target="_blank" title="동문회 홈페이지 바로가기">동문회 홈페이지 바로가기</a></li>
                 <li class="tnb_li"><a href="<?php echo G5_ADMIN_URL ?>/service.php" class="tnb_service">부가서비스</a></li>
                 <li class="tnb_li"><button type="button" class="tnb_mb_btn">관리자<span class="./img/btn_gnb.png">메뉴열기</span></button>
                     <ul class="tnb_mb_area">
-                        <li><a href="<?php echo G5_ADMIN_URL ?>/member_form.php?w=u&amp;mb_id=<?php echo $member['mb_id'] ?>">관리자정보</a></li>
                         <li id="tnb_logout"><a href="<?php echo G5_BBS_URL ?>/logout.php?type=adm">로그아웃</a></li>
                     </ul>
                 </li>

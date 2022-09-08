@@ -50,7 +50,7 @@ if ($w == '')
     $required_mb_password = 'required';
     $sound_only = '<strong class="sound_only">필수</strong>';
 
-    $mb['mb_mailling'] = 1;
+    $mb['mb_mailling'] = null;
     $mb['mb_open'] = 1;
     $mb['mb_level'] = 2;
     $html_title = '추가';
@@ -79,6 +79,7 @@ else if ($w == 'u')
     $mb['mb_signature'] = get_text($mb['mb_signature']);
     $mb['mb_recommend'] = get_text($mb['mb_recommend']);
     $mb['mb_profile'] = get_text($mb['mb_profile']);
+    $mb['mb_mailling'] = get_text($mb['mb_mailling']);
     $mb['mb_1'] = get_text($mb['mb_1']);
     $mb['mb_2'] = get_text($mb['mb_2']);
     $mb['mb_3'] = get_text($mb['mb_3']);
@@ -222,9 +223,9 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
             <tr>
                 <th scope="row">성별</th>
                 <td>
-                    <input type="radio" name="mb_sex" value="male" id="male" <?=($mb['mb_sex'] == 'male') ?  'checked' : null ?> checked>
+                    <input type="radio" name="mb_sex" value="m" id="male" <?=($mb['mb_sex'] == 'm') ?  'checked' : null ?> checked>
                     <label for="male">남</label>
-                    <input type="radio" name="mb_sex" value="female" id="female" <?=($mb['mb_sex'] == 'female') ?  'checked' : null ?>>
+                    <input type="radio" name="mb_sex" value="f" id="female" <?=($mb['mb_sex'] == 'f') ?  'checked' : null ?>>
                     <label for="female">여</label>
                     <input type="radio" name="mb_sex" value="" id="impertinence" <?=($mb['mb_sex'] == '') ?  'checked' : null ?>>
                     <label for="impertinence">모름</label> 
@@ -236,7 +237,11 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 
             <tr>
                 <th scope="row"><label for="mb_hp">휴대폰번호</label></th>
-                <td><input type="text" name="mb_hp" value="<?php echo $mb['mb_hp'] ?>" id="mb_hp" class="frm_input" size="15" maxlength="20"></td>
+                <td>
+                    <span class="frm_info">'-'를 포함하여 입력해 주세요. ex) 010-1234-5678</span>
+                    <input type="text" name="mb_hp" value="<?php echo $mb['mb_hp'] ?>" id="mb_hp" class="frm_input" size="15" maxlength="20">
+                    <p></p>
+                </td>
                 <th scope="row"><label for="mb_tel">자택전화</label></th>
                 <td><input type="text" name="mb_tel" value="<?php echo $mb['mb_tel'] ?>" id="mb_tel" class="frm_input" size="15" maxlength="20"></td>
             </tr>
@@ -285,8 +290,8 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                     <?= get_reunion_select('affiliation', $mb['affiliation'], '', 'af_name', 'affiliation'); ?>
                 </td>
                 <th scope="row">학과</th>
-                <td>
-                    <?= get_reunion_select('department', $mb['department'], '', 'dp_name', 'department'); ?>
+                <td class="department">
+                    <?= get_department_select('department', $mb['department'], '', 'dp_name', 'department', $mb['affiliation']); ?>
                 </td>
                 <th scope="row">기수</th>
                 <td>
@@ -417,7 +422,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                 <td colspan="5">
                     <input type="radio" name="mb_mailling" value="1" id="mb_mailling_yes" <?php echo $mb_mailling_yes; ?>>
                     <label for="mb_mailling_yes">수신</label>
-                    <input type="radio" name="mb_mailling" value="0" id="mb_mailling_no" <?php echo $mb_mailling_no; ?>>
+                    <input type="radio" name="mb_mailling" value="0" id="mb_mailling_no" <?php echo $mb_mailling_no; ?> chekced>
                     <label for="mb_mailling_no">거부</label>
                     <input type="radio" name="mb_mailling" value="2" id="mb_mailling_unknow" <?=($mb['mb_mailling'] == '2') ? "chekced" : null?>>
                     <label for="mb_mailling_unknow">불명</label>
@@ -465,7 +470,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 <?php if ($w == 'u') {
     $mb_data =get_member($mb_id);
     $mb_no = $mb_data['mb_no'];
-    $fee_sql = "SELECT * FROM {$g5['fee']}  WHERE mb_no ='$mb_no' " ;   
+    $fee_sql = "SELECT * FROM {$g5['fee']}  WHERE mb_no ='$mb_no' order by deposit_date desc " ;   
     $fee_result = sql_query($fee_sql);
 ?>
 
@@ -651,8 +656,33 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
     <input type="submit" value="확인" class="btn_submit btn" accesskey='s'>
 </div>
 </form>
-
 <script>
+
+
+$("#affiliation").change(function(){
+    var val = $(this).val();
+    var department = '<?=$mb[department]?>'
+    $.ajax({
+        url: "./ajax.get_department_select.php",
+        type: 'POST',
+        data: {
+            'affiliation': val,
+            'department' : department
+        },
+        dataType: 'html',
+        async: false,
+        success: function (data, textStatus) {
+            if (data.error) {
+                alert(data.error);
+                return false;
+            } else {
+                $(".department").html(data);
+            }
+        }
+    });
+})
+
+
 function fmember_submit(f)
 {
     if (!f.mb_icon.value.match(/\.(gif|jpe?g|png)$/i) && f.mb_icon.value) {

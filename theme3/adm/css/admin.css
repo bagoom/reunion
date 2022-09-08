@@ -170,11 +170,19 @@ h2 {
     display: flex;
 }
 
-
+#hd #logo{
+    top: 0 !important;
+}
+.gnb_large  {
+    margin-left: 300px !important;
+}
+#wrapper{
+    margin-top: 0 !important;
+}
 #logo {
     background: #2f409f;
     height: 100%;
-    width: 300px;
+    width: 220px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -5368,7 +5376,10 @@ button.btn {
 }
 
 #modal.branch-modal {
-    width: 1000px;
+    width: 1220px;
+}
+#modal.branch-modal {
+    width: 1220px;
 }
 
 #modal.branch-modal .input-row {
@@ -5447,6 +5458,7 @@ button.btn {
 #modal .branch-list .thead {
     display: table;
     width: 100%;
+    table-layout: fixed;
     border-top: 2px solid #000;
     background: #f9f9f9;
 }
@@ -5455,11 +5467,13 @@ button.btn {
     display: table-cell;
     padding: 5px;
     width: 11.1111%;
+    white-space: nowrap;
 }
 
 #modal .branch-list .tbody li .con {
     display: table;
     width: 100%;
+    table-layout: fixed;
     font-size: 13px;
 }
 
@@ -5552,6 +5566,20 @@ button.btn {
     border-radius: 3px;
 }
 
+
+.id-search-modal table{
+    table-layout: auto;
+}
+.branch_member table{
+    table-layout: auto;
+}
+.new_mem table{
+    table-layout: auto;
+}
+.new_mem tr td:last-child{
+    overflow: auto;
+    text-overflow: initial;
+}
 @media only screen and (max-device-width : 768px) and (orientation : landscape) {
 
     /* Styles */

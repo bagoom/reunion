@@ -8,4 +8,4 @@ if (!defined("_GNUBOARD_")) {
 // 예) https://도메인/js/common.js?ver=210618
 define("G5_CSS_VER", "210665");
 define("G5_JS_VER", "210622");
-define("G5_IMG_VER", "210625");
+define("G5_IMG_VER", "210626");

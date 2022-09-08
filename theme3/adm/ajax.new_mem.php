@@ -9,7 +9,11 @@ for ($i=0; $row=sql_fetch_array($result); $i++) { ?>
     <tr data-id="<?=$row['mb_id']?>" data-name="<?=$row['mb_name']?>">
         <td><?=$row['mb_id']?></td>
         <td><?=$row['mb_name']?></td>
+        <td><?=$row['mb_email']?></td>
+        <td><?=$row['generation']?></td>
+        <td><?=$row['affiliation']?></td>
         <td><?=$row['department']?></td>
+        <td><?=$row['admission_year']?></td>
         <td><?=$row['entrance_year']?></td>
         <td><?=$row['graduation_year']?></td>
         <td><?=$row['mb_hp']?></td>
@@ -19,7 +23,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++) { ?>
 <?php }?>
 
 <?php if ($i == 0)
-    echo "<tr><td colspan='7' class=\"empty_table\">자료가 없습니다.</td></tr>";
+    echo "<tr><td colspan='11' class=\"empty_table\">자료가 없습니다.</td></tr>";
 ?>
 
 <script>

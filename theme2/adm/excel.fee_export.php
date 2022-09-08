@@ -7,13 +7,45 @@ if (!$is_admin =="super")
 
 function column_char($i) { return chr( 65 + $i ); }
 
-$headers = array('번호', '구분', '입금날짜', '금액', '성명',  '학과', '졸업', '휴대폰', '비고');
-$widths  = array(5, 15, 15, 15, 15, 15, 15, 30, 30,);
+$headers = array('번호', '구분', '입금날짜', '금액', '성명', '기수', '계열', '학과', '입학', '졸업', '휴대폰', '비고');
+$widths  = array(5, 15, 15, 15, 15, 15, 30, 30, 15, 15, 30, 100);
 $header_bgcolor = 'FFABCDEF';
 $last_char = column_char(count($headers) - 1);
 
+if($type)
+    $where .= " AND a.type= '$type'";
 
-$sql = "SELECT * FROM {$g5['member_table']} a, {$g5['fee']} b WHERE a.mb_no = b.mb_no and a.reunion_id = '{$reunionID}' ORDER BY id DESC" ;
+if($affiliation)
+    $where .= " AND a.affiliation = '$affiliation'";
+
+if($department)
+    $where .= " AND a.department = '$department'";
+
+if($generation)
+    $where .= " AND a.generation = '$generation'";
+
+if($entrance_year)
+    $where .= " AND a.entrance_year = '$entrance_year'";
+
+if($graduation_year)
+    $where .= " AND a.graduation_year = '$graduation_year'";
+
+if($mb_hp)
+    $where .= " AND a.mb_hp = '$mb_hp'";
+
+if($mb_name)
+    $where .= " AND a.mb_name = '$mb_name'";
+
+if($fr_date)
+    $where .= " AND b.deposit_date >= '$fr_date' AND b.deposit_date <= '$to_date'";
+    
+if($fee_type)
+    $where .= " AND b.fee_type = '$fee_type'";
+
+
+
+
+$sql = "SELECT * FROM {$g5['member_table']} a, {$g5['fee']} b WHERE a.mb_no = b.mb_no and a.reunion_id = '{$reunionID}' {$where} ORDER BY id DESC" ;
 $result = sql_query($sql);
 for($i=1; $row=sql_fetch_array($result); $i++) {
 
@@ -24,7 +56,10 @@ for($i=1; $row=sql_fetch_array($result); $i++) {
                $row[deposit_date],
                $row[fee],
                $row[mb_name],
+               $row[generation],
+               $row[affiliation],
                $row[department],
+               $row[entrance_year],
                $row[graduation_year],
                $row[mb_hp],
                $row[etc]

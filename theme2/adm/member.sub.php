@@ -13,7 +13,7 @@ include_once('./admin.head.php');
                     <?= get_reunion_select('affiliation', $affiliation, '', 'af_name', 'affiliation'); ?>
                 </div>
 
-                <div class="input-col">
+                <div class="input-col department">
                     <?= get_reunion_select('department', $department, '', 'dp_name', 'department'); ?>
                 </div>
 
@@ -67,6 +67,28 @@ include_once('./admin.head.php');
 
 
 <script>
+$("#affiliation").change(function () {
+    var val = $(this).val();
+    var department = '<?=$mb[department]?>'
+    $.ajax({
+        url: "./ajax.get_department_select.php",
+        type: 'POST',
+        data: {
+            'affiliation': val,
+            'department': department
+        },
+        dataType: 'html',
+        async: false,
+        success: function (data, textStatus) {
+            if (data.error) {
+                alert(data.error);
+                return false;
+            } else {
+                $(".department").html(data);
+            }
+        }
+    });
+})
 function fmemberlist_submit(f)
 {
     if (!is_checked("chk[]")) {

@@ -102,24 +102,18 @@ include_once('./admin.head.php');
     $branch_mem_sql = "SELECT * FROM {$g5['member_table']} a, {$g5['branch_member']} b WHERE a.mb_no = b.mb_no AND b.branch_id ='$branch_id' " ;   
     $branch_mem_result = sql_query($branch_mem_sql);
 ?>
-    <div class="tbl_frm01 tbl_wrap table02">
+    <div class="tbl_frm01 tbl_wrap table02 branch_member">
         <div class="tit01">지회 회원 관리 <button type="button" class="btn btn_02 modal-open">지회 회원 등록</button></div>
         <table>
             <caption><?php echo $g5['title']; ?></caption>
-            <colgroup>
-                <col width="25%">
-                <col width="25%">
-                <col width="25%">
-                <col width="25%">
-                <col width="25%">
-                <col width="25%">
-                <col width="25%">
-            </colgroup>
             <thead>
                 <th>등급</th>
                 <th>성명</th>
+                <th>기수</th>
+                <th>계열</th>
                 <th>학과</th>
                 <th>입학</th>
+                <th>졸업</th>
                 <th>전화번호</th>
                 <th>이메일</th>
                 <th>비고</th>
@@ -130,8 +124,11 @@ include_once('./admin.head.php');
                 <tr>
                     <td><?=$row['grade']?></td>
                     <td><?=$row['mb_name']?></td>
+                    <td><?=$row['generation']?></td>
+                    <td><?=$row['affiliation']?></td>
                     <td><?=$row['department']?></td>
                     <td><?=$row['entrance_year']?></td>
+                    <td><?=$row['graduation_year']?></td>
                     <td><?=$row['mb_hp']?></td>
                     <td><?=$row['mb_email']?></td>
                     <td><?=$row['etc']?></td>
@@ -184,6 +181,8 @@ include_once('./admin.head.php');
                 <div class="thead">
                     <div class="id">아이디</div>
                     <div class="name">이름</div>
+                    <div class="name">기수</div>
+                    <div class="name">계열</div>
                     <div class="department">학과</div>
                     <div class="entrance_year">입학</div>
                     <div class="graduation_year">졸업</div>
@@ -202,6 +201,8 @@ include_once('./admin.head.php');
                             <div class="con" :class="{ 'on' : memberToModify == member.mb_no}">
                                 <div class="id">{{member.mb_id}}</div>
                                 <div class="name">{{member.mb_name}}</div>
+                                <div class="name">{{member.generation}}</div>
+                                <div class="name">{{member.affiliation}}</div>
                                 <div class="department">{{member.department}}</div>
                                 <div class="entrance_year">{{member.entrance_year}}</div>
                                 <div class="graduation_year">{{member.graduation_year}}</div>

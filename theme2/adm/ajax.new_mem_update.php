@@ -41,7 +41,7 @@ $content  = "
         
         <p style='padding:30px 30px 30px;border-bottom:1px solid #eee;line-height:1.7em'>
         안녕하세요.<br>
-        북일고등학교 총동문회 회원 가입이 완료 되었습니다.<br>
+        ".$reunion['reunion_title']." 회원 가입이 완료 되었습니다.<br>
         가입하신 ID / PW 로 로그인 후 이용 가능합니다.<br><br>
 
         항상 우리 총동문회에 관심가져주셔서 감사합니다.

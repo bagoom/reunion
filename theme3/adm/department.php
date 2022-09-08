@@ -24,6 +24,7 @@ $colspan = 2;
         <div class="input-row">
             <div class="input-col">
                 <label for="">학과추가</label>
+                <?= get_reunion_select('affiliation', $mb['affiliation'], '', 'af_name', 'affiliation', 'required'); ?>
                 <input type="text" name="dp_name" placeholder="학과명">
                 <button type="submit">추가</button>
             </div>
@@ -39,7 +40,7 @@ $colspan = 2;
 
 
 
-<div class="tbl_head01 tbl_wrap" style="width: 350px">
+<div class="tbl_head01 tbl_wrap" style="width: 550px">
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -48,7 +49,8 @@ $colspan = 2;
             <label for="chkall" class="sound_only">게시판 전체</label>
             <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
         </th>
-        <th scope="col">목록</th>
+        <th scope="col">계열</th>
+        <th scope="col">학과</th>
     </tr>
     </thead>
     <tbody>
@@ -61,6 +63,7 @@ $colspan = 2;
             <label for="chk_<?php echo $i; ?>" class="sound_only"></label>
             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
         </td>
+        <td><?= get_reunion_select("affiliation[$i]", $row['affiliation'], '', 'af_name', 'affiliation', ''); ?></td>
         <td><input type="text" name="dp_name[<?= $i ?>]" value="<?=$row['dp_name']?>"></td>
     </tr>
     <?php

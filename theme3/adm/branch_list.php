@@ -43,7 +43,8 @@ if($is_admin !== 'superadmin'){
     $sql = "SELECT * FROM {$g5['branch']}  WHERE  $where  ORDER BY branch_id DESC LIMIT {$from_record}, {$rows}" ;
 }
 $result = sql_query($sql);
-$colspan = 9;
+$colspan = 10;
+$q = $_SERVER['QUERY_STRING']; 
 ?>
 
 
@@ -63,7 +64,7 @@ $colspan = 9;
         <?php if($is_admin !== 'superadmin') { ?>
             <a href="./branch_form.php" id="member_add" class="btn btn_01">지회등록</a>
         <?php }?>
-            <a href="./excel.branch_export.php" id="member_add" class="btn btn_02">엑셀저장</a>
+            <a href="./excel.branch_export.php?q=<?=$q?>" id="member_add" class="btn btn_02">엑셀저장</a>
     </div>
 </div>
 <!-- <div class="local_desc01 local_desc">
@@ -88,6 +89,7 @@ $colspan = 9;
         <th scope="col">회장</th>
         <th scope="col">전화번호</th>
         <th scope="col">총무</th>
+        <th scope="col">전화번호</th>
         <th scope="col">지회인원</th>
     </tr>
     </thead>
@@ -118,6 +120,7 @@ $colspan = 9;
         <td onClick="location.href='./branch_form.php?branch_id=<?=$row['branch_id']?>&w=u'"><?=$chairman['mb_name']?></td>
         <td onClick="location.href='./branch_form.php?branch_id=<?=$row['branch_id']?>&w=u'"><?=$chairman['mb_hp']?></td>
         <td onClick="location.href='./branch_form.php?branch_id=<?=$row['branch_id']?>&w=u'"><?=$manager['mb_name']?></td>
+        <td onClick="location.href='./branch_form.php?branch_id=<?=$row['branch_id']?>&w=u'"><?=$manager['mb_hp']?></td>
         <td onClick="location.href='./branch_form.php?branch_id=<?=$row['branch_id']?>&w=u'"><?=$branch_mem_count?></td>
     </tr>
     <?php
