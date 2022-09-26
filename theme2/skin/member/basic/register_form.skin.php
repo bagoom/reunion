@@ -120,9 +120,11 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 					<label >계열</label>
 					<?= get_reunion_select('affiliation', $member['affiliation'], '', 'af_name', 'affiliation'); ?>
 				</li>
-				<li class="half_input left_input">
+				<li class="half_input left_input ">
 					<label for="reg_mb_tel">학과</label>
-					<?= get_reunion_select('department', $member['department'], '', 'dp_name', 'department'); ?>
+					<div class="department">
+						<?= get_reunion_select('department', $member['department'], '', 'dp_name', 'department'); ?>
+					</div>
 				</li>
 	            <li class="half_input left_input margin_input">
 	                <label for="generation">기수</label>
@@ -349,6 +351,30 @@ gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_
 	</form>
 </div>
 <script>
+$("#affiliation").change(function () {
+    var val = $(this).val();
+    var department = '<?=$mb[department]?>'
+	console.log(g5_url+"/bbs/ajax.get_department_select.php")
+    $.ajax({
+        url: g5_url+"/bbs/ajax.get_department_select.php",
+        type: 'POST',
+        data: {
+            'affiliation': val,
+            'department': department
+        },
+        dataType: 'html',
+        async: false,
+        success: function (data, textStatus) {
+			console.log(data)
+            if (data.error) {
+                alert(data.error);
+                return false;
+            } else {
+                $(".department").html(data);
+            }
+        }
+    });
+})
 $(function() {
     $("#reg_zip_find").css("display", "inline-block");
 

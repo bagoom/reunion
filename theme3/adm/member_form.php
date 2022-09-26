@@ -659,28 +659,28 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 <script>
 
 
-// $("#affiliation").change(function(){
-//     var val = $(this).val();
-//     var department = '<?=$mb[department]?>'
-//     $.ajax({
-//         url: "./ajax.get_department_select.php",
-//         type: 'POST',
-//         data: {
-//             'affiliation': val,
-//             'department' : department
-//         },
-//         dataType: 'html',
-//         async: false,
-//         success: function (data, textStatus) {
-//             if (data.error) {
-//                 alert(data.error);
-//                 return false;
-//             } else {
-//                 $(".department").html(data);
-//             }
-//         }
-//     });
-// })
+$("#affiliation").change(function(){
+    var val = $(this).val();
+    var department = '<?=$mb[department]?>'
+    $.ajax({
+        url: "./ajax.get_department_select.php",
+        type: 'POST',
+        data: {
+            'affiliation': val,
+            'department' : department
+        },
+        dataType: 'html',
+        async: false,
+        success: function (data, textStatus) {
+            if (data.error) {
+                alert(data.error);
+                return false;
+            } else {
+                $(".department").html(data);
+            }
+        }
+    });
+})
 
 
 function fmember_submit(f)

@@ -4077,23 +4077,16 @@ function get_department_select($name, $selected='', $event='', $field, $table, $
 {
     global $g5, $is_admin, $member, $reunionID;
 
-    $sql = "SELECT $field FROM `$table` WHERE reunion_id = '{$reunionID}' AND affiliation = '{$affiliation}'";
+    if($affiliation == '')
+        $sql = "SELECT $field FROM `$table` WHERE reunion_id = '{$reunionID}'";
+    else
+        $sql = "SELECT $field FROM `$table` WHERE reunion_id = '{$reunionID}' AND affiliation = '{$affiliation}'";
 
     $result = sql_query($sql);
     $str = "<select id=\"$name\" name=\"$name\" $event >\n";
+    $str .= '<option value="">학과</option>';
+
     for ($i=0; $row=sql_fetch_array($result); $i++) {
-        if($name == 'executive' && $i == 0){
-            $str .= '<option value="">없음</option>';
-        }
-        if($name == 'type' && $i == 0){
-            $str .= '<option value="">구분</option>';
-        }
-        if(($name == 'affiliation' || $field == 'af_name'  )&& $i == 0){
-            $str .= '<option value="">계열</option>';
-        }
-        if($name == 'department' && $i == 0){
-            $str .= '<option value="">학과</option>';
-        }
         $str .= option_selected($row[$field], $selected, $row[$field]);
     }
     $str .= "</select>";

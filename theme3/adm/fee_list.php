@@ -61,7 +61,7 @@ if($is_admin !== 'superadmin'){
     $sql = "SELECT * FROM {$g5['member_table']} a, {$g5['fee']} b WHERE a.mb_no = b.mb_no $where ORDER BY id DESC LIMIT {$from_record}, {$rows}" ;
 }
 $result = sql_query($sql);
-$colspan = 9;
+$colspan = 12;
 $q = $_SERVER['QUERY_STRING']; 
 ?>
 
