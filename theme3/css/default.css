@@ -1523,6 +1523,15 @@ a.gnb_2da:hover {
   clear: both;
   content: "";
 }
+.help-box b{
+  display: block;
+  margin-bottom: 15px;
+}
+.help-box p{
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 400;
+}
 
 /* 하단 레이아웃 */
 #ft {

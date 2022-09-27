@@ -166,6 +166,15 @@
 #bo_gall .gall_li {
   min-height: 310px;
 }
+.help-box b{
+  display: block;
+  margin-bottom: 15px;
+}
+.help-box p{
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 400;
+}
 
 @media (max-width: 768px) {
   .gnb_wrap .gnb_3dul {

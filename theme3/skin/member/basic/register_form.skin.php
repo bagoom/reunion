@@ -114,7 +114,13 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	    </div>
 
 		 <div class="tbl_frm01 tbl_wrap register_form_inner">
-	        <h2>학교 정보</h2>
+	        <div class="help-box">
+				<h2><b>학교 정보</b>
+				<p>＊[입학년도]는 필수값으로 꼭 입력해야 합니다.</p>
+				<p>＊학교 정보를 정확히 모를 경우 비워두거나, 총동문회 사무처로 연락하여 확인 후 회원 가입하시기 바랍니다.</p>
+				<p>＊학번의 경우 고등학교는 입력하지 않아도 되며, 대학의 경우 년도가 아닌 학생 고유번호를 입력해 주세요.</p>
+				</h2>
+			</div>
 	        <ul>
 	            <li class="half_input left_input margin_input">
 					<label >계열</label>
@@ -184,7 +190,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 				</li>
 				<li class="half_input left_input">
 	                <label for="workplace_addr">직장주소</label>
-	                <input type="text" name="workplace_addr" id="workplace_addr" value="<?=$member['workplace_addr']?>"  class="frm_input full_input " minlength="3" maxlength="20" placeholder="직장주소">
+	                <input type="text" name="workplace_addr" id="workplace_addr" value="<?=$member['workplace_addr']?>"  class="frm_input full_input " minlength="3" maxlength="90" placeholder="직장주소">
 				</li>
 	        </ul>
 	    </div>

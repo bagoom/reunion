@@ -249,7 +249,7 @@ $q = $_SERVER['QUERY_STRING'];
             <?= $row['mb_name'] ?>
         </td>
         <td onClick="location.href='<?=$s_mod?>'">
-            <?= ($row['name2'])? $row['name2'] : "-" ?>
+            <?= ($row['mb_nick'])? $row['mb_nick'] : "-" ?>
         </td>
         <!-- 기수 -->
         <td onClick="location.href='<?=$s_mod?>'">
