@@ -30,13 +30,12 @@ if(function_exists('social_is_login_check')){
 if( (isset($mb['mb_id']) && $mb['mb_id']) && $mb['confirm'] == 'N' && login_password_check($mb, $mb_password, $mb['mb_password'])){
     alert('동문인증 승인전입니다.');
 }
-
 //소셜 로그인이 맞다면 패스워드를 체크하지 않습니다.
 // 가입된 회원이 아니다. 비밀번호가 틀리다. 라는 메세지를 따로 보여주지 않는 이유는
 // 회원아이디를 입력해 보고 맞으면 또 비밀번호를 입력해보는 경우를 방지하기 위해서입니다.
 // 불법사용자의 경우 회원아이디가 틀린지, 비밀번호가 틀린지를 알기까지는 많은 시간이 소요되기 때문입니다.
 if (!$is_social_password_check && (! (isset($mb['mb_id']) && $mb['mb_id']) || !login_password_check($mb, $mb_password, $mb['mb_password'])) ) {
-
+// if (!$is_social_password_check && (! (isset($mb['mb_id']) && $mb['mb_id']) || !login_password_check($mb, $mb_password, $mb['mb_password']) || ($mb['reunion_id'] != $reunionID)) ) {
     run_event('password_is_wrong', 'login', $mb);
 
     alert('아이디 또는 비밀번호를 잘못 입력했습니다.\n입력하신 내용을 다시 확인해주세요.\n(인증이 되지 않은 회원의 경우 로그인이 되지 않습니다.)');

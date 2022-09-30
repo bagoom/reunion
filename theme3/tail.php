@@ -79,6 +79,7 @@ if ($config['cf_analytics']) {
 <script>
     var is_app = bugilgoaos ? bugilgoaos : null;
     function gotoMobileUrl(url) {
+        console.log(url)
         if (is_app) {
             if (deviceType() == 'android') {
                 bugilgoaos.goWebSafari(url);

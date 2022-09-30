@@ -866,7 +866,7 @@ function getPushToken() {
 }
 
 //두개값 전달받은값 디비에 저장해주세요.(안드로이드, 아이폰꼭 구분해서 저장해주셔야 나중에 푸시보낼떄 구분할수있습니다.)
-function RgetPushToken(obj, obj2) {
-  alert(obj);
-  alert(obj2);
-}
+// function RgetPushToken(obj, obj2) {
+//   // alert(obj);
+//   // alert(obj2);
+// }

@@ -688,6 +688,33 @@ table.basic-type02 td.text-center {
   #ft #ft_wr .ft_logo {
     margin: 0 auto 25px;
   }
+  #register_form input[name=mb_zip] {
+    width: 60%;
+  }
+  #register_form button.btn_frmline {
+    width: 35%;
+  }
+  .th_group, .td_group {
+    display: none;
+  }
+  .td_board {
+    max-width: 80px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .td_subject {
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .td_name {
+    max-width: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 /*# sourceMappingURL=custom.css.map */

@@ -242,6 +242,28 @@
   #bo_gall .gall_li {
     min-height: 250px;
   }
+  .th_group, .td_group{
+    display: none;
+  }
+
+  .td_board {
+    max-width: 80px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .td_subject {
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .td_name {
+    max-width: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 /*# sourceMappingURL=custom.css.map */

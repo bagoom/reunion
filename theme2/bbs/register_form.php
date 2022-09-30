@@ -61,9 +61,11 @@ if ($w == "") {
     $g5['title'] = '회원 가입';
 
 } else if ($w == 'u') {
-
-    if ($is_admin == 'supervisor')
-        alert('관리자의 회원정보는 관리자 화면에서 수정해 주십시오.', G5_URL);
+    if ($is_admin == 'supervisor'){
+        // echo '<script>location.replace("'.G5_URL.'");</script>'; 
+        // echo '<script>location.replace("'.G5_BBS_URL.'/member_confirm.php?url=/bbs/register_form.php");</script>'; 
+        alert('관리자의 회원정보는 관리자 화면에서 수정해 주십시오.', G5_URL); 
+    }
 
     if (!$is_member)
         alert('로그인 후 이용하여 주십시오.', G5_URL);

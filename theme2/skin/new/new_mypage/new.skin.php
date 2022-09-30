@@ -19,7 +19,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
     <table>
     <thead>
     <tr>
-        <th scope="col" style="text-align:left">그룹</th>
+        <th scope="col" class="th_group" style="text-align:left">그룹</th>
         <th scope="col" style="text-align:left">게시판</th>
         <th scope="col">제목</th>
         <th scope="col" style="text-align:left">이름</th>
@@ -36,8 +36,8 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
     ?>
     <tr>
         <td class="td_group"><?php echo $gr_subject ?></td>
-        <td class="td_board"><a href="./board.php?bo_table=<?php echo $list[$i]['bo_table'] ?>" target="_blank"><?php echo $bo_subject ?></a></td>
-        <td><a href="<?php echo $list[$i]['href'] ?>" target="_blank"><?php echo $list[$i]['comment'] ?><?php echo $wr_subject ?></a></td>
+        <td class="td_board"><a href="./board.php?bo_table=<?php echo $list[$i]['bo_table'] ?>" ><?php echo $bo_subject ?></a></td>
+        <td class="td_subject"><a href="<?php echo $list[$i]['href'] ?>" ><?php echo $list[$i]['comment'] ?><?php echo $wr_subject ?></a></td>
         <td class="td_name"><div><?php echo $list[$i]['name'] ?></div></td>
         <td class="td_date"><?php echo $list[$i]['datetime2'] ?></td>
     </tr>

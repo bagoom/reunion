@@ -136,7 +136,7 @@ if (!file_exists($reunion_config_file)) {
                 <div class="inner">
                     <ul id="hd_qnb">
                         <?php if ($is_member) {  ?>
-                            <li><a href="<?php echo G5_BBS_URL ?>/member_confirm.php?url=<?php echo G5_BBS_URL ?>/register_form.php">정보수정</a></li>
+                            <li><a href="<?php echo G5_BBS_URL ?>/member_confirm.php?url=/bbs/register_form.php">정보수정</a></li>
                             <li><a href="<?php echo G5_BBS_URL ?>/logout.php">로그아웃</a></li>
                             <?php } else {  ?>
                             <li><a href="<?php echo G5_BBS_URL ?>/register.php">회원가입</a></li>
