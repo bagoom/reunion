@@ -105,6 +105,42 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
         <?php if ($is_signature) { ?><p><?php echo $signature ?></p><?php } ?>
 
 
+        <!-- 신고하기 시작 -->
+        <div class="report-wrap">
+            <div class="report-btn article">
+                <i class="xi-ban"></i>
+                <span>게시물신고</span>
+            </div>
+            <div class="report-btn">
+                <i class="xi-ban"></i>
+                <span>불량사용자 신고</span>
+            </div>
+        </div>
+        <!-- 신고하기 끝 -->
+
+        <div class="report-modal" id="modal">
+            <div class="modal-head">
+                <h3>해당 게시물 신고하기</h3>
+                <div class="modal-close"><i class="xi-close"></i></div>
+            </div>
+
+            <div class="modal-body">
+                <div class="con">
+                    <div class="icon"><i class="xi-info"></i></div>
+                    <p>해당 게시물을</p>
+                    <p>신고 하시겠습니까?</p>
+                </div>
+
+                <div class="btn-wrap">
+                    <div class="btn cancel">취소</div>
+                    <div class="btn report">신고</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="overlay"></div>
+
+
         <!--  추천 비추천 시작 { -->
         <?php if ( $good_href || $nogood_href) { ?>
         <div id="bo_v_act">

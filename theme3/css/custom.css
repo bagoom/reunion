@@ -563,6 +563,32 @@ table.basic-type02 td.text-center {
   text-overflow: ellipsis;
 }
 
+#bo_v .report-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+#bo_v .report-btn:last-child {
+  margin-left: 10px;
+}
+
+#bo_v .report-btn {
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+  border: 1px solid #bbb;
+  font-size: 14px;
+  border-radius: 3px;
+  color: #777;
+  cursor: pointer;
+}
+
+#bo_v .report-btn i {
+  margin-right: 5px;
+}
+
 @media (max-width: 768px) {
   #hd {
     height: 55px;

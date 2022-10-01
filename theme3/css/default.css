@@ -1516,6 +1516,62 @@ a.gnb_2da:hover {
   background: #fa7200;
   transform: translateY(-50%);
 }
+#modal.report-modal{
+  min-height: 250px;
+}
+.report-modal{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 300px;
+  min-height: 250px;
+  background: #fff;
+  border-radius: 4px;
+  transform: translate(-50%, -50%);
+  z-index: 101;
+}
+.report-modal .modal-head h3{
+  font-size: 16px;
+}
+
+.report-modal .modal-body .con{
+  padding: 60px 30px;
+  text-align: center;
+  font-size: 17px;
+  color: #333;
+  line-height: 1.4;
+}
+
+.report-modal .modal-body .con i{
+  margin-bottom: 10px;
+  font-size: 34px;
+  color: #f05663;
+}
+
+.report-modal .modal-body .btn-wrap{
+  display: flex;
+  padding: 0 30px 30px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.report-modal .modal-body .btn-wrap .btn{
+  width: 50%;
+  border: 1px solid #cfcfcf;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 4px;
+  color: #999;
+  cursor: pointer;
+}
+.report-modal .modal-body .btn-wrap .cancel{
+  margin-right: 10px;
+}
+.report-modal .modal-body .btn-wrap .report{
+  border-color: #f05663;
+  background: #f05663;
+  color: #fff;
+}
 
 .latest_top_wr:after {
   display: block;

@@ -870,3 +870,10 @@ function getPushToken() {
 //   // alert(obj);
 //   // alert(obj2);
 // }
+
+$(document).ready(function(){
+  $(".report-btn").click(function(){
+    console.log("dddd")
+    $("#overlay, #modal").show();
+  });
+})
