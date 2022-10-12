@@ -964,6 +964,16 @@ function get_admin($admin='super', $fields='*')
     return $mb;
 }
 
+// 글 작성자가 관리자인지 판별
+function get_manager_info($mb_id)
+{
+    global $config, $reunionID;
+    global $g5;
+    $sql = sql_query("select * from manager where mg_id = '$mb_id' and reunion_id = $reunionID");
+    $mb = sql_num_rows($sql);
+    return $mb;
+}
+
 
 // 관리자인가?
 function is_admin($mb_id)

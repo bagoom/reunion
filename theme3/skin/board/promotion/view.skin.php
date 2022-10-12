@@ -129,6 +129,12 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
         <?php //echo $view['rich_content']; // {이미지:0} 과 같은 코드를 사용할 경우 ?>
         <!-- } 본문 내용 끝 -->
 
+        <!-- 신고하기 시작 -->
+        <?php $is_manager_writer = get_manager_info($view['mb_id']);?>
+        <input type="hidden" id="is_manager" value="<?=$is_manager_writer?>">
+         <input type="hidden" id="my_id" value="<?=$member['mb_id']?>">
+        <!-- 신고하기 끝 -->
+
         <?php if ($is_signature) { ?><p><?php echo $signature ?></p><?php } ?>
 
 
@@ -240,6 +246,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     // 코멘트 입출력
     include_once(G5_BBS_PATH.'/view_comment.php');
 	?>
+
+    <?php include_once(G5_PATH.'/include/report_modal.php');?>
 </article>
 <!-- } 게시판 읽기 끝 -->
 

@@ -2,6 +2,8 @@
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 include_once(G5_CAPTCHA_PATH.'/captcha.lib.php');
 
+$block_where = "not exists (select rp_id from report_comment b where b.wr_id = a.wr_id and b.mb_id = '$member[mb_id]')";
+
 $captcha_html = "";
 if ($is_guest && $board['bo_comment_level'] < 2) {
     $captcha_html = captcha_html('_comment');
@@ -19,12 +21,25 @@ if ($member['mb_level'] >= $board['bo_comment_level'])
     $is_comment_write = true;
 
 // 코멘트 출력
-//$sql = " select * from {$write_table} where wr_parent = '{$wr_id}' and wr_is_comment = 1 order by wr_comment desc, wr_comment_reply ";
-$sql = " select * from $write_table where wr_parent = '$wr_id' and wr_is_comment = 1 order by wr_comment, wr_comment_reply ";
+// $sql = " select * from {$write_table} where wr_parent = '{$wr_id}' and wr_is_comment = 1 order by wr_comment desc, wr_comment_reply ";
+if($is_member){
+    $sql = " select * from $write_table a where wr_parent = '$wr_id' and wr_is_comment = 1 and $block_where order by wr_comment, wr_comment_reply ";
+    $sql2 = " SELECT COUNT(*) AS `cnt` FROM {$write_table} a where wr_parent = '$wr_id' and wr_is_comment = 1 and $block_where";
+    $sql2_row = sql_fetch($sql2);
+    $total_count = $sql2_row['cnt'];
+}else{
+    $sql = " select * from $write_table where wr_parent = '$wr_id' and wr_is_comment = 1 order by wr_comment, wr_comment_reply ";
+}
+
+if($is_member){
+    $view['wr_comment'] = $total_count;
+}
 $result = sql_query($sql);
 for ($i=0; $row=sql_fetch_array($result); $i++)
 {
     $list[$i] = $row;
+
+  
 
     //$list[$i]['name'] = get_sideview($row['mb_id'], cut_str($row['wr_name'], 20, ''), $row['wr_email'], $row['wr_homepage']);
 

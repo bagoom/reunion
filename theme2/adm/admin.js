@@ -66,6 +66,8 @@ function delete_confirm(el, where) {
       confirm1 = confirm("해당 회원의 동문인증을 취소 하시겠습니까?");
     if (where == "branch_mem")
       confirm1 = confirm("해당 회원을 지회에서 탈퇴 하시겠습니까?");
+    if (where == "report")
+      confirm1 = confirm("신고해제 하시겠습니까?");
       
     if (confirm1) {
       var token = get_ajax_token();

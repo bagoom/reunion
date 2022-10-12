@@ -7,5 +7,5 @@ if (!defined("_GNUBOARD_")) {
 // 예) https://도메인/css/default.css?ver=210618
 // 예) https://도메인/js/common.js?ver=210618
 define("G5_CSS_VER", "210668");
-define("G5_JS_VER", "210625");
+define("G5_JS_VER", "210626");
 define("G5_IMG_VER", "210626");

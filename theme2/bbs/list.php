@@ -4,6 +4,10 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 $ignore_arr = explode(',',$ignore['board']);
 $ignore_arr = array_filter($ignore_arr);
 
+$block_where = "not exists (select rp_id from report_write b where b.wr_id = a.wr_id and b.mb_id = '$member[mb_id]') 
+and not exists (select rp_id from report_user c where  c.mb_id = '$member[mb_id]' and c.mb_to_id = a.mb_id)";
+
+$c_block_where = "not exists (select rp_id from report_comment b where b.wr_id = a.wr_id and b.mb_id = '$member[mb_id]')";
 // 분류 사용 여부
 $is_category = false;
 $category_option = '';
@@ -66,7 +70,12 @@ if ($sca || $stx || $stx === '0') {     //검색이면
 
     // 원글만 얻는다. (코멘트의 내용도 검색하기 위함)
     // 라엘님 제안 코드로 대체 http://sir.kr/g5_bug/2922
-    $sql = " SELECT COUNT(DISTINCT `wr_parent`) AS `cnt` FROM {$write_table} WHERE {$sql_search} ";
+    
+    if($is_member){
+        $sql = " SELECT COUNT(DISTINCT `wr_parent`) AS `cnt` FROM {$write_table} a WHERE {$sql_search} AND $block_where";
+    }else{
+        $sql = " SELECT COUNT(DISTINCT `wr_parent`) AS `cnt` FROM {$write_table} WHERE {$sql_search} ";
+    }
     $row = sql_fetch($sql);
     $total_count = $row['cnt'];
     /*
@@ -76,7 +85,11 @@ if ($sca || $stx || $stx === '0') {     //검색이면
     */
 } else {
     $sql_search = "wr_10 = {$reunionID}";
-    $sql = " SELECT COUNT(DISTINCT `wr_parent`) AS `cnt` FROM {$write_table} WHERE {$sql_search} ";
+    if($is_member){
+        $sql = " SELECT COUNT(DISTINCT `wr_parent`) AS `cnt` FROM {$write_table} a WHERE {$sql_search} AND $block_where";
+    }else{
+        $sql = " SELECT COUNT(DISTINCT `wr_parent`) AS `cnt` FROM {$write_table} WHERE {$sql_search} ";
+    }
     $row = sql_fetch($sql);
     $total_count = $row['cnt'];
 }
@@ -191,9 +204,18 @@ if ($sst) {
 }
 
 if ($is_search_bbs) {
-    $sql = " select distinct wr_parent from {$write_table} where {$sql_search} and wr_10 = {$reunionID} {$sql_order} limit {$from_record}, $page_rows ";
+    if($is_member){
+        $sql = " select distinct wr_parent from {$write_table} a where {$sql_search} and wr_10 = {$reunionID} and {$block_where} {$sql_order} limit {$from_record}, $page_rows ";
+    }else{
+        $sql = " select distinct wr_parent from {$write_table} where {$sql_search} and wr_10 = {$reunionID} {$sql_order} limit {$from_record}, $page_rows ";
+    }
+    
 } else {
-    $sql = " select * from {$write_table} where wr_is_comment = 0 and wr_10 = {$reunionID} ";
+    if($is_member){
+        $sql = " select * from {$write_table} a where wr_is_comment = 0 and {$block_where} and wr_10 = {$reunionID} ";
+    }else{
+        $sql = " select * from {$write_table} a where wr_is_comment = 0 and wr_10 = {$reunionID} ";
+    }
     if(!empty($notice_array))
         $sql .= " and wr_id not in (".implode(', ', $notice_array).") ";
     $sql .= " {$sql_order} limit {$from_record}, $page_rows ";
@@ -218,6 +240,13 @@ if($page_rows > 0) {
         $list[$i]['is_notice'] = false;
         $list_num = $total_count - ($page - 1) * $list_page_rows - $notice_count;
         $list[$i]['num'] = $list_num - $k;
+
+        if($is_member){
+            $comment_count = "SELECT COUNT(*) AS `cnt` FROM {$write_table} a where wr_parent = {$list[$i]['wr_id']} and wr_is_comment = 1 and $c_block_where";
+            $c_c_row = sql_fetch($comment_count);
+            $comment_count2 = $c_c_row['cnt'];
+            $list[$i]['wr_comment'] = $comment_count2;
+        }
 
         $i++;
         $k++;

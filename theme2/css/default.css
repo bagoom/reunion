@@ -1593,6 +1593,135 @@ a.gnb_2da:hover {
   content: ""
 }
 
+#modal.report-modal{
+  min-height: 250px;
+}
+.report-modal{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 300px;
+  min-height: 250px;
+  background: #fff;
+  border-radius: 4px;
+  transform: translate(-50%, -50%);
+  z-index: 101;
+}
+#modal.report-modal .modal-head {
+  padding: 15px 30px;
+}
+#modal.report-modal .modal-head .modal-close {
+  right: 30px;
+}
+.report-modal .modal-head h3{
+  font-size: 16px;
+}
+
+.report-modal .modal-body .con{
+  padding: 30px;
+  font-size: 16px;
+  color: #333;
+  line-height: 1.4;
+}
+.report-modal .modal-body .con p{
+  margin-bottom: 15px;
+}
+.report-modal .report-reason li{
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.report-modal .report-reason label{
+  margin-left: 3px;
+  cursor: pointer;
+  color: #999;
+}
+
+.report-modal .report-reason input:checked + label{
+  color: #333;
+}
+.report-modal .report-reason textarea{
+  display: none;
+  width: 100%;
+  height: 90px;
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+}
+
+.report-modal .modal-body .con i{
+  margin-bottom: 10px;
+  font-size: 34px;
+  color: #f05663;
+}
+
+.report-modal .modal-body .btn-wrap{
+  display: flex;
+  padding: 0 30px 30px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.report-modal .modal-body .btn-wrap .btn{
+  width: 50%;
+  border: 1px solid #cfcfcf;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 4px;
+  color: #999;
+  cursor: pointer;
+}
+.report-modal .modal-body .btn-wrap .cancel{
+  margin-right: 10px;
+}
+.report-modal .modal-body .btn-wrap .report{
+  border-color: #f05663;
+  background: #f05663;
+  color: #fff;
+}
+
+.comment-report-btn{
+  display: inline-block;
+  margin-top: 10px;
+  padding: 2px 10px;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+#bo_vc article.on{
+  padding: 10px;
+  border:2px solid #f53636;
+  background: #f9f9f9;
+}
+
+#bo_v .report-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+#bo_v .report-btn:last-child {
+  margin-left: 10px;
+}
+
+#bo_v .report-btn {
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+  border: 1px solid #bbb;
+  font-size: 14px;
+  border-radius: 3px;
+  color: #777;
+  cursor: pointer;
+}
+
+#bo_v .report-btn i {
+  margin-right: 5px;
+}
+
 /* 하단 레이아웃 */
 #ft {
   background: #fff;

@@ -47,7 +47,7 @@ function editor_html($id, $content, $is_dhtml_editor=true)
         $html .= "\n<span class=\"sound_only\">웹 에디터 끝</span>";
         $html .= "<script>ed_{$id}.run();</script>\n";
     } else {
-        $html .= "<textarea id=\"$id\" name=\"$id\" style=\"width:{$width};height:{$height};\" maxlength=\"65536\">$content</textarea>\n";
+        $html .= "<textarea id=\"$id\" name=\"$id\" style=\"width:{$width};height:{$height};\" placeholder=\"개인정보 유출, 명예훼손, 욕설 및 도배, 광고, 기타 법령에 위배되는 게시물은 이용약관 및 관련 법률 · 규정에 따라 삭제하거나 작성자의 게시판 이용을 제한 · 정지할 수 있습니다.\" maxlength=\"65536\">$content</textarea>\n";
     }
     return $html;
 }

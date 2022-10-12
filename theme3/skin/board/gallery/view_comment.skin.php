@@ -24,7 +24,7 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
 		$c_edit_href = $comment_common_url.'&amp;c_id='.$comment_id.'&amp;w=cu#bo_vc_w';
         $is_comment_reply_edit = ($list[$i]['is_reply'] || $list[$i]['is_edit'] || $list[$i]['is_del']) ? 1 : 0;
     ?>
-    <article id="c_<?php echo $comment_id ?>" <?php if ($cmt_depth) { ?>style="margin-left:<?php echo $cmt_depth ?>px;border-bottom-color:#f8f8f8"<?php } ?>>
+    <article id="c_<?php echo $comment_id ?>" class="<?=($comment_id == $c_id) ? 'on' : null?>" <?php if ($cmt_depth) { ?>style="margin-left:<?php echo $cmt_depth ?>px;border-top-color:#e0e0e0"<?php } ?>>
         <div class="comment_inner">
             <header>
                 <h2><?php echo get_text($list[$i]['wr_name']); ?>님의 댓글<?php if ($cmt_depth) { ?><span class="sound_only">의 댓글</span><?php } ?></h2>
@@ -45,6 +45,7 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
                         <?php if ($list[$i]['is_reply']) { ?><li><a href="<?php echo $c_reply_href; ?>" onclick="comment_box('<?php echo $comment_id ?>', 'c'); return false;">답변</a></li><?php } ?>
                         <?php if ($list[$i]['is_edit']) { ?><li><a href="<?php echo $c_edit_href; ?>" onclick="comment_box('<?php echo $comment_id ?>', 'cu'); return false;">수정</a></li><?php } ?>
                         <?php if ($list[$i]['is_del']) { ?><li><a href="<?php echo $list[$i]['del_link']; ?>" onclick="return comment_delete();">삭제</a></li><?php } ?>
+                        <li class="opt-report" data-id="<?=$comment_id?>" data-mbid="<?=$list[$i]['mb_id']?>" data-manager="<?=$is_manager_writer?>"><a href="" onclick="return false;">신고</a></li>
                     </ul>
                 </div>
                 <?php } ?>
@@ -81,6 +82,11 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
                     }
                 ?>
                 <?php } ?>
+                <?php $is_manager_writer = get_manager_info($list[$i]['mb_id']); ?>
+                <div class="comment-report-btn" data-id="<?=$comment_id?>" data-mbid="<?=$list[$i]['mb_id']?>" data-manager="<?=$is_manager_writer?>">
+                    <i class="xi-flag-o"></i>
+                    <span>신고</span>
+                </div>
             </div>
                 <span id="edit_<?php echo $comment_id ?>"></span><!-- 수정 -->
                 <span id="reply_<?php echo $comment_id ?>"></span><!-- 답변 -->
@@ -113,7 +119,7 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
 
         <?php if ($comment_min || $comment_max) { ?><strong id="char_cnt"><span id="char_count"></span>글자</strong><?php } ?>
         <textarea id="wr_content" name="wr_content" required title="댓글 내용"
-        <?php if ($comment_min || $comment_max) { ?>onkeyup="check_byte('wr_content', 'char_count');"<?php } ?> placeholder="댓글내용을 입력해주세요"><?php echo $c_wr_content; ?></textarea>
+        <?php if ($comment_min || $comment_max) { ?>onkeyup="check_byte('wr_content', 'char_count');"<?php } ?> placeholder="개인정보 유출, 명예훼손, 욕설 및 도배, 광고, 기타 법령에 위배되는 게시물은 이용약관 및 관련 법률 · 규정에 따라 삭제하거나 작성자의 게시판 이용을 제한 · 정지할 수 있습니다." ><?php echo $c_wr_content; ?></textarea>
         <?php if ($comment_min || $comment_max) { ?><script> check_byte('wr_content', 'char_count'); </script><?php } ?>
                 
         <div class="bo_vc_w_wr">

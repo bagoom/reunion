@@ -105,6 +105,25 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
         <?php if ($is_signature) { ?><p><?php echo $signature ?></p><?php } ?>
 
 
+        <!-- 신고하기 시작 -->
+        <?php $is_manager_writer = get_manager_info($view['mb_id']);?>
+        <input type="hidden" id="is_manager" value="<?=$is_manager_writer?>">
+        <input type="hidden" id="my_id" value="<?=$member['mb_id']?>">
+        
+        <?php if($board['bo_write_level'] == 2) { ?>
+            <div class="report-wrap">
+                <div class="report-btn article" data-id="<?=$view['mb_id']?>">
+                    <i class="xi-flag-o"></i>
+                    <span>게시물신고</span>
+                </div>
+                <div class="report-btn user" data-id="<?=$view['mb_id']?>">
+                    <i class="xi-flag-o"></i>
+                    <span>불량사용자 신고</span>
+                </div>
+            </div>
+        <?php }?>
+        <!-- 신고하기 끝 -->
+
         <!--  추천 비추천 시작 { -->
         <?php if ( $good_href || $nogood_href) { ?>
         <div id="bo_v_act">
@@ -187,8 +206,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
             ?>
             <li>
                 <i class="fa fa-link" aria-hidden="true"></i>
-                
-                <a href="javascript:gotoMobileUrl('<?=$view['link_href'][$i]?>'); " >
+                <a href="javascript:gotoMobileUrl('<?=$view['link'][$i]?>')" >
                     <strong><?php echo $link ?></strong>
                 </a>
                 <br>
@@ -214,6 +232,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     // 코멘트 입출력
     include_once(G5_BBS_PATH.'/view_comment.php');
 	?>
+
+    <?php include_once(G5_PATH.'/include/report_modal.php');?>
 </article>
 <!-- } 게시판 읽기 끝 -->
 

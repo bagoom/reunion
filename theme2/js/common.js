@@ -869,3 +869,83 @@ function RgetPushToken(obj, obj2) {
   // alert(obj);
   // alert(obj2);
 }
+
+$(document).ready(function(){
+  var is_manager = $("#is_manager").val();
+  var my_id = $("#my_id").val();
+
+  function loginCheck(){
+    $(".report-reason li:first-child input").prop('checked', true);
+    if(!g5_is_member){
+      var link =  document.location.href;
+      alert("로그인 후 이용해 주세요.");
+      location.href= g5_bbs_url + "/login.php?url=" + link;
+      return false;
+    }
+    return true;
+  };
+
+
+  // 게시물 신고
+  $(".report-btn.article").click(function(){
+    var author_id = $(this).data("id"); 
+    if(loginCheck()){
+      if(is_manager == 1){
+        alert("동문회 관리자가 등록한 글은 신고하실 수 없습니다.");
+        return false;
+      } 
+      if(my_id == author_id){
+        alert("자신의 글은 신고하실 수 없습니다.");
+        return false;
+      } 
+      
+      $("#overlay, #modal.report-modal.article").show();
+    }
+  });
+
+
+  // 불량사용자 신고
+  $(".report-btn.user").click(function(){
+    var author_id = $(this).data("id"); 
+    if(loginCheck()){
+
+    if(is_manager == 1){
+      alert("동문회 관리자 계정은 신고하실 수 없습니다.");
+      return false;
+    }  
+    if(my_id == author_id){
+      alert("자신을 신고하실 수 없습니다.");
+      return false;
+    } 
+
+    $("#overlay, #modal.report-modal.user").show();
+
+    }
+  });
+
+
+  // 댓글 신고
+  $(".comment-report-btn, .opt-report").click(function(){
+    var author_id = $(this).data("mbid"); 
+    var c_is_manager = $(this).data("manager");
+    if(loginCheck()){
+
+    if(c_is_manager == 1){
+      alert("동문회 관리자 댓글은 신고하실 수 없습니다.");
+      return false;
+    }  
+    if(my_id == author_id){
+      alert("자신의 댓글은 신고하실 수 없습니다.");
+      return false;
+    } 
+
+    $("#overlay, #modal.report-modal.comment").show();
+    $("#modal.report-modal.comment").attr("data-id", $(this).data('id'));
+    }
+  });
+
+  $(".modal-close, #modal .btn-wrap .cancel").click(function(){
+    $("#overlay, #modal").hide();
+    $("textarea[name=etc_reason]").hide();
+  });
+})

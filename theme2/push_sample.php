@@ -53,7 +53,7 @@ function send_gcm_notify($reg_id, $title, $message ,$url , $deviceType) {
 $reg_id = "dJe3PWPtPV0:APA91bG0ItssiOXzxwEN3Rl-gL-i9xRZKrK7PDCPDt3xSnwOgx-kCl5MKjyk93a87FlqPueien9vCSdAvbHgi0mPIUK9ogMrwpGfuleA7ANFmUYQ8tSCVkjJ85U2olteG2oGt3Sf9ZRN";				//푸시 보낼 디바이스 토큰
 $title = "상단타이틀제목";				//푸시 title 문구
 $msg = "테스트입니다..";				//푸시 body 문구
-$url = "https://www.naver.com/";	//푸시클릭시 이동할 url 주소
+$url = "";	//푸시클릭시 이동할 url 주소
 $deviceType = "android";			//디바이스 타입 : android or ios
 
 //http://snap40.cafe24.com/fanc/push_sample.php

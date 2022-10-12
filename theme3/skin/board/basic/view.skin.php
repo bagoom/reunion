@@ -106,40 +106,23 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 
 
         <!-- 신고하기 시작 -->
-        <div class="report-wrap">
-            <div class="report-btn article">
-                <i class="xi-ban"></i>
-                <span>게시물신고</span>
+        <?php $is_manager_writer = get_manager_info($view['mb_id']);?>
+        <input type="hidden" id="is_manager" value="<?=$is_manager_writer?>">
+        <input type="hidden" id="my_id" value="<?=$member['mb_id']?>">
+        
+        <?php if($board['bo_write_level'] == 2) { ?>
+            <div class="report-wrap">
+                <div class="report-btn article" data-id="<?=$view['mb_id']?>">
+                    <i class="xi-flag-o"></i>
+                    <span>게시물신고</span>
+                </div>
+                <div class="report-btn user" data-id="<?=$view['mb_id']?>">
+                    <i class="xi-flag-o"></i>
+                    <span>불량사용자 신고</span>
+                </div>
             </div>
-            <div class="report-btn">
-                <i class="xi-ban"></i>
-                <span>불량사용자 신고</span>
-            </div>
-        </div>
+        <?php }?>
         <!-- 신고하기 끝 -->
-
-        <div class="report-modal" id="modal">
-            <div class="modal-head">
-                <h3>해당 게시물 신고하기</h3>
-                <div class="modal-close"><i class="xi-close"></i></div>
-            </div>
-
-            <div class="modal-body">
-                <div class="con">
-                    <div class="icon"><i class="xi-info"></i></div>
-                    <p>해당 게시물을</p>
-                    <p>신고 하시겠습니까?</p>
-                </div>
-
-                <div class="btn-wrap">
-                    <div class="btn cancel">취소</div>
-                    <div class="btn report">신고</div>
-                </div>
-            </div>
-        </div>
-
-        <div id="overlay"></div>
-
 
         <!--  추천 비추천 시작 { -->
         <?php if ( $good_href || $nogood_href) { ?>
@@ -249,6 +232,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     // 코멘트 입출력
     include_once(G5_BBS_PATH.'/view_comment.php');
 	?>
+
+    <?php include_once(G5_PATH.'/include/report_modal.php');?>
 </article>
 <!-- } 게시판 읽기 끝 -->
 

@@ -481,6 +481,24 @@ h2 {
     display: block;
 }
 
+.cate-list{
+    margin: 20px 0 20px;
+}
+.cate-list li{
+    display: inline-block;
+}
+.cate-list li a{
+    display: block;
+    padding: 6px 12px;
+    background: #9eacc6;
+    color: #fff;
+    font-size: 14px;
+}
+
+.cate-list li.on a{
+    background: #222;
+}
+
 /*중간*/
 #container {
     margin-top: 50px;
